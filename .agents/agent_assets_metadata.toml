@@ -54,3 +54,9 @@ id = "V9RS6b6_EYnUHrTYuX3Mt"
 uri = "file://artifacts/mermaid-tails/public/images/tail-frame-raw.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "NMnCbDw94byNPxDNj2F3a"
+uri = "file://artifacts/mermaid-tails/public/images/mermaid-avatar-raw.png"
+type = "image"
+title = "generated_image"

@@ -62,66 +62,44 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Artistic medallion: logo + arrow unified */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
+        {/* Mermaid avatar — scroll invitation */}
+        <motion.button
+          onClick={scrollToNext}
+          data-testid="button-scroll-down"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center group cursor-pointer"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.6 }}
+        >
+          {/* Speech bubble */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
-            className="flex flex-col items-center"
+            animate={{ opacity: [0.7, 1, 0.7], y: [0, -4, 0] }}
+            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+            className="mb-2 px-3 py-1.5 rounded-full text-xs font-light tracking-widest uppercase text-white/90 border border-cyan-400/50 backdrop-blur-sm"
+            style={{ background: "rgba(0,30,60,0.55)", boxShadow: "0 0 12px rgba(0,200,239,0.25)" }}
           >
-            {/* Shell-shaped frame (scallop / coquille Saint-Jacques) — small, bottom */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="relative flex items-center justify-center"
-              style={{ width: 220, height: 220 }}
-            >
-              {/* Mermaid tail curled as frame — background removed, transparent PNG */}
-              <img
-                src="/images/tail-frame.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
-                style={{
-                  filter: "drop-shadow(0 0 14px rgba(0,200,239,0.5)) drop-shadow(0 4px 16px rgba(0,0,0,0.6)) brightness(1.1) saturate(1.2)",
-                  opacity: 0.95,
-                }}
-              />
-
-              {/* Logo centred inside the tail ring */}
-              <div className="relative z-10 flex flex-col items-center">
-                <img
-                  src={logoSrc}
-                  alt="Mermaid Aquata"
-                  className="w-24 md:w-28 object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
-                />
-              </div>
-            </motion.div>
-
-            {/* Connector stem */}
-            <div className="flex flex-col items-center gap-0">
-              <div className="w-px h-5 bg-gradient-to-b from-cyan-400/60 to-transparent" />
-              {/* Diamond gem */}
-              <div className="w-2.5 h-2.5 rotate-45 bg-cyan-300/70 border border-cyan-200/50 shadow-[0_0_8px_rgba(0,200,239,0.7)]" />
-              <div className="w-px h-4 bg-gradient-to-b from-cyan-400/40 to-transparent" />
-
-              {/* Arrow integrated at the bottom of the medallion */}
-              <motion.button
-                onClick={scrollToNext}
-                data-testid="button-scroll-down"
-                className="flex flex-col items-center group cursor-pointer mt-1"
-                animate={{ y: [0, 7, 0] }}
-                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-              >
-                <svg width="38" height="28" viewBox="0 0 38 28" fill="none" className="group-hover:opacity-100 opacity-75 transition-opacity drop-shadow-[0_0_6px_rgba(0,200,239,0.6)]">
-                  <path d="M4 6 L19 22 L34 6" stroke="rgba(0,200,239,0.85)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M10 2 L19 12 L28 2" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </motion.button>
-            </div>
+            Découvrir ↓
           </motion.div>
-        </div>
+
+          {/* Avatar image */}
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+            className="relative"
+          >
+            <img
+              src="/images/mermaid-avatar.png"
+              alt="Sirène — cliquer pour découvrir"
+              className="h-36 md:h-44 w-auto object-contain select-none transition-all duration-300 group-hover:scale-105"
+              style={{
+                filter: "drop-shadow(0 4px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,200,239,0.3))",
+              }}
+            />
+            {/* Hover glow ring */}
+            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              style={{ boxShadow: "0 0 30px rgba(0,200,239,0.4)" }} />
+          </motion.div>
+        </motion.button>
         
       </section>
 
