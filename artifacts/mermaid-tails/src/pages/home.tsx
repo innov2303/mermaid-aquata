@@ -218,7 +218,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Notre Travail Section */}
+      {/* Notre Activité Section */}
       <section className="py-24 section-clair-alt relative">
         
         <div className="container mx-auto px-4 md:px-6">
@@ -228,7 +228,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Travail</h2>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Activité</h2>
             <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
