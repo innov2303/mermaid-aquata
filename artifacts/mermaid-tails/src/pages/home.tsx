@@ -63,19 +63,19 @@ export default function Home() {
         </div>
 
         {/* Artistic medallion: logo + arrow unified */}
-        <div className="relative z-10 flex flex-col items-center">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.8, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            {/* Shell-shaped frame (scallop / coquille Saint-Jacques) */}
+            {/* Shell-shaped frame (scallop / coquille Saint-Jacques) — small, bottom */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
+              animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               className="relative flex items-center justify-center"
-              style={{ width: 380, height: 340 }}
+              style={{ width: 200, height: 178 }}
             >
               {/* Real shell photo — background removed, transparent PNG */}
               <img
@@ -84,21 +84,18 @@ export default function Home() {
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
                 style={{
-                  filter: "drop-shadow(0 0 18px rgba(0,200,239,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.5)) brightness(1.08) saturate(0.75) hue-rotate(160deg)",
-                  opacity: 0.88,
+                  filter: "drop-shadow(0 0 12px rgba(0,200,239,0.35)) drop-shadow(0 4px 12px rgba(0,0,0,0.5)) brightness(1.08) saturate(0.75) hue-rotate(160deg)",
+                  opacity: 0.9,
                 }}
               />
 
-              {/* Logo and tagline centred inside the shell's open cup */}
+              {/* Logo centred inside the shell's open cup */}
               <div className="relative z-10 flex flex-col items-center" style={{ marginTop: "-14%" }}>
                 <img
                   src={logoSrc}
                   alt="Mermaid Aquata"
-                  className="w-44 md:w-56 object-contain drop-shadow-[0_4px_22px_rgba(0,0,0,0.75)]"
+                  className="w-24 md:w-28 object-contain drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]"
                 />
-                <p className="mt-2 text-[10px] md:text-xs font-light tracking-[0.28em] text-white/70 uppercase text-center drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
-                  Créatrice de Queues Artisanales
-                </p>
               </div>
             </motion.div>
 
