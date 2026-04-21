@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ChevronDown, Droplet, Fish, Sparkles, Gem, Paintbrush } from "lucide-react";
+import { ChevronDown, Droplet, Sparkles, Gem, Paintbrush } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
@@ -234,7 +234,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <FeatureCard 
-              icon={<Fish size={32} className="text-primary" />}
+              icon={
+                <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" className="text-primary">
+                  <path d="M12 2c-1.4 0-2.3 1.1-2.3 2.5v9.2c-.7.4-1.2 1-1.2 1.8l-.4 1.2L5 21.5c1.8-.9 3.5-1.2 5-0.6L12 22l2-.6c1.5-.6 3.2-.3 5 .6l-3.1-4.8-.4-1.2c0-.8-.5-1.4-1.2-1.8V4.5C14.3 3.1 13.4 2 12 2z"/>
+                </svg>
+              }
               title="Queues Monopalmes"
               desc="Pour la natation sportive et artistique, nos queues monopalmes allient performance et beauté."
               delay={0}
