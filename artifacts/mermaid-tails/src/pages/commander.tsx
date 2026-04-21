@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Fish, Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ContactModal } from "@/components/ContactModal";
 
 const STEPS = [
   { icon: <Fish size={28} />, title: "Choisir sa queue de sirène", desc: null, choices: ["Classique silicone", "Pieds invisible", "Longfish", "Monopalme", "Monopalme à extension"] },
@@ -15,6 +16,7 @@ const STEPS = [
 export default function Commander() {
   const [currentStep, setCurrentStep] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <div className="min-h-screen section-clair pt-32 pb-20">
@@ -111,7 +113,7 @@ export default function Commander() {
                 Suivant <ChevronRight className="ml-2" size={20} />
               </Button>
             ) : (
-              <Button size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_15px_rgba(0,200,239,0.5)]">
+              <Button size="lg" onClick={() => setContactOpen(true)} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_15px_rgba(0,200,239,0.5)]">
                 Nous Contacter
               </Button>
             )}
@@ -150,6 +152,8 @@ export default function Commander() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }
