@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ChevronDown, Hammer, Globe, Leaf, Film, Heart } from "lucide-react";
+import { ChevronDown, Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
@@ -256,14 +256,18 @@ export default function Home() {
               title="Tournages"
               desc="Mermaid Aquata intervient sur des tournages professionnels, incarnant une véritable sirène grâce à ses costumes de scène haute qualité."
               delay={0.3}
-              className="lg:col-start-1 lg:col-end-2 lg:ml-auto"
             />
             <FeatureCard 
               icon={<Heart size={32} className="text-secondary" />}
               title="Créatrice Dévouée"
               desc="Passionnée depuis toujours par l'univers marin, chaque projet est porté avec amour et un engagement total envers la satisfaction du client."
               delay={0.4}
-              className="lg:col-start-2 lg:col-end-3"
+            />
+            <FeatureCard 
+              icon={<Tv size={32} className="text-accent" />}
+              title="Vue à la télé"
+              desc="Mermaid Aquata a été mise à l'honneur dans plusieurs émissions et reportages télévisés, témoignant de la reconnaissance de son art unique."
+              delay={0.5}
             />
           </div>
 
