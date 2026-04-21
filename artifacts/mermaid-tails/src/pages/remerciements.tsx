@@ -32,17 +32,22 @@ export default function Remerciements() {
               className="group relative rounded-3xl overflow-hidden"
               style={{ border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 24px rgba(0,200,239,0.12)' }}
             >
-              <div className="relative w-full aspect-[3/4] overflow-hidden">
+              <div className="relative w-full aspect-[3/2] overflow-hidden">
                 <img
                   src={sirene.img}
                   alt={sirene.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div
-                  className="absolute bottom-0 left-0 right-0 py-5 px-4 text-center"
-                  style={{ background: 'linear-gradient(to top, rgba(4,15,40,0.75) 0%, transparent 100%)' }}
+                  className="absolute bottom-0 left-0 right-0 py-4 px-4 text-center"
+                  style={{ background: 'linear-gradient(to top, rgba(4,15,40,0.85) 0%, transparent 100%)' }}
                 >
-                  <h3 className="font-serif text-2xl md:text-3xl text-white drop-shadow">{sirene.name}</h3>
+                  <h3
+                    className="font-serif text-xl md:text-2xl font-semibold tracking-wide"
+                    style={{ color: '#ffffff', textShadow: '0 0 12px rgba(0,200,239,0.7), 0 2px 6px rgba(0,0,0,0.8)' }}
+                  >
+                    {sirene.name}
+                  </h3>
                 </div>
               </div>
             </motion.div>
