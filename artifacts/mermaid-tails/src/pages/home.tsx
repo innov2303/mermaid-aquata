@@ -62,6 +62,35 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Main Title */}
+        <motion.div
+          className="absolute top-28 left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          initial={{ opacity: 0, y: -18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+        >
+          <h1
+            className="font-bold tracking-wide leading-tight"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 4rem)",
+              background: "linear-gradient(135deg, #ffffff 0%, #a8f0ff 35%, #00c8ef 65%, #0ea5e9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "none",
+              filter: "drop-shadow(0 2px 16px rgba(0,200,239,0.45))",
+              fontFamily: "'Georgia', serif",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Bienvenue chez Mermaid Aquata
+          </h1>
+          <div
+            className="mt-3 h-px w-48 mx-auto"
+            style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }}
+          />
+        </motion.div>
+
         {/* Bubble CTA — floats at bottom center */}
         <motion.button
           onClick={scrollToNext}
