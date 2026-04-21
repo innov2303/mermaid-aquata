@@ -62,44 +62,72 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Mermaid avatar — scroll invitation */}
-        <motion.button
-          onClick={scrollToNext}
-          data-testid="button-scroll-down"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center group cursor-pointer"
+        {/* Mermaid avatar + CTA — bottom of hero */}
+        <motion.div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex items-end gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6 }}
         >
-          {/* Speech bubble */}
-          <motion.div
-            animate={{ opacity: [0.7, 1, 0.7], y: [0, -4, 0] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="mb-2 px-3 py-1.5 rounded-full text-xs font-light tracking-widest uppercase text-white/90 border border-cyan-400/50 backdrop-blur-sm"
-            style={{ background: "rgba(0,30,60,0.55)", boxShadow: "0 0 12px rgba(0,200,239,0.25)" }}
-          >
-            Découvrir ↓
-          </motion.div>
-
-          {/* Avatar image */}
+          {/* Avatar floating */}
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
-            className="relative"
+            className="relative flex-shrink-0"
           >
             <img
               src="/images/mermaid-avatar.png"
-              alt="Sirène — cliquer pour découvrir"
-              className="h-36 md:h-44 w-auto object-contain select-none transition-all duration-300 group-hover:scale-105"
+              alt="Sirène"
+              className="h-44 md:h-52 w-auto object-contain select-none"
               style={{
-                filter: "drop-shadow(0 4px 20px rgba(0,0,0,0.6)) drop-shadow(0 0 16px rgba(0,200,239,0.3))",
+                filter: "drop-shadow(0 6px 20px rgba(0,0,0,0.55)) drop-shadow(0 0 18px rgba(0,200,239,0.25))",
               }}
             />
-            {/* Hover glow ring */}
-            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              style={{ boxShadow: "0 0 30px rgba(0,200,239,0.4)" }} />
           </motion.div>
-        </motion.button>
+
+          {/* CTA button card — beside the avatar */}
+          <motion.button
+            onClick={scrollToNext}
+            data-testid="button-scroll-down"
+            className="group mb-8 flex flex-col items-center gap-3 cursor-pointer"
+            whileHover={{ scale: 1.04 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            {/* Decorative wavy line connecting avatar to button */}
+            <svg width="48" height="20" viewBox="0 0 48 20" fill="none" className="opacity-50 rotate-90 mb-1">
+              <path d="M4 10 Q12 2, 24 10 Q36 18, 44 10" stroke="rgba(0,200,239,0.7)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+            </svg>
+
+            {/* Button */}
+            <div
+              className="relative px-6 py-3 rounded-2xl overflow-hidden transition-all duration-300"
+              style={{
+                background: "rgba(0,25,55,0.65)",
+                border: "1.5px solid rgba(0,200,239,0.5)",
+                boxShadow: "0 0 20px rgba(0,200,239,0.2), inset 0 0 20px rgba(0,100,180,0.1)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              {/* Shimmer on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "linear-gradient(135deg, transparent 40%, rgba(0,200,239,0.12) 50%, transparent 60%)" }} />
+
+              <p className="text-sm md:text-base font-light tracking-[0.2em] text-white/90 uppercase whitespace-nowrap relative z-10">
+                Nous découvrir
+              </p>
+            </div>
+
+            {/* Animated arrow below button */}
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            >
+              <svg width="20" height="14" viewBox="0 0 20 14" fill="none" className="opacity-70 group-hover:opacity-100 transition-opacity">
+                <path d="M2 3 L10 11 L18 3" stroke="rgba(0,200,239,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.div>
+          </motion.button>
+        </motion.div>
         
       </section>
 
