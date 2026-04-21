@@ -265,7 +265,7 @@ export default function Home() {
             />
             <FeatureCard 
               icon={<Tv size={32} className="text-accent" />}
-              title="Vue à la télé"
+              title="Reportages TV"
               desc="Mermaid Aquata a été mise à l'honneur dans plusieurs émissions et reportages télévisés, témoignant de la reconnaissance de son art unique."
               delay={0.5}
             />
