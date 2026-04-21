@@ -174,11 +174,6 @@ export default function Catalogue() {
           ))}
         </div>
 
-        <div className="text-center mt-24">
-          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.5)] hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] transition-all hover:scale-105">
-            <Link href="/commander">Commander sur mesure</Link>
-          </Button>
-        </div>
       </div>
 
       {/* Popup détails */}
