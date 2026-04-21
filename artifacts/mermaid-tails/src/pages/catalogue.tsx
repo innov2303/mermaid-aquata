@@ -196,7 +196,7 @@ export default function Catalogue() {
                 <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight" style={{ color: '#0a2a4a' }}>
                   {selected.name}
                 </h2>
-                <p className="font-light leading-relaxed mb-8 text-sm md:text-base" style={{ color: '#1a3d5c' }}>
+                <p className="font-light leading-relaxed mb-8 text-sm md:text-base whitespace-pre-line" style={{ color: '#1a3d5c' }}>
                   {selected.desc}
                 </p>
                 <p className="font-serif text-2xl text-primary font-semibold mb-8">{selected.price}</p>
