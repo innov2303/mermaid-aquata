@@ -44,43 +44,59 @@ export default function Faq() {
   ];
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-background bg-ocean-gradient bg-fixed">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <div className="w-16 h-16 bg-card rounded-full flex items-center justify-center mx-auto mb-6 text-accent shadow-lg">
-            <HelpCircle size={32} />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6">Foire Aux Questions</h1>
-          <p className="text-xl text-foreground/80 max-w-2xl mx-auto font-light">
-            Toutes les réponses à vos questions concernant nos queues de sirène artisanales.
-          </p>
-        </motion.div>
+    <div className="min-h-screen">
+      {/* Header sombre */}
+      <div className="pt-32 pb-16" style={{ background: 'linear-gradient(180deg, #040f28 0%, #0a3a5c 100%)' }}>
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{ background: 'rgba(0,200,239,0.15)', color: '#00e5ff' }}>
+              <HelpCircle size={32} />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>Foire Aux Questions</h1>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              Toutes les réponses à vos questions concernant nos queues de sirène artisanales.
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <AccordionItem value={`item-${i}`} className="bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl px-6 data-[state=open]:bg-card/80 data-[state=open]:border-primary/50 transition-all">
-                  <AccordionTrigger className="text-left font-serif text-lg text-white hover:text-accent hover:no-underline py-6">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-foreground/80 font-light leading-relaxed pb-6 text-base">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
-            ))}
-          </Accordion>
+      {/* Contenu clair */}
+      <div className="section-clair py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full space-y-4">
+              {faqs.map((faq, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <AccordionItem
+                    value={`item-${i}`}
+                    className="rounded-2xl px-6 transition-all"
+                    style={{
+                      background: 'rgba(255,255,255,0.85)',
+                      border: '2px solid rgba(0,200,239,0.55)',
+                      boxShadow: '0 0 16px rgba(0,200,239,0.12)'
+                    }}
+                  >
+                    <AccordionTrigger className="text-left font-serif text-lg hover:no-underline py-6" style={{ color: '#0a2a4a' }}>
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="font-light leading-relaxed pb-6 text-base" style={{ color: '#1a3d5c' }}>
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </div>
     </div>

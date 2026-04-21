@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function Catalogue() {
   const tails = {
@@ -31,70 +30,77 @@ export default function Catalogue() {
   ];
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-background">
-      <div className="container mx-auto px-4 md:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 text-cyan-shimmer">Notre Catalogue</h1>
-          <p className="text-xl text-foreground/80 max-w-2xl mx-auto font-light">
-            Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
-          </p>
-        </motion.div>
+    <div className="min-h-screen">
+      {/* Header sombre */}
+      <div className="pt-32 pb-16" style={{ background: 'linear-gradient(180deg, #040f28 0%, #0a3a5c 100%)' }}>
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>Notre Catalogue</h1>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        <Tabs defaultValue="monopalmes" className="w-full mb-24">
-          <TabsList className="w-full flex flex-wrap justify-center bg-card p-2 rounded-2xl h-auto gap-2 mb-12 border border-border/50">
-            <TabsTrigger value="monopalmes" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-background">Monopalmes</TabsTrigger>
-            <TabsTrigger value="invisibles" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-background">Pieds Invisibles</TabsTrigger>
-            <TabsTrigger value="silicone" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-background">Silicone</TabsTrigger>
-          </TabsList>
+      {/* Contenu clair */}
+      <div className="section-clair py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <Tabs defaultValue="monopalmes" className="w-full mb-24">
+            <TabsList className="w-full flex flex-wrap justify-center p-2 rounded-2xl h-auto gap-2 mb-12 border" style={{ background: 'rgba(255,255,255,0.8)', borderColor: 'rgba(0,200,239,0.3)' }}>
+              <TabsTrigger value="monopalmes" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Monopalmes</TabsTrigger>
+              <TabsTrigger value="invisibles" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Pieds Invisibles</TabsTrigger>
+              <TabsTrigger value="silicone" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Silicone</TabsTrigger>
+            </TabsList>
 
-          {Object.entries(tails).map(([key, items]) => (
-            <TabsContent key={key} value={key}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {items.map((item, i) => (
-                  <ProductCard key={item.id} item={item} delay={i * 0.1} />
-                ))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+            {Object.entries(tails).map(([key, items]) => (
+              <TabsContent key={key} value={key}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {items.map((item, i) => (
+                    <ProductCard key={item.id} item={item} delay={i * 0.1} />
+                  ))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-serif text-white mb-10 text-center">Accessoires</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {accessories.map((acc, i) => (
-              <motion.div
-                key={acc.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-card rounded-2xl p-6 border border-border text-center hover:border-accent transition-colors group"
-              >
-                <div className="w-full aspect-square bg-background rounded-xl mb-4 flex items-center justify-center border border-border group-hover:border-accent/50 transition-colors overflow-hidden">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-serif mb-10 text-center" style={{ color: '#0a2a4a' }}>Accessoires</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {accessories.map((acc, i) => (
+                <motion.div
+                  key={acc.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="rounded-2xl p-6 text-center hover:scale-105 transition-all duration-300"
+                  style={{ background: 'rgba(255,255,255,0.8)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 20px rgba(0,200,239,0.15)' }}
+                >
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0,200,239,0.12)' }}>
                     <span className="text-primary text-2xl font-serif">✦</span>
                   </div>
-                </div>
-                <h3 className="font-serif text-lg text-white mb-2">{acc.name}</h3>
-                <p className="text-accent font-medium">{acc.price}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                  <h3 className="font-serif text-lg mb-2" style={{ color: '#0a2a4a' }}>{acc.name}</h3>
+                  <p className="font-medium text-primary">{acc.price}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        <div className="text-center mt-20">
-          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.5)] hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] transition-all hover:scale-105">
-            <Link href="/commander">Commander sur mesure</Link>
-          </Button>
+          <div className="text-center mt-20">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.5)] hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] transition-all hover:scale-105">
+              <Link href="/commander">Commander sur mesure</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
@@ -107,25 +113,21 @@ function ProductCard({ item, delay }: { item: any, delay: number }) {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay }}
-      className="group relative"
+      className="group relative rounded-3xl overflow-hidden hover:scale-105 transition-all duration-300"
+      style={{ border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 20px rgba(0,200,239,0.15)', background: 'rgba(255,255,255,0.85)' }}
     >
-      <Card className="bg-card border-border overflow-hidden h-full flex flex-col hover:border-primary/50 transition-all duration-300">
-        <div className="relative w-full aspect-[3/4] overflow-hidden">
-          <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
-          <img 
-            src={item.img} 
-            alt={item.name} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-          />
-        </div>
-        <CardContent className="p-6 flex-grow flex flex-col justify-between z-20 bg-card/95 backdrop-blur-md -mt-4 border-t border-border/50 rounded-t-2xl relative">
-          <div>
-            <h3 className="text-2xl font-serif text-white mb-2 group-hover:text-primary transition-colors">{item.name}</h3>
-            <p className="text-foreground/70 text-sm mb-4 font-light">{item.desc}</p>
-          </div>
-          <p className="text-accent font-serif text-lg">{item.price}</p>
-        </CardContent>
-      </Card>
+      <div className="relative w-full aspect-[3/4] overflow-hidden">
+        <img
+          src={item.img}
+          alt={item.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        />
+      </div>
+      <div className="p-6" style={{ background: 'rgba(255,255,255,0.95)' }}>
+        <h3 className="text-2xl font-serif mb-2 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
+        <p className="text-sm mb-4 font-light" style={{ color: '#1a3d5c' }}>{item.desc}</p>
+        <p className="font-serif text-lg text-primary font-medium">{item.price}</p>
+      </div>
     </motion.div>
   );
 }
