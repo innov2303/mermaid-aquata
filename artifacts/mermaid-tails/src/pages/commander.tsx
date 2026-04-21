@@ -7,7 +7,7 @@ const STEPS = [
   { icon: <Fish size={28} />, title: "Choisir sa queue de sirène", desc: null, choices: ["Classique silicone", "Pieds invisible", "Longfish", "Monopalme", "Monopalme à extension"] },
   { icon: <Scissors size={28} />, title: "Choisir la forme de votre nageoire", desc: null, choices: ["SIREN", "LAGOON", "SPLASH", "H2O", "GOLDFISH", "ARIEL"], note: "Choisissez la forme de votre nageoire parmi les designs proposés, ils sont affichés sur chaque rubrique de description : « Classique silicone », « Pieds invisible » et « Longfish ».\n\nLe tarif est le même pour chaque forme.\n\nTaille : 75 cm largeur / 75 cm longueur pour toutes les formes." },
   { icon: <Palette size={28} />, title: "Choisir les couleurs et détails", desc: "Choisissez vos couleurs et l'ajout de petites nageoires et/ou dorsales, spécifiez-le nous lors de votre message, nous vous enverrons plusieurs teintes possibles.\n\nN'hésitez pas à nous envoyer également le plus de photos de référence possible afin de visualiser au mieux votre demande." },
-  { icon: <Ruler size={28} />, title: "Vos mesures", desc: "La prise de vos mesures est indispensable pour un ajustement parfait !\n\nElles sont à prendre debout, les jambes serrées ensemble comme si vous étiez dans la nageoire.\n\nGrâce à ce tableau, prenez en centimètres les tours à droite et les longueurs à gauche.\n\nLa mesure de la taille doit être au niveau du nombril, la mesure cheville au niveau de l'os de votre cheville.\n\nLa longueur doit partir du nombril à la hanche, du nombril aux fesses, du nombril au milieu des cuisses, etc. Jusqu'à la cheville et non le sol !" },
+  { icon: <Ruler size={28} />, title: "Vos mesures", desc: "La prise de vos mesures est indispensable pour un ajustement parfait !\n\nElles sont à prendre debout, les jambes serrées ensemble comme si vous étiez dans la nageoire.\n\nGrâce à ce tableau, prenez en centimètres les tours à droite et les longueurs à gauche.\n\nLa mesure de la taille doit être au niveau du nombril, la mesure cheville au niveau de l'os de votre cheville.\n\nLa longueur doit partir du nombril à la hanche, du nombril aux fesses, du nombril au milieu des cuisses, etc. Jusqu'à la cheville et non le sol !", image: "/images/mes-mesures.webp" },
   { icon: <MessageCircle size={28} />, title: "Nous contacter", desc: "Envoyez-nous votre commande par email ou via nos réseaux sociaux. Nous vous répondrons sous 48h pour confirmer et affiner votre projet." },
   { icon: <CreditCard size={28} />, title: "Paiement", desc: "Acompte de 30% à la commande, solde à la livraison. Délai de fabrication : 4 à 8 semaines selon le modèle." }
 ];
@@ -50,30 +50,44 @@ export default function Commander() {
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className="flex flex-col items-center text-center"
+                className={`flex w-full ${STEPS[currentStep].image ? 'flex-row items-start gap-8 text-left' : 'flex-col items-center text-center'}`}
               >
-                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
-                  {STEPS[currentStep].icon}
-                </div>
-                <h2 className="text-3xl font-serif mb-6" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
-                {STEPS[currentStep].choices ? (
-                  <div className="w-full max-w-md mx-auto flex flex-col gap-4">
-                    {STEPS[currentStep].note && (
-                      <div className="text-sm leading-relaxed font-light text-center whitespace-pre-line" style={{ color: '#1a3d5c' }}>
-                        {STEPS[currentStep].note}
-                      </div>
-                    )}
-                    <ul className="flex flex-col gap-3">
-                      {STEPS[currentStep].choices.map((choice, idx) => (
-                        <li key={idx} className="flex items-center gap-3 rounded-xl px-5 py-3 font-light text-lg" style={{ background: 'rgba(0,200,239,0.08)', border: '1.5px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
-                          <span className="text-primary font-semibold">✦</span>
-                          {choice}
-                        </li>
-                      ))}
-                    </ul>
+                {/* Left / main content */}
+                <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
+                    {STEPS[currentStep].icon}
                   </div>
-                ) : (
-                  <p className="text-lg leading-relaxed font-light max-w-2xl whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
+                  <h2 className="text-3xl font-serif mb-6" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
+                  {STEPS[currentStep].choices ? (
+                    <div className="w-full max-w-md flex flex-col gap-4">
+                      {STEPS[currentStep].note && (
+                        <div className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>
+                          {STEPS[currentStep].note}
+                        </div>
+                      )}
+                      <ul className="flex flex-col gap-3">
+                        {STEPS[currentStep].choices.map((choice, idx) => (
+                          <li key={idx} className="flex items-center gap-3 rounded-xl px-5 py-3 font-light text-lg" style={{ background: 'rgba(0,200,239,0.08)', border: '1.5px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
+                            <span className="text-primary font-semibold">✦</span>
+                            {choice}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <p className="text-lg leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
+                  )}
+                </div>
+                {/* Right: image if present */}
+                {STEPS[currentStep].image && (
+                  <div className="flex-shrink-0 w-56 md:w-72">
+                    <img
+                      src={STEPS[currentStep].image}
+                      alt="Schéma des mesures"
+                      className="w-full rounded-2xl object-contain"
+                      style={{ border: '1.5px solid rgba(0,200,239,0.35)', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
+                    />
+                  </div>
                 )}
               </motion.div>
             </AnimatePresence>
