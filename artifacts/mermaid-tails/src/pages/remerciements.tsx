@@ -33,12 +33,12 @@ export default function Remerciements() {
               className="group relative rounded-3xl overflow-hidden"
               style={{ border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 24px rgba(0,200,239,0.12)' }}
             >
-              <div className="relative w-full aspect-[3/2] overflow-hidden">
+              <div className="relative w-full overflow-hidden">
                 {sirene.img ? (
                   <img
                     src={sirene.img}
                     alt={sirene.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.1), rgba(4,15,40,0.06))' }}>

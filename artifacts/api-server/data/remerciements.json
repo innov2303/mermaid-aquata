@@ -1,32 +1,32 @@
 [
   {
     "id": 1,
-    "name": "Océane",
-    "img": "/images/sirene-1.png"
+    "name": "Ingrid Miss Mermaid France",
+    "img": "/api/uploads/1776813484471-0b8g3pyzzrnf.webp"
   },
   {
     "id": 2,
-    "name": "Marina",
-    "img": "/images/sirene-2.png"
+    "name": "Mermaid Erele",
+    "img": "/api/uploads/1776813570186-yffslwpeeto.webp"
   },
   {
     "id": 3,
-    "name": "Coral",
-    "img": "/images/sirene-1.png"
+    "name": "Princess Kawaii la Sirène",
+    "img": "/api/uploads/1776813586776-uw8bexz55d.webp"
   },
   {
     "id": 4,
-    "name": "Neptunea",
-    "img": null
+    "name": "@deafworlmermaid",
+    "img": "/api/uploads/1776813601594-bw8yohzj4tn.webp"
   },
   {
     "id": 5,
-    "name": "Aquamarine",
-    "img": null
+    "name": "@siren.pei",
+    "img": "/api/uploads/1776813611633-9jq46yf8axt.webp"
   },
   {
     "id": 6,
-    "name": "Luna",
-    "img": null
+    "name": "Mermaid Moana",
+    "img": "/api/uploads/1776813627180-gr5xdaapk7.webp"
   }
 ]

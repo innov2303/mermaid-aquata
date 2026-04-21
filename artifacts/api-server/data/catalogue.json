@@ -60,9 +60,39 @@
   {
     "id": 6,
     "section": "accessoires",
-    "name": "Couronne de Coquillages",
-    "desc": "Réalisée à la main avec des coquillages naturels soigneusement sélectionnés. Chaque pièce est unique.",
-    "price": "45€",
-    "images": []
+    "name": "Coquillages silicone",
+    "desc": "Ces coquillage en silicone sont disponible du bonnet A au bonnet D, Ils peuvent commandés seul à coudre vous même sur votre soutiens gorge ou déja cousu sur un soutient gorge par nos soins.",
+    "price": "75€",
+    "images": [
+      "/api/uploads/1776813018998-gjkm7vpwmn8.webp"
+    ]
+  },
+  {
+    "section": "invisibles",
+    "images": [
+      "/api/uploads/1776812891419-0j2imfiys65q.webp",
+      "/api/uploads/1776812897406-z1a8zmotg2f.webp",
+      "/api/uploads/1776812903218-tz7zrlu47le.webp",
+      "/api/uploads/1776812908253-xj4h1fhyy8.webp",
+      "/api/uploads/1776812912360-vfityhx7e4.webp"
+    ],
+    "name": "Queue de sirène silicone \"Longfish/Extended tail\"",
+    "price": "3500€",
+    "desc": "La particularité de cette queue de sirène est qu'elle possède une monopalme avec une extension de longueur après les pieds d'environ 15 cm, avec en plus un camouflage des pieds ce qui offre un effet ultra réaliste et unique au monde!\n\nLes queues de sirène \"longfish\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums. Le silicone est une matière souple et élastique ce qui permet un enfilage facile et offre un effet seconde peau. Le silicone offre également une protection contre le froid, comme une combinaison de plongée.\n\nSon poids est d'environ 10 kilos.\n\n \n\nAttention: ce type de nageoire demande un minimum d'expérience comparé à une monopalme classique car avec la longueur, elle est un peu plus difficile à manier.\n\nLes couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique.\n\nNous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position, ainsi qu'un effet holographique qui donne un effet arc-en-ciel.\n\nLe délai de création de ce modèle est d'environs 6 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\n\nNos nageoires en silicone \"Longfish/Extended tail\" sont  à partir de 3500 euros . Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.\n\nPrix des détails supplémentaires :\n\n-Une paire de petites nageoires latérales, avant ou arrière : 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles : 150 euros\n\n-Grande dorsale des hanches aux chevilles : 200 euros\n\n-Couleur supplémentaire : 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 200 euros",
+    "id": 1776812696865
+  },
+  {
+    "section": "accessoires",
+    "images": [
+      "/api/uploads/1776813147554-fnw4etalvw.webp",
+      "/api/uploads/1776813154732-11vezdp7nus.webp",
+      "/api/uploads/1776813159554-okwqgaaq0ae.webp",
+      "/api/uploads/1776813163637-xx9ifbsaori.webp",
+      "/api/uploads/1776813167909-lte5sa1xw0b.webp"
+    ],
+    "name": "Gants palmées silicone",
+    "price": "185€",
+    "desc": "Nos paires de gants palmée en silicone vous offre un look réaliste et permette une nage plus facile.",
+    "id": 1776813169219
   }
 ]
