@@ -13,7 +13,7 @@ export function Footer() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
-              <img src={logoSrc} alt="Mermaid Aquata" className="h-16 object-contain mb-4 drop-shadow-lg" />
+              <img src={logoSrc} alt="Mermaid Aquata" className="h-28 object-contain mb-4 drop-shadow-lg" />
               <p className="text-foreground/70 mb-6 max-w-sm">
                 Créatrice de queues de sirène artisanales sur mesure. Plongez dans la magie de l'océan avec nos créations uniques en silicone.
               </p>
