@@ -1,0 +1,44 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "p-4Uo1Cn7UGVsZXnkFQfx"
+uri = "file://artifacts/mermaid-tails/public/images/hero.png"
+type = "image"
+title = "Bioluminescent underwater hero scene"
+
+[[generated]]
+id = "RR-gGZME7I3tbYyCm2ESS"
+uri = "file://artifacts/mermaid-tails/public/images/portrait.png"
+type = "image"
+title = "Ocean creator portrait"
+
+[[generated]]
+id = "mWAM6KqV6mWqJKz8ZfuYd"
+uri = "file://artifacts/mermaid-tails/public/images/tail-work.png"
+type = "image"
+title = "Underwater mermaid tail"
+
+[[generated]]
+id = "zsTdBlQXk5wkQdgSQ24f2"
+uri = "file://artifacts/mermaid-tails/public/images/catalog-1.png"
+type = "image"
+title = "Aurore Boreale mermaid tail"
+
+[[generated]]
+id = "VnklvFdH4a5QsgmuJ5M3z"
+uri = "file://artifacts/mermaid-tails/public/images/catalog-2.png"
+type = "image"
+title = "Rainbow mermaid tail"
+
+[[generated]]
+id = "32M2b_iEdh0FL9KbWUazw"
+uri = "file://artifacts/mermaid-tails/public/images/sirene-1.png"
+type = "image"
+title = "Mermaid swimming underwater"
+
+[[generated]]
+id = "KBdqtu06FQcrE6H7yaHbL"
+uri = "file://artifacts/mermaid-tails/public/images/sirene-2.png"
+type = "image"
+title = "Mermaid swimming deep ocean"

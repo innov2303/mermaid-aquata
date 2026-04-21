@@ -1,28 +1,33 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AnimatePresence } from "framer-motion";
 import NotFound from "@/pages/not-found";
+import Home from "@/pages/home";
+import Catalogue from "@/pages/catalogue";
+import Commander from "@/pages/commander";
+import Faq from "@/pages/faq";
+import Remerciements from "@/pages/remerciements";
+import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 
 const queryClient = new QueryClient();
 
-function Home() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Replit Agent is building...</h1>
-        <p className="mt-2 text-sm text-gray-600">Your app will appear here once it's ready.</p>
-      </div>
-    </div>
-  );
-}
+function AnimatedRoutes() {
+  const [location] = useLocation();
 
-function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <AnimatePresence mode="wait">
+      <Switch key={location} location={location}>
+        <Route path="/" component={Home} />
+        <Route path="/catalogue" component={Catalogue} />
+        <Route path="/commander" component={Commander} />
+        <Route path="/faq" component={Faq} />
+        <Route path="/remerciements" component={Remerciements} />
+        <Route component={NotFound} />
+      </Switch>
+    </AnimatePresence>
   );
 }
 
@@ -31,7 +36,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
+          <div className="min-h-[100dvh] flex flex-col selection:bg-accent/30 selection:text-white dark">
+            <NavBar />
+            <main className="flex-1">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+          </div>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
