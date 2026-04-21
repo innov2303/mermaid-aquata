@@ -31,7 +31,6 @@ const SECTIONS = [
       { id: 10, name: "Couronne de Coquillages", desc: "Fait main, coquillages naturels", price: "45€", img: null },
       { id: 11, name: "Soutien-gorge Sirène", desc: "Assorti à votre queue, sur mesure", price: "À partir de 65€", img: null },
       { id: 12, name: "Bijoux d'écailles", desc: "Colliers et bracelets nacrés", price: "30€", img: null },
-      { id: 13, name: "Nageoires de bras", desc: "Pour un effet sirène complet", price: "80€", img: null },
     ],
   },
 ];
