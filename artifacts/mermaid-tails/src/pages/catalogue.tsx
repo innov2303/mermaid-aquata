@@ -133,7 +133,7 @@ export default function Catalogue() {
                   >
                     {item.images[0] ? (
                       <div className="relative w-full aspect-[3/2] overflow-hidden">
-                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       </div>
                     ) : (
                       <div className="w-full aspect-[3/2] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
