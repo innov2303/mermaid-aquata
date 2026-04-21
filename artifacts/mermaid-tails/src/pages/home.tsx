@@ -266,7 +266,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Tv size={32} className="text-accent" />}
               title="Reportages TV"
-              desc="Mermaid Aquata a été mise à l'honneur dans plusieurs émissions et reportages télévisés, témoignant de la reconnaissance de son art unique."
+              desc="Mermaid Aquata est passée plusieurs fois sur les chaînes d'informations françaises, TF1, France 3, La Dépêche du midi. Retrouvez tous ces reportages sur la chaîne YouTube de Mermaid Aquata."
               delay={0.5}
             />
           </div>
