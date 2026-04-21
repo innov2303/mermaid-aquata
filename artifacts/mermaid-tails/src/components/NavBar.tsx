@@ -29,11 +29,11 @@ export function NavBar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         background: isScrolled
-          ? "rgba(220, 240, 252, 0.97)"
-          : "linear-gradient(180deg, rgba(225, 243, 255, 0.96) 0%, rgba(210, 236, 252, 0.93) 100%)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,180,220,0.30)",
-        boxShadow: "0 2px 18px rgba(0,120,180,0.12)",
+          ? "rgba(220, 240, 252, 0.55)"
+          : "rgba(225, 243, 255, 0.35)",
+        backdropFilter: "blur(14px)",
+        borderBottom: "1px solid rgba(0,180,220,0.20)",
+        boxShadow: "0 2px 14px rgba(0,120,180,0.08)",
       }}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-2">
