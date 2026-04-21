@@ -303,7 +303,7 @@ export default function Home() {
                   {[
                     { name: 'Instagram', url: 'https://www.instagram.com/mermaid.real.aquata/' },
                     { name: 'Facebook', url: '#' },
-                    { name: 'TikTok', url: '#' },
+                    { name: 'TikTok', url: 'https://www.tiktok.com/@mermaid.aquata.sirene' },
                   ].map(({ name: social, url }) => (
                     <a key={social} href={url} target={url !== '#' ? '_blank' : undefined} rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
                       <span className="sr-only">{social}</span>
