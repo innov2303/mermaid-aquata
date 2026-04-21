@@ -300,8 +300,12 @@ export default function Home() {
                   contact@mermaidaquata.fr
                 </Button>
                 <div className="flex gap-4">
-                  {['Instagram', 'Facebook', 'TikTok'].map((social, i) => (
-                    <a key={social} href="#" className="w-14 h-14 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
+                  {[
+                    { name: 'Instagram', url: 'https://www.instagram.com/mermaid.real.aquata/' },
+                    { name: 'Facebook', url: '#' },
+                    { name: 'TikTok', url: '#' },
+                  ].map(({ name: social, url }) => (
+                    <a key={social} href={url} target={url !== '#' ? '_blank' : undefined} rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-border flex items-center justify-center text-foreground/80 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110">
                       <span className="sr-only">{social}</span>
                       <div className="w-6 h-6 bg-current" style={{ maskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>')`, maskSize: 'cover', WebkitMaskImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>')`, WebkitMaskSize: 'cover' }}></div>
                     </a>

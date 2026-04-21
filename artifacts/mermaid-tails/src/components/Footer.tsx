@@ -13,7 +13,7 @@ export function Footer() {
               Créatrice de queues de sirène artisanales sur mesure. Plongez dans la magie de l'océan avec nos créations uniques en silicone et tissu.
             </p>
             <div className="flex gap-4">
-              <a href="#" data-testid="link-instagram" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
+              <a href="https://www.instagram.com/mermaid.real.aquata/" target="_blank" rel="noopener noreferrer" data-testid="link-instagram" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
                 <Instagram size={20} />
               </a>
               <a href="#" data-testid="link-facebook" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
