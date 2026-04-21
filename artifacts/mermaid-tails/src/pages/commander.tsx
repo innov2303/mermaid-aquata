@@ -80,7 +80,7 @@ export default function Commander() {
                 </div>
                 {/* Right: image if present */}
                 {STEPS[currentStep].image && (
-                  <div className="flex-shrink-0 w-56 md:w-72">
+                  <div className="flex-shrink-0 w-72 md:w-96 flex items-center justify-center">
                     <img
                       src={STEPS[currentStep].image}
                       alt="Schéma des mesures"
