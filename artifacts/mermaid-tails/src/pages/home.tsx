@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ChevronDown, Droplet, Sparkles, Gem, Paintbrush } from "lucide-react";
+import { ChevronDown, Wand2, Layers, Ruler, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
@@ -251,26 +251,26 @@ export default function Home() {
               delay={0}
             />
             <FeatureCard 
-              icon={<Droplet size={32} className="text-secondary" />}
+              icon={<Wand2 size={32} className="text-secondary" />}
               title="Sirènes Pieds Invisibles"
               desc="La magie d'une vraie sirène avec vos pieds dissimulés dans une nageoire réaliste."
               delay={0.1}
             />
             <FeatureCard 
-              icon={<Gem size={32} className="text-accent" />}
+              icon={<Layers size={32} className="text-accent" />}
               title="Modèles Silicone"
               desc="La précision du silicone pour un rendu ultra-réaliste, chaque écaille sculptée à la main."
               delay={0.2}
             />
             <FeatureCard 
-              icon={<Paintbrush size={32} className="text-primary" />}
+              icon={<Ruler size={32} className="text-primary" />}
               title="Créations Sur Mesure"
               desc="Chaque queue est unique, créée selon vos souhaits de couleurs, motifs et mesures."
               delay={0.3}
               className="lg:col-start-1 lg:col-end-2 lg:ml-auto"
             />
             <FeatureCard 
-              icon={<Sparkles size={32} className="text-secondary" />}
+              icon={<Crown size={32} className="text-secondary" />}
               title="Accessoires"
               desc="Bijoux de sirène, soutiens-gorge coquillage, couronnes et accessoires assortis."
               delay={0.4}
