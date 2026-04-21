@@ -200,6 +200,7 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="flex flex-col items-center text-center gap-6"
             >
+              <h3 className="text-2xl md:text-3xl font-serif" style={{ color: '#0a2a4a' }}>Reportage France 3</h3>
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <iframe
                   src="https://www.youtube.com/embed/-JsQodzWltA?start=6"
