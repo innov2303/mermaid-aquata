@@ -40,9 +40,6 @@ export default function Home() {
         />
         {/* Brightness gradient — light at top (surface rays), fades out at bottom */}
         <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
-        {/* Bottom seal — couvre le fond sableux de l'image, couleur identique à section 2 */}
-        <div className="absolute bottom-0 left-0 right-0 z-10" style={{ height: '40px', backgroundColor: '#f0f9ff' }} />
-
         {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {bubbles.map((bubble) => (
