@@ -5,6 +5,29 @@ export async function checkAdminToken(token: string): Promise<boolean> {
   return r.ok;
 }
 
+export async function uploadImage(file: File, token: string): Promise<string> {
+  const fd = new FormData();
+  fd.append("file", file);
+  const r = await fetch(`${BASE}/upload`, { method: "POST", headers: { "x-admin-token": token }, body: fd });
+  if (!r.ok) {
+    const err = await r.json().catch(() => ({ error: "Erreur upload" }));
+    throw new Error(err.error || "Erreur upload");
+  }
+  const { url } = await r.json();
+  return url;
+}
+
+export async function listUploads(token: string): Promise<{ filename: string; url: string }[]> {
+  const r = await fetch(`${BASE}/uploads`, { headers: { "x-admin-token": token } });
+  if (!r.ok) throw new Error("Erreur chargement images");
+  return r.json();
+}
+
+export async function deleteUpload(filename: string, token: string): Promise<void> {
+  const r = await fetch(`${BASE}/uploads/${filename}`, { method: "DELETE", headers: { "x-admin-token": token } });
+  if (!r.ok) throw new Error("Erreur suppression");
+}
+
 function headers(token?: string) {
   const h: Record<string, string> = { "Content-Type": "application/json" };
   if (token) h["x-admin-token"] = token;
