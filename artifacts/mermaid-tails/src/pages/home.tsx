@@ -69,11 +69,11 @@ export default function Home() {
             className="font-bold tracking-wide leading-tight"
             style={{
               fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
-              background: "linear-gradient(135deg, #0a2a4a 0%, #0070a8 45%, #00c8ef 100%)",
+              background: "linear-gradient(135deg, #ffffff 0%, #b8f0ff 50%, #00e5ff 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 1px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 20px rgba(0,200,239,0.35))",
+              filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.55)) drop-shadow(0 0 30px rgba(0,200,239,0.5))",
               fontFamily: "'Georgia', serif",
               letterSpacing: "0.04em",
             }}
