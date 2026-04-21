@@ -29,11 +29,11 @@ export function NavBar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         background: isScrolled
-          ? "rgba(8, 20, 45, 0.97)"
-          : "linear-gradient(180deg, rgba(6,16,38,0.92) 0%, rgba(8,22,52,0.82) 100%)",
+          ? "rgba(220, 240, 252, 0.97)"
+          : "linear-gradient(180deg, rgba(225, 243, 255, 0.96) 0%, rgba(210, 236, 252, 0.93) 100%)",
         backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(0,200,239,0.25)",
-        boxShadow: "0 2px 24px rgba(0,0,0,0.35)",
+        borderBottom: "1px solid rgba(0,180,220,0.30)",
+        boxShadow: "0 2px 18px rgba(0,120,180,0.12)",
       }}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-2">
@@ -54,9 +54,11 @@ export function NavBar() {
               key={link.href}
               href={link.href}
               data-testid={`link-nav-${link.label.toLowerCase()}`}
-              className={`text-sm tracking-widest uppercase transition-colors hover:text-primary ${
-                location === link.href ? "text-primary font-semibold" : "text-foreground/80"
-              }`}
+              className="text-sm tracking-widest uppercase transition-colors"
+              style={{
+                color: location === link.href ? "#00a8cc" : "#0a2a4a",
+                fontWeight: location === link.href ? "600" : "400",
+              }}
             >
               {link.label}
             </Link>
@@ -65,7 +67,8 @@ export function NavBar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden z-50 text-foreground"
+          className="md:hidden z-50"
+          style={{ color: "#0a2a4a" }}
           data-testid="button-mobile-menu"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
