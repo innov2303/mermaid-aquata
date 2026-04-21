@@ -76,8 +76,8 @@ export default function Home() {
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.55)) drop-shadow(0 0 30px rgba(0,200,239,0.5))",
-              fontFamily: "'Georgia', serif",
-              letterSpacing: "0.04em",
+              fontFamily: "'Dancing Script', cursive",
+              letterSpacing: "0.02em",
             }}
           >
             Bienvenue chez Mermaid Aquata
