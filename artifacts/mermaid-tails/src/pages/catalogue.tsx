@@ -179,7 +179,7 @@ export default function Catalogue() {
               exit={{ scale: 0.9, opacity: 0, y: 24 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
               className="relative rounded-3xl overflow-hidden w-full flex flex-col md:flex-row"
-              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '92vh', maxWidth: '95vw' }}
+              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '82vh', maxWidth: '82vw' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Gauche : infos */}
