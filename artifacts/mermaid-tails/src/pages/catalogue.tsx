@@ -2,14 +2,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Item = {
   id: number;
   name: string;
   desc: string;
   price: string;
-  img: string | null;
+  images: string[];
 };
 
 const SECTIONS = [
@@ -18,9 +18,9 @@ const SECTIONS = [
     label: "Monopalmes",
     sub: "Nage sportive & dynamique",
     items: [
-      { id: 1, name: "Queue Aurore Boréale", desc: "Couleurs irisées inspirées des aurores boréales", price: "À partir de 180€", img: "/images/catalog-1.png" },
-      { id: 2, name: "Queue Nuit Étoilée", desc: "Bleu profond avec éclats argentés", price: "À partir de 195€", img: "/images/catalog-2.png" },
-      { id: 3, name: "Queue Corail Flamboyant", desc: "Tons chauds orangés et rosés", price: "À partir de 180€", img: "/images/catalog-1.png" },
+      { id: 1, name: "Queue Aurore Boréale", desc: "Couleurs irisées inspirées des aurores boréales. Nageoire souple et légère, idéale pour une nage fluide et expressive.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
+      { id: 2, name: "Queue Nuit Étoilée", desc: "Bleu profond avec éclats argentés, évoquant le ciel nocturne sous l'eau. Monopalme sur mesure incluse.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
+      { id: 3, name: "Queue Corail Flamboyant", desc: "Tons chauds orangés et rosés inspirés des récifs coralliens. Finition satinée et écailles relief.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
     ],
   },
   {
@@ -28,9 +28,9 @@ const SECTIONS = [
     label: "Queue de sirène silicone",
     sub: "Silhouette naturelle & fluide",
     items: [
-      { id: 4, name: "Queue Fond des Mers", desc: "Nageoire réaliste cachant parfaitement les pieds", price: "À partir de 250€", img: "/images/catalog-2.png" },
-      { id: 5, name: "Queue Écume Douce", desc: "Tons clairs et nageoire fluide en organza", price: "À partir de 265€", img: "/images/catalog-1.png" },
-      { id: 6, name: "Queue Abysses", desc: "Design sombre et mystérieux", price: "À partir de 250€", img: "/images/catalog-2.png" },
+      { id: 4, name: "Queue Fond des Mers", desc: "Nageoire en silicone réaliste cachant parfaitement les pieds. Pigments intégrés au coulage pour des couleurs durables.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
+      { id: 5, name: "Queue Écume Douce", desc: "Tons clairs et nageoire fluide. Le silicone élastique s'adapte à votre morphologie pour un confort optimal.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
+      { id: 6, name: "Queue Abysses", desc: "Design sombre et mystérieux, inspiré des profondeurs marines. Nageoire dorsale optionnelle disponible.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
     ],
   },
   {
@@ -38,12 +38,68 @@ const SECTIONS = [
     label: "Accessoires",
     sub: "Complétez votre tenue de sirène",
     items: [
-      { id: 10, name: "Couronne de Coquillages", desc: "Fait main, coquillages naturels", price: "45€", img: null },
-      { id: 11, name: "Soutien-gorge Sirène", desc: "Assorti à votre queue, sur mesure", price: "À partir de 65€", img: null },
-      { id: 12, name: "Bijoux d'écailles", desc: "Colliers et bracelets nacrés", price: "30€", img: null },
+      { id: 10, name: "Couronne de Coquillages", desc: "Réalisée à la main avec des coquillages naturels soigneusement sélectionnés. Chaque pièce est unique.", price: "45€", images: [] },
+      { id: 11, name: "Soutien-gorge Sirène", desc: "Confectionné sur mesure pour s'assortir parfaitement à votre queue. Tissu résistant à l'eau et au chlore.", price: "À partir de 65€", images: [] },
+      { id: 12, name: "Bijoux d'écailles", desc: "Colliers et bracelets nacrés façonnés à la main. Finitions dorées ou argentées disponibles.", price: "30€", images: [] },
     ],
   },
 ];
+
+function Carousel({ images }: { images: string[] }) {
+  const [idx, setIdx] = useState(0);
+  if (images.length === 0) {
+    return (
+      <div className="w-full h-full flex items-center justify-center rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.1), rgba(4,15,40,0.06))' }}>
+        <span className="font-serif text-8xl" style={{ color: 'rgba(0,200,239,0.25)' }}>✦</span>
+      </div>
+    );
+  }
+  return (
+    <div className="relative w-full h-full rounded-2xl overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={idx}
+          src={images[idx]}
+          alt=""
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.3 }}
+          className="w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => setIdx(i => (i - 1 + images.length) % images.length)}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+            style={{ background: 'rgba(4,15,40,0.6)', color: 'white', border: '1px solid rgba(0,200,239,0.4)' }}
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            onClick={() => setIdx(i => (i + 1) % images.length)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+            style={{ background: 'rgba(4,15,40,0.6)', color: 'white', border: '1px solid rgba(0,200,239,0.4)' }}
+          >
+            <ChevronRight size={18} />
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                className="w-2 h-2 rounded-full transition-all"
+                style={{ background: i === idx ? '#00c8ef' : 'rgba(255,255,255,0.5)' }}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function Catalogue() {
   const [selected, setSelected] = useState<Item | null>(null);
@@ -68,7 +124,6 @@ export default function Catalogue() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6 }}
             >
-              {/* En-tête de section */}
               <div className="flex items-center gap-6 mb-10">
                 <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, rgba(0,200,239,0.6), transparent)' }} />
                 <div className="text-center">
@@ -78,7 +133,6 @@ export default function Catalogue() {
                 <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, rgba(0,200,239,0.6), transparent)' }} />
               </div>
 
-              {/* Grille */}
               <div className={`grid gap-8 ${section.items.length <= 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
                 {section.items.map((item, i) => (
                   <motion.div
@@ -90,10 +144,9 @@ export default function Catalogue() {
                     className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
-
-                    {item.img ? (
+                    {item.images[0] ? (
                       <div className="relative w-full aspect-[4/3] overflow-hidden">
-                        <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       </div>
                     ) : (
                       <div className="w-full aspect-[4/3] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
@@ -136,45 +189,45 @@ export default function Catalogue() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: 'rgba(4,15,40,0.85)', backdropFilter: 'blur(6px)' }}
+            style={{ background: 'rgba(4,15,40,0.88)', backdropFilter: 'blur(8px)' }}
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.88, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 24 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.88, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-              className="relative rounded-3xl overflow-hidden max-w-md w-full"
-              style={{ background: 'rgba(255,255,255,0.96)', border: '2px solid rgba(0,200,239,0.6)', boxShadow: '0 0 50px rgba(0,200,239,0.3)' }}
+              exit={{ scale: 0.9, opacity: 0, y: 24 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+              className="relative rounded-3xl overflow-hidden w-full max-w-3xl flex flex-col md:flex-row"
+              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '90vh' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Fermer */}
               <button
                 onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                 style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
               >
                 <X size={18} />
               </button>
 
-              {selected.img ? (
-                <div className="w-full aspect-video overflow-hidden">
-                  <img src={selected.img} alt={selected.name} className="w-full h-full object-cover" />
-                </div>
-              ) : (
-                <div className="w-full aspect-video flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.12), rgba(4,15,40,0.06))' }}>
-                  <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
-                </div>
-              )}
+              {/* Gauche : infos */}
+              <div className="flex flex-col justify-center p-8 md:p-10 md:w-2/5 flex-shrink-0">
+                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight" style={{ color: '#0a2a4a' }}>
+                  {selected.name}
+                </h2>
+                <p className="font-light leading-relaxed mb-8 text-sm md:text-base" style={{ color: '#1a3d5c' }}>
+                  {selected.desc}
+                </p>
+                <p className="font-serif text-2xl text-primary font-semibold mb-8">{selected.price}</p>
+                <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] w-fit">
+                  <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
+                </Button>
+              </div>
 
-              <div className="p-8">
-                <h3 className="text-2xl font-serif mb-3" style={{ color: '#0a2a4a' }}>{selected.name}</h3>
-                <p className="font-light leading-relaxed mb-6" style={{ color: '#1a3d5c' }}>{selected.desc}</p>
-                <div className="flex items-center justify-between">
-                  <span className="font-serif text-xl text-primary font-semibold">{selected.price}</span>
-                  <Button asChild size="sm" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_12px_rgba(0,200,239,0.4)]">
-                    <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
-                  </Button>
+              {/* Droite : carousel */}
+              <div className="flex-1 p-4 md:p-6 min-h-[260px] md:min-h-0">
+                <div className="w-full h-full min-h-[260px] md:min-h-[380px]">
+                  <Carousel images={selected.images} />
                 </div>
               </div>
             </motion.div>
