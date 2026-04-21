@@ -141,8 +141,7 @@ export default function Catalogue() {
                       </div>
                     )}
                     <div className="p-6">
-                      <h3 className="text-xl font-serif mb-2 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
-                      <p className="text-sm font-light mb-4" style={{ color: '#1a3d5c' }}>{item.desc}</p>
+                      <h3 className="text-xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button
