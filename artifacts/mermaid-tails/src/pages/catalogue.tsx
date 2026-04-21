@@ -1,9 +1,16 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+const CATEGORIES = [
+  { key: "monopalmes", label: "Monopalmes", emoji: "🐠", sub: "Nage sportive" },
+  { key: "invisibles",  label: "Pieds Invisibles", emoji: "✨", sub: "Look naturel" },
+  { key: "silicone",   label: "Silicone", emoji: "💎", sub: "Haut de gamme" },
+];
 
 export default function Catalogue() {
+  const [activeTab, setActiveTab] = useState("monopalmes");
   const tails = {
     monopalmes: [
       { id: 1, name: "Queue Aurore Boréale", desc: "Couleurs irisées inspirées des aurores boréales", price: "À partir de 180€", img: "/images/catalog-1.png" },
@@ -39,23 +46,63 @@ export default function Catalogue() {
           </p>
         </motion.div>
 
-        <Tabs defaultValue="monopalmes" className="w-full mb-24">
-          <TabsList className="w-full flex flex-wrap justify-center p-2 rounded-2xl h-auto gap-2 mb-12 border" style={{ background: 'rgba(255,255,255,0.8)', borderColor: 'rgba(0,200,239,0.3)' }}>
-            <TabsTrigger value="monopalmes" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Monopalmes</TabsTrigger>
-            <TabsTrigger value="invisibles" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Pieds Invisibles</TabsTrigger>
-            <TabsTrigger value="silicone" className="rounded-xl px-6 py-3 text-lg data-[state=active]:bg-primary data-[state=active]:text-white" style={{ color: '#0a2a4a' }}>Silicone</TabsTrigger>
-          </TabsList>
+        {/* Menu catégories */}
+        <div className="flex flex-wrap justify-center gap-5 mb-16">
+          {CATEGORIES.map((cat) => {
+            const isActive = activeTab === cat.key;
+            return (
+              <motion.button
+                key={cat.key}
+                onClick={() => setActiveTab(cat.key)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative flex flex-col items-center gap-1 px-8 py-5 rounded-2xl transition-all duration-300 font-serif"
+                style={{
+                  background: isActive
+                    ? 'linear-gradient(135deg, rgba(0,200,239,0.2), rgba(0,229,255,0.08))'
+                    : 'rgba(255,255,255,0.75)',
+                  border: isActive
+                    ? '2px solid rgba(0,200,239,0.8)'
+                    : '2px solid rgba(0,200,239,0.25)',
+                  boxShadow: isActive
+                    ? '0 0 24px rgba(0,200,239,0.4), inset 0 0 12px rgba(0,200,239,0.08)'
+                    : '0 2px 8px rgba(0,0,0,0.06)',
+                  color: isActive ? '#007fa3' : '#1a3d5c',
+                  minWidth: '160px',
+                }}
+              >
+                <span className="text-3xl mb-1">{cat.emoji}</span>
+                <span className="text-lg font-semibold tracking-wide">{cat.label}</span>
+                <span className="text-xs font-light opacity-70">{cat.sub}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="tab-indicator"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full"
+                    style={{ background: 'rgba(0,200,239,0.9)' }}
+                  />
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
 
-          {Object.entries(tails).map(([key, items]) => (
-            <TabsContent key={key} value={key}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {items.map((item, i) => (
-                  <ProductCard key={item.id} item={item} delay={i * 0.1} />
-                ))}
-              </div>
-            </TabsContent>
-          ))}
-        </Tabs>
+        {/* Contenu */}
+        <div className="mb-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {(tails as any)[activeTab].map((item: any, i: number) => (
+                <ProductCard key={item.id} item={item} delay={i * 0.1} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-16">
           <h2 className="text-3xl font-serif mb-10 text-center" style={{ color: '#0a2a4a' }}>Accessoires</h2>
