@@ -38,12 +38,12 @@ export default function Home() {
             backgroundPosition: 'center 20%',
           }}
         />
-        {/* Very light top gradient for nav text readability */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/25 via-transparent to-transparent" />
-        {/* Minimal side vignette */}
-        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, transparent 55%, rgba(10,18,40,0.30) 100%)' }} />
+        {/* White-out overlay — brightens image toward white */}
+        <div className="absolute inset-0 z-0" style={{ background: 'rgba(255,255,255,0.38)' }} />
+        {/* Minimal top tint for nav readability */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/15 via-transparent to-transparent" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 h-48" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(4,15,40,0.5) 60%, rgba(4,15,40,0.95) 100%)' }} />
+        <div className="absolute bottom-0 left-0 right-0 z-10 h-48" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(220,240,255,0.6) 60%, rgba(210,235,255,0.95) 100%)' }} />
 
         {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -74,11 +74,11 @@ export default function Home() {
             className="font-bold tracking-wide leading-tight"
             style={{
               fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
-              background: "linear-gradient(135deg, #ffffff 0%, #a8f0ff 35%, #00c8ef 65%, #0ea5e9 100%)",
+              background: "linear-gradient(135deg, #0a2a4a 0%, #0070a8 45%, #00c8ef 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.45)) drop-shadow(0 0 30px rgba(0,200,239,0.6))",
+              filter: "drop-shadow(0 1px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 20px rgba(0,200,239,0.35))",
               fontFamily: "'Georgia', serif",
               letterSpacing: "0.04em",
             }}

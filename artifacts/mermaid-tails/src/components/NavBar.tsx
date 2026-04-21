@@ -14,8 +14,6 @@ export function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const heroHeight = typeof window !== "undefined" ? window.innerHeight : 700;
-  const isOverHero = scrollY < heroHeight * 0.75;
   const isScrolled = scrollY > 50;
 
   const navLinks = [
@@ -30,21 +28,14 @@ export function NavBar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={
-        isOverHero
-          ? {
-              background: isScrolled
-                ? "rgba(4,15,40,0.55)"
-                : "transparent",
-              backdropFilter: isScrolled ? "blur(12px)" : "none",
-              borderBottom: "1px solid rgba(255,255,255,0.08)",
-              boxShadow: "none",
-            }
-          : {
-              background: "rgba(220, 240, 252, 0.72)",
-              backdropFilter: "blur(14px)",
-              borderBottom: "1px solid rgba(0,180,220,0.20)",
-              boxShadow: "0 2px 14px rgba(0,120,180,0.10)",
-            }
+        {
+          background: isScrolled
+            ? "rgba(220,240,252,0.75)"
+            : "rgba(255,255,255,0.30)",
+          backdropFilter: "blur(14px)",
+          borderBottom: "1px solid rgba(0,180,220,0.18)",
+          boxShadow: isScrolled ? "0 2px 14px rgba(0,120,180,0.10)" : "none",
+        }
       }
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-2">
@@ -69,11 +60,9 @@ export function NavBar() {
                 data-testid={`link-nav-${link.label.toLowerCase()}`}
                 className="text-sm tracking-widest uppercase transition-all duration-300"
                 style={{
-                  color: isOverHero
-                    ? isActive ? "#00e8ff" : "rgba(255,255,255,0.90)"
-                    : isActive ? "#00a8cc" : "#0a2a4a",
+                  color: isActive ? "#00a8cc" : "#0a2a4a",
                   fontWeight: isActive ? "600" : "400",
-                  textShadow: isOverHero ? "0 1px 8px rgba(0,0,0,0.5)" : "none",
+                  textShadow: "none",
                 }}
               >
                 {link.label}
@@ -85,7 +74,7 @@ export function NavBar() {
         {/* Mobile Menu Button */}
         <button
           className="md:hidden z-50 transition-colors duration-300"
-          style={{ color: isOverHero ? "rgba(255,255,255,0.90)" : "#0a2a4a" }}
+          style={{ color: "#0a2a4a" }}
           data-testid="button-mobile-menu"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
