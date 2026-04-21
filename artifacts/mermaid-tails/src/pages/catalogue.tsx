@@ -202,7 +202,7 @@ export default function Catalogue() {
                   </p>
                 </div>
                 <p className="font-serif text-2xl text-primary font-semibold mb-8 flex-shrink-0">{selected.price}</p>
-                <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] w-fit">
+                <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
                   <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
                 </Button>
               </div>
