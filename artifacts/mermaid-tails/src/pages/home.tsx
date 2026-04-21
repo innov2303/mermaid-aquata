@@ -304,7 +304,7 @@ export default function Home() {
                 Contactez-nous pour discuter de votre projet sur mesure et donner vie à vos rêves d'océan.
               </p>
 
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-10">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
                   Nous contacter
                 </Button>
