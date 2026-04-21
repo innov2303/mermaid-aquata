@@ -149,6 +149,20 @@ export default function Home() {
       <section id="presentation" className="py-24 relative z-10 section-clair">
         <div className="container mx-auto px-4 md:px-6">
 
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-serif text-center mb-16 leading-snug"
+            style={{ color: '#0a2a4a' }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.9 }}
+          >
+            Plongez dans l'univers enchanté des sirènes avec{" "}
+            <span style={{ background: "linear-gradient(135deg, #0070a8, #00c8ef)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              Mermaid Aquata
+            </span>{" "}!
+          </motion.h2>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
