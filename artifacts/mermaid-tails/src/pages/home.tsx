@@ -236,7 +236,14 @@ export default function Home() {
             <FeatureCard 
               icon={
                 <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" className="text-primary">
-                  <path d="M12 2c-1.4 0-2.3 1.1-2.3 2.5v9.2c-.7.4-1.2 1-1.2 1.8l-.4 1.2L5 21.5c1.8-.9 3.5-1.2 5-0.6L12 22l2-.6c1.5-.6 3.2-.3 5 .6l-3.1-4.8-.4-1.2c0-.8-.5-1.4-1.2-1.8V4.5C14.3 3.1 13.4 2 12 2z"/>
+                  {/* Corps de la queue — s'effile de haut en bas */}
+                  <path d="M10 2 C9.2 2 8.5 2.8 8.5 4 L9 13 C9 13.8 10.2 14.5 12 14.5 C13.8 14.5 15 13.8 15 13 L15.5 4 C15.5 2.8 14.8 2 14 2 Z"/>
+                  {/* Pédoncule — la partie fine avant les nageoires */}
+                  <path d="M10 13.5 L10.5 16.5 L13.5 16.5 L14 13.5 C13.5 14 12 14.3 12 14.3 C12 14.3 10.5 14 10 13.5 Z"/>
+                  {/* Nageoire gauche */}
+                  <path d="M10.5 16.5 C9 17.5 5.5 18 3 21 C5.5 21.5 8.5 20.5 11 19 L12 21 L11.5 17 Z"/>
+                  {/* Nageoire droite */}
+                  <path d="M13.5 16.5 C15 17.5 18.5 18 21 21 C18.5 21.5 15.5 20.5 13 19 L12 21 L12.5 17 Z"/>
                 </svg>
               }
               title="Queues Monopalmes"
