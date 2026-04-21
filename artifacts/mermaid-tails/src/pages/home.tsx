@@ -34,8 +34,8 @@ export default function Home() {
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url('/images/hero.png')`,
-            backgroundSize: '115% auto',
-            backgroundPosition: 'center top',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
           }}
         />
         {/* Brightness gradient — light at top (surface rays), fades out at bottom */}
