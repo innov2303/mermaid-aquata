@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ChevronDown, Droplet, Fish, Sparkles, Gem, Paintbrush } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WaveSeparator } from "@/components/WaveSeparator";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
@@ -29,20 +28,22 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center" style={{ overflow: "clip" }}>
+      <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100dvh' }}>
         {/* Photorealistic background */}
         <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url('/images/hero.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center 40%',
+            backgroundPosition: 'center 20%',
           }}
         />
         {/* Dark gradient overlay — top only for nav readability */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/65 via-background/20 to-transparent" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/60 via-background/10 to-transparent" />
         {/* Subtle side vignette */}
         <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,18,40,0.55) 100%)' }} />
+        {/* Bottom fade — covers sandy image floor with deep ocean color */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 h-64" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(4,15,40,0.6) 40%, rgba(4,15,40,1) 75%, rgba(4,15,40,1) 100%)' }} />
 
         {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -211,7 +212,6 @@ export default function Home() {
 
       {/* Notre Travail Section */}
       <section className="py-24 section-clair-alt relative">
-        <WaveSeparator className="absolute top-0 left-0 text-background -translate-y-full" />
         
         <div className="container mx-auto px-4 md:px-6">
           <motion.div 
@@ -269,7 +269,6 @@ export default function Home() {
 
       {/* Contact Section */}
       <section className="py-24 relative section-clair">
-        <WaveSeparator className="absolute top-0 left-0 text-card -translate-y-full" />
         
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center">
