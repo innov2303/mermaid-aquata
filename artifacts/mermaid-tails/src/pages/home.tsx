@@ -200,21 +200,16 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="flex flex-col items-center text-center gap-6"
             >
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-border/50 group cursor-pointer">
-                <div className="absolute inset-0 bg-card/40 backdrop-blur-sm transition-all duration-500 group-hover:bg-card/20"></div>
-                <img src="/images/tail-work.png" alt="Atelier" className="w-full h-full object-cover mix-blend-luminosity" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(0,200,239,0.7)] group-hover:scale-110 transition-transform duration-300">
-                    <svg viewBox="0 0 24 24" className="w-8 h-8 text-background fill-current ml-1">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-6 left-0 right-0">
-                  <span className="font-serif text-xl text-white tracking-widest uppercase">Reportage TV - Notre Histoire</span>
-                </div>
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+                <iframe
+                  src="https://www.youtube.com/embed/-JsQodzWltA?start=6"
+                  title="Reportage TV - Mermaid Aquata"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
               </div>
-              <p className="text-foreground/70 italic max-w-md">
+              <p className="text-foreground/70 italic max-w-md" style={{ color: '#1a3d5c' }}>
                 Pour en savoir plus sur mon parcours, regardez le reportage qui m'a été consacré.
               </p>
             </motion.div>
