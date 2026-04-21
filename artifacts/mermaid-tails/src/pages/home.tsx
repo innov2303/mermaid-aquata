@@ -302,6 +302,7 @@ export default function Home() {
                 <div className="flex gap-4">
                   {[
                     { name: 'Instagram', url: 'https://www.instagram.com/mermaid.real.aquata/' },
+                    { name: 'YouTube', url: 'https://www.youtube.com/channel/UCXeS0vlrfvEsvBBshqGFl8w' },
                     { name: 'Facebook', url: '#' },
                     { name: 'TikTok', url: 'https://www.tiktok.com/@mermaid.aquata.sirene' },
                   ].map(({ name: social, url }) => (

@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Mail } from "lucide-react";
+import { Instagram, Facebook, Mail, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
@@ -18,6 +18,9 @@ export function Footer() {
               </a>
               <a href="#" data-testid="link-facebook" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
                 <Facebook size={20} />
+              </a>
+              <a href="https://www.youtube.com/channel/UCXeS0vlrfvEsvBBshqGFl8w" target="_blank" rel="noopener noreferrer" data-testid="link-youtube" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
+                <Youtube size={20} />
               </a>
               <a href="https://www.tiktok.com/@mermaid.aquata.sirene" target="_blank" rel="noopener noreferrer" data-testid="link-tiktok" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
