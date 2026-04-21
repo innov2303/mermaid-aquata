@@ -254,7 +254,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Film size={32} className="text-primary" />}
               title="Tournages"
-              desc="Mermaid Aquata intervient sur des tournages professionnels, incarnant une véritable sirène grâce à ses costumes de scène haute qualité."
+              desc="Mermaid Aquata a déjà participé à des tournages tels que clip musical (Josman XS), Handicap International, série télévisée « Panda »."
               delay={0.3}
             />
             <FeatureCard 
