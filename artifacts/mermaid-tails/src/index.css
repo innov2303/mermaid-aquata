@@ -263,3 +263,45 @@
   animation: float-up 10s infinite ease-in-out;
   pointer-events: none;
 }
+
+/* ============================================================
+   SECTIONS CLAIRES — Fond océan lumineux
+   ============================================================ */
+.section-clair {
+  background: linear-gradient(160deg, #f0f9ff 0%, #e0f2fe 60%, #cce8f7 100%);
+  color: #0c2340;
+}
+
+.section-clair-alt {
+  background: linear-gradient(160deg, #e0f2fe 0%, #bae6fd 50%, #d4eef8 100%);
+  color: #0c2340;
+}
+
+.section-clair h1,
+.section-clair h2,
+.section-clair h3,
+.section-clair-alt h1,
+.section-clair-alt h2,
+.section-clair-alt h3 {
+  color: #0a2a4a;
+}
+
+.section-clair p,
+.section-clair-alt p {
+  color: #1a3d5c;
+}
+
+.section-clair .feature-card-light {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 200, 239, 0.3);
+  backdrop-filter: blur(8px);
+  color: #0c2340;
+}
+
+.section-clair .feature-card-light h3 {
+  color: #0a2a4a;
+}
+
+.section-clair .feature-card-light p {
+  color: #1a3d5c;
+}

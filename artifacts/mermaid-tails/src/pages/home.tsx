@@ -150,7 +150,7 @@ export default function Home() {
       </section>
 
       {/* Présentation Section */}
-      <section id="presentation" className="py-24 relative z-10 bg-background">
+      <section id="presentation" className="py-24 relative z-10 section-clair">
         <div className="container mx-auto px-4 md:px-6">
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -171,10 +171,10 @@ export default function Home() {
                 />
               </div>
               <div className="prose prose-lg prose-invert text-foreground/80 font-light leading-relaxed">
-                <p className="text-xl md:text-2xl font-serif text-white mb-6">
+                <p className="text-xl md:text-2xl font-serif mb-6" style={{ color: '#0a2a4a' }}>
                   "Passionnée par l'océan depuis mon enfance, je crée des queues de sirène sur mesure alliant beauté artistique et qualité artisanale."
                 </p>
-                <p>
+                <p style={{ color: '#1a3d5c' }}>
                   Chaque création est unique, façonnée avec amour dans mon atelier pour vous permettre de vivre votre rêve de sirène. De la première esquisse à la dernière écaille posée à la main, je mets tout mon cœur pour donner vie à votre vision.
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function Home() {
       </section>
 
       {/* Notre Travail Section */}
-      <section className="py-24 bg-card relative">
+      <section className="py-24 section-clair-alt relative">
         <WaveSeparator className="absolute top-0 left-0 text-background -translate-y-full" />
         
         <div className="container mx-auto px-4 md:px-6">
@@ -220,7 +220,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6 text-cyan-shimmer">Notre Travail</h2>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Travail</h2>
             <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -268,7 +268,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 relative bg-background">
+      <section className="py-24 relative section-clair">
         <WaveSeparator className="absolute top-0 left-0 text-card -translate-y-full" />
         
         <div className="container mx-auto px-4 md:px-6">
@@ -279,8 +279,8 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">Prête à devenir sirène ?</h2>
-              <p className="text-xl text-foreground/80 mb-12 font-light">
+              <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Prête à devenir sirène ?</h2>
+              <p className="text-xl mb-12 font-light" style={{ color: '#1a3d5c' }}>
                 Contactez-nous pour discuter de votre projet sur mesure et donner vie à vos rêves d'océan.
               </p>
               
@@ -312,13 +312,13 @@ function FeatureCard({ icon, title, desc, delay, className = "" }: { icon: React
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className={`bg-background rounded-3xl p-8 border border-border/50 hover:border-accent/50 hover:shadow-[0_0_30px_rgba(13,110,138,0.3)] transition-all duration-300 group ${className}`}
+      className={`feature-card-light rounded-3xl p-8 hover:shadow-[0_0_30px_rgba(0,200,239,0.25)] hover:border-primary/50 transition-all duration-300 group ${className}`}
     >
-      <div className="w-16 h-16 rounded-full bg-card flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm" style={{ background: 'rgba(0,200,239,0.12)' }}>
         {icon}
       </div>
-      <h3 className="text-2xl font-serif text-white mb-4 group-hover:text-accent transition-colors">{title}</h3>
-      <p className="text-foreground/70 leading-relaxed font-light">{desc}</p>
+      <h3 className="text-2xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{title}</h3>
+      <p className="leading-relaxed font-light" style={{ color: '#1a3d5c' }}>{desc}</p>
     </motion.div>
   );
 }
