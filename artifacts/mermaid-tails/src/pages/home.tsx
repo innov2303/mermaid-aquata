@@ -271,7 +271,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="text-center mt-20">
+          <div className="text-center" style={{ marginTop: '80px' }}>
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
               <Link href="/catalogue">Voir Notre Catalogue</Link>
             </Button>
