@@ -46,44 +46,48 @@ export default function Catalogue() {
           </p>
         </motion.div>
 
-        {/* Menu catégories */}
-        <div className="flex flex-wrap justify-center gap-5 mb-16">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeTab === cat.key;
-            return (
-              <motion.button
-                key={cat.key}
-                onClick={() => setActiveTab(cat.key)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="relative flex flex-col items-center gap-1 px-8 py-5 rounded-2xl transition-all duration-300 font-serif"
-                style={{
-                  background: isActive
-                    ? 'linear-gradient(135deg, rgba(0,200,239,0.2), rgba(0,229,255,0.08))'
-                    : 'rgba(255,255,255,0.75)',
-                  border: isActive
-                    ? '2px solid rgba(0,200,239,0.8)'
-                    : '2px solid rgba(0,200,239,0.25)',
-                  boxShadow: isActive
-                    ? '0 0 24px rgba(0,200,239,0.4), inset 0 0 12px rgba(0,200,239,0.08)'
-                    : '0 2px 8px rgba(0,0,0,0.06)',
-                  color: isActive ? '#007fa3' : '#1a3d5c',
-                  minWidth: '160px',
-                }}
-              >
-                <span className="text-3xl mb-1">{cat.emoji}</span>
-                <span className="text-lg font-semibold tracking-wide">{cat.label}</span>
-                <span className="text-xs font-light opacity-70">{cat.sub}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="tab-indicator"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full"
-                    style={{ background: 'rgba(0,200,239,0.9)' }}
-                  />
-                )}
-              </motion.button>
-            );
-          })}
+        {/* Menu catégories — thème océan */}
+        <div className="flex justify-center mb-16">
+          <div
+            className="relative flex items-center gap-1 p-2 rounded-full"
+            style={{
+              background: 'linear-gradient(135deg, #040f28 0%, #0a2a4a 100%)',
+              border: '1px solid rgba(0,200,239,0.3)',
+              boxShadow: '0 0 30px rgba(0,200,239,0.12), inset 0 1px 0 rgba(255,255,255,0.05)',
+            }}
+          >
+            {CATEGORIES.map((cat) => {
+              const isActive = activeTab === cat.key;
+              return (
+                <motion.button
+                  key={cat.key}
+                  onClick={() => setActiveTab(cat.key)}
+                  whileTap={{ scale: 0.96 }}
+                  className="relative px-7 py-3 rounded-full font-serif tracking-wide transition-colors duration-300 text-base z-10"
+                  style={{
+                    color: isActive ? '#040f28' : 'rgba(180,220,240,0.75)',
+                    fontWeight: isActive ? 600 : 400,
+                  }}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="ocean-pill"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: 'linear-gradient(135deg, #00c8ef, #00e5ff)',
+                        boxShadow: '0 0 18px rgba(0,200,239,0.7)',
+                      }}
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span>{cat.emoji}</span>
+                    {cat.label}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Contenu */}
