@@ -42,3 +42,9 @@ id = "KBdqtu06FQcrE6H7yaHbL"
 uri = "file://artifacts/mermaid-tails/public/images/sirene-2.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "Vn76m4pY3icMffxM3b4zt"
+uri = "file://artifacts/mermaid-tails/public/images/shell-frame-raw.png"
+type = "image"
+title = "generated_image"

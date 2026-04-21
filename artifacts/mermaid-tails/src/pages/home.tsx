@@ -77,141 +77,26 @@ export default function Home() {
               className="relative flex items-center justify-center"
               style={{ width: 380, height: 340 }}
             >
-              {/* Shell SVG */}
-              <svg
-                viewBox="0 0 400 370"
-                className="absolute inset-0 w-full h-full"
-                fill="none"
-                overflow="visible"
-              >
-                <defs>
-                  <radialGradient id="shellFill" cx="50%" cy="68%" r="65%">
-                    <stop offset="0%" stopColor="rgba(0,90,160,0.48)" />
-                    <stop offset="100%" stopColor="rgba(0,12,40,0.72)" />
-                  </radialGradient>
-                  <filter id="shellGlow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
+              {/* Real shell photo — background removed, transparent PNG */}
+              <img
+                src="/images/shell-frame.png"
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
+                style={{
+                  filter: "drop-shadow(0 0 18px rgba(0,200,239,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.5)) brightness(1.08) saturate(0.75) hue-rotate(160deg)",
+                  opacity: 0.88,
+                }}
+              />
 
-                {/* Main shell body — scallop fan, hinge at bottom-center (200,360) */}
-                <path
-                  d="M200 360
-                     C165 350, 65 310, 35 250
-                     C10 205, 8 165, 16 145
-                     Q 35 97, 55 95
-                     Q 80 53, 110 40
-                     Q 145 27, 172 25
-                     Q 200 18, 228 25
-                     Q 255 27, 290 40
-                     Q 320 53, 345 95
-                     Q 365 97, 380 145
-                     C392 165, 390 205, 365 250
-                     C335 310, 235 350, 200 360Z"
-                  fill="url(#shellFill)"
-                  stroke="rgba(0,200,239,0.7)"
-                  strokeWidth="1.5"
-                  filter="url(#shellGlow)"
-                />
-
-                {/* Inner secondary shell line (echo) */}
-                <path
-                  d="M200 340
-                     C172 330, 90 298, 65 248
-                     C42 208, 42 175, 50 158
-                     Q 65 120, 82 118
-                     Q 102 85, 127 73
-                     Q 155 62, 178 60
-                     Q 200 55, 222 60
-                     Q 245 62, 273 73
-                     Q 298 85, 318 118
-                     Q 335 120, 350 158
-                     C358 175, 358 208, 335 248
-                     C310 298, 228 330, 200 340Z"
-                  stroke="rgba(0,200,239,0.15)"
-                  strokeWidth="1"
-                  fill="none"
-                />
-
-                {/* Ridge lines from hinge (200,360) to each lobe peak */}
-                {([
-                  [35, 97],
-                  [80, 53],
-                  [145, 27],
-                  [200, 18],
-                  [255, 27],
-                  [320, 53],
-                  [365, 97],
-                ] as [number, number][]).map(([x, y], i) => (
-                  <line
-                    key={i}
-                    x1="200" y1="360"
-                    x2={x} y2={y}
-                    stroke="rgba(0,200,239,0.2)"
-                    strokeWidth="1"
-                  />
-                ))}
-
-                {/* Secondary finer ridges (between main ones) */}
-                {([
-                  [55, 95],
-                  [110, 40],
-                  [172, 25],
-                  [228, 25],
-                  [290, 40],
-                  [345, 95],
-                ] as [number, number][]).map(([x, y], i) => (
-                  <line
-                    key={i}
-                    x1="200" y1="360"
-                    x2={x} y2={y}
-                    stroke="rgba(0,200,239,0.09)"
-                    strokeWidth="0.8"
-                  />
-                ))}
-
-                {/* Pearl dots at each lobe peak */}
-                {([
-                  [35, 97],
-                  [80, 53],
-                  [145, 27],
-                  [200, 18],
-                  [255, 27],
-                  [320, 53],
-                  [365, 97],
-                ] as [number, number][]).map(([x, y], i) => (
-                  <circle
-                    key={i}
-                    cx={x} cy={y} r="4"
-                    fill="rgba(160,235,255,0.85)"
-                    stroke="rgba(255,255,255,0.5)"
-                    strokeWidth="0.8"
-                    style={{ filter: "drop-shadow(0 0 4px rgba(0,200,239,0.8))" }}
-                  />
-                ))}
-
-                {/* Hinge pearl */}
-                <circle
-                  cx="200" cy="360" r="5"
-                  fill="rgba(0,200,239,0.7)"
-                  stroke="rgba(255,255,255,0.4)"
-                  strokeWidth="1"
-                  style={{ filter: "drop-shadow(0 0 6px rgba(0,200,239,1))" }}
-                />
-              </svg>
-
-              {/* Logo and tagline overlaid on the shell */}
-              <div className="relative z-10 flex flex-col items-center mt-6">
+              {/* Logo and tagline centred inside the shell's open cup */}
+              <div className="relative z-10 flex flex-col items-center" style={{ marginTop: "-14%" }}>
                 <img
                   src={logoSrc}
                   alt="Mermaid Aquata"
-                  className="w-48 md:w-60 object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]"
+                  className="w-44 md:w-56 object-contain drop-shadow-[0_4px_22px_rgba(0,0,0,0.75)]"
                 />
-                <p className="mt-2 text-[10px] md:text-xs font-light tracking-[0.28em] text-white/70 uppercase text-center">
+                <p className="mt-2 text-[10px] md:text-xs font-light tracking-[0.28em] text-white/70 uppercase text-center drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
                   Créatrice de Queues Artisanales
                 </p>
               </div>
