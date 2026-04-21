@@ -280,9 +280,18 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 relative section-clair">
-        
-        <div className="container mx-auto px-4 md:px-6">
+      <section
+        className="py-32 relative overflow-hidden"
+        style={{
+          backgroundImage: 'url(/images/hero.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+        }}
+      >
+        {/* Overlay sombre pour lisibilité */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.82) 0%, rgba(0,60,100,0.75) 100%)' }} />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -290,11 +299,11 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Prête à devenir sirène ?</h2>
-              <p className="text-xl mb-12 font-light" style={{ color: '#1a3d5c' }}>
+              <h2 className="text-4xl md:text-5xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>Prête à devenir sirène ?</h2>
+              <p className="text-xl mb-12 font-light" style={{ color: 'rgba(255,255,255,0.85)' }}>
                 Contactez-nous pour discuter de votre projet sur mesure et donner vie à vos rêves d'océan.
               </p>
-              
+
               <div className="flex justify-center">
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
                   Nous contacter
