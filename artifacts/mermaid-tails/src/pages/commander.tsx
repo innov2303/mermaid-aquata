@@ -75,7 +75,7 @@ export default function Commander() {
                       </ul>
                     </div>
                   ) : (
-                    <p className="text-lg leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
+                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
                   )}
                 </div>
                 {/* Right: image if present */}
