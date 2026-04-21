@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Fish, Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft } from "lucide-react";
+import { Fish, Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const STEPS = [
@@ -14,6 +14,7 @@ const STEPS = [
 
 export default function Commander() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
 
   return (
     <div className="min-h-screen section-clair pt-32 pb-20">
@@ -81,12 +82,20 @@ export default function Commander() {
                 {/* Right: image if present */}
                 {STEPS[currentStep].image && (
                   <div className="flex-shrink-0 w-80 md:w-[480px] flex items-center justify-center">
-                    <img
-                      src={STEPS[currentStep].image}
-                      alt="Schéma des mesures"
-                      className="w-full rounded-2xl object-contain"
-                      style={{ border: '1.5px solid rgba(0,200,239,0.35)', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
-                    />
+                    <div
+                      className="relative group cursor-zoom-in w-full"
+                      onClick={() => setLightbox(true)}
+                    >
+                      <img
+                        src={STEPS[currentStep].image}
+                        alt="Schéma des mesures"
+                        className="w-full rounded-2xl object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                        style={{ border: '1.5px solid rgba(0,200,239,0.35)', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.35)' }}>
+                        <ZoomIn size={40} className="text-white drop-shadow" />
+                      </div>
+                    </div>
                   </div>
                 )}
               </motion.div>
@@ -109,6 +118,38 @@ export default function Commander() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(4,15,40,0.92)' }}
+            onClick={() => setLightbox(false)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white rounded-full p-2 hover:bg-white/10 transition-colors"
+              onClick={() => setLightbox(false)}
+            >
+              <X size={32} />
+            </button>
+            <motion.img
+              src="/images/mes-mesures.webp"
+              alt="Schéma des mesures agrandi"
+              initial={{ scale: 0.85 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.85 }}
+              transition={{ duration: 0.3 }}
+              className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain"
+              style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)' }}
+              onClick={e => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
