@@ -14,23 +14,20 @@
   {
     "id": 2,
     "section": "monopalmes",
-    "name": "Queue Nuit Étoilée",
-    "desc": "Bleu profond avec éclats argentés, évoquant le ciel nocturne sous l'eau. Monopalme sur mesure incluse.",
-    "price": "À partir de 1999€",
+    "name": "Monopalme sirène",
+    "desc": "Nos monopalmes sirène, ont été étudiées durant 10 ans avec l'aide d'un ingénieur aéronautique afin d'obtenir une fonctionnalité parfaite! A l'inverse des monopalmes du marché qui ne sont pas du tout prévues pour la nage en sirène ni pour être intégrées dans du silicone, nos monopalmes sont totalement prévues à cet effet.\n\nRéalisées en polycarbonate, un matériau souvent utilisé dans l'aéronautique, il offre légèreté, solidité et durabilité. Sa forme à été conçue pour offrir une grande maniabilité durant les figures aquatiques tout en offrant une grande rapidité comme avec une vraie monopalme de plongée professionnelle.\n\nElles sont également grandes, 75 à 80 cm de largeur sur 75 cm de longueur pour toutes nos différentes formes (Siren, Ariel, Lagoon, etc.).\n\nIl n'y a aucune infiltration d'eau à l'intérieur! La monopalme en polycarbonate est complètement intégrée dans un silicone spécial qui colle parfaitement à la monopalme, c'est cette technique de fabrication qui vous offre une nage parfaitement fonctionnelle!\n\nNos chaussons sont très confortables et ne provoquent aucune blessure grâce à leurs semelles! Vous pourrez ainsi la porter plusieurs heures sans risque.\n\nEn option vous pouvez ajouter une fermeture éclair, vous permettant de fixer facilement vos écailles en tissu ou silicone. Ce système permet également de changer de couleur d'écailles rapidement et facilement.\n\nEn option également vous pouvez ajouter des écailles en silicone qui recouvre les chaussons.\n\nLe délai de création est d'environ 2 mois.\n\nNos monopalmes sirène sont à partir de 890 euros.\n\nCe prix correspond à une monopame d'une seule couleur (hors caméléon et holographique)\n\nPrix des détails supplémentaires :\n\n \n\n-Écailles silicone sur et autour des chaussons : 90 euros \n\n- Fermeture éclair (pour attacher vos écailles) : 50 euros.\n\n-Couleur supplémentaire : 20 euros par couleur.\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 75 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 100 euros.",
+    "price": "890,00€",
     "images": [
-      "/images/catalog-2.png",
-      "/images/catalog-1.png"
-    ]
-  },
-  {
-    "id": 3,
-    "section": "monopalmes",
-    "name": "Queue Corail Flamboyant",
-    "desc": "Tons chauds orangés et rosés inspirés des récifs coralliens. Finition satinée et écailles relief.",
-    "price": "À partir de 1999€",
-    "images": [
-      "/images/catalog-1.png",
-      "/images/catalog-2.png"
+      "/api/uploads/1776811675857-kfq5qe0oouq.webp",
+      "/api/uploads/1776811682042-y10fyxcvfxd.webp",
+      "/api/uploads/1776811690410-g2kyy12f4z.webp",
+      "/api/uploads/1776811701043-90y7ji4yua7.webp",
+      "/api/uploads/1776811710577-zebggqftuvk.webp",
+      "/api/uploads/1776811719087-yjafeuztcgb.webp",
+      "/api/uploads/1776811729756-npnixu0v5dl.webp",
+      "/api/uploads/1776811743321-esrieay9j0a.webp",
+      "/api/uploads/1776811751909-lo07ttvnhk.webp",
+      "/api/uploads/1776811759793-wcvbxv0tdt.webp"
     ]
   },
   {

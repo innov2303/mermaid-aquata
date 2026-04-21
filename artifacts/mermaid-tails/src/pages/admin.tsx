@@ -9,7 +9,11 @@ import {
 } from "@/lib/api";
 
 const ADMIN_TOKEN_KEY = "mermaid_admin_token";
-const SECTIONS = ["monopalmes", "invisibles", "accessoires"];
+const SECTIONS = [
+  { key: "monopalmes", label: "Monopalmes" },
+  { key: "invisibles", label: "Queue de sirène silicone" },
+  { key: "accessoires", label: "Accessoires" },
+];
 
 type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; images: string[] };
 type Remerciement = { id: number; name: string; img: string | null };
@@ -344,7 +348,7 @@ function CatalogueAdmin({ token }: { token: string }) {
         <div>
           <label className="text-xs font-medium mb-1 block" style={{ color: "#1a3d5c" }}>Catégorie</label>
           <select className={inputClass} style={inputStyle} value={f.section || "monopalmes"} onChange={e => setF({ ...f, section: e.target.value })}>
-            {SECTIONS.map(s => <option key={s} value={s}>{s}</option>)}
+            {SECTIONS.map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
           </select>
         </div>
         <div className="md:col-span-2">
@@ -391,7 +395,7 @@ function CatalogueAdmin({ token }: { token: string }) {
                     {item.images[0] && <img src={item.images[0]} alt="" className="w-16 h-16 rounded-xl object-cover flex-shrink-0" />}
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0,200,239,0.15)", color: "#007fa3" }}>{item.section}</span>
+                        <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: "rgba(0,200,239,0.15)", color: "#007fa3" }}>{SECTIONS.find(s => s.key === item.section)?.label ?? item.section}</span>
                         <h3 className="font-serif text-base truncate" style={{ color: "#0a2a4a" }}>{item.name}</h3>
                       </div>
                       <p className="text-sm mb-1 line-clamp-2" style={{ color: "#1a3d5c" }}>{item.desc}</p>
