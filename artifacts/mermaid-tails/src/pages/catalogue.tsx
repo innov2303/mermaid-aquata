@@ -182,20 +182,21 @@ export default function Catalogue() {
               style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '92vh', maxWidth: '95vw' }}
               onClick={e => e.stopPropagation()}
             >
-              {/* Fermer */}
-              <button
-                onClick={() => setSelected(null)}
-                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
-              >
-                <X size={18} />
-              </button>
-
               {/* Gauche : infos */}
-              <div className="flex flex-col p-8 md:p-12 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight text-center" style={{ color: '#0a2a4a' }}>
-                  {selected.name}
-                </h2>
+              <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
+                {/* Header avec fermer */}
+                <div className="flex items-start justify-between gap-4 mb-5">
+                  <h2 className="text-xl md:text-2xl font-serif leading-tight flex-1 text-center" style={{ color: '#0a2a4a' }}>
+                    {selected.name}
+                  </h2>
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                    style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
                 <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
                   <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: '#1a3d5c' }}>
                     {selected.desc}
