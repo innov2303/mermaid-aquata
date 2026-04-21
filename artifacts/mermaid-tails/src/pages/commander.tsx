@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 const STEPS = [
   { icon: <Fish size={28} />, title: "Choisir sa queue de sirène", desc: null, choices: ["Classique silicone", "Pieds invisible", "Longfish", "Monopalme", "Monopalme à extension"] },
-  { icon: <Scissors size={28} />, title: "Choisir la forme de votre nageoire", desc: "Sélectionnez parmi nos formes de nageoires : classique, papillon, éventail, asymétrique ou créez la vôtre." },
+  { icon: <Scissors size={28} />, title: "Choisir la forme de votre nageoire", desc: null, choices: ["SIREN", "LAGOON", "SPLASH", "H2O", "GOLDFISH", "ARIEL"], note: "Choisissez la forme de votre nageoire parmi les designs proposés, ils sont affichés sur chaque rubrique de description : « Classique silicone », « Pieds invisible » et « Longfish ».\n\nLe tarif est le même pour chaque forme.\n\nTaille : 75 cm largeur / 75 cm longueur pour toutes les formes." },
   { icon: <Palette size={28} />, title: "Choisir les couleurs et détails", desc: "Exprimez votre personnalité ! Choisissez vos couleurs, dégradés, motifs d'écailles et détails décoratifs." },
   { icon: <Ruler size={28} />, title: "Vos mesures", desc: "Nous prenons vos mesures personnalisées pour une queue parfaitement adaptée à votre morphologie : tour de hanches, de taille, longueur des jambes." },
   { icon: <MessageCircle size={28} />, title: "Nous contacter", desc: "Envoyez-nous votre commande par email ou via nos réseaux sociaux. Nous vous répondrons sous 48h pour confirmer et affiner votre projet." },
@@ -57,14 +57,21 @@ export default function Commander() {
                 </div>
                 <h2 className="text-3xl font-serif mb-6" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
                 {STEPS[currentStep].choices ? (
-                  <ul className="flex flex-col gap-3 w-full max-w-xs mx-auto">
-                    {STEPS[currentStep].choices.map((choice, idx) => (
-                      <li key={idx} className="flex items-center gap-3 rounded-xl px-5 py-3 font-light text-lg" style={{ background: 'rgba(0,200,239,0.08)', border: '1.5px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
-                        <span className="text-primary font-semibold">✦</span>
-                        {choice}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="w-full max-w-md mx-auto flex flex-col gap-4">
+                    {STEPS[currentStep].note && (
+                      <div className="text-sm leading-relaxed font-light text-center whitespace-pre-line" style={{ color: '#1a3d5c' }}>
+                        {STEPS[currentStep].note}
+                      </div>
+                    )}
+                    <ul className="flex flex-col gap-3">
+                      {STEPS[currentStep].choices.map((choice, idx) => (
+                        <li key={idx} className="flex items-center gap-3 rounded-xl px-5 py-3 font-light text-lg" style={{ background: 'rgba(0,200,239,0.08)', border: '1.5px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
+                          <span className="text-primary font-semibold">✦</span>
+                          {choice}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ) : (
                   <p className="text-lg leading-relaxed font-light max-w-2xl" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
                 )}
