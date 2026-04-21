@@ -193,7 +193,7 @@ export default function Catalogue() {
 
               {/* Gauche : infos */}
               <div className="flex flex-col p-8 md:p-12 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight" style={{ color: '#0a2a4a' }}>
+                <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight text-center" style={{ color: '#0a2a4a' }}>
                   {selected.name}
                 </h2>
                 <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
