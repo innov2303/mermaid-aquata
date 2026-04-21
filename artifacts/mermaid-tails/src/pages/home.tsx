@@ -42,8 +42,6 @@ export default function Home() {
         <div className="absolute inset-0 z-0" style={{ background: 'rgba(255,255,255,0.38)' }} />
         {/* Minimal top tint for nav readability */}
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/15 via-transparent to-transparent" />
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 h-48" style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(220,240,255,0.6) 60%, rgba(210,235,255,0.95) 100%)' }} />
 
         {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
