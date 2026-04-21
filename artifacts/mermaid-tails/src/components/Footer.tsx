@@ -57,9 +57,9 @@ export function Footer() {
           <div>
             <h4 className="font-serif text-xl mb-4 text-white">Contact</h4>
             <ul className="space-y-3 text-foreground/70">
-              <li>contact@mermaidaquata.fr</li>
-              <li>Atelier en Bretagne, France</li>
-              <li>Sur rendez-vous uniquement</li>
+              <li>sireneaurore31@hotmail.com</li>
+              <li>1 Rue du Docteur Albert Schweitzer</li>
+              <li>31200 Toulouse, France</li>
             </ul>
           </div>
         </div>
