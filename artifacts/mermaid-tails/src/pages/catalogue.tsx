@@ -197,8 +197,8 @@ export default function Catalogue() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 24 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="relative rounded-3xl overflow-hidden w-full max-w-3xl flex flex-col md:flex-row"
-              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '90vh' }}
+              className="relative rounded-3xl overflow-hidden w-full max-w-5xl flex flex-col md:flex-row"
+              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '92vh' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Fermer */}
@@ -211,7 +211,7 @@ export default function Catalogue() {
               </button>
 
               {/* Gauche : infos */}
-              <div className="flex flex-col justify-center p-8 md:p-10 md:w-2/5 flex-shrink-0">
+              <div className="flex flex-col justify-center p-8 md:p-12 md:w-1/2 flex-shrink-0 overflow-y-auto">
                 <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight" style={{ color: '#0a2a4a' }}>
                   {selected.name}
                 </h2>
