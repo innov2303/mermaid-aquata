@@ -38,7 +38,8 @@ export default function Remerciements() {
                   <img
                     src={sirene.img}
                     alt={sirene.name}
-                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                    className="w-full object-contain group-hover:scale-105 transition-transform duration-700"
+                    style={{ maxHeight: '320px' }}
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.1), rgba(4,15,40,0.06))' }}>
