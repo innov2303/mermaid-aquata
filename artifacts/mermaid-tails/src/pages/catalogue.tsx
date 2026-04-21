@@ -38,7 +38,7 @@ export default function Catalogue() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 text-gold-shimmer">Notre Catalogue</h1>
+          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 text-cyan-shimmer">Notre Catalogue</h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto font-light">
             Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
           </p>
@@ -92,7 +92,7 @@ export default function Catalogue() {
         </motion.div>
 
         <div className="text-center mt-20">
-          <Button asChild size="lg" className="bg-accent text-background hover:bg-accent/90 text-lg px-10 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.5)] hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] transition-all hover:scale-105">
             <Link href="/commander">Commander sur mesure</Link>
           </Button>
         </div>

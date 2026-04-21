@@ -19,7 +19,7 @@ export default function Remerciements() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-20"
         >
-          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 text-gold-shimmer">Nos Sirènes</h1>
+          <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 text-cyan-shimmer">Nos Sirènes</h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto font-light">
             Merci de nous faire confiance pour réaliser vos rêves. Découvrez nos créations en action.
           </p>

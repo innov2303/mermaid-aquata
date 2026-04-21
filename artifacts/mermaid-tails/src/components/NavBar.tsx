@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
 export function NavBar() {
   const [location] = useLocation();
@@ -27,14 +27,18 @@ export function NavBar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-3" : "bg-transparent py-5"
+        isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border/50 py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 z-50">
-          <span className="font-serif text-2xl md:text-3xl font-bold tracking-wider text-white">
-            La Sirène
-          </span>
+        <Link href="/" className="flex items-center gap-2 z-50" data-testid="link-logo">
+          <img
+            src={logoSrc}
+            alt="Mermaid Aquata"
+            className={`object-contain transition-all duration-300 drop-shadow-lg ${
+              isScrolled ? "h-12 md:h-14" : "h-14 md:h-16"
+            }`}
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -43,8 +47,9 @@ export function NavBar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm tracking-widest uppercase transition-colors hover:text-accent ${
-                location === link.href ? "text-accent font-semibold" : "text-foreground/80"
+              data-testid={`link-nav-${link.label.toLowerCase()}`}
+              className={`text-sm tracking-widest uppercase transition-colors hover:text-primary ${
+                location === link.href ? "text-primary font-semibold" : "text-foreground/80"
               }`}
             >
               {link.label}
@@ -55,6 +60,7 @@ export function NavBar() {
         {/* Mobile Menu Button */}
         <button
           className="md:hidden z-50 text-foreground"
+          data-testid="button-mobile-menu"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -66,13 +72,15 @@ export function NavBar() {
             mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
         >
+          <img src={logoSrc} alt="Mermaid Aquata" className="h-20 object-contain mb-4 drop-shadow-lg" />
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-2xl font-serif transition-colors hover:text-accent ${
-                location === link.href ? "text-accent" : "text-foreground"
+              data-testid={`link-mobile-${link.label.toLowerCase()}`}
+              className={`text-2xl font-serif transition-colors hover:text-primary ${
+                location === link.href ? "text-primary" : "text-foreground"
               }`}
             >
               {link.label}

@@ -62,7 +62,7 @@ export default function Commander() {
           <div className="flex justify-between mb-12 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-card -translate-y-1/2 z-0 rounded-full"></div>
             <div 
-              className="absolute top-1/2 left-0 h-1 bg-accent -translate-y-1/2 z-0 rounded-full transition-all duration-500 ease-in-out"
+              className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0 rounded-full transition-all duration-500 ease-in-out"
               style={{ width: `${(currentStep / (STEPS.length - 1)) * 100}%` }}
             ></div>
             
@@ -70,10 +70,11 @@ export default function Commander() {
               <button
                 key={i}
                 onClick={() => setCurrentStep(i)}
+                data-testid={`button-step-${i + 1}`}
                 className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                   i <= currentStep 
-                    ? "bg-accent text-background shadow-[0_0_15px_rgba(212,175,55,0.5)] scale-110" 
-                    : "bg-card border-2 border-border text-foreground/50 hover:border-accent/50"
+                    ? "bg-primary text-primary-foreground shadow-[0_0_15px_rgba(0,200,239,0.6)] scale-110" 
+                    : "bg-card border-2 border-border text-foreground/50 hover:border-primary/50"
                 }`}
               >
                 {i + 1}
@@ -126,7 +127,7 @@ export default function Commander() {
             ) : (
               <Button
                 size="lg"
-                className="bg-accent text-background hover:bg-accent/90 rounded-full px-8 shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 shadow-[0_0_15px_rgba(0,200,239,0.5)]"
               >
                 Nous Contacter
               </Button>

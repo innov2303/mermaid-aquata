@@ -61,6 +61,15 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* ============================================================
+   PALETTE — Inspirée du logo Mermaid Aquata
+   Cyan électrique #00c8ef → hsl(191 100% 47%)
+   Bleu royal #0066cc     → hsl(210 100% 40%)
+   Bleu profond (bg)      → hsl(213 55% 9%)
+   Bleu carte             → hsl(210 45% 15%)
+   Irisé perle            → hsl(191 100% 85%)
+   ============================================================ */
+
 :root {
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
@@ -68,67 +77,67 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  /* Deep navy #0a1628 */
-  --background: 216 60% 10%;
-  /* Pearl white #f0f4f8 */
-  --foreground: 210 33% 96%;
+  /* Bleu profond océan, fond principal */
+  --background: 213 55% 9%;
+  /* Blanc perle */
+  --foreground: 194 30% 94%;
 
-  /* Ocean teal #0d6e8a */
-  --border: 193 83% 30%;
+  /* Teal lumineux — bordures */
+  --border: 191 75% 32%;
 
-  /* Slightly lighter navy for cards */
-  --card: 216 50% 15%;
-  --card-foreground: 210 33% 96%;
-  --card-border: 193 83% 30%;
+  /* Bleu carte légèrement plus clair */
+  --card: 210 48% 15%;
+  --card-foreground: 194 30% 94%;
+  --card-border: 191 75% 32%;
 
-  --sidebar: 216 60% 10%;
-  --sidebar-foreground: 210 33% 96%;
-  --sidebar-border: 193 83% 30%;
-  --sidebar-primary: 46 65% 52%;
-  --sidebar-primary-foreground: 216 60% 10%;
-  --sidebar-accent: 193 83% 30%;
-  --sidebar-accent-foreground: 210 33% 96%;
-  --sidebar-ring: 190 100% 42%;
+  --sidebar: 213 55% 9%;
+  --sidebar-foreground: 194 30% 94%;
+  --sidebar-border: 191 75% 32%;
+  --sidebar-primary: 191 100% 47%;
+  --sidebar-primary-foreground: 213 55% 9%;
+  --sidebar-accent: 210 100% 40%;
+  --sidebar-accent-foreground: 194 30% 94%;
+  --sidebar-ring: 191 100% 47%;
 
-  --popover: 216 50% 15%;
-  --popover-foreground: 210 33% 96%;
-  --popover-border: 193 83% 30%;
+  --popover: 210 48% 15%;
+  --popover-foreground: 194 30% 94%;
+  --popover-border: 191 75% 32%;
 
-  /* Cyan #00b4d8 */
-  --primary: 190 100% 42%;
-  --primary-foreground: 216 60% 10%;
+  /* Cyan électrique du logo — couleur principale */
+  --primary: 191 100% 47%;
+  --primary-foreground: 213 55% 9%;
 
-  /* Ocean teal #0d6e8a */
-  --secondary: 193 83% 30%;
-  --secondary-foreground: 210 33% 96%;
+  /* Bleu royal — secondaire */
+  --secondary: 210 100% 40%;
+  --secondary-foreground: 194 30% 94%;
 
-  /* Seafoam #90e0ef */
-  --muted: 189 74% 75%;
-  --muted-foreground: 216 60% 15%;
+  /* Bleu-cyan très clair pour textes atténués */
+  --muted: 191 60% 75%;
+  --muted-foreground: 213 55% 15%;
 
-  /* Iridescent gold #d4af37 */
-  --accent: 46 65% 52%;
-  --accent-foreground: 216 60% 10%;
+  /* Irisé perle clair — accent */
+  --accent: 191 100% 85%;
+  --accent-foreground: 213 55% 9%;
 
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 33% 96%;
+  --destructive-foreground: 194 30% 94%;
 
-  --input: 193 83% 30%;
-  --ring: 190 100% 42%;
+  --input: 191 75% 32%;
+  --ring: 191 100% 47%;
 
   --app-font-sans: 'Lato', sans-serif;
   --app-font-serif: 'Playfair Display', serif;
   --app-font-mono: Menlo, monospace;
   --radius: 0.5rem;
-  
-  --shadow-2xs: 0px 2px 0px 0px hsl(190 100% 42% / 0.1);
-  --shadow-xs: 0px 2px 0px 0px hsl(190 100% 42% / 0.1);
-  --shadow-sm: 0px 2px 0px 0px hsl(190 100% 42% / 0.1), 0px 1px 2px -1px hsl(190 100% 42% / 0.1);
-  --shadow: 0px 2px 0px 0px hsl(190 100% 42% / 0.1), 0px 1px 2px -1px hsl(190 100% 42% / 0.1);
-  --shadow-md: 0px 2px 0px 0px hsl(190 100% 42% / 0.1), 0px 2px 4px -1px hsl(190 100% 42% / 0.1);
-  --shadow-lg: 0px 2px 0px 0px hsl(190 100% 42% / 0.1), 0px 4px 6px -1px hsl(190 100% 42% / 0.1);
-  --shadow-xl: 0px 2px 0px 0px hsl(190 100% 42% / 0.1), 0px 8px 10px -1px hsl(190 100% 42% / 0.1);
-  --shadow-2xl: 0px 2px 0px 0px hsl(190 100% 42% / 0.1);
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(191 100% 47% / 0.15);
+  --shadow-xs: 0px 2px 0px 0px hsl(191 100% 47% / 0.15);
+  --shadow-sm: 0px 2px 0px 0px hsl(191 100% 47% / 0.15), 0px 1px 2px -1px hsl(191 100% 47% / 0.1);
+  --shadow: 0px 2px 0px 0px hsl(191 100% 47% / 0.15), 0px 1px 2px -1px hsl(191 100% 47% / 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(191 100% 47% / 0.15), 0px 2px 4px -1px hsl(191 100% 47% / 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(191 100% 47% / 0.15), 0px 4px 6px -1px hsl(191 100% 47% / 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(191 100% 47% / 0.15), 0px 8px 10px -1px hsl(191 100% 47% / 0.15);
+  --shadow-2xl: 0px 2px 0px 0px hsl(191 100% 47% / 0.2);
 
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
@@ -138,35 +147,35 @@
 }
 
 .dark {
-  --background: 216 60% 10%;
-  --foreground: 210 33% 96%;
-  --border: 193 83% 30%;
-  --card: 216 50% 15%;
-  --card-foreground: 210 33% 96%;
-  --card-border: 193 83% 30%;
-  --sidebar: 216 60% 10%;
-  --sidebar-foreground: 210 33% 96%;
-  --sidebar-border: 193 83% 30%;
-  --sidebar-primary: 46 65% 52%;
-  --sidebar-primary-foreground: 216 60% 10%;
-  --sidebar-accent: 193 83% 30%;
-  --sidebar-accent-foreground: 210 33% 96%;
-  --sidebar-ring: 190 100% 42%;
-  --popover: 216 50% 15%;
-  --popover-foreground: 210 33% 96%;
-  --popover-border: 193 83% 30%;
-  --primary: 190 100% 42%;
-  --primary-foreground: 216 60% 10%;
-  --secondary: 193 83% 30%;
-  --secondary-foreground: 210 33% 96%;
-  --muted: 189 74% 75%;
-  --muted-foreground: 216 60% 15%;
-  --accent: 46 65% 52%;
-  --accent-foreground: 216 60% 10%;
+  --background: 213 55% 9%;
+  --foreground: 194 30% 94%;
+  --border: 191 75% 32%;
+  --card: 210 48% 15%;
+  --card-foreground: 194 30% 94%;
+  --card-border: 191 75% 32%;
+  --sidebar: 213 55% 9%;
+  --sidebar-foreground: 194 30% 94%;
+  --sidebar-border: 191 75% 32%;
+  --sidebar-primary: 191 100% 47%;
+  --sidebar-primary-foreground: 213 55% 9%;
+  --sidebar-accent: 210 100% 40%;
+  --sidebar-accent-foreground: 194 30% 94%;
+  --sidebar-ring: 191 100% 47%;
+  --popover: 210 48% 15%;
+  --popover-foreground: 194 30% 94%;
+  --popover-border: 191 75% 32%;
+  --primary: 191 100% 47%;
+  --primary-foreground: 213 55% 9%;
+  --secondary: 210 100% 40%;
+  --secondary-foreground: 194 30% 94%;
+  --muted: 191 60% 75%;
+  --muted-foreground: 213 55% 15%;
+  --accent: 191 100% 85%;
+  --accent-foreground: 213 55% 9%;
   --destructive: 0 84% 60%;
-  --destructive-foreground: 210 33% 96%;
-  --input: 193 83% 30%;
-  --ring: 190 100% 42%;
+  --destructive-foreground: 194 30% 94%;
+  --input: 191 75% 32%;
+  --ring: 191 100% 47%;
 }
 
 @layer base {
@@ -182,17 +191,44 @@
   }
 }
 
+/* Gradient de fond ocean — inspiré du logo */
 .bg-ocean-gradient {
-  background: linear-gradient(180deg, hsl(216 60% 10%) 0%, hsl(193 83% 30%) 50%, hsl(190 100% 42%) 100%);
+  background: linear-gradient(180deg,
+    hsl(213 55% 9%) 0%,
+    hsl(204 80% 18%) 40%,
+    hsl(191 85% 28%) 75%,
+    hsl(191 100% 40%) 100%
+  );
 }
 
-.text-gold-shimmer {
-  background: linear-gradient(90deg, #d4af37, #fff6d6, #d4af37);
+/* Shimmer cyan irisé — comme le texte du logo */
+.text-cyan-shimmer {
+  background: linear-gradient(90deg,
+    hsl(191 100% 47%),
+    hsl(194 100% 85%),
+    hsl(210 100% 65%),
+    hsl(191 100% 47%)
+  );
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shimmer 3s linear infinite;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Keep backward compat alias */
+.text-gold-shimmer {
+  background: linear-gradient(90deg,
+    hsl(191 100% 47%),
+    hsl(194 100% 85%),
+    hsl(210 100% 65%),
+    hsl(191 100% 47%)
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
 }
 
 @keyframes shimmer {
@@ -207,10 +243,10 @@
     opacity: 0;
   }
   10% {
-    opacity: 0.8;
+    opacity: 0.7;
   }
   90% {
-    opacity: 0.8;
+    opacity: 0.7;
   }
   100% {
     transform: translateY(-20vh) scale(1);
@@ -221,7 +257,8 @@
 .bubble {
   position: absolute;
   bottom: -20px;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+  background: radial-gradient(circle at 30% 30%, rgba(0, 200, 239, 0.6), rgba(0, 102, 204, 0.15));
+  border: 1px solid rgba(0, 200, 239, 0.3);
   border-radius: 50%;
   animation: float-up 10s infinite ease-in-out;
   pointer-events: none;

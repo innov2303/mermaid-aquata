@@ -4,6 +4,7 @@ import { ChevronDown, Droplet, Fish, Sparkles, Gem, Paintbrush } from "lucide-re
 import { Button } from "@/components/ui/button";
 import { WaveSeparator } from "@/components/WaveSeparator";
 import { useEffect, useState } from "react";
+import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
 const BUBBLE_COUNT = 30;
 
@@ -61,11 +62,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 0.2 }}
+            className="flex flex-col items-center gap-6"
           >
-            <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl mb-6 text-white drop-shadow-lg tracking-wider">
-              La Sirène
-            </h1>
-            <p className="text-xl md:text-3xl font-light text-primary-foreground/90 tracking-wide">
+            <img
+              src={logoSrc}
+              alt="Mermaid Aquata"
+              className="w-72 md:w-[420px] lg:w-[520px] object-contain drop-shadow-[0_0_40px_rgba(0,200,239,0.6)] filter brightness-110"
+            />
+            <p className="text-xl md:text-3xl font-light tracking-wide text-white/90">
               Créatrice de Queues de Sirène Artisanales
             </p>
           </motion.div>
@@ -95,8 +99,8 @@ export default function Home() {
               className="flex flex-col gap-8"
             >
               <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto lg:mx-0">
-                <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-accent/50 animate-[spin_10s_linear_infinite] shadow-[0_0_20px_rgba(212,175,55,0.3)]"></div>
-                <div className="absolute inset-2 rounded-[50%_50%_40%_60%/50%_40%_60%_50%] border-2 border-primary/40 animate-[spin_15s_linear_infinite_reverse]"></div>
+                <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-primary/60 animate-[spin_10s_linear_infinite] shadow-[0_0_25px_rgba(0,200,239,0.4)]"></div>
+                <div className="absolute inset-2 rounded-[50%_50%_40%_60%/50%_40%_60%_50%] border-2 border-secondary/40 animate-[spin_15s_linear_infinite_reverse]"></div>
                 <img 
                   src="/images/portrait.png" 
                   alt="La Créatrice" 
@@ -124,7 +128,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-card/40 backdrop-blur-sm transition-all duration-500 group-hover:bg-card/20"></div>
                 <img src="/images/tail-work.png" alt="Atelier" className="w-full h-full object-cover mix-blend-luminosity" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-accent/90 flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.6)] group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-20 h-20 rounded-full bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(0,200,239,0.7)] group-hover:scale-110 transition-transform duration-300">
                     <svg viewBox="0 0 24 24" className="w-8 h-8 text-background fill-current ml-1">
                       <path d="M8 5v14l11-7z" />
                     </svg>
@@ -153,7 +157,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6 text-gold-shimmer">Notre Travail</h2>
+            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6 text-cyan-shimmer">Notre Travail</h2>
             <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
           </motion.div>
 
@@ -193,7 +197,7 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button asChild size="lg" className="bg-accent text-background hover:bg-accent/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:scale-105">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
               <Link href="/catalogue">Voir Notre Catalogue</Link>
             </Button>
           </div>
@@ -218,8 +222,8 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-background w-full sm:w-auto px-8 py-6 text-lg rounded-full">
-                  contact@lasirene.fr
+                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto px-8 py-6 text-lg rounded-full shadow-[0_0_15px_rgba(0,200,239,0.3)] hover:shadow-[0_0_25px_rgba(0,200,239,0.6)]">
+                  contact@mermaidaquata.fr
                 </Button>
                 <div className="flex gap-4">
                   {['Instagram', 'Facebook', 'TikTok'].map((social, i) => (
