@@ -24,16 +24,6 @@ const SECTIONS = [
     ],
   },
   {
-    key: "silicone",
-    label: "Silicone",
-    sub: "Haut de gamme & réaliste",
-    items: [
-      { id: 7, name: "Modèle Empereur", desc: "Silicone grade médical, écailles sculptées main", price: "À partir de 1200€", img: "/images/catalog-1.png" },
-      { id: 8, name: "Modèle Léviathan", desc: "Nageoires dorsales et latérales incluses", price: "À partir de 1500€", img: "/images/catalog-2.png" },
-      { id: 9, name: "Modèle Sirène Perle", desc: "Finition nacrée et irisée exceptionnelle", price: "À partir de 1350€", img: "/images/catalog-1.png" },
-    ],
-  },
-  {
     key: "accessoires",
     label: "Accessoires",
     sub: "Complétez votre tenue de sirène",
