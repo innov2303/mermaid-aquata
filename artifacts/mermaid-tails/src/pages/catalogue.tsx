@@ -184,19 +184,9 @@ export default function Catalogue() {
             >
               {/* Gauche : infos */}
               <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                {/* Header avec fermer */}
-                <div className="flex items-start justify-between gap-4 mb-5">
-                  <h2 className="text-xl md:text-2xl font-serif leading-tight flex-1 text-center" style={{ color: '#0a2a4a' }}>
-                    {selected.name}
-                  </h2>
-                  <button
-                    onClick={() => setSelected(null)}
-                    className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                    style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
+                <h2 className="text-xl md:text-2xl font-serif leading-tight text-center mb-5" style={{ color: '#0a2a4a' }}>
+                  {selected.name}
+                </h2>
                 <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
                   <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: '#1a3d5c' }}>
                     {selected.desc}
@@ -209,7 +199,14 @@ export default function Catalogue() {
               </div>
 
               {/* Droite : carousel */}
-              <div className="flex-1 p-4 md:p-6 min-h-[260px] md:min-h-0">
+              <div className="relative flex-1 p-4 md:p-6 min-h-[260px] md:min-h-0">
+                <button
+                  onClick={() => setSelected(null)}
+                  className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                  style={{ background: 'rgba(4,15,40,0.55)', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}
+                >
+                  <X size={18} />
+                </button>
                 <div className="w-full h-full min-h-[260px] md:min-h-[380px]">
                   <Carousel images={selected.images} />
                 </div>
