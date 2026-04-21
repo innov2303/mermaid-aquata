@@ -199,15 +199,17 @@ export default function Catalogue() {
               </div>
 
               {/* Droite : carousel */}
-              <div className="relative flex-1 p-4 md:p-6 min-h-[260px] md:min-h-0">
-                <button
-                  onClick={() => setSelected(null)}
-                  className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                  style={{ background: 'rgba(4,15,40,0.55)', color: 'white', border: '1px solid rgba(255,255,255,0.2)' }}
-                >
-                  <X size={18} />
-                </button>
-                <div className="w-full h-full min-h-[260px] md:min-h-[380px]">
+              <div className="flex-1 flex flex-col min-h-[260px] md:min-h-0">
+                <div className="flex justify-end p-3 flex-shrink-0">
+                  <button
+                    onClick={() => setSelected(null)}
+                    className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                    style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+                <div className="flex-1 px-4 pb-4 min-h-[220px]">
                   <Carousel images={selected.images} />
                 </div>
               </div>
