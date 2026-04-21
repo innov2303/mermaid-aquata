@@ -22,7 +22,7 @@ export default function Remerciements() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-6 md:gap-10">
+        <div className="grid grid-cols-2 gap-6 md:gap-10 items-start">
           {sirenes.map((sirene, i) => (
             <motion.div
               key={sirene.id}
