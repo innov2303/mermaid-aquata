@@ -38,10 +38,8 @@ export default function Home() {
             backgroundPosition: 'center 20%',
           }}
         />
-        {/* White-out overlay — brightens image toward white */}
-        <div className="absolute inset-0 z-0" style={{ background: 'rgba(255,255,255,0.38)' }} />
-        {/* Minimal top tint for nav readability */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/15 via-transparent to-transparent" />
+        {/* Brightness gradient — light at top (surface rays), fades out at bottom */}
+        <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
 
         {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
