@@ -283,7 +283,7 @@ export default function Home() {
       <section
         className="py-32 relative overflow-hidden"
         style={{
-          backgroundImage: 'url(/images/hero.png)',
+          backgroundImage: 'url(/images/ocean-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
         }}
