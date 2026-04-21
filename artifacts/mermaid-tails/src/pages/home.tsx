@@ -260,7 +260,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Heart size={32} className="text-secondary" />}
               title="Créatrice Dévouée"
-              desc="Passionnée depuis toujours par l'univers marin, chaque projet est porté avec amour et un engagement total envers la satisfaction du client."
+              desc="Mermaid Aquata sera toujours présente même plusieurs années après votre commande. N'hésitez pas à lui écrire pour toutes questions. Vous êtes également tenue au courant tout au long de la création avec photos à l'appui."
               delay={0.4}
             />
             <FeatureCard 
