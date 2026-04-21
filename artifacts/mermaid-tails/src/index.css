@@ -183,7 +183,8 @@
     @apply border-border;
   }
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/30;
+    @apply font-sans antialiased text-foreground selection:bg-primary/30;
+    background-color: #1a6a9a;
     overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
