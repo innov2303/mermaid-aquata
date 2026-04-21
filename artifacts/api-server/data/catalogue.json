@@ -33,23 +33,28 @@
   {
     "id": 4,
     "section": "invisibles",
-    "name": "Queue Fond des Mers",
-    "desc": "Nageoire en silicone réaliste cachant parfaitement les pieds. Pigments intégrés au coulage pour des couleurs durables.",
-    "price": "À partir de 1999€",
+    "name": "Queue de sirène silicone",
+    "desc": "Les queues de sirène \"classique silicone\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums.  Le silicone est une matière souple et élastique et offre un effet seconde peau. Le silicone offre également une protection contre le froid comme une combinaison de plongée. La monopalme a été étudiée pour une nage rapide et maniable, retrouvez toutes les caractéristiques de la monopalme dans la rubrique \"monopalme\". Son poids est d'environ 7 kilos. Les couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique. Nous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position ainsi que holographique qui donne un effet arc en ciel. Le délai de création de ce modèle et d'environs 4 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\nLa technique d'application du silicone sur la monopalme est conçue pour avoir une forte adhérence afin d'éviter tout décollement contrairement à une monopalme industriel ou le silicone n'adhère pas.\n\n\nNos nageoires \"classique silicone\" sont à partir de 1999 euros. Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.\n\nPrix des détails supplémentaires:\n\n-Une paire de petites nageoires latérales, avant ou arrière: 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles: 150 euros\n\n-Grande dorsale des hanches aux chevilles: 200 euros\n\n-Couleur supplémentaire: 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position): 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel): 200 euros",
+    "price": "1990€",
     "images": [
-      "/images/catalog-2.png",
-      "/images/catalog-1.png"
+      "/api/uploads/1776812087566-u6q2mn6vkj7.webp",
+      "/api/uploads/1776812093226-dk6n98en7g.webp",
+      "/api/uploads/1776812100205-p7y4s088lpo.webp",
+      "/api/uploads/1776812106372-znwgr2ulqnl.webp",
+      "/api/uploads/1776812114035-uznw40xi7m.webp"
     ]
   },
   {
     "id": 5,
     "section": "invisibles",
-    "name": "Queue Écume Douce",
-    "desc": "Tons clairs et nageoire fluide. Le silicone élastique s'adapte à votre morphologie pour un confort optimal.",
-    "price": "À partir de 1999€",
+    "name": "Queue de sirène silicone \"Pieds invisibles\"",
+    "desc": "Les queues de sirène \"Pieds invisibles\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums. Le silicone est une matière souple et élastique et offre un effet seconde peau. Le silicone offre également une protection contre le froid comme une combinaison de plongée.\nLa monopalme est la même que pour un modèle \"classique silicone\", qui a été étudiée pour une nage rapide et maniable, retrouvez toutes caractéristique de la monopalme dans la rubrique \"monopalme\"\n\nSon poids est d'environ 8 kilos.\n\nLes couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique.\n\nNous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position, ainsi que l'effet holographique qui donne un effet arc-en-ciel.\n\nCe modèle possède une particularité, un rembourrage intérieur qui camoufle totalement la forme du pied pour un effet encore plus réaliste!\n\nLe délai de création de ce modèle est d'environ 5 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\n\nNos nageoires \"pieds invisibles en silicone\" sont à partir de 2500 euros. Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.  \n\nPrix des détails supplémentaires:\n\n-Une paire de petites nageoires latérales, avant ou arrière : 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles : 150 euros\n\n-Grande dorsale des hanches aux chevilles : 200 euros\n\n-Couleur supplémentaire : 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 200 euros",
+    "price": "2500€",
     "images": [
-      "/images/catalog-1.png",
-      "/images/catalog-2.png"
+      "/api/uploads/1776812339371-72q3r5l05b8.webp",
+      "/api/uploads/1776812346293-az6y6u8jwlu.webp",
+      "/api/uploads/1776812351906-hp70luvltgh.webp",
+      "/api/uploads/1776812362443-yopw8qjndw.webp"
     ]
   },
   {

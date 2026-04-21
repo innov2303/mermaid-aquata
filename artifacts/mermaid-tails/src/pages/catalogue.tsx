@@ -120,7 +120,7 @@ export default function Catalogue() {
                 <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, rgba(0,200,239,0.6), transparent)' }} />
               </div>
 
-              <div className={`grid gap-8 ${section.items.length <= 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
+              <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {section.items.map((item, i) => (
                   <motion.div
                     key={item.id}
@@ -132,11 +132,11 @@ export default function Catalogue() {
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
                     {item.images[0] ? (
-                      <div className="relative w-full aspect-[4/3] overflow-hidden">
+                      <div className="relative w-full aspect-[3/2] overflow-hidden">
                         <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       </div>
                     ) : (
-                      <div className="w-full aspect-[4/3] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
+                      <div className="w-full aspect-[3/2] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
                         <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.35)' }}>✦</span>
                       </div>
                     )}
