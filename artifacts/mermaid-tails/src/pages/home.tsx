@@ -62,6 +62,34 @@ export default function Home() {
           ))}
         </div>
 
+        {/* Main Title — hero center */}
+        <motion.div
+          className="absolute top-1/2 left-0 right-0 -translate-y-[140%] flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          initial={{ opacity: 0, y: -18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
+          <h1
+            className="font-bold tracking-wide leading-tight"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 3.6rem)",
+              background: "linear-gradient(135deg, #ffffff 0%, #a8f0ff 35%, #00c8ef 65%, #0ea5e9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: "drop-shadow(0 2px 20px rgba(0,200,239,0.5))",
+              fontFamily: "'Georgia', serif",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Bienvenue chez Mermaid Aquata
+          </h1>
+          <div
+            className="mt-4 h-px w-64 mx-auto"
+            style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }}
+          />
+        </motion.div>
+
         {/* Bubble CTA — floats at bottom center */}
         <motion.button
           onClick={scrollToNext}
@@ -124,35 +152,6 @@ export default function Home() {
       {/* Présentation Section */}
       <section id="presentation" className="py-24 relative z-10 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-
-          {/* Welcome Title */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 1 }}
-          >
-            <h1
-              className="font-bold tracking-wide leading-tight"
-              style={{
-                fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
-                background: "linear-gradient(135deg, #ffffff 0%, #a8f0ff 35%, #00c8ef 65%, #0ea5e9 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                filter: "drop-shadow(0 2px 20px rgba(0,200,239,0.35))",
-                fontFamily: "'Georgia', serif",
-                letterSpacing: "0.04em",
-              }}
-            >
-              Bienvenue chez Mermaid Aquata
-            </h1>
-            <div
-              className="mt-4 h-px w-64 mx-auto"
-              style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }}
-            />
-          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div 
