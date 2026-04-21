@@ -332,10 +332,12 @@ function FeatureCard({ icon, title, desc, delay, className = "" }: { icon: React
       transition={{ duration: 0.6, delay }}
       className={`feature-card-light rounded-3xl p-8 hover:shadow-[0_0_30px_rgba(0,200,239,0.25)] hover:border-primary/50 transition-all duration-300 group ${className}`}
     >
-      <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm" style={{ background: 'rgba(0,200,239,0.12)' }}>
-        {icon}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm" style={{ background: 'rgba(0,200,239,0.12)' }}>
+          {icon}
+        </div>
+        <h3 className="text-xl font-serif group-hover:text-primary transition-colors leading-tight" style={{ color: '#0a2a4a' }}>{title}</h3>
       </div>
-      <h3 className="text-2xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{title}</h3>
       <p className="leading-relaxed font-light" style={{ color: '#1a3d5c' }}>{desc}</p>
     </motion.div>
   );
