@@ -15,7 +15,7 @@ const SECTIONS = [
   },
   {
     key: "invisibles",
-    label: "Pieds Invisibles",
+    label: "Queue de sirène silicone",
     sub: "Silhouette naturelle & fluide",
     items: [
       { id: 4, name: "Queue Fond des Mers", desc: "Nageoire réaliste cachant parfaitement les pieds", price: "À partir de 250€", img: "/images/catalog-2.png" },
