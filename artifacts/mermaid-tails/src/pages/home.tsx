@@ -323,7 +323,7 @@ function FeatureCard({ icon, title, desc, delay, className = "" }: { icon: React
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
-      className={`feature-card-light rounded-3xl p-8 hover:shadow-[0_0_30px_rgba(0,200,239,0.25)] hover:border-primary/50 transition-all duration-300 group ${className}`}
+      className={`feature-card-light rounded-3xl p-8 hover:shadow-[0_0_28px_rgba(0,200,239,0.45),0_6px_24px_rgba(0,100,160,0.15)] hover:border-primary/70 transition-all duration-300 group ${className}`}
     >
       <div className="flex items-center gap-4 mb-4">
         <div className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm" style={{ background: 'rgba(0,200,239,0.12)' }}>
