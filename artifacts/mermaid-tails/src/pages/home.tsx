@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center" style={{ overflow: "clip" }}>
         {/* Photorealistic background */}
         <div
           className="absolute inset-0 z-0"
@@ -62,72 +62,62 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Mermaid avatar + CTA — bottom of hero */}
-        <motion.div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex items-end gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.6 }}
+        {/* Bubble CTA — floats at bottom center */}
+        <motion.button
+          onClick={scrollToNext}
+          data-testid="button-scroll-down"
+          className="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
-          {/* Avatar floating */}
+          {/* The bubble */}
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
-            className="relative flex-shrink-0"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
+            className="relative"
           >
-            <img
-              src="/images/mermaid-avatar.png"
-              alt="Sirène"
-              className="h-44 md:h-52 w-auto object-contain select-none"
-              style={{
-                filter: "drop-shadow(0 6px 20px rgba(0,0,0,0.55)) drop-shadow(0 0 18px rgba(0,200,239,0.25))",
-              }}
-            />
-          </motion.div>
-
-          {/* CTA button card — beside the avatar */}
-          <motion.button
-            onClick={scrollToNext}
-            data-testid="button-scroll-down"
-            className="group mb-8 flex flex-col items-center gap-3 cursor-pointer"
-            whileHover={{ scale: 1.04 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            {/* Decorative wavy line connecting avatar to button */}
-            <svg width="48" height="20" viewBox="0 0 48 20" fill="none" className="opacity-50 rotate-90 mb-1">
-              <path d="M4 10 Q12 2, 24 10 Q36 18, 44 10" stroke="rgba(0,200,239,0.7)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-            </svg>
-
-            {/* Button */}
             <div
-              className="relative px-6 py-3 rounded-2xl overflow-hidden transition-all duration-300"
+              className="relative w-36 h-36 md:w-40 md:h-40 rounded-full flex flex-col items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-108"
               style={{
-                background: "rgba(0,25,55,0.65)",
-                border: "1.5px solid rgba(0,200,239,0.5)",
-                boxShadow: "0 0 20px rgba(0,200,239,0.2), inset 0 0 20px rgba(0,100,180,0.1)",
+                background: "radial-gradient(ellipse at 38% 32%, rgba(200,245,255,0.28) 0%, rgba(0,140,220,0.18) 50%, rgba(0,60,120,0.22) 100%)",
+                border: "2px solid rgba(200,245,255,0.7)",
+                boxShadow: "0 8px 40px rgba(0,150,220,0.35), 0 0 0 1px rgba(255,255,255,0.12), inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,150,220,0.2)",
                 backdropFilter: "blur(8px)",
               }}
             >
-              {/* Shimmer on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ background: "linear-gradient(135deg, transparent 40%, rgba(0,200,239,0.12) 50%, transparent 60%)" }} />
+              {/* Bubble glare — top left arc */}
+              <div
+                className="absolute top-2 left-3 w-12 h-7 rounded-full pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse, rgba(255,255,255,0.55) 0%, transparent 70%)",
+                  transform: "rotate(-25deg)",
+                }}
+              />
+              {/* Bubble thin inner ring */}
+              <div className="absolute inset-2 rounded-full pointer-events-none"
+                style={{ border: "1px solid rgba(255,255,255,0.18)" }} />
+              {/* Secondary glare — bottom right */}
+              <div
+                className="absolute bottom-4 right-4 w-5 h-5 rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%)" }}
+              />
 
-              <p className="text-sm md:text-base font-light tracking-[0.2em] text-white/90 uppercase whitespace-nowrap relative z-10">
-                Nous découvrir
-              </p>
+              {/* Text inside bubble */}
+              <span className="text-xs md:text-sm font-light tracking-[0.18em] text-white uppercase text-center leading-relaxed relative z-10"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
+                Nous<br />découvrir
+              </span>
             </div>
 
-            {/* Animated arrow below button */}
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-            >
-              <svg width="20" height="14" viewBox="0 0 20 14" fill="none" className="opacity-70 group-hover:opacity-100 transition-opacity">
-                <path d="M2 3 L10 11 L18 3" stroke="rgba(0,200,239,0.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.div>
-          </motion.button>
-        </motion.div>
+            {/* Tiny bubble trail below — like bubbles rising */}
+            <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(200,245,255,0.45)", border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 6px rgba(0,200,239,0.4)" }} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(200,245,255,0.3)", border: "1px solid rgba(255,255,255,0.35)" }} />
+              <div className="w-1 h-1 rounded-full" style={{ background: "rgba(200,245,255,0.2)", border: "1px solid rgba(255,255,255,0.25)" }} />
+            </div>
+          </motion.div>
+        </motion.button>
         
       </section>
 
