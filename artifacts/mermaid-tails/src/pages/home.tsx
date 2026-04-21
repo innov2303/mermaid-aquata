@@ -236,7 +236,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Hammer size={32} className="text-primary" />}
               title="Fabrication artisanale"
-              desc="Chaque création est façonnée à la main dans notre atelier, avec un soin extrême apporté à chaque écaille et chaque détail."
+              desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique."
               delay={0}
             />
             <FeatureCard 
