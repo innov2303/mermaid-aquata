@@ -296,7 +296,7 @@ export default function Home() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto px-8 py-6 text-lg rounded-full shadow-[0_0_15px_rgba(0,200,239,0.3)] hover:shadow-[0_0_25px_rgba(0,200,239,0.6)]">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
                   Nous contacter
                 </Button>
                 <div className="flex gap-4">
