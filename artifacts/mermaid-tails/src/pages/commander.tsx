@@ -73,7 +73,7 @@ export default function Commander() {
                     </ul>
                   </div>
                 ) : (
-                  <p className="text-lg leading-relaxed font-light max-w-2xl" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
+                  <p className="text-lg leading-relaxed font-light max-w-2xl whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
                 )}
               </motion.div>
             </AnimatePresence>
