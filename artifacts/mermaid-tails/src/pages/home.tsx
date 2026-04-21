@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ChevronDown, Wand2, Layers, Ruler, Crown } from "lucide-react";
+import { ChevronDown, Hammer, Globe, Leaf, Film, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
@@ -234,45 +234,34 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <FeatureCard 
-              icon={
-                <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" className="text-primary">
-                  {/* Corps de la queue — s'effile de haut en bas */}
-                  <path d="M10 2 C9.2 2 8.5 2.8 8.5 4 L9 13 C9 13.8 10.2 14.5 12 14.5 C13.8 14.5 15 13.8 15 13 L15.5 4 C15.5 2.8 14.8 2 14 2 Z"/>
-                  {/* Pédoncule — la partie fine avant les nageoires */}
-                  <path d="M10 13.5 L10.5 16.5 L13.5 16.5 L14 13.5 C13.5 14 12 14.3 12 14.3 C12 14.3 10.5 14 10 13.5 Z"/>
-                  {/* Nageoire gauche */}
-                  <path d="M10.5 16.5 C9 17.5 5.5 18 3 21 C5.5 21.5 8.5 20.5 11 19 L12 21 L11.5 17 Z"/>
-                  {/* Nageoire droite */}
-                  <path d="M13.5 16.5 C15 17.5 18.5 18 21 21 C18.5 21.5 15.5 20.5 13 19 L12 21 L12.5 17 Z"/>
-                </svg>
-              }
-              title="Queues Monopalmes"
-              desc="Pour la natation sportive et artistique, nos queues monopalmes allient performance et beauté."
+              icon={<Hammer size={32} className="text-primary" />}
+              title="Fabrication artisanale"
+              desc="Chaque création est façonnée à la main dans notre atelier, avec un soin extrême apporté à chaque écaille et chaque détail."
               delay={0}
             />
             <FeatureCard 
-              icon={<Wand2 size={32} className="text-secondary" />}
-              title="Sirènes Pieds Invisibles"
-              desc="La magie d'une vraie sirène avec vos pieds dissimulés dans une nageoire réaliste."
+              icon={<Globe size={32} className="text-secondary" />}
+              title="Savoir faire reconnu à l'international"
+              desc="Notre expertise est reconnue au-delà des frontières, avec des créations portées par des sirènes professionnelles dans le monde entier."
               delay={0.1}
             />
             <FeatureCard 
-              icon={<Layers size={32} className="text-accent" />}
-              title="Modèles Silicone"
-              desc="La précision du silicone pour un rendu ultra-réaliste, chaque écaille sculptée à la main."
+              icon={<Leaf size={32} className="text-accent" />}
+              title="Matériaux Éthiques"
+              desc="Nous sélectionnons des matériaux de qualité, respectueux de l'environnement et sans danger pour la peau, pour des créations durables."
               delay={0.2}
             />
             <FeatureCard 
-              icon={<Ruler size={32} className="text-primary" />}
-              title="Créations Sur Mesure"
-              desc="Chaque queue est unique, créée selon vos souhaits de couleurs, motifs et mesures."
+              icon={<Film size={32} className="text-primary" />}
+              title="Tournages"
+              desc="Mermaid Aquata intervient sur des tournages professionnels, incarnant une véritable sirène grâce à ses costumes de scène haute qualité."
               delay={0.3}
               className="lg:col-start-1 lg:col-end-2 lg:ml-auto"
             />
             <FeatureCard 
-              icon={<Crown size={32} className="text-secondary" />}
-              title="Accessoires"
-              desc="Bijoux de sirène, soutiens-gorge coquillage, couronnes et accessoires assortis."
+              icon={<Heart size={32} className="text-secondary" />}
+              title="Créatrice Dévouée"
+              desc="Passionnée depuis toujours par l'univers marin, chaque projet est porté avec amour et un engagement total envers la satisfaction du client."
               delay={0.4}
               className="lg:col-start-2 lg:col-end-3"
             />
