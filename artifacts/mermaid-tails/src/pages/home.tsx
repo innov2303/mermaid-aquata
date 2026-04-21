@@ -4,11 +4,13 @@ import { ChevronDown, Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
+import { ContactModal } from "@/components/ContactModal";
 
 const BUBBLE_COUNT = 8;
 
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({
@@ -305,7 +307,7 @@ export default function Home() {
               </p>
 
               <div className="flex justify-center mt-10">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
+                <Button onClick={() => setContactOpen(true)} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
                   Nous contacter
                 </Button>
               </div>
@@ -313,6 +315,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }
