@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Océane", "img": "/images/sirene-1.png" },
+  { "id": 2, "name": "Marina", "img": "/images/sirene-2.png" },
+  { "id": 3, "name": "Coral", "img": "/images/sirene-1.png" },
+  { "id": 4, "name": "Neptunea", "img": null },
+  { "id": 5, "name": "Aquamarine", "img": null },
+  { "id": 6, "name": "Luna", "img": null }
+]

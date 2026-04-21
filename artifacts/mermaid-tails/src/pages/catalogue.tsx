@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { fetchCatalogue } from "@/lib/api";
 
 type Item = {
   id: number;
@@ -10,40 +11,14 @@ type Item = {
   desc: string;
   price: string;
   images: string[];
+  section: string;
 };
 
-const SECTIONS = [
-  {
-    key: "monopalmes",
-    label: "Monopalmes",
-    sub: "Nage sportive & dynamique",
-    items: [
-      { id: 1, name: "Queue Aurore Boréale", desc: "Couleurs irisées inspirées des aurores boréales. Nageoire souple et légère, idéale pour une nage fluide et expressive.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
-      { id: 2, name: "Queue Nuit Étoilée", desc: "Bleu profond avec éclats argentés, évoquant le ciel nocturne sous l'eau. Monopalme sur mesure incluse.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
-      { id: 3, name: "Queue Corail Flamboyant", desc: "Tons chauds orangés et rosés inspirés des récifs coralliens. Finition satinée et écailles relief.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
-    ],
-  },
-  {
-    key: "invisibles",
-    label: "Queue de sirène silicone",
-    sub: "Silhouette naturelle & fluide",
-    items: [
-      { id: 4, name: "Queue Fond des Mers", desc: "Nageoire en silicone réaliste cachant parfaitement les pieds. Pigments intégrés au coulage pour des couleurs durables.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
-      { id: 5, name: "Queue Écume Douce", desc: "Tons clairs et nageoire fluide. Le silicone élastique s'adapte à votre morphologie pour un confort optimal.", price: "À partir de 1999€", images: ["/images/catalog-1.png", "/images/catalog-2.png"] },
-      { id: 6, name: "Queue Abysses", desc: "Design sombre et mystérieux, inspiré des profondeurs marines. Nageoire dorsale optionnelle disponible.", price: "À partir de 1999€", images: ["/images/catalog-2.png", "/images/catalog-1.png"] },
-    ],
-  },
-  {
-    key: "accessoires",
-    label: "Accessoires",
-    sub: "Complétez votre tenue de sirène",
-    items: [
-      { id: 10, name: "Couronne de Coquillages", desc: "Réalisée à la main avec des coquillages naturels soigneusement sélectionnés. Chaque pièce est unique.", price: "45€", images: [] },
-      { id: 11, name: "Soutien-gorge Sirène", desc: "Confectionné sur mesure pour s'assortir parfaitement à votre queue. Tissu résistant à l'eau et au chlore.", price: "À partir de 65€", images: [] },
-      { id: 12, name: "Bijoux d'écailles", desc: "Colliers et bracelets nacrés façonnés à la main. Finitions dorées ou argentées disponibles.", price: "30€", images: [] },
-    ],
-  },
-];
+const SECTION_META: Record<string, { label: string; sub: string }> = {
+  monopalmes: { label: "Monopalmes", sub: "Nage sportive & dynamique" },
+  invisibles:  { label: "Queue de sirène silicone", sub: "Silhouette naturelle & fluide" },
+  accessoires: { label: "Accessoires", sub: "Complétez votre tenue de sirène" },
+};
 
 function Carousel({ images }: { images: string[] }) {
   const [idx, setIdx] = useState(0);
@@ -102,7 +77,19 @@ function Carousel({ images }: { images: string[] }) {
 }
 
 export default function Catalogue() {
+  const [allItems, setAllItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
+
+  useEffect(() => {
+    fetchCatalogue().then(setAllItems).catch(() => {});
+  }, []);
+
+  // Group items by section in the defined order
+  const sections = Object.entries(SECTION_META).map(([key, meta]) => ({
+    key,
+    ...meta,
+    items: allItems.filter(i => i.section === key),
+  })).filter(s => s.items.length > 0);
 
   return (
     <div className="min-h-screen section-clair pt-32 pb-20">
@@ -116,7 +103,7 @@ export default function Catalogue() {
         </motion.div>
 
         <div className="flex flex-col gap-24">
-          {SECTIONS.map((section) => (
+          {sections.map((section) => (
             <motion.div
               key={section.key}
               initial={{ opacity: 0, y: 30 }}

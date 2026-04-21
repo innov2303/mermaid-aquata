@@ -9,6 +9,7 @@ import Catalogue from "@/pages/catalogue";
 import Commander from "@/pages/commander";
 import Faq from "@/pages/faq";
 import Remerciements from "@/pages/remerciements";
+import Admin from "@/pages/admin";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
         <Route path="/commander" component={Commander} />
         <Route path="/faq" component={Faq} />
         <Route path="/remerciements" component={Remerciements} />
+        <Route path="/admin" component={Admin} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>

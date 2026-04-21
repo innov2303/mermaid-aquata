@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "section": "monopalmes",
+    "name": "Queue Aurore Boréale",
+    "desc": "Couleurs irisées inspirées des aurores boréales. Nageoire souple et légère, idéale pour une nage fluide et expressive.",
+    "price": "À partir de 1999€",
+    "images": ["/images/catalog-1.png", "/images/catalog-2.png"]
+  },
+  {
+    "id": 2,
+    "section": "monopalmes",
+    "name": "Queue Nuit Étoilée",
+    "desc": "Bleu profond avec éclats argentés, évoquant le ciel nocturne sous l'eau. Monopalme sur mesure incluse.",
+    "price": "À partir de 1999€",
+    "images": ["/images/catalog-2.png", "/images/catalog-1.png"]
+  },
+  {
+    "id": 3,
+    "section": "monopalmes",
+    "name": "Queue Corail Flamboyant",
+    "desc": "Tons chauds orangés et rosés inspirés des récifs coralliens. Finition satinée et écailles relief.",
+    "price": "À partir de 1999€",
+    "images": ["/images/catalog-1.png", "/images/catalog-2.png"]
+  },
+  {
+    "id": 4,
+    "section": "invisibles",
+    "name": "Queue Fond des Mers",
+    "desc": "Nageoire en silicone réaliste cachant parfaitement les pieds. Pigments intégrés au coulage pour des couleurs durables.",
+    "price": "À partir de 1999€",
+    "images": ["/images/catalog-2.png", "/images/catalog-1.png"]
+  },
+  {
+    "id": 5,
+    "section": "invisibles",
+    "name": "Queue Écume Douce",
+    "desc": "Tons clairs et nageoire fluide. Le silicone élastique s'adapte à votre morphologie pour un confort optimal.",
+    "price": "À partir de 1999€",
+    "images": ["/images/catalog-1.png", "/images/catalog-2.png"]
+  },
+  {
+    "id": 6,
+    "section": "accessoires",
+    "name": "Couronne de Coquillages",
+    "desc": "Réalisée à la main avec des coquillages naturels soigneusement sélectionnés. Chaque pièce est unique.",
+    "price": "45€",
+    "images": []
+  }
+]

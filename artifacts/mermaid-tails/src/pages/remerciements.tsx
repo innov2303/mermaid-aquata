@@ -1,15 +1,16 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { fetchRemerciements } from "@/lib/api";
 
-const SIRENES = [
-  { id: 1, name: "Océane", img: "/images/sirene-1.png" },
-  { id: 2, name: "Marina", img: "/images/sirene-2.png" },
-  { id: 3, name: "Coral", img: "/images/sirene-1.png" },
-  { id: 4, name: "Neptunea", img: "/images/sirene-2.png" },
-  { id: 5, name: "Aquamarine", img: "/images/sirene-1.png" },
-  { id: 6, name: "Luna", img: "/images/sirene-2.png" },
-];
+type Sirene = { id: number; name: string; img: string | null };
 
 export default function Remerciements() {
+  const [sirenes, setSirenes] = useState<Sirene[]>([]);
+
+  useEffect(() => {
+    fetchRemerciements().then(setSirenes).catch(() => {});
+  }, []);
+
   return (
     <div className="min-h-screen section-clair pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">
@@ -22,7 +23,7 @@ export default function Remerciements() {
         </motion.div>
 
         <div className="grid grid-cols-2 gap-6 md:gap-10">
-          {SIRENES.map((sirene, i) => (
+          {sirenes.map((sirene, i) => (
             <motion.div
               key={sirene.id}
               initial={{ opacity: 0, scale: 0.96 }}
@@ -33,11 +34,17 @@ export default function Remerciements() {
               style={{ border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 24px rgba(0,200,239,0.12)' }}
             >
               <div className="relative w-full aspect-[3/2] overflow-hidden">
-                <img
-                  src={sirene.img}
-                  alt={sirene.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
+                {sirene.img ? (
+                  <img
+                    src={sirene.img}
+                    alt={sirene.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.1), rgba(4,15,40,0.06))' }}>
+                    <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
+                  </div>
+                )}
                 <div
                   className="absolute bottom-0 left-0 right-0 py-4 px-4 text-center"
                   style={{ background: 'linear-gradient(to top, rgba(4,15,40,0.85) 0%, transparent 100%)' }}
