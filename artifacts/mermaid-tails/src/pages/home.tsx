@@ -39,8 +39,8 @@ export default function Home() {
             backgroundPosition: 'center 40%',
           }}
         />
-        {/* Dark gradient overlay for readability — heavier at top (nav) and bottom */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/70 via-background/30 to-background/75" />
+        {/* Dark gradient overlay — top only for nav readability */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/65 via-background/20 to-transparent" />
         {/* Subtle side vignette */}
         <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,18,40,0.55) 100%)' }} />
 
@@ -126,7 +126,6 @@ export default function Home() {
           </motion.div>
         </div>
         
-        <WaveSeparator className="absolute bottom-0 left-0 text-background z-10" />
       </section>
 
       {/* Présentation Section */}
