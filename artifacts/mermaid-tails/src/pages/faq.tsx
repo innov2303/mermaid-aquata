@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Sparkles } from "lucide-react";
 
 const FAQS = [
   {
@@ -123,7 +124,7 @@ export default function Faq() {
                     style={{ color: '#0a2a4a' }}
                   >
                     <span className="flex items-start gap-3">
-                      <span className="text-primary font-bold shrink-0">{i + 1}.</span>
+                      <Sparkles size={16} className="text-primary shrink-0 mt-1" />
                       {faq.q}
                     </span>
                   </AccordionTrigger>
