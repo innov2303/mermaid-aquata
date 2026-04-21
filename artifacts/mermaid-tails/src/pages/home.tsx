@@ -6,7 +6,7 @@ import { WaveSeparator } from "@/components/WaveSeparator";
 import { useEffect, useState } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
-const BUBBLE_COUNT = 30;
+const BUBBLE_COUNT = 8;
 
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
@@ -15,9 +15,9 @@ export default function Home() {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
-      size: Math.random() * 20 + 5,
-      duration: Math.random() * 10 + 10,
-      delay: Math.random() * 10,
+      size: Math.random() * 8 + 3,
+      duration: Math.random() * 14 + 12,
+      delay: Math.random() * 12,
     }));
     setBubbles(generated);
   }, []);
@@ -29,18 +29,22 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-ocean-gradient">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 z-0 opacity-40 mix-blend-overlay"
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Photorealistic background */}
+        <div
+          className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url('/images/hero.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center 40%',
           }}
         />
-        
-        {/* Bubbles */}
+        {/* Dark gradient overlay for readability — heavier at top (nav) and bottom */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-background/70 via-background/30 to-background/75" />
+        {/* Subtle side vignette */}
+        <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,18,40,0.55) 100%)' }} />
+
+        {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {bubbles.map((bubble) => (
             <div
@@ -52,6 +56,7 @@ export default function Home() {
                 height: `${bubble.size}px`,
                 animationDuration: `${bubble.duration}s`,
                 animationDelay: `${bubble.delay}s`,
+                opacity: 0.5,
               }}
             />
           ))}
@@ -67,9 +72,9 @@ export default function Home() {
             <img
               src={logoSrc}
               alt="Mermaid Aquata"
-              className="w-72 md:w-[420px] lg:w-[520px] object-contain drop-shadow-[0_0_40px_rgba(0,200,239,0.6)] filter brightness-110"
+              className="w-72 md:w-[420px] lg:w-[500px] object-contain drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]"
             />
-            <p className="text-xl md:text-3xl font-light tracking-wide text-white/90">
+            <p className="text-xl md:text-2xl font-light tracking-widest text-white/90 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               Créatrice de Queues de Sirène Artisanales
             </p>
           </motion.div>
@@ -77,11 +82,12 @@ export default function Home() {
 
         <motion.button
           onClick={scrollToNext}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/80 hover:text-white transition-colors"
+          data-testid="button-scroll-down"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70 hover:text-white transition-colors drop-shadow-lg"
           animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
         >
-          <ChevronDown size={48} strokeWidth={1} />
+          <ChevronDown size={44} strokeWidth={1.5} />
         </motion.button>
         
         <WaveSeparator className="absolute bottom-0 left-0 text-background z-10" />
