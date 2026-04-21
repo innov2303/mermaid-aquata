@@ -169,9 +169,9 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1 }}
-              className="flex flex-col sm:flex-row items-center gap-10"
+              className="flex flex-col items-center gap-8"
             >
-              <div className="relative w-56 h-56 md:w-64 md:h-64 shrink-0">
+              <div className="relative w-56 h-56 md:w-64 md:h-64">
                 <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-primary/60 animate-[spin_10s_linear_infinite] shadow-[0_0_25px_rgba(0,200,239,0.4)]"></div>
                 <div className="absolute inset-2 rounded-[50%_50%_40%_60%/50%_40%_60%_50%] border-2 border-secondary/40 animate-[spin_15s_linear_infinite_reverse]"></div>
                 <img 
