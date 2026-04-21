@@ -180,12 +180,15 @@ export default function Home() {
                   className="absolute inset-4 object-cover w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full shadow-2xl"
                 />
               </div>
-              <div className="prose prose-lg prose-invert text-foreground/80 font-light leading-relaxed">
-                <p className="text-xl md:text-2xl font-serif mb-6" style={{ color: '#0a2a4a' }}>
-                  "Passionnée par l'océan depuis mon enfance, je crée des queues de sirène sur mesure alliant beauté artistique et qualité artisanale."
+              <div className="prose prose-lg text-foreground/80 font-light leading-relaxed">
+                <p style={{ color: '#1a3d5c' }} className="mb-4">
+                  Créatrice passionnée de nageoires de sirène en silicone depuis 2015, Mermaid Aquata réalise des créations uniques en France, d'un réalisme saisissant. Ses monopalmes sur mesure sont conçues pour être à la fois maniables et esthétiques, répondant aux besoins du cinéma, des sirènes professionnelles travaillant en aquarium, et des particuliers en quête de magie aquatique.
                 </p>
-                <p style={{ color: '#1a3d5c' }}>
-                  Chaque création est unique, façonnée avec amour dans mon atelier pour vous permettre de vivre votre rêve de sirène. De la première esquisse à la dernière écaille posée à la main, je mets tout mon cœur pour donner vie à votre vision.
+                <p style={{ color: '#1a3d5c' }} className="mb-4">
+                  Avec son savoir-faire reconnu, Mermaid Aquata propose également des prestations pour les tournages, incarnant une véritable sirène grâce à ses costumes professionnels.
+                </p>
+                <p className="text-sm font-medium italic" style={{ color: '#0a6a8a' }}>
+                  Costume professionnel réservé uniquement aux adultes majeurs.
                 </p>
               </div>
             </motion.div>
