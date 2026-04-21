@@ -242,7 +242,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Globe size={32} className="text-secondary" />}
               title="Savoir faire reconnu à l'international"
-              desc="Notre expertise est reconnue au-delà des frontières, avec des créations portées par des sirènes professionnelles dans le monde entier."
+              desc="Mermaid Aquata est reconnue à l'international pour ses créations « longfish » uniques au monde !"
               delay={0.1}
             />
             <FeatureCard 
