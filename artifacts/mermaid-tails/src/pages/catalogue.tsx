@@ -192,14 +192,16 @@ export default function Catalogue() {
               </button>
 
               {/* Gauche : infos */}
-              <div className="flex flex-col justify-center p-8 md:p-12 md:w-1/2 flex-shrink-0 overflow-y-auto">
+              <div className="flex flex-col p-8 md:p-12 md:w-1/2 flex-shrink-0 overflow-y-auto">
                 <h2 className="text-2xl md:text-3xl font-serif mb-5 leading-tight" style={{ color: '#0a2a4a' }}>
                   {selected.name}
                 </h2>
-                <p className="font-light leading-relaxed mb-8 text-sm md:text-base whitespace-pre-line" style={{ color: '#1a3d5c' }}>
-                  {selected.desc}
-                </p>
-                <p className="font-serif text-2xl text-primary font-semibold mb-8">{selected.price}</p>
+                <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
+                  <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: '#1a3d5c' }}>
+                    {selected.desc}
+                  </p>
+                </div>
+                <p className="font-serif text-2xl text-primary font-semibold mb-8 flex-shrink-0">{selected.price}</p>
                 <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] w-fit">
                   <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
                 </Button>
