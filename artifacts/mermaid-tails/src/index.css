@@ -182,10 +182,15 @@
   * {
     @apply border-border;
   }
+  html {
+    background-color: #0a3a5c;
+  }
   body {
     @apply font-sans antialiased text-foreground selection:bg-primary/30;
-    background-color: #1a6a9a;
+    background-color: #0a3a5c;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-medium;
