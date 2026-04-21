@@ -268,7 +268,7 @@
    SECTIONS CLAIRES — Fond océan lumineux
    ============================================================ */
 .section-clair {
-  background: linear-gradient(180deg, #e8f5fd 0%, #f0f9ff 60%, #f5fbff 100%);
+  background: linear-gradient(180deg, #1a6a9a 0%, #3a9ac0 5%, #7ec8e3 12%, #c8eaf8 25%, #e8f5fd 50%, #f0f9ff 80%, #f5fbff 100%);
   color: #0c2340;
 }
 
