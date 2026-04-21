@@ -28,14 +28,14 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100dvh' }}>
+      <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
         {/* Photorealistic background */}
         <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `url('/images/hero.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center 20%',
+            backgroundSize: '115% auto',
+            backgroundPosition: 'center top',
           }}
         />
         {/* Brightness gradient — light at top (surface rays), fades out at bottom */}
