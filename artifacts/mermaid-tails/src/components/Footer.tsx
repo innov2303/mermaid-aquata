@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Mail, Youtube } from "lucide-react";
+import { Instagram, Mail, Youtube } from "lucide-react";
 import { Link } from "wouter";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 
@@ -15,9 +15,6 @@ export function Footer() {
             <div className="flex gap-4">
               <a href="https://www.instagram.com/mermaid.real.aquata/" target="_blank" rel="noopener noreferrer" data-testid="link-instagram" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
                 <Instagram size={20} />
-              </a>
-              <a href="#" data-testid="link-facebook" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
-                <Facebook size={20} />
               </a>
               <a href="https://www.youtube.com/channel/UCXeS0vlrfvEsvBBshqGFl8w" target="_blank" rel="noopener noreferrer" data-testid="link-youtube" className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-foreground hover:bg-primary hover:text-background transition-colors">
                 <Youtube size={20} />
