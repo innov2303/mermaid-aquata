@@ -62,33 +62,101 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        {/* Artistic medallion: logo + arrow unified */}
+        <div className="relative z-10 flex flex-col items-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 0.2 }}
-            className="flex flex-col items-center gap-6"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.8, ease: "easeOut" }}
+            className="flex flex-col items-center"
           >
-            <img
-              src={logoSrc}
-              alt="Mermaid Aquata"
-              className="w-72 md:w-[420px] lg:w-[500px] object-contain drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]"
-            />
-            <p className="text-xl md:text-2xl font-light tracking-widest text-white/90 uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              Créatrice de Queues de Sirène Artisanales
-            </p>
+            {/* Top filigree ornament */}
+            <svg width="260" height="28" viewBox="0 0 260 28" fill="none" className="mb-[-1px] opacity-80">
+              <path d="M130 4 C100 4, 60 14, 2 14" stroke="rgba(0,200,239,0.55)" strokeWidth="1.2" strokeLinecap="round"/>
+              <path d="M130 4 C160 4, 200 14, 258 14" stroke="rgba(0,200,239,0.55)" strokeWidth="1.2" strokeLinecap="round"/>
+              <path d="M130 4 C110 4, 80 20, 30 24" stroke="rgba(0,200,239,0.25)" strokeWidth="0.8" strokeLinecap="round"/>
+              <path d="M130 4 C150 4, 180 20, 230 24" stroke="rgba(0,200,239,0.25)" strokeWidth="0.8" strokeLinecap="round"/>
+              <circle cx="130" cy="2" r="3" fill="rgba(0,200,239,0.8)" />
+              <circle cx="2" cy="14" r="2" fill="rgba(0,200,239,0.5)" />
+              <circle cx="258" cy="14" r="2" fill="rgba(0,200,239,0.5)" />
+              <circle cx="56" cy="12" r="1.5" fill="rgba(255,255,255,0.4)" />
+              <circle cx="204" cy="12" r="1.5" fill="rgba(255,255,255,0.4)" />
+            </svg>
+
+            {/* Main oval frame */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="medallion-frame relative flex flex-col items-center justify-center px-12 py-10 md:px-16 md:py-12"
+              style={{
+                borderRadius: "50%",
+                border: "1.5px solid rgba(0,200,239,0.55)",
+                background: "radial-gradient(ellipse at 40% 35%, rgba(0,80,140,0.35) 0%, rgba(10,20,50,0.55) 70%)",
+                boxShadow: "0 0 30px rgba(0,200,239,0.25), 0 0 80px rgba(0,100,200,0.15), inset 0 0 40px rgba(0,180,239,0.08)",
+                backdropFilter: "blur(4px)",
+                minWidth: "320px",
+                minHeight: "320px",
+              }}
+            >
+              {/* Pearl corners */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-cyan-200/90 shadow-[0_0_8px_rgba(0,200,239,0.9)]" />
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-300/70 shadow-[0_0_6px_rgba(0,200,239,0.7)]" />
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2.5 h-2.5 rounded-full bg-cyan-300/70 shadow-[0_0_6px_rgba(0,200,239,0.7)]" />
+
+              {/* Inner glimmer ring */}
+              <div
+                className="absolute inset-3 rounded-full pointer-events-none"
+                style={{ border: "1px solid rgba(0,200,239,0.18)" }}
+              />
+
+              {/* Logo */}
+              <img
+                src={logoSrc}
+                alt="Mermaid Aquata"
+                className="w-56 md:w-72 object-contain relative z-10 drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+              />
+
+              {/* Tagline inside frame */}
+              <p className="mt-3 text-xs md:text-sm font-light tracking-[0.25em] text-white/75 uppercase text-center relative z-10">
+                Créatrice de Queues Artisanales
+              </p>
+            </motion.div>
+
+            {/* Bottom filigree ornament */}
+            <svg width="260" height="28" viewBox="0 0 260 28" fill="none" className="mt-[-1px] opacity-80">
+              <path d="M130 24 C100 24, 60 14, 2 14" stroke="rgba(0,200,239,0.55)" strokeWidth="1.2" strokeLinecap="round"/>
+              <path d="M130 24 C160 24, 200 14, 258 14" stroke="rgba(0,200,239,0.55)" strokeWidth="1.2" strokeLinecap="round"/>
+              <path d="M130 24 C110 24, 80 8, 30 4" stroke="rgba(0,200,239,0.25)" strokeWidth="0.8" strokeLinecap="round"/>
+              <path d="M130 24 C150 24, 180 8, 230 4" stroke="rgba(0,200,239,0.25)" strokeWidth="0.8" strokeLinecap="round"/>
+              <circle cx="2" cy="14" r="2" fill="rgba(0,200,239,0.5)" />
+              <circle cx="258" cy="14" r="2" fill="rgba(0,200,239,0.5)" />
+              <circle cx="56" cy="16" r="1.5" fill="rgba(255,255,255,0.4)" />
+              <circle cx="204" cy="16" r="1.5" fill="rgba(255,255,255,0.4)" />
+            </svg>
+
+            {/* Connector stem */}
+            <div className="flex flex-col items-center gap-0">
+              <div className="w-px h-5 bg-gradient-to-b from-cyan-400/60 to-transparent" />
+              {/* Diamond gem */}
+              <div className="w-2.5 h-2.5 rotate-45 bg-cyan-300/70 border border-cyan-200/50 shadow-[0_0_8px_rgba(0,200,239,0.7)]" />
+              <div className="w-px h-4 bg-gradient-to-b from-cyan-400/40 to-transparent" />
+
+              {/* Arrow integrated at the bottom of the medallion */}
+              <motion.button
+                onClick={scrollToNext}
+                data-testid="button-scroll-down"
+                className="flex flex-col items-center group cursor-pointer mt-1"
+                animate={{ y: [0, 7, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+              >
+                <svg width="38" height="28" viewBox="0 0 38 28" fill="none" className="group-hover:opacity-100 opacity-75 transition-opacity drop-shadow-[0_0_6px_rgba(0,200,239,0.6)]">
+                  <path d="M4 6 L19 22 L34 6" stroke="rgba(0,200,239,0.85)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10 2 L19 12 L28 2" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.button>
+            </div>
           </motion.div>
         </div>
-
-        <motion.button
-          onClick={scrollToNext}
-          data-testid="button-scroll-down"
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white/70 hover:text-white transition-colors drop-shadow-lg"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-        >
-          <ChevronDown size={44} strokeWidth={1.5} />
-        </motion.button>
         
         <WaveSeparator className="absolute bottom-0 left-0 text-background z-10" />
       </section>
