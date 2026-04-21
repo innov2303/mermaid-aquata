@@ -248,7 +248,7 @@ export default function Home() {
             <FeatureCard 
               icon={<Leaf size={32} className="text-accent" />}
               title="Matériaux Éthiques"
-              desc="Nous sélectionnons des matériaux de qualité, respectueux de l'environnement et sans danger pour la peau, pour des créations durables."
+              desc="Mermaid Aquata utilise des matériaux de très haute qualité pour une tenue de plusieurs années."
               delay={0.2}
             />
             <FeatureCard 
