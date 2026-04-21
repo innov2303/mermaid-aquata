@@ -75,22 +75,22 @@ export default function Home() {
               animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               className="relative flex items-center justify-center"
-              style={{ width: 200, height: 178 }}
+              style={{ width: 220, height: 220 }}
             >
-              {/* Real shell photo — background removed, transparent PNG */}
+              {/* Mermaid tail curled as frame — background removed, transparent PNG */}
               <img
-                src="/images/shell-frame.png"
+                src="/images/tail-frame.png"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-contain pointer-events-none select-none"
                 style={{
-                  filter: "drop-shadow(0 0 12px rgba(0,200,239,0.35)) drop-shadow(0 4px 12px rgba(0,0,0,0.5)) brightness(1.08) saturate(0.75) hue-rotate(160deg)",
-                  opacity: 0.9,
+                  filter: "drop-shadow(0 0 14px rgba(0,200,239,0.5)) drop-shadow(0 4px 16px rgba(0,0,0,0.6)) brightness(1.1) saturate(1.2)",
+                  opacity: 0.95,
                 }}
               />
 
-              {/* Logo centred inside the shell's open cup */}
-              <div className="relative z-10 flex flex-col items-center" style={{ marginTop: "-14%" }}>
+              {/* Logo centred inside the tail ring */}
+              <div className="relative z-10 flex flex-col items-center">
                 <img
                   src={logoSrc}
                   alt="Mermaid Aquata"
