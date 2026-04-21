@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Info, X } from "lucide-react";
+import { X } from "lucide-react";
 
 type Item = {
   id: number;
@@ -90,15 +90,6 @@ export default function Catalogue() {
                     className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
-                    {/* Bouton info */}
-                    <button
-                      onClick={() => setSelected(item)}
-                      className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                      style={{ background: 'rgba(4,15,40,0.65)', border: '1.5px solid rgba(0,200,239,0.6)', color: '#00c8ef', backdropFilter: 'blur(4px)' }}
-                      title="Voir les détails"
-                    >
-                      <Info size={16} />
-                    </button>
 
                     {item.img ? (
                       <div className="relative w-full aspect-[4/3] overflow-hidden">
@@ -112,7 +103,16 @@ export default function Catalogue() {
                     <div className="p-6">
                       <h3 className="text-xl font-serif mb-2 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
                       <p className="text-sm font-light mb-4" style={{ color: '#1a3d5c' }}>{item.desc}</p>
-                      <p className="font-serif text-base text-primary font-medium">{item.price}</p>
+                      <div className="flex items-center justify-between">
+                        <p className="font-serif text-base text-primary font-medium">{item.price}</p>
+                        <button
+                          onClick={() => setSelected(item)}
+                          className="text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
+                          style={{ background: 'rgba(0,200,239,0.12)', border: '1.5px solid rgba(0,200,239,0.5)', color: '#007fa3' }}
+                        >
+                          Détails
+                        </button>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
