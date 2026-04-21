@@ -50,7 +50,7 @@ export default function Commander() {
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className={`flex w-full ${STEPS[currentStep].image ? 'flex-row items-start gap-8 text-left' : 'flex-col items-center text-center'}`}
+                className={`flex w-full ${STEPS[currentStep].image ? 'flex-row items-center gap-8 text-left' : 'flex-col items-center text-center'}`}
               >
                 {/* Left / main content */}
                 <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
