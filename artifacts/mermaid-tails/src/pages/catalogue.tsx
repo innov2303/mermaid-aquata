@@ -1,6 +1,16 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Info, X } from "lucide-react";
+
+type Item = {
+  id: number;
+  name: string;
+  desc: string;
+  price: string;
+  img: string | null;
+};
 
 const SECTIONS = [
   {
@@ -36,6 +46,8 @@ const SECTIONS = [
 ];
 
 export default function Catalogue() {
+  const [selected, setSelected] = useState<Item | null>(null);
+
   return (
     <div className="min-h-screen section-clair pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">
@@ -48,13 +60,13 @@ export default function Catalogue() {
         </motion.div>
 
         <div className="flex flex-col gap-24">
-          {SECTIONS.map((section, si) => (
+          {SECTIONS.map((section) => (
             <motion.div
               key={section.key}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6 }}
             >
               {/* En-tête de section */}
               <div className="flex items-center gap-6 mb-10">
@@ -75,9 +87,19 @@ export default function Catalogue() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.45 }}
-                    className="group rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+                    className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
+                    {/* Bouton info */}
+                    <button
+                      onClick={() => setSelected(item)}
+                      className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                      style={{ background: 'rgba(4,15,40,0.65)', border: '1.5px solid rgba(0,200,239,0.6)', color: '#00c8ef', backdropFilter: 'blur(4px)' }}
+                      title="Voir les détails"
+                    >
+                      <Info size={16} />
+                    </button>
+
                     {item.img ? (
                       <div className="relative w-full aspect-[4/3] overflow-hidden">
                         <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -105,6 +127,60 @@ export default function Catalogue() {
           </Button>
         </div>
       </div>
+
+      {/* Popup détails */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(4,15,40,0.85)', backdropFilter: 'blur(6px)' }}
+            onClick={() => setSelected(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.88, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.88, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+              className="relative rounded-3xl overflow-hidden max-w-md w-full"
+              style={{ background: 'rgba(255,255,255,0.96)', border: '2px solid rgba(0,200,239,0.6)', boxShadow: '0 0 50px rgba(0,200,239,0.3)' }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Fermer */}
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
+              >
+                <X size={18} />
+              </button>
+
+              {selected.img ? (
+                <div className="w-full aspect-video overflow-hidden">
+                  <img src={selected.img} alt={selected.name} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <div className="w-full aspect-video flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.12), rgba(4,15,40,0.06))' }}>
+                  <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
+                </div>
+              )}
+
+              <div className="p-8">
+                <h3 className="text-2xl font-serif mb-3" style={{ color: '#0a2a4a' }}>{selected.name}</h3>
+                <p className="font-light leading-relaxed mb-6" style={{ color: '#1a3d5c' }}>{selected.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="font-serif text-xl text-primary font-semibold">{selected.price}</span>
+                  <Button asChild size="sm" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_12px_rgba(0,200,239,0.4)]">
+                    <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
