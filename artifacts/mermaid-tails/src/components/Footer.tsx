@@ -10,7 +10,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <img src={logoSrc} alt="Mermaid Aquata" className="h-16 object-contain mb-4 drop-shadow-lg" />
             <p className="text-foreground/70 mb-6 max-w-sm">
-              Créatrice de queues de sirène artisanales sur mesure. Plongez dans la magie de l'océan avec nos créations uniques en silicone et tissu.
+              Créatrice de queues de sirène artisanales sur mesure. Plongez dans la magie de l'océan avec nos créations uniques en silicone.
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/mermaid.real.aquata/" target="_blank" rel="noopener noreferrer" data-testid="link-instagram" className="w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ borderColor: '#E1306C', background: 'rgba(225,48,108,0.1)' }}>
