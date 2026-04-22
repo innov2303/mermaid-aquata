@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Catalogue from "@/pages/catalogue";
@@ -14,6 +15,12 @@ import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 
 const queryClient = new QueryClient();
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [location]);
+  return null;
+}
 
 function AnimatedRoutes() {
   const [location] = useLocation();
@@ -38,6 +45,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <ScrollToTop />
           <div className="min-h-screen flex flex-col selection:bg-accent/30 selection:text-white dark" style={{ backgroundColor: '#0a3a5c' }}>
             <NavBar />
             <main className="flex-1">
