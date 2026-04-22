@@ -374,15 +374,12 @@ function CatalogueAdmin({ token }: { token: string }) {
       </div>
       {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
 
-      <AnimatePresence>
-        {adding && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-            className="mb-6 rounded-2xl p-6 overflow-hidden" style={cardStyle}>
-            <h3 className="font-serif mb-4" style={{ color: "#0a2a4a" }}>Nouvel article</h3>
-            <ItemForm f={addForm} setF={setAddForm} onSave={addItem} onCancel={() => setAdding(false)} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {adding && (
+        <div className="mb-6 rounded-2xl p-6" style={cardStyle}>
+          <h3 className="font-serif mb-4" style={{ color: "#0a2a4a" }}>Nouvel article</h3>
+          <ItemForm f={addForm} setF={setAddForm} onSave={addItem} onCancel={() => setAdding(false)} />
+        </div>
+      )}
 
       <div className="flex flex-col gap-4">
         {items.map(item => (
@@ -455,25 +452,22 @@ function RemerciementsAdmin({ token }: { token: string }) {
       </div>
       {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
 
-      <AnimatePresence>
-        {adding && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
-            className="mb-6 rounded-2xl p-6 overflow-hidden" style={cardStyle}>
-            <h3 className="font-serif mb-4" style={{ color: "#0a2a4a" }}>Nouvelle sirène</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-              <div>
-                <label className="text-xs font-medium mb-1 block" style={{ color: "#1a3d5c" }}>Nom</label>
-                <input className={inputClass} style={inputStyle} value={addForm.name || ""} onChange={e => setAddForm({ ...addForm, name: e.target.value })} placeholder="Nom de la sirène" />
-              </div>
-              <ImagePicker token={token} value={addForm.img || ""} onChange={url => setAddForm({ ...addForm, img: url || null })} label="Photo" />
+      {adding && (
+        <div className="mb-6 rounded-2xl p-6" style={cardStyle}>
+          <h3 className="font-serif mb-4" style={{ color: "#0a2a4a" }}>Nouvelle sirène</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div>
+              <label className="text-xs font-medium mb-1 block" style={{ color: "#1a3d5c" }}>Nom</label>
+              <input className={inputClass} style={inputStyle} value={addForm.name || ""} onChange={e => setAddForm({ ...addForm, name: e.target.value })} placeholder="Nom de la sirène" />
             </div>
-            <div className="flex gap-3">
-              <button onClick={addItem} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
-              <button onClick={() => setAdding(false)} className={btnPrimary} style={{ background: "rgba(0,0,0,0.1)", color: "#0a2a4a" }}><X size={15} /> Annuler</button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <ImagePicker token={token} value={addForm.img || ""} onChange={url => setAddForm({ ...addForm, img: url || null })} label="Photo" />
+          </div>
+          <div className="flex gap-3">
+            <button onClick={addItem} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
+            <button onClick={() => setAdding(false)} className={btnPrimary} style={{ background: "rgba(0,0,0,0.1)", color: "#0a2a4a" }}><X size={15} /> Annuler</button>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {items.map(item => (
