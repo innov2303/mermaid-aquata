@@ -414,31 +414,6 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { ico
           backdropFilter: 'blur(2px)',
         }} />
 
-        {/* Main bright specular highlight — upper left */}
-        <div style={{
-          position: 'absolute', zIndex: 3, pointerEvents: 'none',
-          top: '12%', left: '15%', width: '42%', height: '24%',
-          borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.40) 35%, transparent 70%)',
-          filter: 'blur(3px)',
-          transform: 'rotate(-18deg)',
-        }} />
-        {/* Small sharp dot highlight */}
-        <div style={{
-          position: 'absolute', zIndex: 3, pointerEvents: 'none',
-          top: '17%', left: '20%', width: '12%', height: '7%',
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,0.95)',
-          filter: 'blur(1px)',
-        }} />
-        {/* Soft bottom reflection */}
-        <div style={{
-          position: 'absolute', zIndex: 3, pointerEvents: 'none',
-          bottom: '10%', left: '20%', right: '20%', height: '18%',
-          borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(140,220,255,0.18) 0%, transparent 70%)',
-          filter: 'blur(5px)',
-        }} />
 
         {/* Content */}
         <div style={{
