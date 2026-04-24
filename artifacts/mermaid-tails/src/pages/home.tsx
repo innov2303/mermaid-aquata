@@ -221,7 +221,7 @@ export default function Home() {
       </section>
 
       {/* Notre Activité Section */}
-      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #010a18 0%, #021220 35%, #031a2e 70%, #020f1e 100%)' }}>
+      <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <style>{`
           @keyframes caustic {
             0%   { transform: scale(1)   rotate(0deg)   translate(0px, 0px);   opacity: 0.18; }
@@ -241,6 +241,9 @@ export default function Home() {
             100% { transform: translateY(-120vh) translateX(15px); opacity: 0; }
           }
         `}</style>
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.55)' }} />
 
         {/* Caustic light blobs */}
         <div className="absolute pointer-events-none" style={{ top: '5%', left: '10%', width: '45%', height: '55%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,200,239,0.22) 0%, rgba(0,150,200,0.06) 50%, transparent 70%)', filter: 'blur(24px)', animation: 'caustic 9s ease-in-out infinite' }} />

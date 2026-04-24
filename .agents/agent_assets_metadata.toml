@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "p-4Uo1Cn7UGVsZXnkFQfx"
@@ -66,3 +65,15 @@ id = "eOO5vb7-bLzoFasAsbYFN"
 uri = "file://artifacts/mermaid-tails/public/images/ocean-bg.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "mfEcGL9RwfB9Wpef1gMGB"
+uri = "file://artifacts/mermaid-tails/public/images/ocean-bubbles-bg.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "ILxdMAL-oDjRPlFgyRMxx"
+uri = "file://artifacts/mermaid-tails/public/images/ocean-bubbles-bg.png"
+type = "image"
+title = "Fond océan sous-marin généré"
