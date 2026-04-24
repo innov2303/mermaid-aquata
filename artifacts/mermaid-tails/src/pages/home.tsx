@@ -223,46 +223,6 @@ export default function Home() {
 
       {/* Notre Activité Section */}
       <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <style>{`
-          @keyframes caustic {
-            0%   { transform: scale(1)   rotate(0deg)   translate(0px, 0px);   opacity: 0.18; }
-            33%  { transform: scale(1.3) rotate(8deg)   translate(15px, 8px);  opacity: 0.12; }
-            66%  { transform: scale(0.9) rotate(-5deg)  translate(-10px, 12px); opacity: 0.20; }
-            100% { transform: scale(1)   rotate(0deg)   translate(0px, 0px);   opacity: 0.18; }
-          }
-          @keyframes caustic2 {
-            0%   { transform: scale(1.1) rotate(0deg)   translate(0px, 0px);   opacity: 0.10; }
-            50%  { transform: scale(0.8) rotate(-12deg) translate(20px, -8px); opacity: 0.16; }
-            100% { transform: scale(1.1) rotate(0deg)   translate(0px, 0px);   opacity: 0.10; }
-          }
-          @keyframes riseBubble {
-            0%   { transform: translateY(0)   translateX(0px);   opacity: 0; }
-            10%  { opacity: 0.7; }
-            90%  { opacity: 0.5; }
-            100% { transform: translateY(-120vh) translateX(15px); opacity: 0; }
-          }
-          @keyframes spinConic {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-          }
-          @keyframes shimmerOpacity {
-            0%   { opacity: 0.55; }
-            40%  { opacity: 0.85; }
-            70%  { opacity: 0.40; }
-            100% { opacity: 0.55; }
-          }
-          @keyframes lightRay {
-            0%   { transform: translateX(-100%); opacity: 0; }
-            10%  { opacity: 1; }
-            90%  { opacity: 1; }
-            100% { transform: translateX(100%); opacity: 0; }
-          }
-          @keyframes linePulse {
-            0%   { opacity: 0.5; }
-            50%  { opacity: 1; }
-            100% { opacity: 0.5; }
-          }
-        `}</style>
 
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.55)' }} />
@@ -386,52 +346,49 @@ function SectionDivider({ flip = false }: { flip?: boolean }) {
     <div style={{
       position: 'relative',
       width: '100%',
-      height: '48px',
+      height: '64px',
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       zIndex: 10,
       background: flip
-        ? 'linear-gradient(to bottom, #f0f8ff 0%, transparent 100%)'
-        : 'linear-gradient(to bottom, transparent 0%, transparent 100%)',
+        ? 'linear-gradient(to bottom, rgba(224,245,255,1) 0%, rgba(224,245,255,0) 100%)'
+        : 'transparent',
     }}>
-      {/* Main glow line */}
+      {/* Wide ambient glow */}
+      <div style={{
+        position: 'absolute',
+        left: '5%', right: '5%', height: '32px',
+        background: 'radial-gradient(ellipse at center, rgba(0,200,239,0.22) 0%, rgba(0,200,239,0.06) 50%, transparent 80%)',
+        filter: 'blur(6px)',
+        animation: 'linePulse 3s ease-in-out infinite',
+      }} />
+      {/* Main line — 2px, bright */}
       <div style={{
         position: 'absolute',
         left: 0, right: 0,
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.15) 15%, rgba(0,200,239,0.7) 38%, rgba(180,240,255,0.95) 48%, rgba(255,255,255,1) 50%, rgba(180,240,255,0.95) 52%, rgba(0,200,239,0.7) 62%, rgba(0,200,239,0.15) 85%, transparent 100%)',
-        boxShadow: '0 0 8px rgba(0,200,239,0.5), 0 0 20px rgba(0,200,239,0.2)',
+        height: '2px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.3) 12%, rgba(0,200,239,0.85) 35%, rgba(140,230,255,1) 47%, rgba(255,255,255,1) 50%, rgba(140,230,255,1) 53%, rgba(0,200,239,0.85) 65%, rgba(0,200,239,0.3) 88%, transparent 100%)',
+        boxShadow: '0 0 6px 2px rgba(0,200,239,0.6), 0 0 18px 4px rgba(0,200,239,0.25)',
         animation: 'linePulse 3s ease-in-out infinite',
       }} />
-      {/* Soft wide glow behind the line */}
+      {/* Moving light bolt */}
       <div style={{
         position: 'absolute',
-        left: '10%', right: '10%',
-        height: '12px',
-        borderRadius: '50%',
-        background: 'radial-gradient(ellipse at center, rgba(0,200,239,0.18) 0%, transparent 70%)',
+        top: '-16px', bottom: '-16px',
+        width: '160px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.3) 25%, rgba(180,240,255,0.85) 45%, rgba(255,255,255,0.95) 50%, rgba(180,240,255,0.85) 55%, rgba(0,200,239,0.3) 75%, transparent 100%)',
         filter: 'blur(4px)',
-        animation: 'linePulse 3s ease-in-out infinite',
-      }} />
-      {/* Moving light flash */}
-      <div style={{
-        position: 'absolute',
-        top: '-8px', bottom: '-8px',
-        width: '120px',
-        background: 'linear-gradient(90deg, transparent, rgba(180,240,255,0.55), rgba(255,255,255,0.8), rgba(180,240,255,0.55), transparent)',
-        filter: 'blur(3px)',
-        animation: 'lightRay 4s ease-in-out infinite',
+        animation: 'lightRay 3.5s ease-in-out infinite',
       }} />
       {/* Center diamond */}
       <div style={{
-        position: 'relative',
-        width: '8px', height: '8px',
-        background: 'white',
-        boxShadow: '0 0 10px rgba(0,200,239,0.9), 0 0 24px rgba(0,200,239,0.5)',
+        position: 'relative', zIndex: 3,
+        width: '10px', height: '10px',
+        background: 'linear-gradient(135deg, #ffffff, #a0eeff)',
+        boxShadow: '0 0 0 2px rgba(0,200,239,0.4), 0 0 14px 4px rgba(0,200,239,0.8), 0 0 30px 8px rgba(0,200,239,0.3)',
         transform: 'rotate(45deg)',
-        zIndex: 2,
         animation: 'linePulse 3s ease-in-out infinite',
       }} />
     </div>
