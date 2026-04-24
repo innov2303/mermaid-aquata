@@ -343,11 +343,13 @@ export default function Home() {
 
 function SectionDivider({ flip = false }: { flip?: boolean }) {
   return (
-    <div style={{
-      width: '100%',
-      height: '8px',
-      background: 'linear-gradient(to bottom, transparent 0%, rgba(0,200,239,0.18) 50%, transparent 100%)',
-    }} />
+    <div style={{ width: '100%', position: 'relative', height: '2px' }}>
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.5) 25%, rgba(0,200,239,0.7) 50%, rgba(0,200,239,0.5) 75%, transparent 100%)',
+        boxShadow: '0 0 8px rgba(0,200,239,0.3)',
+      }} />
+    </div>
   );
 }
 
