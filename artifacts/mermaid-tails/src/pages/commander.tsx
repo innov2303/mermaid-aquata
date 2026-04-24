@@ -28,7 +28,7 @@ export default function Commander() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="flex justify-between mb-12 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 z-0 rounded-full" style={{ background: 'rgba(0,200,239,0.2)' }}></div>
             <div className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0 rounded-full transition-all duration-500" style={{ width: `${(currentStep / (STEPS.length - 1)) * 100}%` }}></div>
@@ -45,7 +45,7 @@ export default function Commander() {
             ))}
           </div>
 
-          <div className="rounded-3xl p-8 md:p-12 min-h-[300px] flex flex-col justify-center shadow-lg relative overflow-hidden" style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 25px rgba(0,200,239,0.2)' }}>
+          <div className="rounded-3xl p-8 md:p-12 flex flex-col justify-center shadow-lg relative" style={{ height: '520px', background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 25px rgba(0,200,239,0.2)' }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
@@ -53,7 +53,7 @@ export default function Commander() {
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className={`flex w-full ${STEPS[currentStep].image ? 'flex-row items-center gap-8 text-left' : 'flex-col items-center text-center'}`}
+                className={`flex w-full h-full overflow-y-auto ${STEPS[currentStep].image ? 'flex-row items-center gap-8 text-left' : 'flex-col items-center text-center'}`}
               >
                 {/* Left / main content */}
                 <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
