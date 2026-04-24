@@ -57,10 +57,12 @@ export default function Commander() {
               >
                 {/* Left / main content */}
                 <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
-                    {STEPS[currentStep].icon}
+                  <div className={`flex items-center gap-4 mb-6 ${STEPS[currentStep].image ? '' : 'justify-center'}`}>
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
+                      {STEPS[currentStep].icon}
+                    </div>
+                    <h2 className="text-3xl font-serif" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
                   </div>
-                  <h2 className="text-3xl font-serif mb-6" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
                   {STEPS[currentStep].choices ? (
                     <div className="w-full max-w-md flex flex-col gap-4">
                       {STEPS[currentStep].note && (
