@@ -391,8 +391,12 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { ico
       <motion.div
         animate={{ y: fp.y, x: fp.x }}
         transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
+        drag
+        dragElastic={0.18}
+        dragMomentum={false}
         whileHover={{ scale: 1.05 }}
-        style={{ cursor: 'default', position: 'relative', width: size, height: size }}
+        whileDrag={{ scale: 1.10, zIndex: 50 }}
+        style={{ cursor: 'grab', position: 'relative', width: size, height: size, zIndex: 1 }}
       >
         {/* Iridescent rim — rotating conic masked to thin ring */}
         <div style={{
