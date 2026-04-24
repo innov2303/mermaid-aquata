@@ -343,35 +343,11 @@ export default function Home() {
 
 function SectionDivider({ flip = false }: { flip?: boolean }) {
   return (
-    <div style={{ position: 'relative', width: '100%', height: '32px', display: 'flex', alignItems: 'center' }}>
-      {/* Line */}
-      <div style={{
-        position: 'absolute',
-        left: '8%', right: '8%',
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.35) 30%, rgba(0,200,239,0.35) 70%, transparent)',
-      }} />
-      {/* Central light source */}
-      <div style={{
-        position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '180px',
-        height: '32px',
-        background: 'radial-gradient(ellipse at center, rgba(0,200,239,0.55) 0%, rgba(0,200,239,0.18) 35%, transparent 70%)',
-        filter: 'blur(3px)',
-      }} />
-      {/* Bright dot at center */}
-      <div style={{
-        position: 'absolute',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '4px', height: '4px',
-        borderRadius: '50%',
-        background: 'rgba(180,240,255,0.95)',
-        boxShadow: '0 0 6px 3px rgba(0,200,239,0.8)',
-      }} />
-    </div>
+    <div style={{
+      width: '100%',
+      height: '1px',
+      background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.25) 20%, rgba(0,200,239,0.25) 80%, transparent)',
+    }} />
   );
 }
 
