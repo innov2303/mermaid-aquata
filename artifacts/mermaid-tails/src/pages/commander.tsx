@@ -68,10 +68,10 @@ export default function Commander() {
                           {STEPS[currentStep].note}
                         </div>
                       )}
-                      <ul className="flex flex-col gap-3">
+                      <ul className="flex flex-col gap-2">
                         {STEPS[currentStep].choices.map((choice, idx) => (
-                          <li key={idx} className="flex items-center gap-3 rounded-xl px-5 py-3 font-light text-lg" style={{ background: 'rgba(0,200,239,0.08)', border: '1.5px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
-                            <span className="text-primary font-semibold">✦</span>
+                          <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.08)', border: '1px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
+                            <span className="text-primary font-semibold text-xs">✦</span>
                             {choice}
                           </li>
                         ))}
