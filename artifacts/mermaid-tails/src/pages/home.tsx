@@ -345,8 +345,8 @@ function SectionDivider({ flip = false }: { flip?: boolean }) {
   return (
     <div style={{
       width: '100%',
-      height: '28px',
-      background: 'linear-gradient(to bottom, transparent 0%, rgba(0,200,239,0.08) 40%, rgba(0,200,239,0.12) 50%, rgba(0,200,239,0.08) 60%, transparent 100%)',
+      height: '8px',
+      background: 'linear-gradient(to bottom, transparent 0%, rgba(0,200,239,0.18) 50%, transparent 100%)',
     }} />
   );
 }
