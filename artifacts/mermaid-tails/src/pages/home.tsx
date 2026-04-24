@@ -295,11 +295,6 @@ export default function Home() {
             <BubbleCard icon={<Tv size={26} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} />
           </div>
 
-          <div className="text-center" style={{ marginTop: '60px' }}>
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
-              <Link href="/catalogue">Voir Notre Catalogue</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
