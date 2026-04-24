@@ -296,13 +296,26 @@ export default function Home() {
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16 items-center justify-items-center">
-            <BubbleCard icon={<Hammer size={26} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} />
-            <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.1} floatOffset={1} />
-            <BubbleCard icon={<Leaf size={26} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.2} floatOffset={2} />
-            <BubbleCard icon={<Film size={26} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} />
-            <BubbleCard icon={<Heart size={26} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} />
-            <BubbleCard icon={<Tv size={26} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} />
+          {/* Scattered bubble layout */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: '0px', paddingBottom: '60px' }}>
+            <div style={{ transform: 'translateY(50px)', margin: '0 -10px' }}>
+              <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={240} />
+            </div>
+            <div style={{ transform: 'translateY(-30px)', margin: '0 -8px' }}>
+              <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={290} />
+            </div>
+            <div style={{ transform: 'translateY(70px)', margin: '0 -12px' }}>
+              <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={220} />
+            </div>
+            <div style={{ transform: 'translateY(10px)', margin: '0 -6px' }}>
+              <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.35} floatOffset={3} size={270} />
+            </div>
+            <div style={{ transform: 'translateY(-50px)', margin: '0 -10px' }}>
+              <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.45} floatOffset={4} size={250} />
+            </div>
+            <div style={{ transform: 'translateY(30px)', margin: '0 -8px' }}>
+              <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.55} floatOffset={5} size={260} />
+            </div>
           </div>
 
         </div>
@@ -357,76 +370,88 @@ const FLOAT_PARAMS = [
   { y: [-7, 7],  duration: 5.3, x: [2, -4]  },
 ];
 
-function BubbleCard({ icon, title, desc, delay, floatOffset }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number }) {
+function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number }) {
   const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
+  const spinDur = `${7 + floatOffset * 0.9}s`;
+  const shimDur = `${2.8 + floatOffset * 0.5}s`;
+  const borderW = Math.max(3, Math.round(size * 0.018));
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.6 }}
+      initial={{ opacity: 0, scale: 0.5 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay, type: 'spring', stiffness: 90, damping: 14 }}
-      className="w-full flex justify-center"
+      transition={{ duration: 0.9, delay, type: 'spring', stiffness: 80, damping: 13 }}
+      style={{ display: 'flex', justifyContent: 'center' }}
     >
       <motion.div
         animate={{ y: fp.y, x: fp.x }}
-        transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.5 }}
-        className="relative flex items-center justify-center cursor-default"
-        style={{ width: 270, height: 270, borderRadius: '50%' }}
-        whileHover={{ scale: 1.06 }}
+        transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
+        whileHover={{ scale: 1.07 }}
+        style={{ cursor: 'default' }}
       >
-        {/* Bubble glass skin */}
-        <div className="absolute inset-0 rounded-full" style={{
-          background: `
-            radial-gradient(circle at 32% 26%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 28%),
-            radial-gradient(circle at 65% 75%, rgba(100,220,255,0.18) 0%, transparent 30%),
-            radial-gradient(circle at 50% 50%, rgba(0,170,220,0.08) 0%, rgba(0,80,140,0.22) 100%)
-          `,
-          border: '1.5px solid rgba(255,255,255,0.28)',
-          boxShadow: `
-            0 0 60px rgba(0,180,230,0.18),
-            0 8px 40px rgba(0,50,100,0.3),
-            inset 0 -6px 24px rgba(0,100,180,0.25),
-            inset 0 4px 12px rgba(255,255,255,0.12)
-          `,
-          backdropFilter: 'blur(6px)',
-        }} />
-
-        {/* Primary specular highlight (upper-left bright spot) */}
-        <div className="absolute pointer-events-none" style={{
-          top: '14%', left: '18%', width: '38%', height: '22%',
+        {/* Rotating iridescent border ring — wrapper technique */}
+        <div style={{
+          width: size + borderW * 2,
+          height: size + borderW * 2,
           borderRadius: '50%',
-          background: 'radial-gradient(ellipse, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.3) 40%, transparent 70%)',
-          filter: 'blur(3px)',
-          transform: 'rotate(-20deg)',
-        }} />
+          padding: borderW,
+          background: 'conic-gradient(from 0deg, #00dcff, #ffffff, #b48fff, #00c8ef, #64ffdc, #ffffff, #00dcff)',
+          animation: `spinConic ${spinDur} linear infinite, shimmerOpacity ${shimDur} ease-in-out infinite`,
+          boxShadow: `0 0 ${size * 0.25}px rgba(0,200,239,0.15), 0 ${size * 0.03}px ${size * 0.15}px rgba(0,40,80,0.35)`,
+        }}>
+          {/* Inner bubble */}
+          <div className="relative flex items-center justify-center" style={{
+            width: size,
+            height: size,
+            borderRadius: '50%',
+            overflow: 'hidden',
+            background: `
+              radial-gradient(circle at 32% 26%, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0) 26%),
+              radial-gradient(circle at 66% 74%, rgba(100,220,255,0.16) 0%, transparent 28%),
+              radial-gradient(circle at 50% 50%, rgba(0,160,220,0.06) 0%, rgba(0,60,130,0.30) 100%)
+            `,
+            backdropFilter: 'blur(7px)',
+          }}>
+            {/* Primary specular highlight */}
+            <div className="absolute pointer-events-none" style={{
+              top: '13%', left: '16%', width: '40%', height: '22%',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.28) 45%, transparent 72%)',
+              filter: 'blur(3px)',
+              transform: 'rotate(-22deg)',
+            }} />
+            {/* Tiny sharp highlight */}
+            <div className="absolute pointer-events-none" style={{
+              top: '18%', left: '21%', width: '13%', height: '7%',
+              borderRadius: '50%',
+              background: 'rgba(255,255,255,0.97)',
+              filter: 'blur(1.5px)',
+            }} />
+            {/* Bottom inner glow */}
+            <div className="absolute pointer-events-none" style={{
+              bottom: '8%', left: '15%', right: '15%', height: '22%',
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse, rgba(0,180,255,0.22) 0%, transparent 70%)',
+              filter: 'blur(6px)',
+            }} />
 
-        {/* Small secondary highlight */}
-        <div className="absolute pointer-events-none" style={{
-          top: '19%', left: '22%', width: '14%', height: '8%',
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,0.95)',
-          filter: 'blur(2px)',
-          transform: 'rotate(-20deg)',
-        }} />
-
-        {/* Animated iridescent spinning border */}
-        <div className="absolute pointer-events-none" style={{
-          inset: 0,
-          position: 'absolute',
-          borderRadius: '50%',
-          background: 'conic-gradient(from 0deg, rgba(0,220,255,0.9), rgba(220,255,255,1), rgba(180,140,255,0.7), rgba(0,200,239,0.8), rgba(100,255,220,0.9), rgba(255,255,255,1), rgba(0,200,239,0.8))',
-          WebkitMask: 'radial-gradient(transparent 86.5%, white 88.5%)',
-          mask: 'radial-gradient(transparent 86.5%, white 88.5%)',
-          animation: `spinConic ${6 + floatOffset * 0.7}s linear infinite, shimmerOpacity ${3 + floatOffset * 0.4}s ease-in-out infinite`,
-        }} />
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-8">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3" style={{ background: 'rgba(0,200,239,0.2)', color: '#a8edff', boxShadow: '0 0 12px rgba(0,200,239,0.3)' }}>
-            {icon}
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center text-center" style={{ padding: `0 ${Math.round(size * 0.12)}px` }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: 10,
+                background: 'rgba(0,200,239,0.18)',
+                color: '#a8edff',
+                boxShadow: '0 0 14px rgba(0,200,239,0.35)',
+              }}>
+                {icon}
+              </div>
+              <h3 style={{ color: '#e8f8ff', textShadow: '0 1px 10px rgba(0,0,0,0.6)', fontSize: `${Math.round(size * 0.057)}px`, fontFamily: 'serif', lineHeight: 1.25, marginBottom: 6 }}>{title}</h3>
+              <p style={{ color: 'rgba(185,235,255,0.82)', textShadow: '0 1px 4px rgba(0,0,0,0.7)', fontSize: `${Math.round(size * 0.044)}px`, lineHeight: 1.45, fontWeight: 300 }}>{desc}</p>
+            </div>
           </div>
-          <h3 className="text-base font-serif leading-snug mb-2" style={{ color: '#e8f8ff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>{title}</h3>
-          <p className="text-xs leading-relaxed font-light" style={{ color: 'rgba(190,235,255,0.80)', textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>{desc}</p>
         </div>
       </motion.div>
     </motion.div>
