@@ -221,11 +221,56 @@ export default function Home() {
       </section>
 
       {/* Notre Activité Section */}
-      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #020c1e 0%, #041628 45%, #072240 100%)' }}>
-        {/* Light rays */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,200,239,0.13) 0%, transparent 70%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 30% 60% at 20% 20%, rgba(0,150,200,0.07) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 30% 60% at 80% 30%, rgba(0,200,239,0.07) 0%, transparent 60%)' }} />
+      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #010a18 0%, #021220 35%, #031a2e 70%, #020f1e 100%)' }}>
+        <style>{`
+          @keyframes caustic {
+            0%   { transform: scale(1)   rotate(0deg)   translate(0px, 0px);   opacity: 0.18; }
+            33%  { transform: scale(1.3) rotate(8deg)   translate(15px, 8px);  opacity: 0.12; }
+            66%  { transform: scale(0.9) rotate(-5deg)  translate(-10px, 12px); opacity: 0.20; }
+            100% { transform: scale(1)   rotate(0deg)   translate(0px, 0px);   opacity: 0.18; }
+          }
+          @keyframes caustic2 {
+            0%   { transform: scale(1.1) rotate(0deg)   translate(0px, 0px);   opacity: 0.10; }
+            50%  { transform: scale(0.8) rotate(-12deg) translate(20px, -8px); opacity: 0.16; }
+            100% { transform: scale(1.1) rotate(0deg)   translate(0px, 0px);   opacity: 0.10; }
+          }
+          @keyframes riseBubble {
+            0%   { transform: translateY(0)   translateX(0px);   opacity: 0; }
+            10%  { opacity: 0.7; }
+            90%  { opacity: 0.5; }
+            100% { transform: translateY(-120vh) translateX(15px); opacity: 0; }
+          }
+        `}</style>
+
+        {/* Caustic light blobs */}
+        <div className="absolute pointer-events-none" style={{ top: '5%', left: '10%', width: '45%', height: '55%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,200,239,0.22) 0%, rgba(0,150,200,0.06) 50%, transparent 70%)', filter: 'blur(24px)', animation: 'caustic 9s ease-in-out infinite' }} />
+        <div className="absolute pointer-events-none" style={{ top: '10%', right: '5%', width: '40%', height: '50%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(30,160,255,0.18) 0%, rgba(0,100,180,0.05) 50%, transparent 70%)', filter: 'blur(30px)', animation: 'caustic2 12s ease-in-out infinite' }} />
+        <div className="absolute pointer-events-none" style={{ bottom: '0%', left: '30%', width: '50%', height: '40%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,180,220,0.14) 0%, transparent 65%)', filter: 'blur(20px)', animation: 'caustic 14s ease-in-out infinite reverse' }} />
+
+        {/* Light shafts from above */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(175deg, rgba(0,200,239,0.10) 0%, transparent 40%), linear-gradient(185deg, rgba(30,160,255,0.07) 0%, transparent 35%)' }} />
+
+        {/* Tiny rising background bubbles */}
+        {[
+          { left:'8%',  size:5,  dur:'11s', delay:'0s'  },
+          { left:'18%', size:3,  dur:'14s', delay:'2s'  },
+          { left:'32%', size:6,  dur:'9s',  delay:'5s'  },
+          { left:'47%', size:4,  dur:'13s', delay:'1s'  },
+          { left:'55%', size:3,  dur:'16s', delay:'3.5s'},
+          { left:'68%', size:7,  dur:'10s', delay:'7s'  },
+          { left:'78%', size:4,  dur:'12s', delay:'0.5s'},
+          { left:'88%', size:5,  dur:'15s', delay:'4s'  },
+          { left:'24%', size:3,  dur:'18s', delay:'9s'  },
+          { left:'62%', size:4,  dur:'11s', delay:'6s'  },
+        ].map((b, i) => (
+          <div key={i} className="absolute bottom-0 pointer-events-none rounded-full" style={{
+            left: b.left, width: b.size, height: b.size,
+            background: 'radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), rgba(180,230,255,0.3))',
+            border: '0.5px solid rgba(255,255,255,0.4)',
+            animation: `riseBubble ${b.dur} ease-in infinite`,
+            animationDelay: b.delay,
+          }} />
+        ))}
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
@@ -234,20 +279,20 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#e0f7ff', textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>Notre Activité</h2>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#d0f0ff', textShadow: '0 0 40px rgba(0,200,239,0.5)' }}>Notre Activité</h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <BubbleCard icon={<Hammer size={28} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} />
-            <BubbleCard icon={<Globe size={28} />} title="Savoir faire reconnu à l'international" desc="Mermaid Aquata est reconnue à l'international pour ses créations « longfish » uniques au monde !" delay={0.1} floatOffset={1} />
-            <BubbleCard icon={<Leaf size={28} />} title="Matériaux Éthiques" desc="Mermaid Aquata utilise des matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.2} floatOffset={2} />
-            <BubbleCard icon={<Film size={28} />} title="Tournages" desc="Mermaid Aquata a déjà participé à des tournages tels que clip musical (Josman XS), Handicap International, série télévisée « Panda »." delay={0.3} floatOffset={3} />
-            <BubbleCard icon={<Heart size={28} />} title="Créatrice Dévouée" desc="Mermaid Aquata sera toujours présente même plusieurs années après votre commande. N'hésitez pas à lui écrire pour toutes questions." delay={0.4} floatOffset={4} />
-            <BubbleCard icon={<Tv size={28} />} title="Reportages TV" desc="Mermaid Aquata est passée plusieurs fois sur TF1, France 3, La Dépêche du midi. Retrouvez tous ces reportages sur YouTube." delay={0.5} floatOffset={5} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16 items-center justify-items-center">
+            <BubbleCard icon={<Hammer size={26} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} />
+            <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.1} floatOffset={1} />
+            <BubbleCard icon={<Leaf size={26} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.2} floatOffset={2} />
+            <BubbleCard icon={<Film size={26} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} />
+            <BubbleCard icon={<Heart size={26} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} />
+            <BubbleCard icon={<Tv size={26} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} />
           </div>
 
-          <div className="text-center" style={{ marginTop: '80px' }}>
+          <div className="text-center" style={{ marginTop: '60px' }}>
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
               <Link href="/catalogue">Voir Notre Catalogue</Link>
             </Button>
@@ -296,42 +341,80 @@ export default function Home() {
 }
 
 const FLOAT_PARAMS = [
-  { y: [-6, 6], duration: 4.2 },
-  { y: [-8, 4], duration: 5.1 },
-  { y: [-4, 8], duration: 4.7 },
-  { y: [-7, 5], duration: 5.5 },
-  { y: [-5, 7], duration: 4.0 },
-  { y: [-6, 6], duration: 4.9 },
+  { y: [-7, 7],  duration: 4.8, x: [-3, 3]  },
+  { y: [-9, 5],  duration: 5.6, x: [2, -2]  },
+  { y: [-5, 9],  duration: 4.2, x: [-2, 4]  },
+  { y: [-8, 6],  duration: 6.1, x: [3, -3]  },
+  { y: [-6, 8],  duration: 4.5, x: [-4, 2]  },
+  { y: [-7, 7],  duration: 5.3, x: [2, -4]  },
 ];
 
 function BubbleCard({ icon, title, desc, delay, floatOffset }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number }) {
   const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.6 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.7, delay }}
+      transition={{ duration: 0.8, delay, type: 'spring', stiffness: 90, damping: 14 }}
+      className="w-full flex justify-center"
     >
       <motion.div
-        animate={{ y: fp.y }}
-        transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.4 }}
-        className="rounded-3xl p-7 h-full cursor-default"
-        style={{
-          background: 'rgba(255,255,255,0.06)',
-          border: '1.5px solid rgba(0,200,239,0.35)',
-          boxShadow: '0 0 24px rgba(0,200,239,0.12), inset 0 1px 0 rgba(255,255,255,0.1)',
-          backdropFilter: 'blur(10px)',
-        }}
-        whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(0,200,239,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+        animate={{ y: fp.y, x: fp.x }}
+        transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.5 }}
+        className="relative flex items-center justify-center cursor-default"
+        style={{ width: 270, height: 270, borderRadius: '50%' }}
+        whileHover={{ scale: 1.06 }}
       >
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(0,200,239,0.18)', color: '#00c8ef' }}>
+        {/* Bubble glass skin */}
+        <div className="absolute inset-0 rounded-full" style={{
+          background: `
+            radial-gradient(circle at 32% 26%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 28%),
+            radial-gradient(circle at 65% 75%, rgba(100,220,255,0.18) 0%, transparent 30%),
+            radial-gradient(circle at 50% 50%, rgba(0,170,220,0.08) 0%, rgba(0,80,140,0.22) 100%)
+          `,
+          border: '1.5px solid rgba(255,255,255,0.28)',
+          boxShadow: `
+            0 0 60px rgba(0,180,230,0.18),
+            0 8px 40px rgba(0,50,100,0.3),
+            inset 0 -6px 24px rgba(0,100,180,0.25),
+            inset 0 4px 12px rgba(255,255,255,0.12)
+          `,
+          backdropFilter: 'blur(6px)',
+        }} />
+
+        {/* Primary specular highlight (upper-left bright spot) */}
+        <div className="absolute pointer-events-none" style={{
+          top: '14%', left: '18%', width: '38%', height: '22%',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.3) 40%, transparent 70%)',
+          filter: 'blur(3px)',
+          transform: 'rotate(-20deg)',
+        }} />
+
+        {/* Small secondary highlight */}
+        <div className="absolute pointer-events-none" style={{
+          top: '19%', left: '22%', width: '14%', height: '8%',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.95)',
+          filter: 'blur(2px)',
+          transform: 'rotate(-20deg)',
+        }} />
+
+        {/* Iridescent rim glow */}
+        <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+          background: 'transparent',
+          boxShadow: 'inset 0 0 0 1.5px rgba(120,220,255,0.35), inset 0 0 0 3px rgba(0,200,239,0.10)',
+        }} />
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center text-center px-8">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3" style={{ background: 'rgba(0,200,239,0.2)', color: '#a8edff', boxShadow: '0 0 12px rgba(0,200,239,0.3)' }}>
             {icon}
           </div>
-          <h3 className="text-lg font-serif leading-tight" style={{ color: '#e0f7ff' }}>{title}</h3>
+          <h3 className="text-base font-serif leading-snug mb-2" style={{ color: '#e8f8ff', textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}>{title}</h3>
+          <p className="text-xs leading-relaxed font-light" style={{ color: 'rgba(190,235,255,0.80)', textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>{desc}</p>
         </div>
-        <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(200,240,255,0.75)' }}>{desc}</p>
       </motion.div>
     </motion.div>
   );
