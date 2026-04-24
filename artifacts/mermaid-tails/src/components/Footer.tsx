@@ -81,7 +81,7 @@ export function Footer() {
           </div>
           
           <div className="border-t border-border/30 pt-8 text-center text-sm text-foreground/50">
-            <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Innov Studio</a>. Tous droits réservés.</p>
+            <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" style={{ color: '#00c8ef' }} className="hover:opacity-80 transition-opacity">Innov Studio</a>. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
