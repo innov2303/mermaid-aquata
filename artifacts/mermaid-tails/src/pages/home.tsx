@@ -392,8 +392,9 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { ico
         animate={{ y: fp.y, x: fp.x }}
         transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
         drag
-        dragElastic={0.18}
-        dragMomentum={false}
+        dragElastic={0.12}
+        dragMomentum={true}
+        dragTransition={{ bounceStiffness: 80, bounceDamping: 18, power: 0.3, timeConstant: 300 }}
         whileHover={{ scale: 1.05 }}
         whileDrag={{ scale: 1.10, zIndex: 50 }}
         style={{ cursor: 'grab', position: 'relative', width: size, height: size, zIndex: 1 }}
