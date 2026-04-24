@@ -144,13 +144,6 @@ export default function Home() {
         
       </section>
 
-      {/* Wave: Hero → Présentation */}
-      <div style={{ lineHeight: 0, background: 'transparent', marginBottom: -2, position: 'relative', zIndex: 5 }}>
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 80 }}>
-          <path d="M0,0 C240,80 480,20 720,55 C960,90 1200,10 1440,0 L1440,80 L0,80 Z" fill="#f0f9ff" />
-        </svg>
-      </div>
-
       {/* Présentation Section */}
       <section id="presentation" className="py-24 relative z-10 section-clair">
         <div className="container mx-auto px-4 md:px-6">
@@ -223,14 +216,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Wave: Présentation → Notre Activité */}
-      <div style={{ lineHeight: 0, background: '#f0f9ff', marginBottom: -2, position: 'relative', zIndex: 5 }}>
-        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 90 }}>
-          <path d="M0,90 C360,0 720,70 1080,20 C1260,0 1380,50 1440,90 L1440,0 L0,0 Z" fill="#f0f9ff" />
-          <path d="M0,90 C360,0 720,70 1080,20 C1260,0 1380,50 1440,90 L1440,90 L0,90 Z" fill="#010a18" />
-        </svg>
-      </div>
 
       {/* Notre Activité Section */}
       <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -338,14 +323,6 @@ export default function Home() {
 
         </div>
       </section>
-
-      {/* Wave: Notre Activité → Contact */}
-      <div style={{ lineHeight: 0, background: '#010a18', marginBottom: -2, position: 'relative', zIndex: 5 }}>
-        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 70 }}>
-          <path d="M0,35 C200,0 400,60 720,30 C1000,0 1250,55 1440,25 L1440,70 L0,70 Z" fill="rgba(0,30,60,0.6)" />
-          <path d="M0,50 C300,15 600,65 900,35 C1100,15 1300,55 1440,40 L1440,70 L0,70 Z" fill="rgba(0,20,50,0.4)" />
-        </svg>
-      </div>
 
       {/* Contact Section */}
       <section
