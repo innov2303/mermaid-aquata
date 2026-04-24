@@ -299,7 +299,7 @@ export default function Home() {
           {/* Two staggered rows */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
             {/* Row 1 */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '52px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
               <div style={{ transform: 'translateY(10px)' }}>
                 <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={230} />
               </div>
@@ -311,7 +311,7 @@ export default function Home() {
               </div>
             </div>
             {/* Row 2 */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '52px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
               <div style={{ transform: 'translateY(-10px)' }}>
                 <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} size={240} />
               </div>
