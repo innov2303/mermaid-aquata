@@ -104,37 +104,33 @@ export default function Home() {
             transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
             className="relative"
           >
-            <div
-              className="relative w-36 h-36 md:w-40 md:h-40 rounded-full flex flex-col items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-108"
-              style={{
-                background: "radial-gradient(ellipse at 38% 32%, rgba(200,245,255,0.28) 0%, rgba(0,140,220,0.18) 50%, rgba(0,60,120,0.22) 100%)",
-                border: "2px solid rgba(200,245,255,0.7)",
-                boxShadow: "0 8px 40px rgba(0,150,220,0.35), 0 0 0 1px rgba(255,255,255,0.12), inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,150,220,0.2)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              {/* Bubble glare — top left arc */}
-              <div
-                className="absolute top-2 left-3 w-12 h-7 rounded-full pointer-events-none"
-                style={{
-                  background: "radial-gradient(ellipse, rgba(255,255,255,0.55) 0%, transparent 70%)",
-                  transform: "rotate(-25deg)",
-                }}
-              />
-              {/* Bubble thin inner ring */}
-              <div className="absolute inset-2 rounded-full pointer-events-none"
-                style={{ border: "1px solid rgba(255,255,255,0.18)" }} />
-              {/* Secondary glare — bottom right */}
-              <div
-                className="absolute bottom-4 right-4 w-5 h-5 rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%)" }}
-              />
-
-              {/* Text inside bubble */}
-              <span className="text-xs md:text-sm font-light tracking-[0.18em] text-white uppercase text-center leading-relaxed relative z-10"
-                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
-                Nous<br />découvrir
-              </span>
+            <div className="relative w-36 h-36 md:w-40 md:h-40 transition-transform duration-300 group-hover:scale-105">
+              {/* Iridescent rotating rim */}
+              <div className="absolute inset-0 rounded-full pointer-events-none" style={{
+                background: 'conic-gradient(from 0deg, rgba(180,240,255,0.0) 0%, rgba(200,230,255,0.38) 18%, rgba(220,200,255,0.28) 32%, rgba(180,255,240,0.32) 50%, rgba(255,255,255,0.42) 62%, rgba(180,220,255,0.22) 78%, rgba(180,240,255,0.0) 100%)',
+                WebkitMask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
+                mask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
+                animation: 'spinConic 8s linear infinite',
+                zIndex: 2,
+              }} />
+              {/* Glass sphere */}
+              <div className="absolute inset-0 rounded-full" style={{
+                background: `
+                  radial-gradient(circle at 30% 24%, rgba(255,255,255,0.44) 0%, rgba(255,255,255,0.04) 22%, transparent 40%),
+                  radial-gradient(circle at 68% 72%, rgba(140,220,255,0.08) 0%, transparent 30%),
+                  radial-gradient(circle at 50% 50%, rgba(180,230,255,0.03) 0%, rgba(0,60,120,0.08) 100%)
+                `,
+                border: '1.2px solid rgba(255,255,255,0.35)',
+                backdropFilter: 'blur(2px)',
+                zIndex: 1,
+              }} />
+              {/* Text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+                <span className="text-xs md:text-sm font-light tracking-[0.18em] text-white uppercase text-center leading-relaxed"
+                  style={{ textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
+                  Nous<br />découvrir
+                </span>
+              </div>
             </div>
 
             {/* Tiny bubble trail below — like bubbles rising */}
