@@ -240,6 +240,16 @@ export default function Home() {
             90%  { opacity: 0.5; }
             100% { transform: translateY(-120vh) translateX(15px); opacity: 0; }
           }
+          @keyframes spinConic {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+          }
+          @keyframes shimmerOpacity {
+            0%   { opacity: 0.55; }
+            40%  { opacity: 0.85; }
+            70%  { opacity: 0.40; }
+            100% { opacity: 0.55; }
+          }
         `}</style>
 
         {/* Dark overlay for readability */}
@@ -399,10 +409,15 @@ function BubbleCard({ icon, title, desc, delay, floatOffset }: { icon: React.Rea
           transform: 'rotate(-20deg)',
         }} />
 
-        {/* Iridescent rim glow */}
-        <div className="absolute inset-0 rounded-full pointer-events-none" style={{
-          background: 'transparent',
-          boxShadow: 'inset 0 0 0 1.5px rgba(120,220,255,0.35), inset 0 0 0 3px rgba(0,200,239,0.10)',
+        {/* Animated iridescent spinning border */}
+        <div className="absolute pointer-events-none" style={{
+          inset: 0,
+          position: 'absolute',
+          borderRadius: '50%',
+          background: 'conic-gradient(from 0deg, rgba(0,220,255,0.9), rgba(220,255,255,1), rgba(180,140,255,0.7), rgba(0,200,239,0.8), rgba(100,255,220,0.9), rgba(255,255,255,1), rgba(0,200,239,0.8))',
+          WebkitMask: 'radial-gradient(transparent 86.5%, white 88.5%)',
+          mask: 'radial-gradient(transparent 86.5%, white 88.5%)',
+          animation: `spinConic ${6 + floatOffset * 0.7}s linear infinite, shimmerOpacity ${3 + floatOffset * 0.4}s ease-in-out infinite`,
         }} />
 
         {/* Content */}
