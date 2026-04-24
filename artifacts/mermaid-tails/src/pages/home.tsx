@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ChevronDown, Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
 
@@ -11,6 +11,7 @@ const BUBBLE_COUNT = 8;
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
   const [contactOpen, setContactOpen] = useState(false);
+  const bubbleZoneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({
@@ -297,29 +298,29 @@ export default function Home() {
           </motion.div>
 
           {/* Two staggered rows */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
+          <div ref={bubbleZoneRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
             {/* Row 1 */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
               <div style={{ transform: 'translateY(10px)' }}>
-                <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={230} />
+                <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={230} constraintsRef={bubbleZoneRef} />
               </div>
               <div style={{ transform: 'translateY(-10px)' }}>
-                <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={250} />
+                <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={250} constraintsRef={bubbleZoneRef} />
               </div>
               <div style={{ transform: 'translateY(14px)' }}>
-                <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={235} />
+                <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={235} constraintsRef={bubbleZoneRef} />
               </div>
             </div>
             {/* Row 2 */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
               <div style={{ transform: 'translateY(-10px)' }}>
-                <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} size={240} />
+                <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} size={240} constraintsRef={bubbleZoneRef} />
               </div>
               <div style={{ transform: 'translateY(8px)' }}>
-                <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} size={255} />
+                <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} size={255} constraintsRef={bubbleZoneRef} />
               </div>
               <div style={{ transform: 'translateY(-12px)' }}>
-                <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} size={235} />
+                <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} size={235} constraintsRef={bubbleZoneRef} />
               </div>
             </div>
           </div>
@@ -376,7 +377,7 @@ const FLOAT_PARAMS = [
   { y: [-7, 7],  duration: 5.3, x: [2, -4]  },
 ];
 
-function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number }) {
+function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constraintsRef }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number, constraintsRef?: React.RefObject<HTMLDivElement> }) {
   const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
   const spinDur = `${9 + floatOffset * 1.2}s`;
 
@@ -392,6 +393,7 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { ico
         animate={{ y: fp.y, x: fp.x }}
         transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
         drag
+        dragConstraints={constraintsRef}
         dragElastic={0.12}
         dragMomentum={true}
         dragTransition={{ bounceStiffness: 80, bounceDamping: 18, power: 0.3, timeConstant: 300 }}
