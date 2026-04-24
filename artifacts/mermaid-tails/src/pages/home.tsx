@@ -144,6 +144,8 @@ export default function Home() {
         
       </section>
 
+      <SectionDivider />
+
       {/* Présentation Section */}
       <section id="presentation" className="py-24 relative z-10 section-clair">
         <div className="container mx-auto px-4 md:px-6">
@@ -217,6 +219,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider flip />
+
       {/* Notre Activité Section */}
       <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <style>{`
@@ -246,6 +250,17 @@ export default function Home() {
             40%  { opacity: 0.85; }
             70%  { opacity: 0.40; }
             100% { opacity: 0.55; }
+          }
+          @keyframes lightRay {
+            0%   { transform: translateX(-100%); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+          }
+          @keyframes linePulse {
+            0%   { opacity: 0.5; }
+            50%  { opacity: 1; }
+            100% { opacity: 0.5; }
           }
         `}</style>
 
@@ -324,6 +339,8 @@ export default function Home() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* Contact Section */}
       <section
         className="py-32 relative overflow-hidden"
@@ -360,6 +377,63 @@ export default function Home() {
       </section>
 
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+    </div>
+  );
+}
+
+function SectionDivider({ flip = false }: { flip?: boolean }) {
+  return (
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      height: '48px',
+      overflow: 'hidden',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 10,
+      background: flip
+        ? 'linear-gradient(to bottom, #f0f8ff 0%, transparent 100%)'
+        : 'linear-gradient(to bottom, transparent 0%, transparent 100%)',
+    }}>
+      {/* Main glow line */}
+      <div style={{
+        position: 'absolute',
+        left: 0, right: 0,
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.15) 15%, rgba(0,200,239,0.7) 38%, rgba(180,240,255,0.95) 48%, rgba(255,255,255,1) 50%, rgba(180,240,255,0.95) 52%, rgba(0,200,239,0.7) 62%, rgba(0,200,239,0.15) 85%, transparent 100%)',
+        boxShadow: '0 0 8px rgba(0,200,239,0.5), 0 0 20px rgba(0,200,239,0.2)',
+        animation: 'linePulse 3s ease-in-out infinite',
+      }} />
+      {/* Soft wide glow behind the line */}
+      <div style={{
+        position: 'absolute',
+        left: '10%', right: '10%',
+        height: '12px',
+        borderRadius: '50%',
+        background: 'radial-gradient(ellipse at center, rgba(0,200,239,0.18) 0%, transparent 70%)',
+        filter: 'blur(4px)',
+        animation: 'linePulse 3s ease-in-out infinite',
+      }} />
+      {/* Moving light flash */}
+      <div style={{
+        position: 'absolute',
+        top: '-8px', bottom: '-8px',
+        width: '120px',
+        background: 'linear-gradient(90deg, transparent, rgba(180,240,255,0.55), rgba(255,255,255,0.8), rgba(180,240,255,0.55), transparent)',
+        filter: 'blur(3px)',
+        animation: 'lightRay 4s ease-in-out infinite',
+      }} />
+      {/* Center diamond */}
+      <div style={{
+        position: 'relative',
+        width: '8px', height: '8px',
+        background: 'white',
+        boxShadow: '0 0 10px rgba(0,200,239,0.9), 0 0 24px rgba(0,200,239,0.5)',
+        transform: 'rotate(45deg)',
+        zIndex: 2,
+        animation: 'linePulse 3s ease-in-out infinite',
+      }} />
     </div>
   );
 }
