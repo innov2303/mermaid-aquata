@@ -327,9 +327,30 @@ export default function Home() {
               </p>
 
               <div className="flex justify-center mt-10">
-                <Button onClick={() => setContactOpen(true)} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6 rounded-full font-serif shadow-[0_0_20px_rgba(0,200,239,0.4)] transition-all hover:shadow-[0_0_35px_rgba(0,200,239,0.7)] hover:scale-105">
+                <motion.button
+                  onClick={() => setContactOpen(true)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  style={{
+                    position: 'relative',
+                    padding: '16px 48px',
+                    borderRadius: '999px',
+                    border: '1px solid rgba(0,200,239,0.55)',
+                    background: 'linear-gradient(135deg, rgba(0,200,239,0.18) 0%, rgba(0,100,180,0.12) 100%)',
+                    backdropFilter: 'blur(10px)',
+                    color: '#ffffff',
+                    fontSize: '1.125rem',
+                    fontFamily: 'serif',
+                    letterSpacing: '0.06em',
+                    cursor: 'pointer',
+                    boxShadow: '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    transition: 'box-shadow 0.3s ease',
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 40px rgba(0,200,239,0.5), inset 0 1px 0 rgba(255,255,255,0.15)')}
+                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)')}
+                >
                   Nous contacter
-                </Button>
+                </motion.button>
               </div>
             </motion.div>
           </div>
