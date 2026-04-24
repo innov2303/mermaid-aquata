@@ -80,12 +80,8 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="border-t border-border/30 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-foreground/50">
+          <div className="border-t border-border/30 pt-8 text-center text-sm text-foreground/50">
             <p>&copy; {new Date().getFullYear()} Mermaid Aquata. Tous droits réservés.</p>
-            <div className="flex gap-4 mt-4 md:mt-0">
-              <a href="#" className="hover:text-foreground">Mentions légales</a>
-              <a href="#" className="hover:text-foreground">CGV</a>
-            </div>
           </div>
         </div>
       </footer>
