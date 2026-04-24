@@ -296,25 +296,31 @@ export default function Home() {
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
-          {/* Scattered bubble layout */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', gap: '0px', paddingBottom: '80px' }}>
-            <div style={{ transform: 'translateY(50px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={240} />
+          {/* Two staggered rows */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingBottom: '40px' }}>
+            {/* Row 1 */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', gap: '32px' }}>
+              <div style={{ transform: 'translateY(18px)' }}>
+                <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={240} />
+              </div>
+              <div style={{ transform: 'translateY(-8px)' }}>
+                <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={270} />
+              </div>
+              <div style={{ transform: 'translateY(24px)' }}>
+                <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={250} />
+              </div>
             </div>
-            <div style={{ transform: 'translateY(-30px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={290} />
-            </div>
-            <div style={{ transform: 'translateY(70px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={220} />
-            </div>
-            <div style={{ transform: 'translateY(10px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.35} floatOffset={3} size={270} />
-            </div>
-            <div style={{ transform: 'translateY(-50px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.45} floatOffset={4} size={250} />
-            </div>
-            <div style={{ transform: 'translateY(30px)', margin: '0 18px' }}>
-              <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.55} floatOffset={5} size={260} />
+            {/* Row 2 */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', gap: '32px' }}>
+              <div style={{ transform: 'translateY(-16px)' }}>
+                <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} size={255} />
+              </div>
+              <div style={{ transform: 'translateY(10px)' }}>
+                <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} size={275} />
+              </div>
+              <div style={{ transform: 'translateY(-20px)' }}>
+                <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} size={245} />
+              </div>
             </div>
           </div>
 
