@@ -343,53 +343,11 @@ export default function Home() {
 
 function SectionDivider({ flip = false }: { flip?: boolean }) {
   return (
-    <div style={{
-      position: 'relative',
-      width: '100%',
-      height: '64px',
-      overflow: 'hidden',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 10,
-      background: flip
-        ? 'linear-gradient(to bottom, rgba(224,245,255,1) 0%, rgba(224,245,255,0) 100%)'
-        : 'transparent',
-    }}>
-      {/* Wide ambient glow */}
+    <div style={{ width: '100%', padding: '0 10%' }}>
       <div style={{
-        position: 'absolute',
-        left: '5%', right: '5%', height: '32px',
-        background: 'radial-gradient(ellipse at center, rgba(0,200,239,0.22) 0%, rgba(0,200,239,0.06) 50%, transparent 80%)',
-        filter: 'blur(6px)',
-        animation: 'linePulse 3s ease-in-out infinite',
-      }} />
-      {/* Main line — 2px, bright */}
-      <div style={{
-        position: 'absolute',
-        left: 0, right: 0,
-        height: '2px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.3) 12%, rgba(0,200,239,0.85) 35%, rgba(140,230,255,1) 47%, rgba(255,255,255,1) 50%, rgba(140,230,255,1) 53%, rgba(0,200,239,0.85) 65%, rgba(0,200,239,0.3) 88%, transparent 100%)',
-        boxShadow: '0 0 6px 2px rgba(0,200,239,0.6), 0 0 18px 4px rgba(0,200,239,0.25)',
-        animation: 'linePulse 3s ease-in-out infinite',
-      }} />
-      {/* Moving light bolt */}
-      <div style={{
-        position: 'absolute',
-        top: '-16px', bottom: '-16px',
-        width: '160px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.3) 25%, rgba(180,240,255,0.85) 45%, rgba(255,255,255,0.95) 50%, rgba(180,240,255,0.85) 55%, rgba(0,200,239,0.3) 75%, transparent 100%)',
-        filter: 'blur(4px)',
-        animation: 'lightRay 3.5s ease-in-out infinite',
-      }} />
-      {/* Center diamond */}
-      <div style={{
-        position: 'relative', zIndex: 3,
-        width: '10px', height: '10px',
-        background: 'linear-gradient(135deg, #ffffff, #a0eeff)',
-        boxShadow: '0 0 0 2px rgba(0,200,239,0.4), 0 0 14px 4px rgba(0,200,239,0.8), 0 0 30px 8px rgba(0,200,239,0.3)',
-        transform: 'rotate(45deg)',
-        animation: 'linePulse 3s ease-in-out infinite',
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.4), rgba(0,200,239,0.15), transparent)',
+        opacity: flip ? 0.5 : 0.35,
       }} />
     </div>
   );
