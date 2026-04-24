@@ -221,56 +221,30 @@ export default function Home() {
       </section>
 
       {/* Notre Activité Section */}
-      <section className="py-24 section-clair-alt relative">
-        
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div 
+      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #020c1e 0%, #041628 45%, #072240 100%)' }}>
+        {/* Light rays */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,200,239,0.13) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 30% 60% at 20% 20%, rgba(0,150,200,0.07) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 30% 60% at 80% 30%, rgba(0,200,239,0.07) 0%, transparent 60%)' }} />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Activité</h2>
-            <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#e0f7ff', textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>Notre Activité</h2>
+            <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <FeatureCard 
-              icon={<Hammer size={32} className="text-primary" />}
-              title="Fabrication artisanale"
-              desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique."
-              delay={0}
-            />
-            <FeatureCard 
-              icon={<Globe size={32} className="text-secondary" />}
-              title="Savoir faire reconnu à l'international"
-              desc="Mermaid Aquata est reconnue à l'international pour ses créations « longfish » uniques au monde !"
-              delay={0.1}
-            />
-            <FeatureCard 
-              icon={<Leaf size={32} className="text-accent" />}
-              title="Matériaux Éthiques"
-              desc="Mermaid Aquata utilise des matériaux de très haute qualité pour une tenue de plusieurs années."
-              delay={0.2}
-            />
-            <FeatureCard 
-              icon={<Film size={32} className="text-primary" />}
-              title="Tournages"
-              desc="Mermaid Aquata a déjà participé à des tournages tels que clip musical (Josman XS), Handicap International, série télévisée « Panda »."
-              delay={0.3}
-            />
-            <FeatureCard 
-              icon={<Heart size={32} className="text-secondary" />}
-              title="Créatrice Dévouée"
-              desc="Mermaid Aquata sera toujours présente même plusieurs années après votre commande. N'hésitez pas à lui écrire pour toutes questions. Vous êtes également tenue au courant tout au long de la création avec photos à l'appui."
-              delay={0.4}
-            />
-            <FeatureCard 
-              icon={<Tv size={32} className="text-accent" />}
-              title="Reportages TV"
-              desc="Mermaid Aquata est passée plusieurs fois sur les chaînes d'informations françaises, TF1, France 3, La Dépêche du midi. Retrouvez tous ces reportages sur la chaîne YouTube de Mermaid Aquata."
-              delay={0.5}
-            />
+            <BubbleCard icon={<Hammer size={28} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} />
+            <BubbleCard icon={<Globe size={28} />} title="Savoir faire reconnu à l'international" desc="Mermaid Aquata est reconnue à l'international pour ses créations « longfish » uniques au monde !" delay={0.1} floatOffset={1} />
+            <BubbleCard icon={<Leaf size={28} />} title="Matériaux Éthiques" desc="Mermaid Aquata utilise des matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.2} floatOffset={2} />
+            <BubbleCard icon={<Film size={28} />} title="Tournages" desc="Mermaid Aquata a déjà participé à des tournages tels que clip musical (Josman XS), Handicap International, série télévisée « Panda »." delay={0.3} floatOffset={3} />
+            <BubbleCard icon={<Heart size={28} />} title="Créatrice Dévouée" desc="Mermaid Aquata sera toujours présente même plusieurs années après votre commande. N'hésitez pas à lui écrire pour toutes questions." delay={0.4} floatOffset={4} />
+            <BubbleCard icon={<Tv size={28} />} title="Reportages TV" desc="Mermaid Aquata est passée plusieurs fois sur TF1, France 3, La Dépêche du midi. Retrouvez tous ces reportages sur YouTube." delay={0.5} floatOffset={5} />
           </div>
 
           <div className="text-center" style={{ marginTop: '80px' }}>
@@ -321,22 +295,44 @@ export default function Home() {
   );
 }
 
-function FeatureCard({ icon, title, desc, delay, className = "" }: { icon: React.ReactNode, title: string, desc: string, delay: number, className?: string }) {
+const FLOAT_PARAMS = [
+  { y: [-6, 6], duration: 4.2 },
+  { y: [-8, 4], duration: 5.1 },
+  { y: [-4, 8], duration: 4.7 },
+  { y: [-7, 5], duration: 5.5 },
+  { y: [-5, 7], duration: 4.0 },
+  { y: [-6, 6], duration: 4.9 },
+];
+
+function BubbleCard({ icon, title, desc, delay, floatOffset }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number }) {
+  const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      className={`feature-card-light rounded-3xl p-8 hover:shadow-[0_0_28px_rgba(0,200,239,0.45),0_6px_24px_rgba(0,100,160,0.15)] hover:border-primary/70 transition-all duration-300 group ${className}`}
+      transition={{ duration: 0.7, delay }}
     >
-      <div className="flex items-center gap-4 mb-4">
-        <div className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm" style={{ background: 'rgba(0,200,239,0.12)' }}>
-          {icon}
+      <motion.div
+        animate={{ y: fp.y }}
+        transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.4 }}
+        className="rounded-3xl p-7 h-full cursor-default"
+        style={{
+          background: 'rgba(255,255,255,0.06)',
+          border: '1.5px solid rgba(0,200,239,0.35)',
+          boxShadow: '0 0 24px rgba(0,200,239,0.12), inset 0 1px 0 rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)',
+        }}
+        whileHover={{ scale: 1.03, boxShadow: '0 0 40px rgba(0,200,239,0.3), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(0,200,239,0.18)', color: '#00c8ef' }}>
+            {icon}
+          </div>
+          <h3 className="text-lg font-serif leading-tight" style={{ color: '#e0f7ff' }}>{title}</h3>
         </div>
-        <h3 className="text-xl font-serif group-hover:text-primary transition-colors leading-tight" style={{ color: '#0a2a4a' }}>{title}</h3>
-      </div>
-      <p className="leading-relaxed font-light" style={{ color: '#1a3d5c' }}>{desc}</p>
+        <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(200,240,255,0.75)' }}>{desc}</p>
+      </motion.div>
     </motion.div>
   );
 }
