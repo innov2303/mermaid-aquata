@@ -372,86 +372,90 @@ const FLOAT_PARAMS = [
 
 function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260 }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number }) {
   const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
-  const spinDur = `${7 + floatOffset * 0.9}s`;
-  const shimDur = `${2.8 + floatOffset * 0.5}s`;
-  const borderW = Math.max(3, Math.round(size * 0.018));
+  const spinDur = `${9 + floatOffset * 1.2}s`;
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 0.4 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.9, delay, type: 'spring', stiffness: 80, damping: 13 }}
+      transition={{ duration: 1.0, delay, type: 'spring', stiffness: 70, damping: 14 }}
       style={{ display: 'flex', justifyContent: 'center' }}
     >
       <motion.div
         animate={{ y: fp.y, x: fp.x }}
         transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
-        whileHover={{ scale: 1.07 }}
-        style={{ cursor: 'default' }}
+        whileHover={{ scale: 1.05 }}
+        style={{ cursor: 'default', position: 'relative', width: size, height: size }}
       >
-        {/* Rotating iridescent border ring — wrapper technique */}
+        {/* Iridescent rim — rotating conic masked to thin ring */}
         <div style={{
-          width: size + borderW * 2,
-          height: size + borderW * 2,
-          borderRadius: '50%',
-          padding: borderW,
-          background: 'conic-gradient(from 0deg, #00dcff, #ffffff, #b48fff, #00c8ef, #64ffdc, #ffffff, #00dcff)',
-          animation: `spinConic ${spinDur} linear infinite, shimmerOpacity ${shimDur} ease-in-out infinite`,
-          boxShadow: `0 0 ${size * 0.25}px rgba(0,200,239,0.15), 0 ${size * 0.03}px ${size * 0.15}px rgba(0,40,80,0.35)`,
-        }}>
-          {/* Inner bubble */}
-          <div className="relative flex items-center justify-center" style={{
-            width: size,
-            height: size,
-            borderRadius: '50%',
-            overflow: 'hidden',
-            background: `
-              radial-gradient(circle at 32% 26%, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0) 26%),
-              radial-gradient(circle at 66% 74%, rgba(100,220,255,0.16) 0%, transparent 28%),
-              radial-gradient(circle at 50% 50%, rgba(0,160,220,0.06) 0%, rgba(0,60,130,0.30) 100%)
-            `,
-            backdropFilter: 'blur(7px)',
-          }}>
-            {/* Primary specular highlight */}
-            <div className="absolute pointer-events-none" style={{
-              top: '13%', left: '16%', width: '40%', height: '22%',
-              borderRadius: '50%',
-              background: 'radial-gradient(ellipse, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.28) 45%, transparent 72%)',
-              filter: 'blur(3px)',
-              transform: 'rotate(-22deg)',
-            }} />
-            {/* Tiny sharp highlight */}
-            <div className="absolute pointer-events-none" style={{
-              top: '18%', left: '21%', width: '13%', height: '7%',
-              borderRadius: '50%',
-              background: 'rgba(255,255,255,0.97)',
-              filter: 'blur(1.5px)',
-            }} />
-            {/* Bottom inner glow */}
-            <div className="absolute pointer-events-none" style={{
-              bottom: '8%', left: '15%', right: '15%', height: '22%',
-              borderRadius: '50%',
-              background: 'radial-gradient(ellipse, rgba(0,180,255,0.22) 0%, transparent 70%)',
-              filter: 'blur(6px)',
-            }} />
+          position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 2, pointerEvents: 'none',
+          background: 'conic-gradient(from 0deg, rgba(180,240,255,0.0) 0%, rgba(200,230,255,0.35) 18%, rgba(220,200,255,0.25) 32%, rgba(180,255,240,0.30) 50%, rgba(255,255,255,0.40) 62%, rgba(180,220,255,0.20) 78%, rgba(180,240,255,0.0) 100%)',
+          WebkitMask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
+          mask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
+          animation: `spinConic ${spinDur} linear infinite`,
+        }} />
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col items-center text-center" style={{ padding: `0 ${Math.round(size * 0.12)}px` }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: 10,
-                background: 'rgba(0,200,239,0.18)',
-                color: '#a8edff',
-                boxShadow: '0 0 14px rgba(0,200,239,0.35)',
-              }}>
-                {icon}
-              </div>
-              <h3 style={{ color: '#e8f8ff', textShadow: '0 1px 10px rgba(0,0,0,0.6)', fontSize: `${Math.round(size * 0.057)}px`, fontFamily: 'serif', lineHeight: 1.25, marginBottom: 6 }}>{title}</h3>
-              <p style={{ color: 'rgba(185,235,255,0.82)', textShadow: '0 1px 4px rgba(0,0,0,0.7)', fontSize: `${Math.round(size * 0.044)}px`, lineHeight: 1.45, fontWeight: 300 }}>{desc}</p>
-            </div>
+        {/* Bubble sphere — transparent glass */}
+        <div style={{
+          position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 1,
+          background: `
+            radial-gradient(circle at 30% 24%, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0.06) 22%, transparent 40%),
+            radial-gradient(circle at 68% 72%, rgba(140,220,255,0.10) 0%, transparent 30%),
+            radial-gradient(circle at 50% 50%, rgba(180,230,255,0.04) 0%, rgba(0,60,120,0.10) 100%)
+          `,
+          border: '1.2px solid rgba(255,255,255,0.38)',
+          boxShadow: `
+            inset 0 -${Math.round(size*0.04)}px ${Math.round(size*0.12)}px rgba(0,150,220,0.12),
+            inset 0 ${Math.round(size*0.02)}px ${Math.round(size*0.06)}px rgba(255,255,255,0.08),
+            0 ${Math.round(size*0.02)}px ${Math.round(size*0.14)}px rgba(0,60,120,0.18)
+          `,
+          backdropFilter: 'blur(2px)',
+        }} />
+
+        {/* Main bright specular highlight — upper left */}
+        <div style={{
+          position: 'absolute', zIndex: 3, pointerEvents: 'none',
+          top: '12%', left: '15%', width: '42%', height: '24%',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.40) 35%, transparent 70%)',
+          filter: 'blur(3px)',
+          transform: 'rotate(-18deg)',
+        }} />
+        {/* Small sharp dot highlight */}
+        <div style={{
+          position: 'absolute', zIndex: 3, pointerEvents: 'none',
+          top: '17%', left: '20%', width: '12%', height: '7%',
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.95)',
+          filter: 'blur(1px)',
+        }} />
+        {/* Soft bottom reflection */}
+        <div style={{
+          position: 'absolute', zIndex: 3, pointerEvents: 'none',
+          bottom: '10%', left: '20%', right: '20%', height: '18%',
+          borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(140,220,255,0.18) 0%, transparent 70%)',
+          filter: 'blur(5px)',
+        }} />
+
+        {/* Content */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 4,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
+          padding: `0 ${Math.round(size * 0.13)}px`,
+        }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            marginBottom: 8,
+            color: 'rgba(210,245,255,0.9)',
+          }}>
+            {icon}
           </div>
+          <h3 style={{ color: 'rgba(235,250,255,0.95)', textShadow: '0 1px 12px rgba(0,0,0,0.55)', fontSize: `${Math.round(size * 0.056)}px`, fontFamily: 'serif', lineHeight: 1.25, marginBottom: 5 }}>{title}</h3>
+          <p style={{ color: 'rgba(200,238,255,0.78)', textShadow: '0 1px 6px rgba(0,0,0,0.65)', fontSize: `${Math.round(size * 0.042)}px`, lineHeight: 1.5, fontWeight: 300 }}>{desc}</p>
         </div>
       </motion.div>
     </motion.div>
