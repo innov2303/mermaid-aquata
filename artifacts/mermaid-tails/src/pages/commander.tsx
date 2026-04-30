@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
+import { FloatingBubbles } from "@/components/FloatingBubbles";
 
 const STEP_ICONS = [
   <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>,
@@ -28,6 +29,7 @@ export default function Commander() {
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)' }} />
+      <FloatingBubbles count={18} />
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>{t.commander.title}</h1>

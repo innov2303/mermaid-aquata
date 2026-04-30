@@ -4,6 +4,7 @@ import { X, ZoomIn } from "lucide-react";
 import { fetchRemerciements } from "@/lib/api";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
+import { FloatingBubbles } from "@/components/FloatingBubbles";
 
 type Sirene = { id: number; name: string; img: string | null };
 
@@ -25,6 +26,7 @@ export default function Remerciements() {
       backgroundAttachment: 'fixed',
     }}>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)' }} />
+      <FloatingBubbles count={18} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-4xl">
 

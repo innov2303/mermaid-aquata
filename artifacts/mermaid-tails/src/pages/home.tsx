@@ -5,6 +5,7 @@ import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
+import { FloatingBubbles } from "@/components/FloatingBubbles";
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
@@ -257,6 +258,7 @@ export default function Home() {
       {/* Notre Activité Section */}
       <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.55)' }} />
+        <FloatingBubbles count={14} />
         <div className="absolute pointer-events-none" style={{ top: '5%', left: '10%', width: '45%', height: '55%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,200,239,0.22) 0%, rgba(0,150,200,0.06) 50%, transparent 70%)', filter: 'blur(24px)', animation: 'caustic 9s ease-in-out infinite' }} />
         <div className="absolute pointer-events-none" style={{ top: '10%', right: '5%', width: '40%', height: '50%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(30,160,255,0.18) 0%, rgba(0,100,180,0.05) 50%, transparent 70%)', filter: 'blur(30px)', animation: 'caustic2 12s ease-in-out infinite' }} />
         <div className="absolute pointer-events-none" style={{ bottom: '0%', left: '30%', width: '50%', height: '40%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,180,220,0.14) 0%, transparent 65%)', filter: 'blur(20px)', animation: 'caustic 14s ease-in-out infinite reverse' }} />
@@ -320,6 +322,7 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/images/ocean-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.82) 0%, rgba(0,60,100,0.75) 100%)' }} />
+        <FloatingBubbles count={14} />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
