@@ -22,7 +22,7 @@ export default function Remerciements() {
     }}>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(255,248,235,0.35) 0%, rgba(200,230,255,0.28) 100%)' }} />
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-4xl">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Nos Sirènes</h1>
@@ -31,26 +31,26 @@ export default function Remerciements() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-6 md:gap-8">
+        <div className="flex flex-col gap-8">
           {sirenes.map((sirene, i) => (
             <motion.div
               key={sirene.id}
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="flex flex-col"
+              className="flex flex-row items-center gap-8 rounded-2xl p-4"
+              style={{
+                background: 'rgba(255,255,255,0.35)',
+                backdropFilter: 'blur(8px)',
+                border: '1.5px solid rgba(0,200,239,0.35)',
+                boxShadow: '0 4px 24px rgba(0,200,239,0.1)',
+              }}
             >
-              {/* Image frame */}
+              {/* Photo */}
               <div
-                className="group relative rounded-t-2xl overflow-hidden cursor-pointer"
-                style={{
-                  border: '2px solid rgba(0,200,239,0.45)',
-                  borderBottom: 'none',
-                  boxShadow: '0 0 24px rgba(0,200,239,0.12)',
-                  aspectRatio: '4 / 3',
-                  background: 'transparent',
-                }}
+                className="group relative flex-shrink-0 rounded-xl overflow-hidden cursor-pointer"
+                style={{ width: 240, height: 240, border: '1.5px solid rgba(0,200,239,0.4)' }}
                 onClick={() => sirene.img && setSelected(sirene)}
               >
                 {sirene.img ? (
@@ -61,26 +61,26 @@ export default function Remerciements() {
                       className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.25)' }}>
-                      <ZoomIn size={36} className="text-white drop-shadow" />
+                      <ZoomIn size={32} className="text-white drop-shadow" />
                     </div>
                   </>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
+                    <span className="font-serif text-6xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
                   </div>
                 )}
               </div>
-              {/* Name bar */}
-              <div
-                className="rounded-b-2xl py-3 px-4 text-center"
-                style={{
-                  border: '2px solid rgba(0,200,239,0.45)',
-                  borderTop: '1px solid rgba(0,200,239,0.25)',
-                  background: 'rgba(255,255,255,0.55)',
-                  backdropFilter: 'blur(8px)',
-                }}
-              >
-                <h3 className="font-serif text-lg font-semibold tracking-wide" style={{ color: '#0a2a4a' }}>
+
+              {/* Nom */}
+              <div className="flex-1 flex items-center justify-center">
+                <h3 style={{
+                  fontFamily: "'Dancing Script', cursive",
+                  fontSize: '2.8rem',
+                  fontWeight: 700,
+                  color: '#0a2a4a',
+                  textShadow: '0 2px 12px rgba(0,200,239,0.25)',
+                  lineHeight: 1.2,
+                }}>
                   {sirene.name}
                 </h3>
               </div>
@@ -121,7 +121,13 @@ export default function Remerciements() {
                 className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain"
                 style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)' }}
               />
-              <p className="font-serif text-2xl text-white" style={{ textShadow: '0 0 12px rgba(0,200,239,0.7)' }}>
+              <p style={{
+                fontFamily: "'Dancing Script', cursive",
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: '#ffffff',
+                textShadow: '0 0 12px rgba(0,200,239,0.7)',
+              }}>
                 {selected.name}
               </p>
             </motion.div>
