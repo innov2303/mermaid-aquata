@@ -126,8 +126,8 @@ export default function Home() {
               }} />
               {/* Text */}
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                <span className="text-xs md:text-sm font-light tracking-[0.18em] text-white uppercase text-center leading-relaxed"
-                  style={{ textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
+                <span className="text-white text-center leading-tight"
+                  style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(0.95rem, 1.8vw, 1.25rem)", textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
                   Nous<br />découvrir
                 </span>
               </div>
