@@ -17,6 +17,7 @@ const translations = {
     },
     home: {
       heroTitle: 'Bienvenue chez Mermaid Aquata',
+      heroTitleTop: 'Bienvenue chez',
       heroCta: 'Nous découvrir',
       presentationTitle: "Plongez dans l'univers enchanté des sirènes avec",
       bio1: "Créatrice passionnée de nageoires de sirène en silicone depuis 2015, Mermaid Aquata réalise des créations uniques en France, d'un réalisme saisissant. Ses monopalmes sur mesure sont conçues pour être à la fois maniables et esthétiques, répondant aux besoins du cinéma, des sirènes professionnelles travaillant en aquarium, et des particuliers en quête de magie aquatique.",
@@ -168,6 +169,7 @@ const translations = {
     },
     home: {
       heroTitle: 'Welcome to Mermaid Aquata',
+      heroTitleTop: 'Welcome to',
       heroCta: 'Discover us',
       presentationTitle: 'Dive into the enchanted world of mermaids with',
       bio1: "A passionate creator of silicone mermaid tails since 2015, Mermaid Aquata crafts unique creations in France with striking realism. Her custom monofins are designed to be both agile and aesthetically stunning — serving the needs of cinema, professional mermaids performing in aquariums, and individuals seeking aquatic magic.",
@@ -319,6 +321,7 @@ const translations = {
     },
     home: {
       heroTitle: 'Bienvenida a Mermaid Aquata',
+      heroTitleTop: 'Bienvenida a',
       heroCta: 'Descúbrenos',
       presentationTitle: 'Sumérgete en el mundo encantado de las sirenas con',
       bio1: "Creadora apasionada de colas de sirena de silicona desde 2015, Mermaid Aquata realiza creaciones únicas en Francia con un realismo impresionante. Sus monofins a medida están diseñados para ser a la vez manejables y estéticos, respondiendo a las necesidades del cine, las sirenas profesionales en acuarios y los particulares en busca de magia acuática.",
