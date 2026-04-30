@@ -180,16 +180,16 @@ export default function Catalogue() {
               exit={{ scale: 0.9, opacity: 0, y: 24 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
               className="relative rounded-3xl overflow-hidden w-full flex flex-col md:flex-row"
-              style={{ background: 'rgba(255,255,255,0.97)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 60px rgba(0,200,239,0.25)', maxHeight: '82vh', maxWidth: '82vw' }}
+              style={{ background: 'rgba(0,20,50,0.85)', backdropFilter: 'blur(20px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 60px rgba(0,200,239,0.2)', maxHeight: '82vh', maxWidth: '82vw' }}
               onClick={e => e.stopPropagation()}
             >
               {/* Gauche : infos */}
               <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                <h2 className="text-xl md:text-2xl font-serif leading-tight text-center mb-5" style={{ color: '#0a2a4a' }}>
+                <h2 className="text-xl md:text-2xl font-serif leading-tight text-center mb-5" style={{ color: '#e0f5ff' }}>
                   {selected.name}
                 </h2>
                 <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
-                  <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: '#1a3d5c' }}>
+                  <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
                     {selected.desc}
                   </p>
                 </div>
@@ -205,7 +205,7 @@ export default function Catalogue() {
                   <button
                     onClick={() => setSelected(null)}
                     className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                    style={{ background: 'rgba(4,15,40,0.08)', color: '#0a2a4a' }}
+                    style={{ background: 'rgba(0,200,239,0.1)', color: '#e0f5ff' }}
                   >
                     <X size={18} />
                   </button>
