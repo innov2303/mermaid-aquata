@@ -78,7 +78,7 @@ export default function Home() {
         {/* Titre mobile : en haut de la section */}
         <motion.div
           className="md:hidden absolute left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
-          style={{ top: '72px' }}
+          style={{ top: '110px' }}
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
