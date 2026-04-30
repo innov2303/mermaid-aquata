@@ -54,7 +54,7 @@ export default function Home() {
       <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
         <div
           className="absolute inset-0 z-0"
-          style={{ backgroundImage: `url('/images/hero.png')`, backgroundSize: 'cover', backgroundPosition: 'center center' }}
+          style={{ backgroundImage: `url('/images/hero.webp')`, backgroundSize: 'cover', backgroundPosition: 'center center' }}
         />
         <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
