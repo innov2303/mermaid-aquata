@@ -265,6 +265,43 @@ function MediaAdmin({ token }: { token: string }) {
   );
 }
 
+// ── Item Form ──────────────────────────────────────────────────────────────
+const itemLabelStyle = { color: "rgba(200,235,255,0.75)" };
+
+function ItemForm({ token, f, setF, onSave, onCancel }: { token: string; f: Partial<CatalogueItem>; setF: (v: Partial<CatalogueItem>) => void; onSave: () => void; onCancel: () => void }) {
+  return (
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+        <div>
+          <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Nom</label>
+          <input className={inputClass} style={inputStyle} value={f.name || ""} onChange={e => setF({ ...f, name: e.target.value })} placeholder="Nom de l'article" />
+        </div>
+        <div>
+          <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Prix</label>
+          <input className={inputClass} style={inputStyle} value={f.price || ""} onChange={e => setF({ ...f, price: e.target.value })} placeholder="À partir de 1999€" />
+        </div>
+        <div>
+          <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Catégorie</label>
+          <select className={inputClass} style={inputStyle} value={f.section || "monopalmes"} onChange={e => setF({ ...f, section: e.target.value })}>
+            {SECTIONS.map(s => <option key={s.key} value={s.key} style={{ background: "#021830", color: "#e0f5ff" }}>{s.label}</option>)}
+          </select>
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Description</label>
+          <textarea className={inputClass} style={{ ...inputStyle, resize: "vertical" } as React.CSSProperties} rows={3} value={f.desc || ""} onChange={e => setF({ ...f, desc: e.target.value })} placeholder="Description de l'article…" />
+        </div>
+        <div className="md:col-span-2">
+          <MultiImagePicker token={token} values={f.images || []} onChange={imgs => setF({ ...f, images: imgs })} />
+        </div>
+      </div>
+      <div className="flex gap-3 mt-2">
+        <button onClick={onSave} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
+        <button onClick={onCancel} className={btnPrimary} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={15} /> Annuler</button>
+      </div>
+    </div>
+  );
+}
+
 // ── Catalogue Editor ───────────────────────────────────────────────────────
 function CatalogueAdmin({ token }: { token: string }) {
   const [items, setItems] = useState<CatalogueItem[]>([]);
@@ -293,40 +330,6 @@ function CatalogueAdmin({ token }: { token: string }) {
     setItems([...items, newItem]); setAdding(false); setAddForm({ section: "monopalmes", images: [] }); notify("✓ Article ajouté");
   }
 
-  const labelStyle = { color: "rgba(200,235,255,0.75)" };
-
-  const ItemForm = ({ f, setF, onSave, onCancel }: { f: Partial<CatalogueItem>; setF: (v: Partial<CatalogueItem>) => void; onSave: () => void; onCancel: () => void }) => (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-        <div>
-          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Nom</label>
-          <input className={inputClass} style={inputStyle} value={f.name || ""} onChange={e => setF({ ...f, name: e.target.value })} placeholder="Nom de l'article" />
-        </div>
-        <div>
-          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Prix</label>
-          <input className={inputClass} style={inputStyle} value={f.price || ""} onChange={e => setF({ ...f, price: e.target.value })} placeholder="À partir de 1999€" />
-        </div>
-        <div>
-          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Catégorie</label>
-          <select className={inputClass} style={inputStyle} value={f.section || "monopalmes"} onChange={e => setF({ ...f, section: e.target.value })}>
-            {SECTIONS.map(s => <option key={s.key} value={s.key} style={{ background: "#021830", color: "#e0f5ff" }}>{s.label}</option>)}
-          </select>
-        </div>
-        <div className="md:col-span-2">
-          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Description</label>
-          <textarea className={inputClass} style={{ ...inputStyle, resize: "vertical" } as React.CSSProperties} rows={3} value={f.desc || ""} onChange={e => setF({ ...f, desc: e.target.value })} placeholder="Description de l'article…" />
-        </div>
-        <div className="md:col-span-2">
-          <MultiImagePicker token={token} values={f.images || []} onChange={imgs => setF({ ...f, images: imgs })} />
-        </div>
-      </div>
-      <div className="flex gap-3 mt-2">
-        <button onClick={onSave} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
-        <button onClick={onCancel} className={btnPrimary} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={15} /> Annuler</button>
-      </div>
-    </div>
-  );
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -338,7 +341,7 @@ function CatalogueAdmin({ token }: { token: string }) {
       {adding && (
         <div className="mb-6 rounded-2xl p-6" style={cardStyle}>
           <h3 className="font-serif mb-4" style={{ color: "#e0f5ff" }}>Nouvel article</h3>
-          <ItemForm f={addForm} setF={setAddForm} onSave={addItem} onCancel={() => setAdding(false)} />
+          <ItemForm token={token} f={addForm} setF={setAddForm} onSave={addItem} onCancel={() => setAdding(false)} />
         </div>
       )}
 
@@ -346,7 +349,7 @@ function CatalogueAdmin({ token }: { token: string }) {
         {items.map(item => (
           <motion.div key={item.id} layout className="rounded-2xl p-5" style={cardStyle}>
             {editId === item.id
-              ? <ItemForm f={form} setF={setForm} onSave={saveEdit} onCancel={() => setEditId(null)} />
+              ? <ItemForm token={token} f={form} setF={setForm} onSave={saveEdit} onCancel={() => setEditId(null)} />
               : (
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex gap-4 flex-1 min-w-0">
