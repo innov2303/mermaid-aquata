@@ -35,7 +35,6 @@ export function ContactModal({ open, onClose }: Props) {
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           style={{ background: "rgba(4,15,40,0.88)", backdropFilter: "blur(8px)" }}
-          onClick={onClose}
         >
           <motion.div
             initial={{ scale: 0.92, opacity: 0, y: 20 }}
@@ -44,7 +43,6 @@ export function ContactModal({ open, onClose }: Props) {
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
             className="w-full max-w-2xl rounded-3xl overflow-hidden"
             style={{ background: "rgba(0,20,50,0.85)", backdropFilter: "blur(20px)", border: "1.5px solid rgba(0,200,239,0.3)", boxShadow: "0 0 60px rgba(0,200,239,0.2)" }}
-            onClick={e => e.stopPropagation()}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-8 pt-8 pb-4">
