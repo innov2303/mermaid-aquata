@@ -150,7 +150,7 @@ export default function Home() {
             transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
             className="relative"
           >
-            <div className="relative w-20 h-20 md:w-40 md:h-40 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative w-14 h-14 md:w-40 md:h-40 transition-transform duration-300 group-hover:scale-105">
               <div className="absolute inset-0 rounded-full pointer-events-none" style={{
                 background: 'conic-gradient(from 0deg, rgba(180,240,255,0.0) 0%, rgba(200,230,255,0.38) 18%, rgba(220,200,255,0.28) 32%, rgba(180,255,240,0.32) 50%, rgba(255,255,255,0.42) 62%, rgba(180,220,255,0.22) 78%, rgba(180,240,255,0.0) 100%)',
                 WebkitMask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
@@ -170,7 +170,7 @@ export default function Home() {
               }} />
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                 <span className="text-white text-center leading-tight"
-                  style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(0.65rem, 3.5vw, 1.25rem)", textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
+                  style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(0.55rem, 2.8vw, 1.25rem)", textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
                   {t.home.heroCta}
                 </span>
               </div>
