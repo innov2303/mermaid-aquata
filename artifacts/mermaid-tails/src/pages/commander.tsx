@@ -39,14 +39,14 @@ export default function Commander() {
                 onClick={() => setCurrentStep(i)}
                 data-testid={`button-step-${i + 1}`}
                 className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 font-semibold ${i <= currentStep ? "bg-primary text-white shadow-[0_0_15px_rgba(0,200,239,0.6)] scale-110" : "border-2 hover:border-primary/50"}`}
-                style={i > currentStep ? { background: 'rgba(255,255,255,0.9)', borderColor: 'rgba(0,200,239,0.4)', color: '#0a2a4a' } : {}}
+                style={i > currentStep ? { background: 'rgba(0,20,50,0.5)', borderColor: 'rgba(0,200,239,0.4)', color: '#e0f5ff' } : {}}
               >
                 {i + 1}
               </button>
             ))}
           </div>
 
-          <div className="rounded-3xl p-8 md:p-12 flex flex-col justify-center shadow-lg relative" style={{ height: '520px', background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.55)', boxShadow: '0 0 25px rgba(0,200,239,0.2)' }}>
+          <div className="rounded-3xl p-8 md:p-12 flex flex-col justify-center shadow-lg relative" style={{ height: '520px', background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
@@ -62,18 +62,18 @@ export default function Commander() {
                     <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
                       {STEPS[currentStep].icon}
                     </div>
-                    <h2 className="text-3xl font-serif" style={{ color: '#0a2a4a' }}>{STEPS[currentStep].title}</h2>
+                    <h2 className="text-3xl font-serif" style={{ color: '#e0f5ff' }}>{STEPS[currentStep].title}</h2>
                   </div>
                   {STEPS[currentStep].choices ? (
                     <div className="w-full max-w-md flex flex-col gap-4">
                       {STEPS[currentStep].note && (
-                        <div className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>
+                        <div className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
                           {STEPS[currentStep].note}
                         </div>
                       )}
                       <ul className="flex flex-col gap-2">
                         {STEPS[currentStep].choices.map((choice, idx) => (
-                          <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.08)', border: '1px solid rgba(0,200,239,0.35)', color: '#0a2a4a' }}>
+                          <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff' }}>
                             <span className="text-primary font-semibold text-xs">✦</span>
                             {choice}
                           </li>
@@ -81,7 +81,7 @@ export default function Commander() {
                       </ul>
                     </div>
                   ) : (
-                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: '#1a3d5c' }}>{STEPS[currentStep].desc}</p>
+                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>{STEPS[currentStep].desc}</p>
                   )}
                 </div>
                 {/* Right: image if present */}
@@ -108,7 +108,7 @@ export default function Commander() {
           </div>
 
           <div className="flex justify-between mt-10">
-            <Button variant="outline" size="lg" onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))} disabled={currentStep === 0} className="rounded-full px-8" style={{ borderColor: 'rgba(0,200,239,0.5)', color: '#0a2a4a' }}>
+            <Button variant="outline" size="lg" onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))} disabled={currentStep === 0} className="rounded-full px-8" style={{ borderColor: 'rgba(0,200,239,0.5)', color: '#e0f5ff', background: 'rgba(0,20,50,0.4)' }}>
               <ChevronLeft className="mr-2" size={20} /> Précédent
             </Button>
             {currentStep < STEPS.length - 1 ? (

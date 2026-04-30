@@ -130,7 +130,7 @@ export default function Catalogue() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.45 }}
                     className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
-                    style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
+                    style={{ background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}
                   >
                     <div className="w-full overflow-hidden cursor-pointer" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
                       {item.images[0] ? (
@@ -142,7 +142,7 @@ export default function Catalogue() {
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
+                      <h3 className="text-xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#e0f5ff' }}>{item.name}</h3>
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button

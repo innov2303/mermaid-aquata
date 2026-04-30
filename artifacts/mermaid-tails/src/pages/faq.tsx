@@ -115,14 +115,15 @@ export default function Faq() {
                   value={`item-${i}`}
                   className="rounded-2xl px-6 transition-all"
                   style={{
-                    background: 'rgba(255,255,255,0.85)',
-                    border: '2px solid rgba(0,200,239,0.45)',
-                    boxShadow: '0 0 16px rgba(0,200,239,0.08)',
+                    background: 'rgba(0,20,50,0.45)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1.5px solid rgba(0,200,239,0.3)',
+                    boxShadow: '0 4px 24px rgba(0,200,239,0.1)',
                   }}
                 >
                   <AccordionTrigger
                     className="text-left font-serif text-base hover:no-underline py-5"
-                    style={{ color: '#0a2a4a' }}
+                    style={{ color: '#e0f5ff' }}
                   >
                     <span className="flex items-start gap-3">
                       <Sparkles size={16} className="text-primary shrink-0 mt-1" />
@@ -131,7 +132,7 @@ export default function Faq() {
                   </AccordionTrigger>
                   <AccordionContent
                     className="font-light leading-relaxed pb-5 text-sm"
-                    style={{ color: '#1a3d5c' }}
+                    style={{ color: 'rgba(200,235,255,0.85)' }}
                   >
                     {faq.a}
                   </AccordionContent>
