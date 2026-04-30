@@ -5,6 +5,16 @@ import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 
+function useIsMobile(breakpoint = 640) {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener("resize", handler, { passive: true });
+    return () => window.removeEventListener("resize", handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 const BUBBLE_COUNT = 8;
 
 const BUBBLE_ICONS = [
@@ -21,6 +31,7 @@ export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
   const bubbleZoneRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({
@@ -225,22 +236,34 @@ export default function Home() {
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
-          <div ref={bubbleZoneRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
-              {t.home.bubbles.slice(0, 3).map((b, i) => (
-                <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(10px)' : 'translateY(-10px)' }}>
-                  <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.12} floatOffset={i} size={i === 1 ? 250 : 235} constraintsRef={bubbleZoneRef} />
+          {isMobile ? (
+            /* Mobile: 2-column grid of smaller bubbles */
+            <div ref={bubbleZoneRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', padding: '0 8px 32px' }}>
+              {t.home.bubbles.map((b, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.08} floatOffset={i} size={155} constraintsRef={bubbleZoneRef} />
                 </div>
               ))}
             </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
-              {t.home.bubbles.slice(3).map((b, i) => (
-                <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(-10px)' : 'translateY(8px)' }}>
-                  <BubbleCard icon={BUBBLE_ICONS[i + 3]} title={b.title} desc={b.desc} delay={0.3 + i * 0.1} floatOffset={i + 3} size={i === 1 ? 255 : 240} constraintsRef={bubbleZoneRef} />
-                </div>
-              ))}
+          ) : (
+            /* Desktop: two staggered rows */
+            <div ref={bubbleZoneRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
+                {t.home.bubbles.slice(0, 3).map((b, i) => (
+                  <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(10px)' : 'translateY(-10px)' }}>
+                    <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.12} floatOffset={i} size={i === 1 ? 250 : 235} constraintsRef={bubbleZoneRef} />
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
+                {t.home.bubbles.slice(3).map((b, i) => (
+                  <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(-10px)' : 'translateY(8px)' }}>
+                    <BubbleCard icon={BUBBLE_ICONS[i + 3]} title={b.title} desc={b.desc} delay={0.3 + i * 0.1} floatOffset={i + 3} size={i === 1 ? 255 : 240} constraintsRef={bubbleZoneRef} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
