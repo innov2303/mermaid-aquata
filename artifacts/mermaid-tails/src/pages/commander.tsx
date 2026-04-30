@@ -22,7 +22,7 @@ export default function Commander() {
     <div className="min-h-screen section-clair pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#00c8ef' }}>Comment Commander ?</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Comment Commander ?</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
             Découvrez les étapes simples pour donner vie à votre queue de sirène sur mesure.
           </p>

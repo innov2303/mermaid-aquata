@@ -94,7 +94,7 @@ export default function Faq() {
     <div className="min-h-screen section-clair pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#00c8ef' }}>Foire Aux Questions</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Foire Aux Questions</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
             Toutes les réponses à vos questions concernant nos queues de sirène artisanales.
           </p>
