@@ -142,7 +142,7 @@ export default function Catalogue() {
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#e0f5ff' }}>{item.name}</h3>
+                      <h3 className="text-xl mb-4 group-hover:text-primary transition-colors" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.4rem' }}>{item.name}</h3>
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button
@@ -185,7 +185,7 @@ export default function Catalogue() {
             >
               {/* Gauche : infos */}
               <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                <h2 className="text-xl md:text-2xl font-serif leading-tight text-center mb-5" style={{ color: '#e0f5ff' }}>
+                <h2 className="text-xl md:text-2xl leading-tight text-center mb-5" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem' }}>
                   {selected.name}
                 </h2>
                 <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
