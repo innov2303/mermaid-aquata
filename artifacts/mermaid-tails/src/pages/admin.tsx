@@ -265,6 +265,23 @@ function MediaAdmin({ token }: { token: string }) {
   );
 }
 
+// ── Price Input ────────────────────────────────────────────────────────────
+function PriceInput({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const raw = value.replace(/€$/, "");
+  return (
+    <div className="flex items-center rounded-xl overflow-hidden" style={{ border: "1px solid rgba(0,200,239,0.3)", background: "rgba(0,20,50,0.6)" }}>
+      <input
+        className="flex-1 px-3 py-2 text-sm outline-none bg-transparent focus:ring-0"
+        style={{ color: "#e0f5ff" }}
+        value={raw}
+        onChange={e => onChange(e.target.value ? e.target.value + "€" : "")}
+        placeholder="1999"
+      />
+      <span className="px-3 py-2 text-sm font-medium select-none" style={{ color: "#00c8ef", borderLeft: "1px solid rgba(0,200,239,0.2)" }}>€</span>
+    </div>
+  );
+}
+
 // ── Item Form ──────────────────────────────────────────────────────────────
 const itemLabelStyle = { color: "rgba(200,235,255,0.75)" };
 
@@ -278,7 +295,7 @@ function ItemForm({ token, f, setF, onSave, onCancel }: { token: string; f: Part
         </div>
         <div>
           <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Prix</label>
-          <input className={inputClass} style={inputStyle} value={f.price || ""} onChange={e => setF({ ...f, price: e.target.value })} placeholder="À partir de 1999€" />
+          <PriceInput value={f.price || ""} onChange={v => setF({ ...f, price: v })} />
         </div>
         <div>
           <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Catégorie</label>
