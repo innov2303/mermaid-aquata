@@ -15,8 +15,8 @@ type Item = {
 };
 
 const SECTION_META: Record<string, { label: string; sub: string }> = {
-  monopalmes: { label: "Monopalmes", sub: "Nage sportive & dynamique" },
   invisibles:  { label: "Queue de sirène silicone", sub: "Silhouette naturelle & fluide" },
+  monopalmes: { label: "Monopalmes", sub: "Nage sportive & dynamique" },
   accessoires: { label: "Accessoires", sub: "Complétez votre tenue de sirène" },
 };
 
