@@ -15,18 +15,18 @@ export default function Remerciements() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{
-      backgroundImage: 'url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80)',
+      backgroundImage: 'url(https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1920&q=80)',
       backgroundSize: 'cover',
-      backgroundPosition: 'center top',
+      backgroundPosition: 'center center',
       backgroundAttachment: 'fixed',
     }}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(255,248,235,0.35) 0%, rgba(200,230,255,0.28) 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.72) 0%, rgba(0,20,50,0.68) 100%)' }} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-4xl">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Nos Sirènes</h1>
-          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Nos Sirènes</h1>
+          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
             Merci de nous faire confiance pour réaliser vos rêves.
           </p>
         </motion.div>
@@ -41,9 +41,9 @@ export default function Remerciements() {
               transition={{ delay: i * 0.1, duration: 0.5 }}
               className="flex flex-row items-center gap-8 rounded-2xl p-4"
               style={{
-                background: 'rgba(255,255,255,0.35)',
-                backdropFilter: 'blur(8px)',
-                border: '1.5px solid rgba(0,200,239,0.35)',
+                background: 'rgba(0,20,50,0.45)',
+                backdropFilter: 'blur(10px)',
+                border: '1.5px solid rgba(0,200,239,0.3)',
                 boxShadow: '0 4px 24px rgba(0,200,239,0.1)',
               }}
             >
@@ -77,8 +77,8 @@ export default function Remerciements() {
                   fontFamily: "'Dancing Script', cursive",
                   fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
                   fontWeight: 700,
-                  color: '#0a2a4a',
-                  textShadow: '0 2px 12px rgba(0,200,239,0.25)',
+                  color: '#e0f5ff',
+                  textShadow: '0 2px 16px rgba(0,200,239,0.5)',
                   lineHeight: 1.2,
                   whiteSpace: 'nowrap',
                 }}>
