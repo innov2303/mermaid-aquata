@@ -72,15 +72,16 @@ export default function Remerciements() {
               </div>
 
               {/* Nom */}
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-1 flex items-center justify-center min-w-0">
                 <h3 style={{
                   fontFamily: "'Dancing Script', cursive",
-                  fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
+                  fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
                   fontWeight: 700,
                   color: '#e0f5ff',
                   textShadow: '0 2px 16px rgba(0,200,239,0.5)',
-                  lineHeight: 1.2,
-                  whiteSpace: 'nowrap',
+                  lineHeight: 1.3,
+                  wordBreak: 'break-word',
+                  textAlign: 'center',
                 }}>
                   {sirene.name}
                 </h3>

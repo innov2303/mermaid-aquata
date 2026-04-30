@@ -38,7 +38,7 @@ export default function Commander() {
                 key={i}
                 onClick={() => setCurrentStep(i)}
                 data-testid={`button-step-${i + 1}`}
-                className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 font-semibold ${i <= currentStep ? "bg-primary text-white shadow-[0_0_15px_rgba(0,200,239,0.6)] scale-110" : "border-2 hover:border-primary/50"}`}
+                className={`relative z-10 w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 font-semibold text-sm md:text-base ${i <= currentStep ? "bg-primary text-white shadow-[0_0_15px_rgba(0,200,239,0.6)] scale-110" : "border-2 hover:border-primary/50"}`}
                 style={i > currentStep ? { background: 'rgba(0,20,50,0.5)', borderColor: 'rgba(0,200,239,0.4)', color: '#e0f5ff' } : {}}
               >
                 {i + 1}
@@ -46,7 +46,7 @@ export default function Commander() {
             ))}
           </div>
 
-          <div className="rounded-3xl p-8 md:p-12 flex flex-col justify-center shadow-lg relative" style={{ height: '520px', background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}>
+          <div className="rounded-3xl p-6 md:p-12 flex flex-col justify-center shadow-lg relative" style={{ minHeight: '420px', background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}
@@ -54,18 +54,18 @@ export default function Commander() {
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className={`flex w-full h-full overflow-y-auto ${STEPS[currentStep].image ? 'flex-row items-center gap-8 text-left' : 'flex-col items-center text-center'}`}
+                className={`flex w-full overflow-y-auto ${STEPS[currentStep].image ? 'flex-col md:flex-row md:items-center md:gap-8 text-left gap-6' : 'flex-col items-center text-center'}`}
               >
                 {/* Left / main content */}
                 <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
-                  <div className={`flex items-center gap-4 mb-6 ${STEPS[currentStep].image ? '' : 'justify-center'}`}>
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
+                  <div className={`flex items-center gap-3 mb-5 ${STEPS[currentStep].image ? '' : 'justify-center'}`}>
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
                       {STEPS[currentStep].icon}
                     </div>
-                    <h2 className="text-3xl font-serif" style={{ color: '#e0f5ff' }}>{STEPS[currentStep].title}</h2>
+                    <h2 className="text-xl md:text-3xl font-serif" style={{ color: '#e0f5ff' }}>{STEPS[currentStep].title}</h2>
                   </div>
                   {STEPS[currentStep].choices ? (
-                    <div className="w-full max-w-md flex flex-col gap-4">
+                    <div className="w-full max-w-md flex flex-col gap-3">
                       {STEPS[currentStep].note && (
                         <div className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
                           {STEPS[currentStep].note}
@@ -86,9 +86,9 @@ export default function Commander() {
                 </div>
                 {/* Right: image if present */}
                 {STEPS[currentStep].image && (
-                  <div className="flex-shrink-0 w-80 md:w-[480px] flex items-center justify-center">
+                  <div className="flex-shrink-0 w-full md:w-[400px] flex items-center justify-center">
                     <div
-                      className="relative group cursor-zoom-in w-full"
+                      className="relative group cursor-zoom-in w-full max-w-xs md:max-w-none"
                       onClick={() => setLightbox(true)}
                     >
                       <img
