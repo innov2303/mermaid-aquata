@@ -131,15 +131,15 @@ export default function Catalogue() {
                     className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
-                    {item.images[0] ? (
-                      <div className="w-full overflow-hidden">
-                        <img src={item.images[0]} alt={item.name} className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700" />
-                      </div>
-                    ) : (
-                      <div className="w-full aspect-[3/2] flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
-                        <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.35)' }}>✦</span>
-                      </div>
-                    )}
+                    <div className="w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                      {item.images[0] ? (
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
+                          <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.35)' }}>✦</span>
+                        </div>
+                      )}
+                    </div>
                     <div className="p-6">
                       <h3 className="text-xl font-serif mb-4 group-hover:text-primary transition-colors" style={{ color: '#0a2a4a' }}>{item.name}</h3>
                       <div className="flex items-center justify-between">
