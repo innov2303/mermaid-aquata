@@ -3,37 +3,42 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
+import { useLanguage } from "@/context/LanguageContext";
 
-const STEPS = [
-  { icon: <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>, title: "Choisir sa queue de sirène", desc: null, choices: ["Classique silicone", "Pieds invisible", "Longfish", "Monopalme", "Monopalme à extension"] },
-  { icon: <Scissors size={28} />, title: "Choisir la forme de votre nageoire", desc: null, choices: ["SIREN", "LAGOON", "SPLASH", "H2O", "GOLDFISH", "ARIEL"], note: "Choisissez la forme de votre nageoire parmi les designs proposés, ils sont affichés sur chaque rubrique de description : « Classique silicone », « Pieds invisible » et « Longfish ».\n\nLe tarif est le même pour chaque forme.\n\nTaille : 75 cm largeur / 75 cm longueur pour toutes les formes." },
-  { icon: <Palette size={28} />, title: "Choisir les couleurs et détails", desc: "Choisissez vos couleurs et l'ajout de petites nageoires et/ou dorsales, spécifiez-le nous lors de votre message, nous vous enverrons plusieurs teintes possibles.\n\nN'hésitez pas à nous envoyer également le plus de photos de référence possible afin de visualiser au mieux votre demande." },
-  { icon: <Ruler size={28} />, title: "Vos mesures", desc: "La prise de vos mesures est indispensable pour un ajustement parfait !\n\nElles sont à prendre debout, les jambes serrées ensemble comme si vous étiez dans la nageoire.\n\nGrâce à ce tableau, prenez en centimètres les tours à droite et les longueurs à gauche.\n\nLa mesure de la taille doit être au niveau du nombril, la mesure cheville au niveau de l'os de votre cheville.\n\nLa longueur doit partir du nombril à la hanche, du nombril aux fesses, du nombril au milieu des cuisses, etc. Jusqu'à la cheville et non le sol !", image: "/images/mes-mesures.webp" },
-  { icon: <MessageCircle size={28} />, title: "Nous contacter", desc: "Pour terminer nous vous réalisons un croquis numérique avec toutes vos informations, ce qui vous donnera un visuel final et définira le prix de votre demande. Un délai de création vous sera également donné lors du devis.\n\nRéponse rapide en 48h et 24h sur notre réseau Instagram.\n\nLe devis est gratuit !\n\nVous serez tenue au courant tout au long de la création avec photos et vidéos à l'appui.\n\nExemple de message à nous transmettre via le formulaire de contact ou en message privé sur nos réseaux :\n\n« Bonjour, je souhaiterais commander un modèle \'pieds invisible\' avec la forme \'H2O\', couleurs or et bronze, avec une paire de petites nageoires supplémentaires au niveau des hanches devant et une dorsale derrière les mollets. »" },
-  { icon: <CreditCard size={28} />, title: "Paiement", desc: "Pour les nageoires nous acceptons les paiements par PayPal ou virement bancaire. Les coordonnées vous seront communiquées après l'acceptation du devis avec dessin graphique.\n\nPour les accessoires, les achats se font via la plateforme Etsy." }
+const STEP_ICONS = [
+  <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>,
+  <Scissors size={28} />,
+  <Palette size={28} />,
+  <Ruler size={28} />,
+  <MessageCircle size={28} />,
+  <CreditCard size={28} />,
 ];
+const STEP_IMAGES = [null, null, null, "/images/mes-mesures.webp", null, null];
 
 export default function Commander() {
   const [currentStep, setCurrentStep] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const steps = t.commander.steps;
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)' }} />
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Comment Commander ?</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>{t.commander.title}</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
-            Découvrez les étapes simples pour donner vie à votre queue de sirène sur mesure.
+            {t.commander.subtitle}
           </p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto">
           <div className="flex justify-between mb-12 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 -translate-y-1/2 z-0 rounded-full" style={{ background: 'rgba(0,200,239,0.2)' }}></div>
-            <div className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0 rounded-full transition-all duration-500" style={{ width: `${(currentStep / (STEPS.length - 1)) * 100}%` }}></div>
-            {STEPS.map((step, i) => (
+            <div className="absolute top-1/2 left-0 h-1 bg-primary -translate-y-1/2 z-0 rounded-full transition-all duration-500" style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}></div>
+            {steps.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrentStep(i)}
@@ -54,25 +59,25 @@ export default function Commander() {
                 animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
                 transition={{ duration: 0.4 }}
-                className={`flex w-full overflow-y-auto ${STEPS[currentStep].image ? 'flex-col md:flex-row md:items-center md:gap-8 text-left gap-6' : 'flex-col items-center text-center'}`}
+                className={`flex w-full overflow-y-auto ${STEP_IMAGES[currentStep] ? 'flex-col md:flex-row md:items-center md:gap-8 text-left gap-6' : 'flex-col items-center text-center'}`}
               >
                 {/* Left / main content */}
-                <div className={`flex flex-col ${STEPS[currentStep].image ? 'items-start flex-1' : 'items-center w-full'}`}>
-                  <div className={`flex items-center gap-3 mb-5 ${STEPS[currentStep].image ? '' : 'justify-center'}`}>
+                <div className={`flex flex-col ${STEP_IMAGES[currentStep] ? 'items-start flex-1' : 'items-center w-full'}`}>
+                  <div className={`flex items-center gap-3 mb-5 ${STEP_IMAGES[currentStep] ? '' : 'justify-center'}`}>
                     <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 text-primary" style={{ background: 'rgba(0,200,239,0.12)' }}>
-                      {STEPS[currentStep].icon}
+                      {STEP_ICONS[currentStep]}
                     </div>
-                    <h2 className="text-xl md:text-3xl font-serif" style={{ color: '#e0f5ff' }}>{STEPS[currentStep].title}</h2>
+                    <h2 className="text-xl md:text-3xl font-serif" style={{ color: '#e0f5ff' }}>{steps[currentStep].title}</h2>
                   </div>
-                  {STEPS[currentStep].choices ? (
+                  {'choices' in steps[currentStep] && (steps[currentStep] as { choices: string[] }).choices ? (
                     <div className="w-full max-w-md flex flex-col gap-3">
-                      {STEPS[currentStep].note && (
+                      {'note' in steps[currentStep] && (steps[currentStep] as { note?: string }).note && (
                         <div className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
-                          {STEPS[currentStep].note}
+                          {(steps[currentStep] as { note?: string }).note}
                         </div>
                       )}
                       <ul className="flex flex-col gap-2">
-                        {STEPS[currentStep].choices.map((choice, idx) => (
+                        {(steps[currentStep] as { choices: string[] }).choices.map((choice, idx) => (
                           <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff' }}>
                             <span className="text-primary font-semibold text-xs">✦</span>
                             {choice}
@@ -81,18 +86,20 @@ export default function Commander() {
                       </ul>
                     </div>
                   ) : (
-                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>{STEPS[currentStep].desc}</p>
+                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
+                      {'desc' in steps[currentStep] ? (steps[currentStep] as { desc?: string }).desc : ''}
+                    </p>
                   )}
                 </div>
                 {/* Right: image if present */}
-                {STEPS[currentStep].image && (
+                {STEP_IMAGES[currentStep] && (
                   <div className="flex-shrink-0 w-full md:w-[400px] flex items-center justify-center">
                     <div
                       className="relative group cursor-zoom-in w-full max-w-xs md:max-w-none"
                       onClick={() => setLightbox(true)}
                     >
                       <img
-                        src={STEPS[currentStep].image}
+                        src={STEP_IMAGES[currentStep]!}
                         alt="Schéma des mesures"
                         className="w-full rounded-2xl object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                         style={{ border: '1.5px solid rgba(0,200,239,0.35)', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
@@ -109,15 +116,15 @@ export default function Commander() {
 
           <div className="flex justify-between mt-10">
             <Button variant="outline" size="lg" onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))} disabled={currentStep === 0} className="rounded-full px-8" style={{ borderColor: 'rgba(0,200,239,0.5)', color: '#e0f5ff', background: 'rgba(0,20,50,0.4)' }}>
-              <ChevronLeft className="mr-2" size={20} /> Précédent
+              <ChevronLeft className="mr-2" size={20} /> {t.commander.prev}
             </Button>
-            {currentStep < STEPS.length - 1 ? (
-              <Button size="lg" onClick={() => setCurrentStep(prev => Math.min(STEPS.length - 1, prev + 1))} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8">
-                Suivant <ChevronRight className="ml-2" size={20} />
+            {currentStep < steps.length - 1 ? (
+              <Button size="lg" onClick={() => setCurrentStep(prev => Math.min(steps.length - 1, prev + 1))} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8">
+                {t.commander.next} <ChevronRight className="ml-2" size={20} />
               </Button>
             ) : (
               <Button size="lg" onClick={() => setContactOpen(true)} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_15px_rgba(0,200,239,0.5)]">
-                Nous Contacter
+                {t.commander.contact}
               </Button>
             )}
           </div>

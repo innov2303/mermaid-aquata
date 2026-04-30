@@ -1,17 +1,26 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
-import { ChevronDown, Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 const BUBBLE_COUNT = 8;
+
+const BUBBLE_ICONS = [
+  <Hammer size={24} />,
+  <Globe size={26} />,
+  <Leaf size={22} />,
+  <Film size={25} />,
+  <Heart size={23} />,
+  <Tv size={24} />,
+];
 
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
   const [contactOpen, setContactOpen] = useState(false);
   const bubbleZoneRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({
@@ -32,36 +41,21 @@ export default function Home() {
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
       <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
-        {/* Photorealistic background */}
         <div
           className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url('/images/hero.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-          }}
+          style={{ backgroundImage: `url('/images/hero.png')`, backgroundSize: 'cover', backgroundPosition: 'center center' }}
         />
-        {/* Brightness gradient — light at top (surface rays), fades out at bottom */}
         <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
-        {/* Very subtle realistic bubbles */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {bubbles.map((bubble) => (
             <div
               key={bubble.id}
               className="bubble"
-              style={{
-                left: bubble.left,
-                width: `${bubble.size}px`,
-                height: `${bubble.size}px`,
-                animationDuration: `${bubble.duration}s`,
-                animationDelay: `${bubble.delay}s`,
-                opacity: 0.5,
-              }}
+              style={{ left: bubble.left, width: `${bubble.size}px`, height: `${bubble.size}px`, animationDuration: `${bubble.duration}s`, animationDelay: `${bubble.delay}s`, opacity: 0.5 }}
             />
           ))}
         </div>
 
-        {/* Main Title — hero center */}
         <motion.div
           className="absolute top-1/2 left-0 right-0 -translate-y-[140%] flex flex-col items-center z-10 px-6 text-center pointer-events-none"
           initial={{ opacity: 0, y: -18 }}
@@ -81,15 +75,11 @@ export default function Home() {
               letterSpacing: "0.02em",
             }}
           >
-            Bienvenue chez Mermaid Aquata
+            {t.home.heroTitle}
           </h1>
-          <div
-            className="mt-4 h-px w-64 mx-auto"
-            style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }}
-          />
+          <div className="mt-4 h-px w-64 mx-auto" style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }} />
         </motion.div>
 
-        {/* Bubble CTA — floats at bottom center */}
         <motion.button
           onClick={scrollToNext}
           data-testid="button-scroll-down"
@@ -98,14 +88,12 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          {/* The bubble */}
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut" }}
             className="relative"
           >
             <div className="relative w-36 h-36 md:w-40 md:h-40 transition-transform duration-300 group-hover:scale-105">
-              {/* Iridescent rotating rim */}
               <div className="absolute inset-0 rounded-full pointer-events-none" style={{
                 background: 'conic-gradient(from 0deg, rgba(180,240,255,0.0) 0%, rgba(200,230,255,0.38) 18%, rgba(220,200,255,0.28) 32%, rgba(180,255,240,0.32) 50%, rgba(255,255,255,0.42) 62%, rgba(180,220,255,0.22) 78%, rgba(180,240,255,0.0) 100%)',
                 WebkitMask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
@@ -113,7 +101,6 @@ export default function Home() {
                 animation: 'spinConic 8s linear infinite',
                 zIndex: 2,
               }} />
-              {/* Glass sphere */}
               <div className="absolute inset-0 rounded-full" style={{
                 background: `
                   radial-gradient(circle at 30% 24%, rgba(255,255,255,0.44) 0%, rgba(255,255,255,0.04) 22%, transparent 40%),
@@ -124,16 +111,13 @@ export default function Home() {
                 backdropFilter: 'blur(2px)',
                 zIndex: 1,
               }} />
-              {/* Text */}
               <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
                 <span className="text-white text-center leading-tight"
                   style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(0.95rem, 1.8vw, 1.25rem)", textShadow: "0 1px 8px rgba(0,0,0,0.7), 0 0 20px rgba(0,200,239,0.6)" }}>
-                  Nous découvrir
+                  {t.home.heroCta}
                 </span>
               </div>
             </div>
-
-            {/* Tiny bubble trail below — like bubbles rising */}
             <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: "rgba(200,245,255,0.45)", border: "1.5px solid rgba(255,255,255,0.5)", boxShadow: "0 0 6px rgba(0,200,239,0.4)" }} />
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(200,245,255,0.3)", border: "1px solid rgba(255,255,255,0.35)" }} />
@@ -141,7 +125,6 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.button>
-        
       </section>
 
       <SectionDivider />
@@ -149,7 +132,6 @@ export default function Home() {
       {/* Présentation Section */}
       <section id="presentation" className="py-24 relative z-10 section-clair">
         <div className="container mx-auto px-4 md:px-6">
-
           <motion.h2
             className="text-3xl md:text-4xl lg:text-5xl font-serif text-center mb-16 leading-snug"
             style={{ color: '#0a2a4a' }}
@@ -158,14 +140,14 @@ export default function Home() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.9 }}
           >
-            Plongez dans l'univers enchanté des sirènes avec{" "}
+            {t.home.presentationTitle}{" "}
             <span style={{ background: "linear-gradient(135deg, #0070a8, #00c8ef)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               Mermaid Aquata
             </span>{" "}!
           </motion.h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -175,33 +157,27 @@ export default function Home() {
               <div className="relative w-56 h-56 md:w-64 md:h-64">
                 <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-primary/60 animate-[spin_10s_linear_infinite] shadow-[0_0_25px_rgba(0,200,239,0.4)]"></div>
                 <div className="absolute inset-2 rounded-[50%_50%_40%_60%/50%_40%_60%_50%] border-2 border-secondary/40 animate-[spin_15s_linear_infinite_reverse]"></div>
-                <img 
-                  src="/images/portrait.png" 
-                  alt="La Créatrice" 
+                <img
+                  src="/images/portrait.png"
+                  alt="La Créatrice"
                   className="absolute inset-4 object-cover w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full shadow-2xl"
                 />
               </div>
               <div className="prose prose-lg text-foreground/80 font-light leading-relaxed">
-                <p style={{ color: '#1a3d5c' }} className="mb-4">
-                  Créatrice passionnée de nageoires de sirène en silicone depuis 2015, Mermaid Aquata réalise des créations uniques en France, d'un réalisme saisissant. Ses monopalmes sur mesure sont conçues pour être à la fois maniables et esthétiques, répondant aux besoins du cinéma, des sirènes professionnelles travaillant en aquarium, et des particuliers en quête de magie aquatique.
-                </p>
-                <p style={{ color: '#1a3d5c' }} className="mb-4">
-                  Avec son savoir-faire reconnu, Mermaid Aquata propose également des prestations pour les tournages, incarnant une véritable sirène grâce à ses costumes professionnels.
-                </p>
-                <p className="text-sm font-medium italic" style={{ color: '#0a6a8a' }}>
-                  Costume professionnel réservé uniquement aux adultes majeurs.
-                </p>
+                <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio1}</p>
+                <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio2}</p>
+                <p className="text-sm font-medium italic" style={{ color: '#0a6a8a' }}>{t.home.bio3}</p>
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
               className="flex flex-col items-center text-center gap-6"
             >
-              <h3 className="text-2xl md:text-3xl font-serif" style={{ color: '#0a2a4a' }}>Reportage France 3</h3>
+              <h3 className="text-2xl md:text-3xl font-serif" style={{ color: '#0a2a4a' }}>{t.home.reportageTitle}</h3>
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <iframe
                   src="https://www.youtube.com/embed/-JsQodzWltA?start=6"
@@ -211,9 +187,7 @@ export default function Home() {
                   className="absolute inset-0 w-full h-full"
                 />
               </div>
-              <p className="text-foreground/70 italic max-w-md" style={{ color: '#1a3d5c' }}>
-                Pour en savoir plus sur mon parcours, regardez le reportage qui m'a été consacré.
-              </p>
+              <p className="text-foreground/70 italic max-w-md" style={{ color: '#1a3d5c' }}>{t.home.reportageCaption}</p>
             </motion.div>
           </div>
         </div>
@@ -223,30 +197,18 @@ export default function Home() {
 
       {/* Notre Activité Section */}
       <section className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-
-        {/* Dark overlay for readability */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.55)' }} />
-
-        {/* Caustic light blobs */}
         <div className="absolute pointer-events-none" style={{ top: '5%', left: '10%', width: '45%', height: '55%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,200,239,0.22) 0%, rgba(0,150,200,0.06) 50%, transparent 70%)', filter: 'blur(24px)', animation: 'caustic 9s ease-in-out infinite' }} />
         <div className="absolute pointer-events-none" style={{ top: '10%', right: '5%', width: '40%', height: '50%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(30,160,255,0.18) 0%, rgba(0,100,180,0.05) 50%, transparent 70%)', filter: 'blur(30px)', animation: 'caustic2 12s ease-in-out infinite' }} />
         <div className="absolute pointer-events-none" style={{ bottom: '0%', left: '30%', width: '50%', height: '40%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,180,220,0.14) 0%, transparent 65%)', filter: 'blur(20px)', animation: 'caustic 14s ease-in-out infinite reverse' }} />
-
-        {/* Light shafts from above */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(175deg, rgba(0,200,239,0.10) 0%, transparent 40%), linear-gradient(185deg, rgba(30,160,255,0.07) 0%, transparent 35%)' }} />
 
-        {/* Tiny rising background bubbles */}
         {[
-          { left:'8%',  size:5,  dur:'11s', delay:'0s'  },
-          { left:'18%', size:3,  dur:'14s', delay:'2s'  },
-          { left:'32%', size:6,  dur:'9s',  delay:'5s'  },
-          { left:'47%', size:4,  dur:'13s', delay:'1s'  },
-          { left:'55%', size:3,  dur:'16s', delay:'3.5s'},
-          { left:'68%', size:7,  dur:'10s', delay:'7s'  },
-          { left:'78%', size:4,  dur:'12s', delay:'0.5s'},
-          { left:'88%', size:5,  dur:'15s', delay:'4s'  },
-          { left:'24%', size:3,  dur:'18s', delay:'9s'  },
-          { left:'62%', size:4,  dur:'11s', delay:'6s'  },
+          { left:'8%', size:5, dur:'11s', delay:'0s' }, { left:'18%', size:3, dur:'14s', delay:'2s' },
+          { left:'32%', size:6, dur:'9s', delay:'5s' }, { left:'47%', size:4, dur:'13s', delay:'1s' },
+          { left:'55%', size:3, dur:'16s', delay:'3.5s'}, { left:'68%', size:7, dur:'10s', delay:'7s' },
+          { left:'78%', size:4, dur:'12s', delay:'0.5s'}, { left:'88%', size:5, dur:'15s', delay:'4s' },
+          { left:'24%', size:3, dur:'18s', delay:'9s' }, { left:'62%', size:4, dur:'11s', delay:'6s' },
         ].map((b, i) => (
           <div key={i} className="absolute bottom-0 pointer-events-none rounded-full" style={{
             left: b.left, width: b.size, height: b.size,
@@ -258,74 +220,44 @@ export default function Home() {
         ))}
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#d0f0ff', textShadow: '0 0 40px rgba(0,200,239,0.5)' }}>Notre Activité</h2>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif mb-6" style={{ color: '#d0f0ff', textShadow: '0 0 40px rgba(0,200,239,0.5)' }}>{t.home.activityTitle}</h2>
             <div className="w-24 h-1 mx-auto rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #00c8ef, transparent)' }}></div>
           </motion.div>
 
-          {/* Two staggered rows */}
           <div ref={bubbleZoneRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', paddingBottom: '40px' }}>
-            {/* Row 1 */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
-              <div style={{ transform: 'translateY(10px)' }}>
-                <BubbleCard icon={<Hammer size={24} />} title="Fabrication artisanale" desc="Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique." delay={0} floatOffset={0} size={230} constraintsRef={bubbleZoneRef} />
-              </div>
-              <div style={{ transform: 'translateY(-10px)' }}>
-                <BubbleCard icon={<Globe size={26} />} title="Reconnue à l'international" desc='Créations « longfish » uniques au monde !' delay={0.12} floatOffset={1} size={250} constraintsRef={bubbleZoneRef} />
-              </div>
-              <div style={{ transform: 'translateY(14px)' }}>
-                <BubbleCard icon={<Leaf size={22} />} title="Matériaux Éthiques" desc="Matériaux de très haute qualité pour une tenue de plusieurs années." delay={0.22} floatOffset={2} size={235} constraintsRef={bubbleZoneRef} />
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
+              {t.home.bubbles.slice(0, 3).map((b, i) => (
+                <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(10px)' : 'translateY(-10px)' }}>
+                  <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.12} floatOffset={i} size={i === 1 ? 250 : 235} constraintsRef={bubbleZoneRef} />
+                </div>
+              ))}
             </div>
-            {/* Row 2 */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px' }}>
-              <div style={{ transform: 'translateY(-10px)' }}>
-                <BubbleCard icon={<Film size={25} />} title="Tournages" desc="Clip Josman XS, Handicap International, série TV « Panda »." delay={0.3} floatOffset={3} size={240} constraintsRef={bubbleZoneRef} />
-              </div>
-              <div style={{ transform: 'translateY(8px)' }}>
-                <BubbleCard icon={<Heart size={23} />} title="Créatrice Dévouée" desc="Présente même plusieurs années après votre commande, avec suivi photos." delay={0.4} floatOffset={4} size={255} constraintsRef={bubbleZoneRef} />
-              </div>
-              <div style={{ transform: 'translateY(-12px)' }}>
-                <BubbleCard icon={<Tv size={24} />} title="Reportages TV" desc="TF1, France 3, La Dépêche du Midi — retrouvez tout sur YouTube." delay={0.5} floatOffset={5} size={235} constraintsRef={bubbleZoneRef} />
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '90px', flexWrap: 'wrap' }}>
+              {t.home.bubbles.slice(3).map((b, i) => (
+                <div key={i} style={{ transform: i % 2 === 0 ? 'translateY(-10px)' : 'translateY(8px)' }}>
+                  <BubbleCard icon={BUBBLE_ICONS[i + 3]} title={b.title} desc={b.desc} delay={0.3 + i * 0.1} floatOffset={i + 3} size={i === 1 ? 255 : 240} constraintsRef={bubbleZoneRef} />
+                </div>
+              ))}
             </div>
           </div>
-
         </div>
       </section>
 
       <SectionDivider />
 
       {/* Contact Section */}
-      <section
-        className="py-32 relative overflow-hidden"
-        style={{
-          backgroundImage: 'url(/images/ocean-bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-        }}
-      >
-        {/* Overlay sombre pour lisibilité */}
+      <section className="py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/images/ocean-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.82) 0%, rgba(0,60,100,0.75) 100%)' }} />
-
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>Prête à devenir sirène ?</h2>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+              <h2 className="text-4xl md:text-5xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>
+                {t.home.contactTitle}
+              </h2>
               <p className="text-xl mb-12 font-light" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                Contactez-nous pour discuter de votre projet sur mesure et donner vie à vos rêves d'océan.
+                {t.home.contactSubtitle}
               </p>
-
               <div className="flex justify-center mt-10">
                 <motion.button
                   onClick={() => setContactOpen(true)}
@@ -349,7 +281,7 @@ export default function Home() {
                   onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 40px rgba(0,200,239,0.5), inset 0 1px 0 rgba(255,255,255,0.15)')}
                   onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)')}
                 >
-                  Nous contacter
+                  {t.home.contactBtn}
                 </motion.button>
               </div>
             </motion.div>
@@ -375,12 +307,12 @@ function SectionDivider({ flip = false }: { flip?: boolean }) {
 }
 
 const FLOAT_PARAMS = [
-  { y: [-7, 7],  duration: 4.8, x: [-3, 3]  },
-  { y: [-9, 5],  duration: 5.6, x: [2, -2]  },
-  { y: [-5, 9],  duration: 4.2, x: [-2, 4]  },
-  { y: [-8, 6],  duration: 6.1, x: [3, -3]  },
-  { y: [-6, 8],  duration: 4.5, x: [-4, 2]  },
-  { y: [-7, 7],  duration: 5.3, x: [2, -4]  },
+  { y: [-7, 7], duration: 4.8, x: [-3, 3] },
+  { y: [-9, 5], duration: 5.6, x: [2, -2] },
+  { y: [-5, 9], duration: 4.2, x: [-2, 4] },
+  { y: [-8, 6], duration: 6.1, x: [3, -3] },
+  { y: [-6, 8], duration: 4.5, x: [-4, 2] },
+  { y: [-7, 7], duration: 5.3, x: [2, -4] },
 ];
 
 function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constraintsRef }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number, constraintsRef?: React.RefObject<HTMLDivElement> }) {
@@ -407,7 +339,6 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constra
         whileDrag={{ scale: 1.10, zIndex: 50 }}
         style={{ cursor: 'grab', position: 'relative', width: size, height: size, zIndex: 1 }}
       >
-        {/* Iridescent rim — rotating conic masked to thin ring */}
         <div style={{
           position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 2, pointerEvents: 'none',
           background: 'conic-gradient(from 0deg, rgba(180,240,255,0.0) 0%, rgba(200,230,255,0.35) 18%, rgba(220,200,255,0.25) 32%, rgba(180,255,240,0.30) 50%, rgba(255,255,255,0.40) 62%, rgba(180,220,255,0.20) 78%, rgba(180,240,255,0.0) 100%)',
@@ -415,8 +346,6 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constra
           mask: 'radial-gradient(transparent 83%, black 86%, black 100%)',
           animation: `spinConic ${spinDur} linear infinite`,
         }} />
-
-        {/* Bubble sphere — transparent glass */}
         <div style={{
           position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 1,
           background: `
@@ -432,24 +361,16 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constra
           `,
           backdropFilter: 'blur(2px)',
         }} />
-
-
-        {/* Content */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 4,
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center',
           padding: `0 ${Math.round(size * 0.13)}px`,
         }}>
-          <div style={{
-            width: 40, height: 40, borderRadius: '50%',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            marginBottom: 8,
-            color: 'rgba(210,245,255,0.9)',
-          }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8, color: 'rgba(210,245,255,0.9)' }}>
             {icon}
           </div>
           <h3 style={{ color: 'rgba(235,250,255,0.95)', textShadow: '0 1px 12px rgba(0,0,0,0.55)', fontSize: `${Math.round(size * 0.056)}px`, fontFamily: 'serif', lineHeight: 1.25, marginBottom: 5 }}>{title}</h3>
-          <p style={{ color: 'rgba(200,238,255,0.78)', textShadow: '0 1px 6px rgba(0,0,0,0.65)', fontSize: `${Math.round(size * 0.042)}px`, lineHeight: 1.5, fontWeight: 300 }}>{desc}</p>
+          <p style={{ color: 'rgba(210,245,255,0.80)', textShadow: '0 1px 8px rgba(0,0,0,0.5)', fontSize: `${Math.round(size * 0.045)}px`, lineHeight: 1.4, fontWeight: 300 }}>{desc}</p>
         </div>
       </motion.div>
     </motion.div>

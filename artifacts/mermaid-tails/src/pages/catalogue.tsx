@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchCatalogue } from "@/lib/api";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Item = {
   id: number;
@@ -12,12 +13,6 @@ type Item = {
   price: string;
   images: string[];
   section: string;
-};
-
-const SECTION_META: Record<string, { label: string; sub: string }> = {
-  invisibles:  { label: "Queue de sirène silicone", sub: "Silhouette naturelle & fluide" },
-  monopalmes: { label: "Monopalmes", sub: "Nage sportive & dynamique" },
-  accessoires: { label: "Accessoires", sub: "Complétez votre tenue de sirène" },
 };
 
 function Carousel({ images }: { images: string[] }) {
@@ -79,15 +74,16 @@ function Carousel({ images }: { images: string[] }) {
 export default function Catalogue() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchCatalogue().then(setAllItems).catch(() => {});
   }, []);
 
-  // Group items by section in the defined order
-  const sections = Object.entries(SECTION_META).map(([key, meta]) => ({
+  const sectionOrder = ['invisibles', 'monopalmes', 'accessoires'] as const;
+  const sections = sectionOrder.map(key => ({
     key,
-    ...meta,
+    ...t.catalogue.sections[key],
     items: allItems.filter(i => i.section === key),
   })).filter(s => s.items.length > 0);
 
@@ -97,9 +93,9 @@ export default function Catalogue() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Notre Catalogue</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>{t.catalogue.title}</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
-            Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
+            {t.catalogue.subtitle}
           </p>
         </motion.div>
 
@@ -150,7 +146,7 @@ export default function Catalogue() {
                           className="text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
                           style={{ background: 'rgba(0,200,239,0.12)', border: '1.5px solid rgba(0,200,239,0.5)', color: '#007fa3' }}
                         >
-                          Détails
+                          {t.catalogue.details}
                         </button>
                       </div>
                     </div>
@@ -183,7 +179,7 @@ export default function Catalogue() {
               style={{ background: 'rgba(0,20,50,0.85)', backdropFilter: 'blur(20px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 60px rgba(0,200,239,0.2)', maxHeight: '82vh', maxWidth: '82vw' }}
               onClick={e => e.stopPropagation()}
             >
-              {/* Gauche : infos */}
+              {/* Left: info */}
               <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
                 <h2 className="text-xl md:text-2xl leading-tight text-center mb-5" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem' }}>
                   {selected.name}
@@ -195,11 +191,11 @@ export default function Catalogue() {
                 </div>
                 <p className="font-serif text-2xl text-primary font-semibold mb-8 flex-shrink-0">{selected.price}</p>
                 <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
-                  <Link href="/commander" onClick={() => setSelected(null)}>Commander</Link>
+                  <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
                 </Button>
               </div>
 
-              {/* Droite : carousel */}
+              {/* Right: carousel */}
               <div className="flex-1 flex flex-col min-h-[260px] md:min-h-0">
                 <div className="flex justify-end p-3 flex-shrink-0">
                   <button

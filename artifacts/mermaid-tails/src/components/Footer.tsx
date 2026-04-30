@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "./ContactModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 const popupStyle = {
   background: "rgba(0,20,50,0.92)",
@@ -12,7 +13,7 @@ const popupStyle = {
   boxShadow: "0 0 60px rgba(0,200,239,0.15)",
 } as React.CSSProperties;
 
-function LegalPopup({ open, onClose }: { open: boolean; onClose: () => void }) {
+function LegalPopup({ open, onClose, title }: { open: boolean; onClose: () => void; title: string }) {
   return (
     <AnimatePresence>
       {open && (
@@ -26,7 +27,7 @@ function LegalPopup({ open, onClose }: { open: boolean; onClose: () => void }) {
             style={popupStyle}
           >
             <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff" }}><X size={18} /></button>
-            <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>Mentions légales</h2>
+            <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>{title}</h2>
             <div className="text-sm leading-relaxed space-y-1" style={{ color: "rgba(200,235,255,0.75)" }}>
               <p className="font-medium" style={{ color: "#e0f5ff" }}>Mermaid Aquata</p>
               <p>Bardet Aurore</p>
@@ -43,7 +44,7 @@ function LegalPopup({ open, onClose }: { open: boolean; onClose: () => void }) {
   );
 }
 
-function RefundPopup({ open, onClose }: { open: boolean; onClose: () => void }) {
+function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: () => void; title: string; body: Record<string, string> }) {
   return (
     <AnimatePresence>
       {open && (
@@ -57,26 +58,26 @@ function RefundPopup({ open, onClose }: { open: boolean; onClose: () => void }) 
             style={{ ...popupStyle, maxHeight: "85vh" }}
           >
             <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff" }}><X size={18} /></button>
-            <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>Politique de remboursement</h2>
+            <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>{title}</h2>
             <div className="text-sm leading-relaxed space-y-4" style={{ color: "rgba(200,235,255,0.75)" }}>
-              <p>Nous appliquons une politique de retour de <strong style={{ color: "#e0f5ff" }}>30 jours</strong> après réception de votre article. L'article doit être dans le même état que celui reçu, non porté ou non utilisé, avec les étiquettes et dans son emballage d'origine, accompagné du reçu ou de la preuve d'achat.</p>
-              <p>Pour effectuer un retour, contactez-nous à <a href="mailto:sirenebleu31@gmail.com" className="underline hover:opacity-80">sirenebleu31@gmail.com</a>. Les retours sont à envoyer à : <em>Bardet Aurore, 1 rue du docteur Albert Schweitzer, 31200 Toulouse</em>. Les articles renvoyés sans demande préalable ne seront pas acceptés.</p>
+              <p dangerouslySetInnerHTML={{ __html: body.intro.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>') }} />
+              <p dangerouslySetInnerHTML={{ __html: body.contact.replace('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
               <div>
-                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>Dommages et problèmes</p>
-                <p>Inspectez votre commande dès réception et contactez-nous immédiatement si l'article est défectueux ou endommagé.</p>
+                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.damagesTitle}</p>
+                <p>{body.damages}</p>
               </div>
               <div>
-                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>Articles non retournables</p>
-                <p>Les produits sur mesure ou personnalisés ne peuvent pas être retournés. Les articles en promotion et les cartes-cadeaux sont également exclus.</p>
+                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.nonReturnTitle}</p>
+                <p>{body.nonReturn}</p>
               </div>
               <div>
-                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>Délai de réflexion UE — 14 jours</p>
-                <p>Si la marchandise est expédiée dans l'Union européenne, vous disposez de 14 jours pour annuler ou retourner votre commande, sans justification.</p>
+                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.euTitle}</p>
+                <p>{body.eu}</p>
               </div>
               <div>
-                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>Remboursements</p>
-                <p>Un remboursement total est possible jusqu'à <strong style={{ color: "#e0f5ff" }}>48h après confirmation d'achat</strong>. Passé ce délai, le remboursement sera de 50 % du prix initial. Une fois la création sur mesure commencée, aucun remboursement n'est possible.</p>
-                <p className="mt-2">Une fois le retour reçu et inspecté, vous serez remboursé(e) sur votre moyen de paiement d'origine sous <strong style={{ color: "#e0f5ff" }}>10 jours ouvrables</strong>. Si plus de 15 jours ouvrables se sont écoulés, contactez-nous à <a href="mailto:sirenebleu31@gmail.com" className="underline hover:opacity-80">sirenebleu31@gmail.com</a>.</p>
+                <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.refundTitle2}</p>
+                <p dangerouslySetInnerHTML={{ __html: body.refund1.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>') }} />
+                <p className="mt-2" dangerouslySetInnerHTML={{ __html: body.refund2.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>').replace('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
               </div>
             </div>
           </motion.div>
@@ -90,6 +91,9 @@ export function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
   const [refundOpen, setRefundOpen] = useState(false);
+  const { t } = useLanguage();
+  const tf = t.footer;
+  const tn = t.nav;
 
   return (
     <>
@@ -98,9 +102,7 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
               <img src={logoSrc} alt="Mermaid Aquata" className="h-28 object-contain mb-4 drop-shadow-lg" />
-              <p className="text-foreground/70 mb-6 max-w-sm">
-                Créatrice de queues de sirène artisanales sur mesure. Plongez dans la magie de l'océan avec nos créations uniques en silicone.
-              </p>
+              <p className="text-foreground/70 mb-6 max-w-sm">{tf.tagline}</p>
               <div className="flex gap-4">
                 <a href="https://www.instagram.com/mermaid.real.aquata/" target="_blank" rel="noopener noreferrer" data-testid="link-instagram" className="w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-300 hover:scale-110" style={{ borderColor: '#E1306C', background: 'rgba(225,48,108,0.1)' }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,20 +137,20 @@ export function Footer() {
                 </button>
               </div>
             </div>
-            
+
             <div>
-              <h4 className="font-serif text-xl mb-4 text-white">Navigation</h4>
+              <h4 className="font-serif text-xl mb-4 text-white">{tf.navTitle}</h4>
               <ul className="space-y-3">
-                <li><Link href="/" className="text-foreground/70 hover:text-primary transition-colors">Accueil</Link></li>
-                <li><Link href="/catalogue" className="text-foreground/70 hover:text-primary transition-colors">Catalogue</Link></li>
-                <li><Link href="/commander" className="text-foreground/70 hover:text-primary transition-colors">Commander</Link></li>
-                <li><Link href="/faq" className="text-foreground/70 hover:text-primary transition-colors">FAQ</Link></li>
-                <li><Link href="/remerciements" className="text-foreground/70 hover:text-primary transition-colors">Remerciements</Link></li>
+                <li><Link href="/" className="text-foreground/70 hover:text-primary transition-colors">{tn.home}</Link></li>
+                <li><Link href="/catalogue" className="text-foreground/70 hover:text-primary transition-colors">{tn.catalogue}</Link></li>
+                <li><Link href="/commander" className="text-foreground/70 hover:text-primary transition-colors">{tn.commander}</Link></li>
+                <li><Link href="/faq" className="text-foreground/70 hover:text-primary transition-colors">{tn.faq}</Link></li>
+                <li><Link href="/remerciements" className="text-foreground/70 hover:text-primary transition-colors">{tn.remerciements}</Link></li>
               </ul>
             </div>
-            
+
             <div>
-              <h4 className="font-serif text-xl mb-4 text-white">Contact</h4>
+              <h4 className="font-serif text-xl mb-4 text-white">{tf.contactTitle}</h4>
               <ul className="space-y-3 text-foreground/70 mb-5">
                 <li>sireneaurore31@hotmail.com</li>
                 <li>1 Rue du Docteur Albert Schweitzer</li>
@@ -159,24 +161,24 @@ export function Footer() {
                 className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
                 style={{ background: "rgba(0,200,239,0.15)", border: "1.5px solid rgba(0,200,239,0.5)", color: "#00c8ef" }}
               >
-                <Mail size={15} /> Nous contacter
+                <Mail size={15} /> {tf.contactUs}
               </button>
             </div>
           </div>
-          
+
           <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2 text-sm text-foreground/50 flex-wrap text-center">
-            <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" style={{ color: '#00c8ef' }} className="hover:opacity-80 transition-opacity">Innov Studio</a>. Tous droits réservés.</p>
+            <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" style={{ color: '#00c8ef' }} className="hover:opacity-80 transition-opacity">Innov Studio</a>. {tf.rights}</p>
             <span className="hidden sm:inline text-foreground/20">|</span>
-            <button onClick={() => setLegalOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">Mentions légales</button>
+            <button onClick={() => setLegalOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">{tf.legal}</button>
             <span className="hidden sm:inline text-foreground/20">|</span>
-            <button onClick={() => setRefundOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">Politique de remboursement</button>
+            <button onClick={() => setRefundOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">{tf.refund}</button>
           </div>
         </div>
       </footer>
 
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
-      <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} />
-      <RefundPopup open={refundOpen} onClose={() => setRefundOpen(false)} />
+      <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} title={tf.legalTitle} />
+      <RefundPopup open={refundOpen} onClose={() => setRefundOpen(false)} title={tf.refundTitle} body={tf.refundBody as Record<string, string>} />
     </>
   );
 }

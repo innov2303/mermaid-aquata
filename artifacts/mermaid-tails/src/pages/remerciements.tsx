@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import { fetchRemerciements } from "@/lib/api";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Sirene = { id: number; name: string; img: string | null };
 
 export default function Remerciements() {
   const [sirenes, setSirenes] = useState<Sirene[]>([]);
   const [selected, setSelected] = useState<Sirene | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetchRemerciements().then(setSirenes).catch(() => {});
@@ -25,9 +27,9 @@ export default function Remerciements() {
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-4xl">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Nos Sirènes</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>{t.remerciements.title}</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
-            Merci de nous faire confiance pour réaliser vos rêves.
+            {t.remerciements.subtitle}
           </p>
         </motion.div>
 

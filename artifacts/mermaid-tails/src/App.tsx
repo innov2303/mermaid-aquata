@@ -13,6 +13,7 @@ import Remerciements from "@/pages/remerciements";
 import Admin from "@/pages/admin";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const queryClient = new QueryClient();
 
@@ -44,18 +45,20 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col selection:bg-accent/30 selection:text-white dark" style={{ backgroundColor: '#0a3a5c' }}>
-            <NavBar />
-            <main className="flex-1">
-              <AnimatedRoutes />
-            </main>
-            <div style={{ width: '100%', height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.5) 25%, rgba(0,200,239,0.7) 50%, rgba(0,200,239,0.5) 75%, transparent 100%)', boxShadow: '0 0 8px rgba(0,200,239,0.3)' }} />
-            <Footer />
-          </div>
-        </WouterRouter>
-        <Toaster />
+        <LanguageProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <ScrollToTop />
+            <div className="min-h-screen flex flex-col selection:bg-accent/30 selection:text-white dark" style={{ backgroundColor: '#0a3a5c' }}>
+              <NavBar />
+              <main className="flex-1">
+                <AnimatedRoutes />
+              </main>
+              <div style={{ width: '100%', height: '2px', background: 'linear-gradient(90deg, transparent 0%, rgba(0,200,239,0.5) 25%, rgba(0,200,239,0.7) 50%, rgba(0,200,239,0.5) 75%, transparent 100%)', boxShadow: '0 0 8px rgba(0,200,239,0.3)' }} />
+              <Footer />
+            </div>
+          </WouterRouter>
+          <Toaster />
+        </LanguageProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
