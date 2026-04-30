@@ -95,7 +95,7 @@ export default function Commander() {
                 {STEP_IMAGES[currentStep] && (
                   <div className="flex-shrink-0 w-full md:w-[400px] flex items-center justify-center">
                     <div
-                      className="relative group cursor-zoom-in w-full max-w-xs md:max-w-none"
+                      className="relative group cursor-zoom-in w-full max-w-xs md:max-w-none rounded-2xl overflow-hidden"
                       onClick={() => setLightbox(true)}
                     >
                       <img
