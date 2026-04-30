@@ -140,7 +140,7 @@ export default function Home() {
         <motion.button
           onClick={scrollToNext}
           data-testid="button-scroll-down"
-          className="absolute top-[45%] md:top-auto md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
+          className="absolute bottom-4 md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
