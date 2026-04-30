@@ -26,7 +26,7 @@ function Carousel({ images }: { images: string[] }) {
     );
   }
   return (
-    <div className="relative w-full h-full rounded-2xl overflow-hidden">
+    <div className="relative w-full h-full rounded-2xl overflow-hidden flex items-center justify-center" style={{ background: 'rgba(4,15,40,0.35)' }}>
       <AnimatePresence mode="wait">
         <motion.img
           key={idx}
@@ -36,7 +36,7 @@ function Carousel({ images }: { images: string[] }) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.3 }}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       </AnimatePresence>
 
