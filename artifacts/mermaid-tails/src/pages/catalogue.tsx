@@ -129,10 +129,10 @@ export default function Catalogue() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.45 }}
-                    className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
+                    className="group relative rounded-3xl hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}
                   >
-                    <div className="w-full overflow-hidden cursor-pointer" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
+                    <div className="w-full overflow-hidden cursor-pointer rounded-2xl mx-auto mt-3 px-3" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
                       {item.images[0] ? (
                         <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       ) : (
