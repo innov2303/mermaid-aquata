@@ -103,7 +103,7 @@ export default function Home() {
         {/* Titre mobile BAS : "Mermaid Aquata" */}
         <motion.div
           className="md:hidden absolute left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
-          style={{ bottom: '95px' }}
+          style={{ bottom: '18px' }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.5 }}
@@ -165,7 +165,7 @@ export default function Home() {
         <motion.button
           onClick={scrollToNext}
           data-testid="button-scroll-down"
-          className="absolute bottom-4 md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
+          className="absolute bottom-4 md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer hidden md:flex flex-col items-center gap-2"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
