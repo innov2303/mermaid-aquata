@@ -1,3 +1,47 @@
 <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+  <!-- Fond bleu océan arrondi -->
+  <rect width="180" height="180" rx="36" fill="#021a3a"/>
+
+  <!-- Reflet lumineux en haut -->
+  <ellipse cx="90" cy="30" rx="55" ry="18" fill="url(#glow)" opacity="0.35"/>
+
+  <!-- Queue de sirène stylisée -->
+  <!-- Corps / queue -->
+  <path d="M90 38 C75 55 68 75 70 100 C72 118 80 130 90 142" stroke="url(#tailGrad)" stroke-width="14" stroke-linecap="round" fill="none"/>
+
+  <!-- Nageoire gauche -->
+  <path d="M90 142 C82 148 68 158 58 162 C55 163 54 160 57 158 C64 153 72 146 78 138 Z" fill="url(#finGrad)"/>
+
+  <!-- Nageoire droite -->
+  <path d="M90 142 C98 148 112 158 122 162 C125 163 126 160 123 158 C116 153 108 146 102 138 Z" fill="url(#finGrad)"/>
+
+  <!-- Écailles / détail -->
+  <ellipse cx="84" cy="80" rx="4" ry="3" fill="rgba(0,200,239,0.4)" transform="rotate(-10 84 80)"/>
+  <ellipse cx="94" cy="88" rx="4" ry="3" fill="rgba(0,200,239,0.4)" transform="rotate(10 94 88)"/>
+  <ellipse cx="82" cy="97" rx="4" ry="3" fill="rgba(0,200,239,0.35)" transform="rotate(-8 82 97)"/>
+
+  <!-- Étoile / étincelle haut gauche -->
+  <circle cx="55" cy="52" r="3" fill="#00c8ef" opacity="0.7"/>
+  <circle cx="55" cy="52" r="1.2" fill="white"/>
+  <!-- Étoile haut droit -->
+  <circle cx="128" cy="46" r="2.2" fill="#00c8ef" opacity="0.6"/>
+  <circle cx="128" cy="46" r="0.9" fill="white"/>
+  <!-- Petite bulle -->
+  <circle cx="118" cy="72" r="4" fill="none" stroke="rgba(0,200,239,0.5)" stroke-width="1.5"/>
+  <circle cx="60" cy="115" r="3" fill="none" stroke="rgba(0,200,239,0.4)" stroke-width="1.2"/>
+
+  <defs>
+    <linearGradient id="tailGrad" x1="90" y1="38" x2="90" y2="142" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#0077aa"/>
+    </linearGradient>
+    <linearGradient id="finGrad" x1="90" y1="138" x2="90" y2="165" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00c8ef"/>
+      <stop offset="100%" stop-color="#005580"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00c8ef"/>
+      <stop offset="100%" stop-color="#021a3a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
 </svg>
