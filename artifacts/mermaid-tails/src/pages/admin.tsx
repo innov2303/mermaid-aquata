@@ -31,13 +31,13 @@ const inputStyle = { borderColor: "rgba(0,200,239,0.3)", color: "#e0f5ff", backg
 const btnPrimary = "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white transition-all hover:scale-105";
 
 const bgPage: React.CSSProperties = {
-  backgroundImage: "url('/ocean-bubbles-bg.png')",
+  backgroundImage: "url(/images/ocean-bubbles-bg.png)",
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundAttachment: "fixed",
 };
 const bgOverlay: React.CSSProperties = {
-  background: "linear-gradient(180deg, rgba(2,8,30,0.72) 0%, rgba(0,20,50,0.75) 100%)",
+  background: "linear-gradient(180deg, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)",
 };
 
 // ── Image Picker ───────────────────────────────────────────────────────────
