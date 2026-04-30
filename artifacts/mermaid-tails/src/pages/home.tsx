@@ -51,14 +51,56 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
-      <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
+      <section className="relative bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
+
+        {/* ── DESKTOP: full-screen background image ── */}
         <img
           src="/images/hero.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 w-full h-full object-cover [object-position:65%_center] md:[object-position:center_center]"
+          className="hidden md:block absolute inset-0 z-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center center' }}
         />
-        <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
+        <div className="hidden md:block absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
+
+        {/* ── MOBILE: image contenue (sirène entière), fond océan ── */}
+        <div className="md:hidden absolute inset-0 z-0 flex items-center justify-center" style={{ backgroundColor: '#040f28' }}>
+          <img
+            src="/images/hero.jpg"
+            alt=""
+            aria-hidden="true"
+            style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center top' }}
+          />
+          {/* Léger fondu haut et bas pour intégrer avec le fond */}
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(4,15,40,0.35) 0%, transparent 20%, transparent 75%, rgba(4,15,40,0.9) 100%)' }} />
+        </div>
+
+        {/* Titre mobile : en haut de la section */}
+        <motion.div
+          className="md:hidden absolute top-[18%] left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
+          <h1
+            className="font-bold tracking-wide leading-tight"
+            style={{
+              fontSize: "clamp(1.8rem, 8vw, 2.6rem)",
+              background: "linear-gradient(135deg, #ffffff 0%, #b8f0ff 50%, #00e5ff 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: "drop-shadow(0 2px 14px rgba(0,0,0,0.8)) drop-shadow(0 0 24px rgba(0,200,239,0.5))",
+              fontFamily: "'Dancing Script', cursive",
+              letterSpacing: "0.02em",
+            }}
+          >
+            {t.home.heroTitle}
+          </h1>
+          <div className="mt-3 h-px w-48 mx-auto" style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }} />
+        </motion.div>
+
+        {/* Bubbles (both) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {bubbles.map((bubble) => (
             <div
@@ -69,8 +111,9 @@ export default function Home() {
           ))}
         </div>
 
+        {/* ── DESKTOP title ── */}
         <motion.div
-          className="absolute top-1/2 left-0 right-0 -translate-y-[140%] flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          className="hidden md:flex absolute top-1/2 left-0 right-0 -translate-y-[140%] flex-col items-center z-10 px-6 text-center pointer-events-none"
           initial={{ opacity: 0, y: -18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
