@@ -11,6 +11,7 @@ export function NavBar() {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const { lang, setLang, t } = useLanguage();
 
@@ -18,6 +19,13 @@ export function NavBar() {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   useEffect(() => {
@@ -50,9 +58,11 @@ export function NavBar() {
       <header
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
-          background: isScrolled ? "rgba(220,240,252,0.80)" : "rgba(255,255,255,0.30)",
-          backdropFilter: "blur(14px)",
-          borderBottom: "1px solid rgba(0,180,220,0.18)",
+          background: isScrolled
+            ? "rgba(220,240,252,0.80)"
+            : isMobile ? "transparent" : "rgba(255,255,255,0.30)",
+          backdropFilter: isMobile && !isScrolled ? "none" : "blur(14px)",
+          borderBottom: isMobile && !isScrolled ? "none" : "1px solid rgba(0,180,220,0.18)",
           boxShadow: isScrolled ? "0 2px 14px rgba(0,120,180,0.10)" : "none",
         }}
       >
