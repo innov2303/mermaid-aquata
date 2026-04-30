@@ -96,7 +96,7 @@ export default function Catalogue() {
       <div className="container mx-auto px-4 md:px-6">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Catalogue</h1>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#00c8ef' }}>Notre Catalogue</h1>
           <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
             Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
           </p>
