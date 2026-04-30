@@ -15,7 +15,7 @@ export default function Remerciements() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{
-      backgroundImage: 'url(https://images.unsplash.com/photo-1559825481-12a05cc00344?w=1920&q=80)',
+      backgroundImage: 'url(/images/ocean-bubbles-bg.png)',
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       backgroundAttachment: 'fixed',
