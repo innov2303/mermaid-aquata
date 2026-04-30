@@ -44,7 +44,7 @@ export default function Remerciements() {
                 border: '2px solid rgba(0,200,239,0.45)',
                 boxShadow: '0 0 24px rgba(0,200,239,0.12)',
                 aspectRatio: '4 / 3',
-                background: 'rgba(4, 15, 40, 0.7)',
+                background: 'transparent',
               }}
               onClick={() => sirene.img && setSelected(sirene)}
             >
