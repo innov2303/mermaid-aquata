@@ -75,40 +75,15 @@ export default function Home() {
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(4,15,40,0.35) 0%, transparent 20%, transparent 75%, rgba(4,15,40,0.9) 100%)' }} />
         </div>
 
-        {/* Titre mobile HAUT : "Bienvenue chez" */}
+        {/* Titre mobile : nom complet sous la sirène */}
         <motion.div
           className="md:hidden absolute left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
-          style={{ top: '72px' }}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        >
-          <p
-            className="font-bold tracking-wide leading-tight"
-            style={{
-              fontSize: "clamp(1.1rem, 5.5vw, 1.6rem)",
-              background: "linear-gradient(135deg, #ffffff 0%, #b8f0ff 50%, #00e5ff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              filter: "drop-shadow(0 2px 14px rgba(0,0,0,0.9)) drop-shadow(0 0 20px rgba(0,200,239,0.5))",
-              fontFamily: "'Dancing Script', cursive",
-              letterSpacing: "0.02em",
-            }}
-          >
-            {t.home.heroTitleTop}
-          </p>
-        </motion.div>
-
-        {/* Titre mobile BAS : "Mermaid Aquata" */}
-        <motion.div
-          className="md:hidden absolute left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
-          style={{ bottom: '18px' }}
+          style={{ top: '195px' }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4 }}
         >
-          <div className="mb-2 h-px w-36 mx-auto" style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }} />
+          <div className="mb-2 h-px w-40 mx-auto" style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }} />
           <p
             className="font-bold tracking-wide leading-tight"
             style={{
@@ -117,12 +92,12 @@ export default function Home() {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 2px 14px rgba(0,0,0,0.9)) drop-shadow(0 0 20px rgba(0,200,239,0.5))",
+              filter: "drop-shadow(0 2px 16px rgba(0,0,0,0.95)) drop-shadow(0 0 24px rgba(0,200,239,0.6))",
               fontFamily: "'Dancing Script', cursive",
               letterSpacing: "0.02em",
             }}
           >
-            Mermaid Aquata
+            {t.home.heroTitle}
           </p>
         </motion.div>
 
