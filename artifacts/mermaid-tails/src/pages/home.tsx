@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
-      <section className="relative bg-[#040f28] overflow-hidden min-h-[75vw] md:min-h-screen">
+      <section className="relative bg-[#040f28] overflow-hidden min-h-[calc(75vw+4rem)] md:min-h-screen">
 
         {/* ── DESKTOP: full-screen background image ── */}
         <img
@@ -64,7 +64,7 @@ export default function Home() {
         <div className="hidden md:block absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
 
         {/* ── MOBILE: image contenue (sirène entière), fond océan ── */}
-        <div className="md:hidden absolute inset-0 z-0 flex items-center justify-center" style={{ backgroundColor: '#040f28' }}>
+        <div className="md:hidden absolute top-16 left-0 right-0 bottom-0 z-0 flex items-center justify-center" style={{ backgroundColor: '#040f28' }}>
           <img
             src="/images/hero.jpg"
             alt=""
