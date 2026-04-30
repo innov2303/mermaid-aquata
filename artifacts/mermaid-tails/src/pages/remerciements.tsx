@@ -50,7 +50,7 @@ export default function Remerciements() {
               {/* Photo */}
               <div
                 className="group relative flex-shrink-0 rounded-xl overflow-hidden cursor-pointer"
-                style={{ width: 240, height: 240, border: '1.5px solid rgba(0,200,239,0.4)' }}
+                style={{ width: 380, height: 290, border: '1.5px solid rgba(0,200,239,0.4)' }}
                 onClick={() => sirene.img && setSelected(sirene)}
               >
                 {sirene.img ? (
