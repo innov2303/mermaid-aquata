@@ -56,8 +56,7 @@ export default function Home() {
           src="/images/hero.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 z-0 w-full h-full"
-          style={{ objectFit: 'cover', objectPosition: 'center center', imageRendering: 'auto' }}
+          className="absolute inset-0 z-0 w-full h-full object-cover [object-position:65%_center] md:[object-position:center_center]"
         />
         <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
