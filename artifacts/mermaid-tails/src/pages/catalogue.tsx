@@ -131,7 +131,7 @@ export default function Catalogue() {
                     className="group relative rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(255,255,255,0.85)', border: '2px solid rgba(0,200,239,0.45)', boxShadow: '0 0 20px rgba(0,200,239,0.1)' }}
                   >
-                    <div className="w-full overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                    <div className="w-full overflow-hidden cursor-pointer" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
                       {item.images[0] ? (
                         <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       ) : (
