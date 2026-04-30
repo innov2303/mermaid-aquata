@@ -1,6 +1,7 @@
 import { Router, type Request, type Response, type NextFunction } from "express";
 import fs from "fs";
 import path from "path";
+import { sanitizeRemerciement } from "../lib/sanitize.js";
 
 const router = Router();
 const DATA_FILE = path.join(process.cwd(), "data", "remerciements.json");
@@ -25,7 +26,9 @@ router.get("/remerciements", (_req, res) => {
 
 router.post("/remerciements", adminAuth, (req, res) => {
   const items = readData();
-  const newItem = { ...req.body, id: Date.now() };
+  const sanitized = sanitizeRemerciement(req.body);
+  if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
+  const newItem = { ...sanitized, id: Date.now() };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
@@ -33,9 +36,10 @@ router.post("/remerciements", adminAuth, (req, res) => {
 
 router.put("/remerciements/:id", adminAuth, (req, res) => {
   const items = readData();
-  const idx = items.findIndex((i: any) => i.id === Number(req.params.id));
+  const idx = items.findIndex((i: any) => i.id === Number(req.params["id"]));
   if (idx === -1) return res.status(404).json({ error: "Non trouvé" });
-  items[idx] = { ...items[idx], ...req.body, id: items[idx].id };
+  const sanitized = sanitizeRemerciement({ ...items[idx], ...req.body });
+  items[idx] = { ...sanitized, id: items[idx].id };
   writeData(items);
   res.json(items[idx]);
 });
@@ -43,7 +47,7 @@ router.put("/remerciements/:id", adminAuth, (req, res) => {
 router.delete("/remerciements/:id", adminAuth, (req, res) => {
   let items = readData();
   const before = items.length;
-  items = items.filter((i: any) => i.id !== Number(req.params.id));
+  items = items.filter((i: any) => i.id !== Number(req.params["id"]));
   if (items.length === before) return res.status(404).json({ error: "Non trouvé" });
   writeData(items);
   res.json({ ok: true });
