@@ -75,7 +75,7 @@ export default function Remerciements() {
               <div className="flex-1 flex items-center justify-center">
                 <h3 style={{
                   fontFamily: "'Dancing Script', cursive",
-                  fontSize: 'clamp(1.6rem, 3vw, 2.8rem)',
+                  fontSize: 'clamp(1.1rem, 2vw, 1.8rem)',
                   fontWeight: 700,
                   color: '#0a2a4a',
                   textShadow: '0 2px 12px rgba(0,200,239,0.25)',
