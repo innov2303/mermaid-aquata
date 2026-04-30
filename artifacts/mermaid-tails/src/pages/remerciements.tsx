@@ -39,37 +39,48 @@ export default function Remerciements() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer"
-              style={{
-                border: '2px solid rgba(0,200,239,0.45)',
-                boxShadow: '0 0 24px rgba(0,200,239,0.12)',
-                aspectRatio: '4 / 3',
-                background: 'transparent',
-              }}
-              onClick={() => sirene.img && setSelected(sirene)}
+              className="flex flex-col"
             >
-              {sirene.img ? (
-                <>
-                  <img
-                    src={sirene.img}
-                    alt={sirene.name}
-                    className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
-                  />
-                  {/* Zoom hint */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.25)' }}>
-                    <ZoomIn size={36} className="text-white drop-shadow" />
+              {/* Image frame */}
+              <div
+                className="group relative rounded-t-2xl overflow-hidden cursor-pointer"
+                style={{
+                  border: '2px solid rgba(0,200,239,0.45)',
+                  borderBottom: 'none',
+                  boxShadow: '0 0 24px rgba(0,200,239,0.12)',
+                  aspectRatio: '4 / 3',
+                  background: 'transparent',
+                }}
+                onClick={() => sirene.img && setSelected(sirene)}
+              >
+                {sirene.img ? (
+                  <>
+                    <img
+                      src={sirene.img}
+                      alt={sirene.name}
+                      className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.25)' }}>
+                      <ZoomIn size={36} className="text-white drop-shadow" />
+                    </div>
+                  </>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
                   </div>
-                </>
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
-                </div>
-              )}
-              <div className="absolute bottom-0 left-0 right-0 py-2 px-4 text-center">
-                <h3
-                  className="font-serif text-lg md:text-xl font-semibold tracking-wide"
-                  style={{ color: '#0a2a4a', textShadow: '0 1px 4px rgba(255,255,255,0.8)' }}
-                >
+                )}
+              </div>
+              {/* Name bar */}
+              <div
+                className="rounded-b-2xl py-3 px-4 text-center"
+                style={{
+                  border: '2px solid rgba(0,200,239,0.45)',
+                  borderTop: '1px solid rgba(0,200,239,0.25)',
+                  background: 'rgba(255,255,255,0.55)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <h3 className="font-serif text-lg font-semibold tracking-wide" style={{ color: '#0a2a4a' }}>
                   {sirene.name}
                 </h3>
               </div>
