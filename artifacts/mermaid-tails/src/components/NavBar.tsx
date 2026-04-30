@@ -69,11 +69,14 @@ export function NavBar() {
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between py-2">
           <Link href="/" className="flex items-center gap-2" data-testid="link-logo">
             <img
-              src={logoSrc}
+              src={isMobile && !isScrolled ? "/images/logo_mobile.png" : logoSrc}
               alt="Mermaid Aquata"
-              className={`object-contain transition-all duration-300 drop-shadow-lg ${
-                isScrolled ? "h-14 md:h-16" : "h-16 md:h-20"
+              className={`object-contain transition-all duration-300 ${
+                isScrolled ? "h-14 md:h-16" : "h-20 md:h-20"
               }`}
+              style={isMobile && !isScrolled ? {
+                filter: "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 2px 8px rgba(0,0,0,0.9))"
+              } : { filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.3))" }}
             />
           </Link>
 
