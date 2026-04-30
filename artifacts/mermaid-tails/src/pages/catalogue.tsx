@@ -177,9 +177,9 @@ export default function Catalogue() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 40 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="relative w-full md:max-w-3xl rounded-t-3xl md:rounded-3xl"
+              className="relative w-full md:max-w-4xl rounded-t-3xl md:rounded-3xl"
               style={{
-                background: 'rgba(0,20,50,0.95)',
+                background: 'rgba(0,20,50,0.97)',
                 backdropFilter: 'blur(20px)',
                 border: '1.5px solid rgba(0,200,239,0.3)',
                 boxShadow: '0 0 60px rgba(0,200,239,0.2)',
@@ -190,34 +190,38 @@ export default function Catalogue() {
               onClick={e => e.stopPropagation()}
             >
               {/* Close button */}
-              <div className="sticky top-0 z-10 flex justify-end p-3" style={{ background: 'rgba(0,20,50,0.8)', backdropFilter: 'blur(8px)' }}>
+              <div className="sticky top-0 z-10 flex justify-end px-4 py-3" style={{ background: 'rgba(0,20,50,0.85)', backdropFilter: 'blur(8px)' }}>
                 <button
                   onClick={() => setSelected(null)}
-                  className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                  className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                   style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
 
               {/* Desktop: side-by-side / Mobile: stacked */}
-              <div className="flex flex-col md:flex-row md:min-h-[400px]">
+              <div className="flex flex-col md:flex-row md:min-h-[460px]">
 
                 {/* Carousel */}
-                <div className="w-full md:flex-1 px-4 pb-4 md:pt-0" style={{ minHeight: 240 }}>
+                <div className="w-full md:flex-1 px-5 pt-2 pb-5 md:p-8" style={{ minHeight: 280 }}>
                   <Carousel images={selected.images} />
                 </div>
 
+                {/* Divider vertical (desktop) */}
+                <div className="hidden md:block w-px self-stretch my-8" style={{ background: 'rgba(0,200,239,0.2)' }} />
+
                 {/* Info */}
-                <div className="flex flex-col px-6 pb-8 md:w-1/2 md:flex-shrink-0 md:p-10 md:pt-4">
-                  <h2 className="text-xl leading-tight text-center mb-4" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem' }}>
+                <div className="flex flex-col px-6 pt-2 pb-10 md:w-[45%] md:flex-shrink-0 md:px-10 md:py-8 gap-5">
+                  <h2 className="text-center leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.6rem, 4vw, 2.2rem)' }}>
                     {selected.name}
                   </h2>
-                  <p className="font-light leading-relaxed text-sm whitespace-pre-line mb-6" style={{ color: 'rgba(200,235,255,0.85)' }}>
+                  <div className="h-px w-24 mx-auto" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.6), transparent)' }} />
+                  <p className="font-light leading-relaxed whitespace-pre-line text-base" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '0.97rem', lineHeight: '1.75' }}>
                     {selected.desc}
                   </p>
-                  <p className="font-serif text-2xl text-primary font-semibold mb-6">{selected.price}</p>
-                  <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
+                  <p className="font-serif text-3xl text-primary font-semibold text-center">{selected.price}</p>
+                  <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto mt-auto">
                     <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
                   </Button>
                 </div>
