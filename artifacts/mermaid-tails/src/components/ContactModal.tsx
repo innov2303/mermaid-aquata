@@ -41,7 +41,7 @@ export function ContactModal({ open, onClose }: Props) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            className="w-full max-w-2xl rounded-3xl overflow-y-auto"
+            className="w-full max-w-3xl rounded-3xl overflow-y-auto"
             style={{ maxHeight: "90vh", background: "rgba(0,20,50,0.85)", backdropFilter: "blur(20px)", border: "1.5px solid rgba(0,200,239,0.3)", boxShadow: "0 0 60px rgba(0,200,239,0.2)" }}
           >
             {/* Header */}
