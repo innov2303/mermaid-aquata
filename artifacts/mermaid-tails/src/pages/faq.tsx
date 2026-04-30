@@ -91,11 +91,12 @@ const FAQS = [
 
 export default function Faq() {
   return (
-    <div className="min-h-screen section-clair pt-32 pb-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)' }} />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Foire Aux Questions</h1>
-          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Foire Aux Questions</h1>
+          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
             Toutes les réponses à vos questions concernant nos queues de sirène artisanales.
           </p>
         </motion.div>

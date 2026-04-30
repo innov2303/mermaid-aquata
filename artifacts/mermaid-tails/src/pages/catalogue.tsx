@@ -92,12 +92,13 @@ export default function Catalogue() {
   })).filter(s => s.items.length > 0);
 
   return (
-    <div className="min-h-screen section-clair pt-32 pb-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(2,8,30,0.38) 0%, rgba(0,20,50,0.45) 100%)' }} />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-20">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Notre Catalogue</h1>
-          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>Notre Catalogue</h1>
+          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>
             Découvrez nos créations artisanales. Chaque modèle peut être personnalisé selon vos envies.
           </p>
         </motion.div>
@@ -114,8 +115,8 @@ export default function Catalogue() {
               <div className="flex items-center gap-6 mb-10">
                 <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, rgba(0,200,239,0.6), transparent)' }} />
                 <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-serif" style={{ color: '#0a2a4a' }}>{section.label}</h2>
-                  <p className="text-sm mt-1 font-light" style={{ color: '#1a3d5c' }}>{section.sub}</p>
+                  <h2 className="text-3xl md:text-4xl font-serif" style={{ color: '#e0f5ff' }}>{section.label}</h2>
+                  <p className="text-sm mt-1 font-light" style={{ color: 'rgba(200,235,255,0.8)' }}>{section.sub}</p>
                 </div>
                 <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, rgba(0,200,239,0.6), transparent)' }} />
               </div>
