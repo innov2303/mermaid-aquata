@@ -20,13 +20,13 @@ export default function Remerciements() {
       backgroundPosition: 'center top',
       backgroundAttachment: 'fixed',
     }}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(4,15,40,0.55) 0%, rgba(4,30,60,0.6) 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(255,248,235,0.35) 0%, rgba(200,230,255,0.28) 100%)' }} />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-4xl">
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#ffffff' }}>Nos Sirènes</h1>
-          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: 'rgba(255,255,255,0.8)' }}>
+          <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#0a2a4a' }}>Nos Sirènes</h1>
+          <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: '#1a3d5c' }}>
             Merci de nous faire confiance pour réaliser vos rêves.
           </p>
         </motion.div>
