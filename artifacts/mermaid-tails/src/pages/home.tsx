@@ -86,7 +86,7 @@ export default function Home() {
           transition={{ duration: 1.2, delay: 0.4 }}
         >
           <div className="mb-2 h-px w-40 mx-auto" style={{ background: "linear-gradient(90deg, transparent, #00c8ef, transparent)" }} />
-          <p
+          <h1
             className="font-bold tracking-wide leading-tight"
             style={{
               fontSize: "clamp(1.3rem, 6.5vw, 2rem)",
@@ -100,7 +100,7 @@ export default function Home() {
             }}
           >
             {t.home.heroTitle}
-          </p>
+          </h1>
         </motion.div>
 
         {/* Bubbles (both) */}
