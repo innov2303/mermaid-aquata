@@ -241,7 +241,7 @@ export default function Home() {
             <div ref={bubbleZoneRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', padding: '0 8px 32px' }}>
               {t.home.bubbles.map((b, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
-                  <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.08} floatOffset={i} size={155} constraintsRef={bubbleZoneRef} />
+                  <BubbleCard icon={BUBBLE_ICONS[i]} title={b.title} desc={b.desc} delay={i * 0.08} floatOffset={i} size={155} constraintsRef={bubbleZoneRef} draggable={false} />
                 </div>
               ))}
             </div>
@@ -338,7 +338,7 @@ const FLOAT_PARAMS = [
   { y: [-7, 7], duration: 5.3, x: [2, -4] },
 ];
 
-function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constraintsRef }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number, constraintsRef?: React.RefObject<HTMLDivElement> }) {
+function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constraintsRef, draggable = true }: { icon: React.ReactNode, title: string, desc: string, delay: number, floatOffset: number, size?: number, constraintsRef?: React.RefObject<HTMLDivElement>, draggable?: boolean }) {
   const fp = FLOAT_PARAMS[floatOffset % FLOAT_PARAMS.length];
   const spinDur = `${9 + floatOffset * 1.2}s`;
 
@@ -353,14 +353,14 @@ function BubbleCard({ icon, title, desc, delay, floatOffset, size = 260, constra
       <motion.div
         animate={{ y: fp.y, x: fp.x }}
         transition={{ repeat: Infinity, repeatType: "mirror", duration: fp.duration, ease: "easeInOut", delay: floatOffset * 0.6 }}
-        drag
-        dragConstraints={constraintsRef}
-        dragElastic={0.12}
-        dragMomentum={true}
-        dragTransition={{ bounceStiffness: 80, bounceDamping: 18, power: 0.3, timeConstant: 300 }}
+        drag={draggable}
+        dragConstraints={draggable ? constraintsRef : false}
+        dragElastic={draggable ? 0.12 : 0}
+        dragMomentum={draggable}
+        dragTransition={draggable ? { bounceStiffness: 80, bounceDamping: 18, power: 0.3, timeConstant: 300 } : undefined}
         whileHover={{ scale: 1.05 }}
-        whileDrag={{ scale: 1.10, zIndex: 50 }}
-        style={{ cursor: 'grab', position: 'relative', width: size, height: size, zIndex: 1 }}
+        whileDrag={draggable ? { scale: 1.10, zIndex: 50 } : undefined}
+        style={{ cursor: draggable ? 'grab' : 'default', position: 'relative', width: size, height: size, zIndex: 1 }}
       >
         <div style={{
           position: 'absolute', inset: 0, borderRadius: '50%', zIndex: 2, pointerEvents: 'none',
