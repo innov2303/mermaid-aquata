@@ -216,25 +216,32 @@ export default function Catalogue() {
               {/* ── DESKTOP : texte gauche défilant + photo droite fixe ── */}
               <div className="hidden md:flex flex-row" style={{ height: '85vh' }}>
 
-                {/* Gauche : texte défilant */}
-                <div className="flex flex-col overflow-y-auto px-10 py-8 gap-6" style={{ flex: '1 1 0', minWidth: 0 }}>
-                  {/* Close */}
-                  <div className="flex justify-end">
-                    <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
-                      <X size={20} />
-                    </button>
+                {/* Gauche : titre + description défilants, prix + bouton fixés en bas */}
+                <div className="flex flex-col" style={{ flex: '1 1 0', minWidth: 0 }}>
+                  {/* Zone défilante */}
+                  <div className="flex-1 overflow-y-auto px-10 pt-8 pb-4 flex flex-col gap-6">
+                    {/* Close */}
+                    <div className="flex justify-end">
+                      <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
+                        <X size={20} />
+                      </button>
+                    </div>
+                    <h2 className="leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
+                      {selected.name}
+                    </h2>
+                    <div className="h-px w-32" style={{ background: 'linear-gradient(90deg, rgba(0,200,239,0.7), transparent)' }} />
+                    <p className="font-light leading-relaxed whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '1rem', lineHeight: '1.85' }}>
+                      {selected.desc}
+                    </p>
                   </div>
-                  <h2 className="leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
-                    {selected.name}
-                  </h2>
-                  <div className="h-px w-32" style={{ background: 'linear-gradient(90deg, rgba(0,200,239,0.7), transparent)' }} />
-                  <p className="font-light leading-relaxed whitespace-pre-line flex-1" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '1rem', lineHeight: '1.85' }}>
-                    {selected.desc}
-                  </p>
-                  <p className="font-serif text-4xl text-primary font-semibold">{selected.price}</p>
-                  <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)] self-start">
-                    <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
-                  </Button>
+
+                  {/* Footer fixe : prix + bouton */}
+                  <div className="flex-shrink-0 px-10 py-5 flex items-center justify-between gap-6" style={{ borderTop: '1px solid rgba(0,200,239,0.18)', background: 'rgba(0,10,35,0.7)', backdropFilter: 'blur(8px)' }}>
+                    <p className="font-serif text-4xl text-primary font-semibold">{selected.price}</p>
+                    <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
+                      <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Séparateur */}
