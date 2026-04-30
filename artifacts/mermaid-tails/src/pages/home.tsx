@@ -53,7 +53,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
         <img
-          src="/images/hero.webp"
+          src="/images/hero.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 z-0 w-full h-full"
