@@ -41,8 +41,8 @@ export function ContactModal({ open, onClose }: Props) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.92, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            className="w-full max-w-2xl rounded-3xl overflow-hidden"
-            style={{ background: "rgba(0,20,50,0.85)", backdropFilter: "blur(20px)", border: "1.5px solid rgba(0,200,239,0.3)", boxShadow: "0 0 60px rgba(0,200,239,0.2)" }}
+            className="w-full max-w-2xl rounded-3xl overflow-y-auto"
+            style={{ maxHeight: "90vh", background: "rgba(0,20,50,0.85)", backdropFilter: "blur(20px)", border: "1.5px solid rgba(0,200,239,0.3)", boxShadow: "0 0 60px rgba(0,200,239,0.2)" }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-8 pt-8 pb-4">
@@ -81,7 +81,7 @@ export function ContactModal({ open, onClose }: Props) {
                   </div>
                   <div>
                     <label className="text-xs font-medium mb-1.5 block" style={{ color: "rgba(200,235,255,0.75)" }}>Message *</label>
-                    <textarea name="message" required rows={4} value={form.message} onChange={handleChange} className={inputClass} style={{ ...inputStyle, resize: "vertical" }} placeholder="Votre message…" />
+                    <textarea name="message" required rows={4} value={form.message} onChange={handleChange} className={inputClass} style={{ ...inputStyle, resize: "vertical", maxHeight: "260px" }} placeholder="Votre message…" />
                   </div>
                   <button type="submit" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-white font-medium transition-all hover:scale-[1.02] mt-1" style={{ background: "linear-gradient(135deg, #00c8ef, #0099cc)", boxShadow: "0 0 20px rgba(0,200,239,0.4)" }}>
                     <Send size={16} /> Envoyer le message
