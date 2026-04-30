@@ -50,7 +50,7 @@ export default function Remerciements() {
               {/* Photo */}
               <div
                 className="group relative flex-shrink-0 rounded-xl overflow-hidden cursor-pointer"
-                style={{ maxWidth: '55%', border: '1.5px solid rgba(0,200,239,0.4)' }}
+                style={{ maxWidth: '45%', border: '1.5px solid rgba(0,200,239,0.4)' }}
                 onClick={() => sirene.img && setSelected(sirene)}
               >
                 {sirene.img ? (
@@ -75,11 +75,12 @@ export default function Remerciements() {
               <div className="flex-1 flex items-center justify-center">
                 <h3 style={{
                   fontFamily: "'Dancing Script', cursive",
-                  fontSize: '2.8rem',
+                  fontSize: 'clamp(1.6rem, 3vw, 2.8rem)',
                   fontWeight: 700,
                   color: '#0a2a4a',
                   textShadow: '0 2px 12px rgba(0,200,239,0.25)',
                   lineHeight: 1.2,
+                  whiteSpace: 'nowrap',
                 }}>
                   {sirene.name}
                 </h3>
