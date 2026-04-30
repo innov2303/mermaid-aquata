@@ -166,48 +166,58 @@ export default function Catalogue() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end md:items-center justify-center md:p-4"
             style={{ background: 'rgba(4,15,40,0.88)', backdropFilter: 'blur(8px)' }}
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 24 }}
+              initial={{ scale: 0.95, opacity: 0, y: 40 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 24 }}
+              exit={{ scale: 0.95, opacity: 0, y: 40 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="relative rounded-3xl overflow-hidden w-full flex flex-col md:flex-row"
-              style={{ background: 'rgba(0,20,50,0.85)', backdropFilter: 'blur(20px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 60px rgba(0,200,239,0.2)', maxHeight: '82vh', maxWidth: '82vw' }}
+              className="relative w-full md:max-w-3xl rounded-t-3xl md:rounded-3xl"
+              style={{
+                background: 'rgba(0,20,50,0.95)',
+                backdropFilter: 'blur(20px)',
+                border: '1.5px solid rgba(0,200,239,0.3)',
+                boxShadow: '0 0 60px rgba(0,200,239,0.2)',
+                maxHeight: '92vh',
+                overflowY: 'auto',
+                WebkitOverflowScrolling: 'touch' as React.CSSProperties['WebkitOverflowScrolling'],
+              } as React.CSSProperties}
               onClick={e => e.stopPropagation()}
             >
-              {/* Left: info */}
-              <div className="flex flex-col p-6 md:p-10 md:w-1/2 flex-shrink-0 overflow-y-auto">
-                <h2 className="text-xl md:text-2xl leading-tight text-center mb-5" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem' }}>
-                  {selected.name}
-                </h2>
-                <div className="flex-1 overflow-y-auto mb-6 pr-1" style={{ minHeight: 0 }}>
-                  <p className="font-light leading-relaxed text-xs md:text-sm whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
-                    {selected.desc}
-                  </p>
-                </div>
-                <p className="font-serif text-2xl text-primary font-semibold mb-8 flex-shrink-0">{selected.price}</p>
-                <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
-                  <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
-                </Button>
+              {/* Close button */}
+              <div className="sticky top-0 z-10 flex justify-end p-3" style={{ background: 'rgba(0,20,50,0.8)', backdropFilter: 'blur(8px)' }}>
+                <button
+                  onClick={() => setSelected(null)}
+                  className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                  style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}
+                >
+                  <X size={18} />
+                </button>
               </div>
 
-              {/* Right: carousel */}
-              <div className="flex-1 flex flex-col min-h-[260px] md:min-h-0">
-                <div className="flex justify-end p-3 flex-shrink-0">
-                  <button
-                    onClick={() => setSelected(null)}
-                    className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                    style={{ background: 'rgba(0,200,239,0.1)', color: '#e0f5ff' }}
-                  >
-                    <X size={18} />
-                  </button>
-                </div>
-                <div className="flex-1 px-4 pb-4 min-h-[220px]">
+              {/* Desktop: side-by-side / Mobile: stacked */}
+              <div className="flex flex-col md:flex-row md:min-h-[400px]">
+
+                {/* Carousel */}
+                <div className="w-full md:flex-1 px-4 pb-4 md:pt-0" style={{ minHeight: 240 }}>
                   <Carousel images={selected.images} />
+                </div>
+
+                {/* Info */}
+                <div className="flex flex-col px-6 pb-8 md:w-1/2 md:flex-shrink-0 md:p-10 md:pt-4">
+                  <h2 className="text-xl leading-tight text-center mb-4" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem' }}>
+                    {selected.name}
+                  </h2>
+                  <p className="font-light leading-relaxed text-sm whitespace-pre-line mb-6" style={{ color: 'rgba(200,235,255,0.85)' }}>
+                    {selected.desc}
+                  </p>
+                  <p className="font-serif text-2xl text-primary font-semibold mb-6">{selected.price}</p>
+                  <Button asChild size="default" className="bg-primary text-white hover:bg-primary/90 rounded-full px-6 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
+                    <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                  </Button>
                 </div>
               </div>
             </motion.div>
