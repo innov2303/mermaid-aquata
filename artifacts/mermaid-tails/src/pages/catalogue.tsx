@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { fetchCatalogue } from "@/lib/api";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 type Item = {
   id: number;
@@ -75,6 +76,7 @@ export default function Catalogue() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
   const { t } = useLanguage();
+  useSEO("catalogue");
 
   useEffect(() => {
     fetchCatalogue().then(setAllItems).catch(() => {});

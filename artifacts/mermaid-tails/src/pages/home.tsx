@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
@@ -32,6 +33,7 @@ export default function Home() {
   const bubbleZoneRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+  useSEO("home");
 
   useEffect(() => {
     const generated = Array.from({ length: BUBBLE_COUNT }).map((_, i) => ({

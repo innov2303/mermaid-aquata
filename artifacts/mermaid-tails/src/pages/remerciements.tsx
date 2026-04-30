@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import { fetchRemerciements } from "@/lib/api";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 type Sirene = { id: number; name: string; img: string | null };
 
@@ -10,6 +11,7 @@ export default function Remerciements() {
   const [sirenes, setSirenes] = useState<Sirene[]>([]);
   const [selected, setSelected] = useState<Sirene | null>(null);
   const { t } = useLanguage();
+  useSEO("remerciements");
 
   useEffect(() => {
     fetchRemerciements().then(setSirenes).catch(() => {});

@@ -4,6 +4,7 @@ import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, Chev
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 const STEP_ICONS = [
   <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>,
@@ -20,6 +21,7 @@ export default function Commander() {
   const [lightbox, setLightbox] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const { t } = useLanguage();
+  useSEO("commander");
 
   const steps = t.commander.steps;
 

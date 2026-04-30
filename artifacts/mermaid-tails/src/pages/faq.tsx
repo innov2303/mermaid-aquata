@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sparkles } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function Faq() {
   const { t } = useLanguage();
+  useSEO("faq");
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
