@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
-      <section className="relative bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
+      <section className="relative bg-[#040f28] overflow-hidden min-h-[75vw] md:min-h-screen">
 
         {/* ── DESKTOP: full-screen background image ── */}
         <img
@@ -77,7 +77,8 @@ export default function Home() {
 
         {/* Titre mobile : en haut de la section */}
         <motion.div
-          className="md:hidden absolute top-[18%] left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          className="md:hidden absolute left-0 right-0 flex flex-col items-center z-10 px-6 text-center pointer-events-none"
+          style={{ top: '72px' }}
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
@@ -139,7 +140,7 @@ export default function Home() {
         <motion.button
           onClick={scrollToNext}
           data-testid="button-scroll-down"
-          className="absolute top-[38%] md:top-auto md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
+          className="absolute top-[45%] md:top-auto md:bottom-16 left-1/2 -translate-x-1/2 z-10 group cursor-pointer flex flex-col items-center gap-2"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
