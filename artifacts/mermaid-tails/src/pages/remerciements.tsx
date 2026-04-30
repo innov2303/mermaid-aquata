@@ -56,22 +56,19 @@ export default function Remerciements() {
                     className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   {/* Zoom hint */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.3)' }}>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.25)' }}>
                     <ZoomIn size={36} className="text-white drop-shadow" />
                   </div>
                 </>
               ) : (
-                <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.1), rgba(4,15,40,0.06))' }}>
+                <div className="w-full h-full flex items-center justify-center">
                   <span className="font-serif text-7xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
                 </div>
               )}
-              <div
-                className="absolute bottom-0 left-0 right-0 py-3 px-4 text-center"
-                style={{ background: 'linear-gradient(to top, rgba(4,15,40,0.85) 0%, transparent 100%)' }}
-              >
+              <div className="absolute bottom-0 left-0 right-0 py-2 px-4 text-center">
                 <h3
-                  className="font-serif text-xl md:text-2xl font-semibold tracking-wide"
-                  style={{ color: '#ffffff', textShadow: '0 0 12px rgba(0,200,239,0.7), 0 2px 6px rgba(0,0,0,0.8)' }}
+                  className="font-serif text-lg md:text-xl font-semibold tracking-wide"
+                  style={{ color: '#0a2a4a', textShadow: '0 1px 4px rgba(255,255,255,0.8)' }}
                 >
                   {sirene.name}
                 </h3>
