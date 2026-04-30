@@ -80,8 +80,10 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="border-t border-border/30 pt-8 mb-6">
-            <details className="group">
+          <div className="border-t border-border/30 pt-8 mb-6 flex flex-col sm:flex-row gap-2 justify-center">
+
+            {/* Mentions légales */}
+            <details className="group flex-1 max-w-xs">
               <summary className="cursor-pointer text-xs text-foreground/40 hover:text-foreground/60 transition-colors text-center select-none list-none flex items-center justify-center gap-1">
                 <span>Mentions légales</span>
                 <svg className="w-3 h-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
@@ -94,6 +96,38 @@ export function Footer() {
                 <p>N° SIRET : 802 791 222 8</p>
               </div>
             </details>
+
+            <div className="hidden sm:block w-px bg-border/30 self-stretch" />
+
+            {/* Politique de remboursement */}
+            <details className="group flex-1 max-w-2xl">
+              <summary className="cursor-pointer text-xs text-foreground/40 hover:text-foreground/60 transition-colors text-center select-none list-none flex items-center justify-center gap-1">
+                <span>Politique de remboursement</span>
+                <svg className="w-3 h-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div className="mt-4 text-xs text-foreground/45 text-left leading-relaxed space-y-3 max-w-2xl mx-auto">
+                <p>Nous appliquons une politique de retour de <strong className="text-foreground/60">30 jours</strong> après réception de votre article. L'article doit être dans le même état que celui reçu, non porté ou non utilisé, avec les étiquettes et dans son emballage d'origine, accompagné du reçu ou de la preuve d'achat.</p>
+                <p>Pour effectuer un retour, contactez-nous à <a href="mailto:sirenebleu31@gmail.com" className="underline hover:text-foreground/70">sirenebleu31@gmail.com</a>. Les retours sont à envoyer à : <em>Bardet Aurore, 1 rue du docteur Albert Schweitzer, 31200 Toulouse</em>. Les articles renvoyés sans demande préalable ne seront pas acceptés.</p>
+                <div>
+                  <p className="font-medium text-foreground/60 mb-1">Dommages et problèmes</p>
+                  <p>Inspectez votre commande dès réception et contactez-nous immédiatement si l'article est défectueux ou endommagé.</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground/60 mb-1">Articles non retournables</p>
+                  <p>Les produits sur mesure ou personnalisés ne peuvent pas être retournés. Les articles en promotion et les cartes-cadeaux sont également exclus.</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground/60 mb-1">Délai de réflexion UE — 14 jours</p>
+                  <p>Si la marchandise est expédiée dans l'Union européenne, vous disposez de 14 jours pour annuler ou retourner votre commande, sans justification.</p>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground/60 mb-1">Remboursements</p>
+                  <p>Un remboursement total est possible jusqu'à <strong className="text-foreground/60">48h après confirmation d'achat</strong>. Passé ce délai, le remboursement sera de 50 % du prix initial. Une fois la création sur mesure commencée, aucun remboursement n'est possible.</p>
+                  <p className="mt-1">Une fois le retour reçu et inspecté, vous serez remboursé(e) sur votre moyen de paiement d'origine sous <strong className="text-foreground/60">10 jours ouvrables</strong>. Si plus de 15 jours ouvrables se sont écoulés, contactez-nous à <a href="mailto:sirenebleu31@gmail.com" className="underline hover:text-foreground/70">sirenebleu31@gmail.com</a>.</p>
+                </div>
+              </div>
+            </details>
+
           </div>
 
           <div className="border-t border-border/30 pt-6 text-center text-sm text-foreground/50">
