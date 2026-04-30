@@ -81,7 +81,7 @@ export function ContactModal({ open, onClose }: Props) {
                   </div>
                   <div>
                     <label className="text-xs font-medium mb-1.5 block" style={{ color: "rgba(200,235,255,0.75)" }}>Message *</label>
-                    <textarea name="message" required rows={4} value={form.message} onChange={handleChange} className={inputClass} style={{ ...inputStyle, resize: "vertical", maxHeight: "260px" }} placeholder="Votre message…" />
+                    <textarea name="message" required rows={4} value={form.message} onChange={handleChange} className={inputClass} style={{ ...inputStyle, resize: "vertical" }} placeholder="Votre message…" />
                   </div>
                   <button type="submit" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-white font-medium transition-all hover:scale-[1.02] mt-1" style={{ background: "linear-gradient(135deg, #00c8ef, #0099cc)", boxShadow: "0 0 20px rgba(0,200,239,0.4)" }}>
                     <Send size={16} /> Envoyer le message
