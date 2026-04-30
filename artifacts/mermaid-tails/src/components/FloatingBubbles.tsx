@@ -11,10 +11,9 @@ interface Bubble {
 
 interface FloatingBubblesProps {
   count?: number;
-  className?: string;
 }
 
-export function FloatingBubbles({ count = 12, className = "" }: FloatingBubblesProps) {
+export function FloatingBubbles({ count = 12 }: FloatingBubblesProps) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
 
   useEffect(() => {
@@ -23,15 +22,18 @@ export function FloatingBubbles({ count = 12, className = "" }: FloatingBubblesP
         id: i,
         left: `${Math.random() * 95}%`,
         size: Math.floor(Math.random() * 14) + 6,
-        duration: Math.random() * 12 + 8,
-        delay: Math.random() * 10,
+        duration: Math.random() * 14 + 10,
+        delay: Math.random() * 14,
         opacity: Math.random() * 0.35 + 0.15,
       }))
     );
   }, [count]);
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none z-0 ${className}`}>
+    <div
+      className="fixed inset-0 overflow-hidden pointer-events-none"
+      style={{ zIndex: 1 }}
+    >
       {bubbles.map((b) => (
         <div
           key={b.id}
