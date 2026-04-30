@@ -50,7 +50,7 @@ export default function Remerciements() {
               {/* Photo */}
               <div
                 className="group relative flex-shrink-0 rounded-xl overflow-hidden cursor-pointer"
-                style={{ width: 380, height: 290, border: '1.5px solid rgba(0,200,239,0.4)' }}
+                style={{ maxWidth: '55%', border: '1.5px solid rgba(0,200,239,0.4)' }}
                 onClick={() => sirene.img && setSelected(sirene)}
               >
                 {sirene.img ? (
@@ -58,7 +58,7 @@ export default function Remerciements() {
                     <img
                       src={sirene.img}
                       alt={sirene.name}
-                      className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
+                      className="w-full h-auto object-contain group-hover:scale-[1.03] transition-transform duration-700"
                     />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.25)' }}>
                       <ZoomIn size={32} className="text-white drop-shadow" />
