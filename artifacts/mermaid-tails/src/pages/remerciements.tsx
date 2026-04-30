@@ -44,6 +44,7 @@ export default function Remerciements() {
                 border: '2px solid rgba(0,200,239,0.45)',
                 boxShadow: '0 0 24px rgba(0,200,239,0.12)',
                 aspectRatio: '4 / 3',
+                background: 'rgba(4, 15, 40, 0.7)',
               }}
               onClick={() => sirene.img && setSelected(sirene)}
             >
@@ -52,7 +53,7 @@ export default function Remerciements() {
                   <img
                     src={sirene.img}
                     alt={sirene.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-700"
                   />
                   {/* Zoom hint */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(4,15,40,0.3)' }}>
