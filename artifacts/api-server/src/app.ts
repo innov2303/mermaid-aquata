@@ -9,11 +9,16 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+// ── Trust proxy (Replit reverse proxy) ─────────────────────────────────────
+app.set("trust proxy", 1);
+
 // ── Security headers ───────────────────────────────────────────────────────
 app.use(
   helmet({
-    contentSecurityPolicy: false, // géré par le proxy Replit
-    crossOriginResourcePolicy: { policy: "cross-origin" }, // images accessibles par le frontend
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    crossOriginEmbedderPolicy: false, // évite le blocage des images cross-origin
+    crossOriginOpenerPolicy: false,
   }),
 );
 
