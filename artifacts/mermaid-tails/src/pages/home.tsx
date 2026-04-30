@@ -52,9 +52,12 @@ export default function Home() {
     <div className="flex flex-col min-h-screen" style={{ backgroundColor: '#0a3a5c' }}>
       {/* Hero Section */}
       <section className="relative flex items-center justify-center bg-[#040f28] overflow-hidden" style={{ minHeight: '100vh' }}>
-        <div
-          className="absolute inset-0 z-0"
-          style={{ backgroundImage: `url('/images/hero.webp')`, backgroundSize: 'cover', backgroundPosition: 'center center' }}
+        <img
+          src="/images/hero.webp"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 z-0 w-full h-full"
+          style={{ objectFit: 'cover', objectPosition: 'center center', imageRendering: 'auto' }}
         />
         <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 40%, rgba(255,255,255,0.05) 75%, transparent 100%)' }} />
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
