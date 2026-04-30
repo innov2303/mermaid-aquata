@@ -134,7 +134,7 @@ export default function Catalogue() {
                     {/* Image — hauteur fixe */}
                     <div className="w-full flex-shrink-0 overflow-hidden" style={{ aspectRatio: '4/3' }}>
                       {item.images[0] ? (
-                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
                           <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.35)' }}>✦</span>
