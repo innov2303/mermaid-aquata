@@ -80,7 +80,23 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="border-t border-border/30 pt-8 text-center text-sm text-foreground/50">
+          <div className="border-t border-border/30 pt-8 mb-6">
+            <details className="group">
+              <summary className="cursor-pointer text-xs text-foreground/40 hover:text-foreground/60 transition-colors text-center select-none list-none flex items-center justify-center gap-1">
+                <span>Mentions légales</span>
+                <svg className="w-3 h-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div className="mt-4 text-xs text-foreground/45 text-center leading-relaxed space-y-0.5">
+                <p className="font-medium text-foreground/60">Mermaid Aquata</p>
+                <p>Bardet Aurore</p>
+                <p>1 rue du Docteur Albert Schweitzer, 31200 Toulouse</p>
+                <p>Entrepreneur individuel — TVA non applicable</p>
+                <p>N° SIRET : 802 791 222 8</p>
+              </div>
+            </details>
+          </div>
+
+          <div className="border-t border-border/30 pt-6 text-center text-sm text-foreground/50">
             <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" style={{ color: '#00c8ef' }} className="hover:opacity-80 transition-opacity">Innov Studio</a>. Tous droits réservés.</p>
           </div>
         </div>
