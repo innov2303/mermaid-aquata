@@ -188,6 +188,7 @@ a, button, [role="button"], summary, label[for], select, input[type="checkbox"],
   }
   html {
     background-color: #0a3a5c;
+    overflow-x: hidden;
   }
   body {
     @apply font-sans antialiased text-foreground selection:bg-primary/30;

@@ -48,7 +48,7 @@ function App() {
         <LanguageProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <ScrollToTop />
-            <div className="min-h-screen flex flex-col selection:bg-accent/30 selection:text-white dark" style={{ backgroundColor: '#0a3a5c' }}>
+            <div className="min-h-screen flex flex-col selection:bg-accent/30 selection:text-white dark" style={{ backgroundColor: '#0a3a5c', overflowX: 'hidden' }}>
               <NavBar />
               <main className="flex-1">
                 <AnimatedRoutes />
