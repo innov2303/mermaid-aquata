@@ -72,7 +72,7 @@ export function NavBar() {
               src={logoSrc}
               alt="Mermaid Aquata"
               className={`object-contain transition-all duration-300 drop-shadow-lg ${
-                isScrolled ? "h-14 md:h-16" : "h-16 md:h-20"
+                isScrolled ? "h-9 md:h-16" : "h-10 md:h-20"
               }`}
             />
           </Link>
