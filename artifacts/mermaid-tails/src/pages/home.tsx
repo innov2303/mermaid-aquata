@@ -387,14 +387,12 @@ export default function Home() {
               className="relative"
             >
               {presentationPhotos.length > 0 ? (
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl" style={{ border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)' }}>
+                <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)', background: '#f0f9ff' }}>
                   <img
                     src={presentationPhotos[photoIdx]?.url}
                     alt={presentationPhotos[photoIdx]?.alt || ''}
-                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(1,10,24,0.5) 0%, transparent 50%)' }} />
 
                   {presentationPhotos.length > 1 && (
                     <>
@@ -426,7 +424,7 @@ export default function Home() {
                   )}
                 </div>
               ) : (
-                <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ border: '1.5px dashed rgba(0,100,160,0.3)', background: 'rgba(224,242,254,0.6)' }}>
+                <div className="w-full rounded-2xl flex items-center justify-center" style={{ aspectRatio: '4/5', border: '1.5px dashed rgba(0,100,160,0.3)', background: 'rgba(224,242,254,0.6)' }}>
                   <p className="text-sm" style={{ color: 'rgba(10,42,74,0.45)' }}>Photos à ajouter depuis l'administration</p>
                 </div>
               )}
