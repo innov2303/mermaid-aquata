@@ -105,7 +105,7 @@ export function Footer() {
     <>
       <footer className="bg-background pt-16 pb-8 border-t border-border/30 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
             <div className="md:col-span-2">
               <img src={logoSrc} alt="Mermaid Aquata" className="h-28 object-contain mb-4 drop-shadow-lg" />
               <p className="text-foreground/70 mb-6 max-w-sm">{tf.tagline}</p>
@@ -170,14 +170,26 @@ export function Footer() {
                 <Mail size={15} /> {tf.contactUs}
               </button>
             </div>
+
+            <div>
+              <h4 className="font-serif text-xl mb-4 text-white">{tf.legalColTitle}</h4>
+              <ul className="space-y-3">
+                <li>
+                  <button onClick={() => setLegalOpen(true)} className="text-foreground/70 hover:text-primary transition-colors text-left">
+                    {tf.legal}
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setRefundOpen(true)} className="text-foreground/70 hover:text-primary transition-colors text-left">
+                    {tf.refund}
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-center gap-x-4 gap-y-2 text-sm text-foreground/50 flex-wrap text-center">
             <p>&copy; {new Date().getFullYear()} Mermaid Aquata - By Cyril Allegret - <a href="https://innov-studio.fr" target="_blank" rel="noopener noreferrer" style={{ color: '#00c8ef' }} className="hover:opacity-80 transition-opacity">Innov Studio</a>. {tf.rights}</p>
-            <span className="hidden sm:inline text-foreground/20">|</span>
-            <button onClick={() => setLegalOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">{tf.legal}</button>
-            <span className="hidden sm:inline text-foreground/20">|</span>
-            <button onClick={() => setRefundOpen(true)} className="text-foreground/40 hover:text-foreground/70 transition-colors underline underline-offset-2 text-xs">{tf.refund}</button>
           </div>
         </div>
       </footer>
