@@ -70,6 +70,12 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
                 <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.nonReturnTitle}</p>
                 <p>{body.nonReturn}</p>
               </div>
+              {body.exchangesTitle && (
+                <div>
+                  <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.exchangesTitle}</p>
+                  <p>{body.exchanges}</p>
+                </div>
+              )}
               <div>
                 <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.euTitle}</p>
                 <p>{body.eu}</p>
