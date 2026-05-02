@@ -201,7 +201,7 @@ export default function Catalogue() {
                     <X size={20} />
                   </button>
                 </div>
-                <div className="px-4 pb-4" style={{ minHeight: 260 }}>
+                <div className="px-4 pb-4" style={{ height: 280, flexShrink: 0 }}>
                   <Carousel images={selected.images} />
                 </div>
                 <div className="flex flex-col px-6 pb-10 gap-5">
