@@ -161,24 +161,24 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata — Queues de Sirène en Silicone sur Mesure | Toulouse',
-        description: 'Créatrice de queues de sirène en silicone sur mesure depuis 2015. Monopalmes réalistes pour cinéma, aquarium et particuliers. Basée à Toulouse, livraison internationale.',
+        title: 'Mermaid Aquata | Queue de Sirène Silicone sur Mesure — Fabrication Artisanale Toulouse',
+        description: 'Commandez votre queue de sirène en silicone sur mesure. Fabrication artisanale française depuis 2015 : nageoires réalistes, monopalmes personnalisées pour particuliers, cinéma et spectacles aquatiques. Devis gratuit, livraison internationale.',
       },
       catalogue: {
-        title: 'Catalogue — Queues de Sirène | Mermaid Aquata',
-        description: 'Découvrez notre catalogue de queues de sirène en silicone : modèles standards et créations sur mesure. Chaque queue est unique, fabriquée artisanalement en France.',
+        title: 'Catalogue Queues de Sirène Silicone | Modèles & Nageoires sur Mesure — Mermaid Aquata',
+        description: 'Explorez nos modèles de queues de sirène artisanales : Classique silicone, Pieds invisibles, Longfish, Monopalme. Nageoires SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL. Fabrication française, livraison mondiale.',
       },
       commander: {
-        title: 'Commander une Queue de Sirène | Mermaid Aquata',
-        description: 'Commandez votre queue de sirène en silicone sur mesure. Suivez les étapes de personnalisation, de prise de mesures et de fabrication artisanale.',
+        title: 'Commander une Queue de Sirène sur Mesure | Devis Gratuit — Mermaid Aquata',
+        description: 'Obtenez votre queue de sirène en silicone sur mesure en 6 étapes. Choisissez modèle, forme de nageoire et couleurs, prenez vos mesures. Devis gratuit en 48h, fabrication artisanale, livraison internationale.',
       },
       faq: {
-        title: 'FAQ — Questions Fréquentes | Mermaid Aquata',
-        description: 'Toutes vos questions sur les queues de sirène en silicone : matériaux, entretien, délais, commandes et livraison. Réponses par Mermaid Aquata.',
+        title: 'FAQ Queues de Sirène | Prix, Délais de Fabrication, Matériaux, Commande — Mermaid Aquata',
+        description: 'Tout savoir sur les queues de sirène en silicone : prix à partir de 1 999 €, délai de fabrication 4 mois, matériaux silicone, entretien, livraison France et international. Réponses officielles Mermaid Aquata.',
       },
       remerciements: {
-        title: 'Remerciements & Sirènes | Mermaid Aquata',
-        description: 'Découvrez les sirènes qui portent nos créations et les témoignages de nos clientes. Merci à toutes pour votre confiance en Mermaid Aquata.',
+        title: 'Galerie Sirènes & Témoignages Clients | Nos Créations en Action — Mermaid Aquata',
+        description: 'Découvrez les queues de sirène Mermaid Aquata portées par des sirènes professionnelles et passionnées. Photos, avis clients authentiques et témoignages sur nos créations artisanales en silicone.',
       },
     },
   },
@@ -337,24 +337,24 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata — Custom Silicone Mermaid Tails | Toulouse, France',
-        description: 'Handcrafted silicone mermaid tails made to measure since 2015. Realistic monofins for cinema, aquariums and private customers. Based in Toulouse, worldwide shipping.',
+        title: 'Mermaid Aquata | Custom Silicone Mermaid Tails — Handcrafted in Toulouse, France',
+        description: 'Order your custom silicone mermaid tail. Handcrafted in France since 2015: realistic monofins for private customers, cinema and aquatic shows. Free quote, worldwide shipping.',
       },
       catalogue: {
-        title: 'Catalogue — Mermaid Tails | Mermaid Aquata',
-        description: 'Browse our catalogue of silicone mermaid tails: standard models and bespoke creations. Every tail is unique, handcrafted in France.',
+        title: 'Mermaid Tail Catalogue | Silicone Models & Custom Fins — Mermaid Aquata',
+        description: 'Browse our handcrafted mermaid tail models: Classic silicone, Invisible feet, Longfish, Monofin. Fin shapes: SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL. Made in France, worldwide delivery.',
       },
       commander: {
-        title: 'Order a Mermaid Tail | Mermaid Aquata',
-        description: 'Order your custom silicone mermaid tail. Follow the steps for personalisation, measurements and artisan craftsmanship.',
+        title: 'Order a Custom Mermaid Tail | Free Quote — Mermaid Aquata',
+        description: 'Get your custom silicone mermaid tail in 6 easy steps. Choose your model, fin shape and colours, provide your measurements. Free quote within 48h, artisan craftsmanship, worldwide shipping.',
       },
       faq: {
-        title: 'FAQ — Frequently Asked Questions | Mermaid Aquata',
-        description: 'All your questions about silicone mermaid tails: materials, care, lead times, ordering and delivery. Answered by Mermaid Aquata.',
+        title: 'Mermaid Tail FAQ | Pricing, Lead Times, Materials, Ordering — Mermaid Aquata',
+        description: 'Everything about silicone mermaid tails: prices from €1,999, 4-month production time, silicone materials, care, shipping to France and worldwide. Official answers from Mermaid Aquata.',
       },
       remerciements: {
-        title: 'Tributes & Mermaids | Mermaid Aquata',
-        description: 'Meet the mermaids wearing our creations and read testimonials from our customers. Thank you for trusting Mermaid Aquata.',
+        title: 'Mermaid Gallery & Customer Reviews | Our Creations in Action — Mermaid Aquata',
+        description: 'Discover Mermaid Aquata creations worn by professional and passionate mermaids. Photos, authentic customer reviews and testimonials about our handcrafted silicone tails.',
       },
     },
   },
@@ -513,24 +513,24 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata — Colas de Sirena de Silicona a Medida | Toulouse',
-        description: 'Creadoras de colas de sirena en silicona a medida desde 2015. Monofins realistas para cine, acuarios y particulares. Basadas en Toulouse, envíos internacionales.',
+        title: 'Mermaid Aquata | Cola de Sirena de Silicona a Medida — Fabricación Artesanal Toulouse',
+        description: 'Pide tu cola de sirena de silicona personalizada. Fabricación artesanal francesa desde 2015: monofins realistas para particulares, cine y espectáculos acuáticos. Presupuesto gratuito, envíos internacionales.',
       },
       catalogue: {
-        title: 'Catálogo — Colas de Sirena | Mermaid Aquata',
-        description: 'Descubre nuestro catálogo de colas de sirena en silicona: modelos estándar y creaciones a medida. Cada cola es única, fabricada artesanalmente en Francia.',
+        title: 'Catálogo Colas de Sirena Silicona | Modelos y Aletas a Medida — Mermaid Aquata',
+        description: 'Explora nuestros modelos de colas de sirena artesanales: Silicona clásica, Pies invisibles, Longfish, Monofin. Formas SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL. Fabricado en Francia, envío mundial.',
       },
       commander: {
-        title: 'Pedir una Cola de Sirena | Mermaid Aquata',
-        description: 'Pide tu cola de sirena de silicona personalizada. Sigue los pasos de personalización, medidas y fabricación artesanal.',
+        title: 'Pedir una Cola de Sirena a Medida | Presupuesto Gratuito — Mermaid Aquata',
+        description: 'Obtén tu cola de sirena de silicona personalizada en 6 pasos. Elige modelo, forma de aleta y colores, facilita tus medidas. Presupuesto gratuito en 48h, fabricación artesanal, envío internacional.',
       },
       faq: {
-        title: 'FAQ — Preguntas Frecuentes | Mermaid Aquata',
-        description: 'Todas tus preguntas sobre colas de sirena de silicona: materiales, cuidado, plazos, pedidos y envíos. Respondidas por Mermaid Aquata.',
+        title: 'FAQ Colas de Sirena | Precios, Plazos, Materiales, Pedidos — Mermaid Aquata',
+        description: 'Todo sobre las colas de sirena de silicona: precios desde 1.999 €, plazo de fabricación 4 meses, materiales de silicona, cuidado, envíos a Francia y todo el mundo. Respuestas oficiales de Mermaid Aquata.',
       },
       remerciements: {
-        title: 'Agradecimientos & Sirenas | Mermaid Aquata',
-        description: 'Conoce a las sirenas que lucen nuestras creaciones y los testimonios de nuestras clientes. Gracias por confiar en Mermaid Aquata.',
+        title: 'Galería Sirenas & Testimonios de Clientes | Nuestras Creaciones — Mermaid Aquata',
+        description: 'Descubre las creaciones de Mermaid Aquata lucidas por sirenas profesionales y apasionadas. Fotos, opiniones auténticas de clientes y testimonios sobre nuestras colas artesanales de silicona.',
       },
     },
   },
