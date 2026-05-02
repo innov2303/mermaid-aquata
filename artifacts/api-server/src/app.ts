@@ -38,14 +38,17 @@ app.use(
   }),
 );
 
-// ── Rate limiting ──────────────────────────────────────────────────────────
-// Global : 200 req / 15 min par IP
+// ── Rate limiting (désactivé en développement) ─────────────────────────────
+const isDev = process.env["NODE_ENV"] === "development";
+
+// Global : 500 req / 15 min par IP
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: 500,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Trop de requêtes, veuillez réessayer dans un moment." },
+  skip: () => isDev,
 });
 
 // Auth / admin : 15 tentatives / 15 min par IP
@@ -56,6 +59,7 @@ const authLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Trop de tentatives, veuillez réessayer plus tard." },
   skipSuccessfulRequests: true,
+  skip: () => isDev,
 });
 
 // Upload : 30 uploads / 15 min par IP
@@ -65,6 +69,7 @@ const uploadLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Limite d'upload atteinte, veuillez réessayer plus tard." },
+  skip: () => isDev,
 });
 
 app.use(globalLimiter);
