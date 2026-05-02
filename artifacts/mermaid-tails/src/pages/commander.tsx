@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn } from "lucide-react";
+import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
+
+const FIN_SCHEMA_IMAGES: Record<string, string> = {
+  SIREN:    '/images/schema-siren.jpg',
+  LAGOON:   '/images/schema-lagoon.jpg',
+  SPLASH:   '/images/schema-splash.jpg',
+  H2O:      '/images/schema-h2o.jpg',
+  GOLDFISH: '/images/schema-goldfish.jpg',
+  ARIEL:    '/images/schema-ariel.jpg',
+};
 
 const STEP_ICONS = [
   <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>,
@@ -17,10 +26,14 @@ const STEP_ICONS = [
 ];
 const STEP_IMAGES = [null, null, null, "/images/mes-mesures.webp", null, null];
 
+type SchemaPopup = { label: string; src: string } | null;
+
 export default function Commander() {
   const [currentStep, setCurrentStep] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [schemaPopup, setSchemaPopup] = useState<SchemaPopup>(null);
+  const [schemaImgError, setSchemaImgError] = useState(false);
   const { t } = useLanguage();
   useSEO("commander");
 
@@ -81,12 +94,30 @@ export default function Commander() {
                         </div>
                       )}
                       <ul className="flex flex-col gap-2">
-                        {(steps[currentStep] as { choices: string[] }).choices.map((choice, idx) => (
-                          <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff' }}>
-                            <span className="text-primary font-semibold text-xs">✦</span>
-                            {choice}
-                          </li>
-                        ))}
+                        {(steps[currentStep] as { choices: string[] }).choices.map((choice, idx) => {
+                          const hasSchema = choice.toUpperCase() in FIN_SCHEMA_IMAGES;
+                          return hasSchema ? (
+                            <li key={idx}>
+                              <button
+                                onClick={() => {
+                                  setSchemaImgError(false);
+                                  setSchemaPopup({ label: choice, src: FIN_SCHEMA_IMAGES[choice.toUpperCase()] });
+                                }}
+                                className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
+                                style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff', cursor: 'pointer' }}
+                              >
+                                <span className="text-primary font-semibold text-xs">✦</span>
+                                <span className="flex-1 text-left">{choice}</span>
+                                <ZoomIn size={14} className="opacity-40 group-hover:opacity-100 transition-opacity text-primary" />
+                              </button>
+                            </li>
+                          ) : (
+                            <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff' }}>
+                              <span className="text-primary font-semibold text-xs">✦</span>
+                              {choice}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   ) : (
@@ -163,6 +194,55 @@ export default function Commander() {
               style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)' }}
               onClick={e => e.stopPropagation()}
             />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Schema Popup */}
+      <AnimatePresence>
+        {schemaPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(4,15,40,0.92)' }}
+            onClick={() => setSchemaPopup(null)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white rounded-full p-2 hover:bg-white/10 transition-colors"
+              onClick={() => setSchemaPopup(null)}
+            >
+              <X size={32} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col items-center gap-4 max-w-[90vw] max-h-[90vh]"
+              onClick={e => e.stopPropagation()}
+            >
+              <h3 className="font-serif text-2xl" style={{ color: '#e0f5ff', textShadow: '0 0 20px rgba(0,200,239,0.5)' }}>
+                {schemaPopup.label}
+              </h3>
+              {schemaImgError ? (
+                <div className="flex flex-col items-center gap-3 rounded-2xl p-10" style={{ background: 'rgba(0,20,50,0.6)', border: '1.5px dashed rgba(0,200,239,0.35)' }}>
+                  <ImageIcon size={48} style={{ color: 'rgba(0,200,239,0.4)' }} />
+                  <p className="text-sm text-center" style={{ color: 'rgba(200,235,255,0.6)' }}>
+                    Schéma à venir — image non encore disponible
+                  </p>
+                </div>
+              ) : (
+                <img
+                  src={schemaPopup.src}
+                  alt={`Schéma ${schemaPopup.label}`}
+                  onError={() => setSchemaImgError(true)}
+                  className="max-h-[75vh] max-w-[85vw] rounded-2xl object-contain"
+                  style={{ boxShadow: '0 0 60px rgba(0,200,239,0.25)', border: '1.5px solid rgba(0,200,239,0.3)' }}
+                />
+              )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
