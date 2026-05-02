@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { Hammer, Globe, Leaf, Film, Heart, Tv, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Hammer, Globe, Leaf, Film, Heart, Tv, ChevronLeft, ChevronRight, ZoomIn, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
@@ -36,6 +36,7 @@ export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
   const [presentationPhotos, setPresentationPhotos] = useState<PresentationPhoto[]>([]);
   const [photoIdx, setPhotoIdx] = useState(0);
+  const [photoLightbox, setPhotoLightbox] = useState(false);
   const [isVideoInView, setIsVideoInView] = useState(false);
   const bubbleZoneRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
@@ -387,24 +388,32 @@ export default function Home() {
               className="relative"
             >
               {presentationPhotos.length > 0 ? (
-                <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: '4/5', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)', background: '#f0f9ff' }}>
+                <div
+                  className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl cursor-zoom-in group"
+                  style={{ border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)' }}
+                  onClick={() => setPhotoLightbox(true)}
+                >
                   <img
                     src={presentationPhotos[photoIdx]?.url}
                     alt={presentationPhotos[photoIdx]?.alt || ''}
-                    className="absolute inset-0 w-full h-full object-contain transition-opacity duration-500"
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                   />
+                  {/* Zoom hint on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'rgba(10,42,74,0.25)' }}>
+                    <ZoomIn size={40} className="text-white drop-shadow-lg" />
+                  </div>
 
                   {presentationPhotos.length > 1 && (
                     <>
                       <button
-                        onClick={() => setPhotoIdx(i => (i - 1 + presentationPhotos.length) % presentationPhotos.length)}
+                        onClick={e => { e.stopPropagation(); setPhotoIdx(i => (i - 1 + presentationPhotos.length) % presentationPhotos.length); }}
                         className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                         style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(0,100,160,0.25)', color: '#0a2a4a', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
                       >
                         <ChevronLeft size={18} />
                       </button>
                       <button
-                        onClick={() => setPhotoIdx(i => (i + 1) % presentationPhotos.length)}
+                        onClick={e => { e.stopPropagation(); setPhotoIdx(i => (i + 1) % presentationPhotos.length); }}
                         className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                         style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(0,100,160,0.25)', color: '#0a2a4a', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
                       >
@@ -424,7 +433,7 @@ export default function Home() {
                   )}
                 </div>
               ) : (
-                <div className="w-full rounded-2xl flex items-center justify-center" style={{ aspectRatio: '4/5', border: '1.5px dashed rgba(0,100,160,0.3)', background: 'rgba(224,242,254,0.6)' }}>
+                <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ border: '1.5px dashed rgba(0,100,160,0.3)', background: 'rgba(224,242,254,0.6)' }}>
                   <p className="text-sm" style={{ color: 'rgba(10,42,74,0.45)' }}>Photos à ajouter depuis l'administration</p>
                 </div>
               )}
@@ -479,6 +488,66 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Photo lightbox */}
+      <AnimatePresence>
+        {photoLightbox && presentationPhotos[photoIdx] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(4,15,40,0.94)' }}
+            onClick={() => setPhotoLightbox(false)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white rounded-full p-2 hover:bg-white/10 transition-colors"
+              onClick={() => setPhotoLightbox(false)}
+            >
+              <X size={32} />
+            </button>
+            <motion.img
+              src={presentationPhotos[photoIdx].url}
+              alt={presentationPhotos[photoIdx].alt || ''}
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="max-h-[90vh] max-w-[92vw] rounded-2xl object-contain"
+              style={{ boxShadow: '0 0 60px rgba(0,200,239,0.2)', border: '1.5px solid rgba(0,200,239,0.3)' }}
+              onClick={e => e.stopPropagation()}
+            />
+            {presentationPhotos.length > 1 && (
+              <>
+                <button
+                  onClick={e => { e.stopPropagation(); setPhotoIdx(i => (i - 1 + presentationPhotos.length) % presentationPhotos.length); }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', color: 'white' }}
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  onClick={e => { e.stopPropagation(); setPhotoIdx(i => (i + 1) % presentationPhotos.length); }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', color: 'white' }}
+                >
+                  <ChevronRight size={22} />
+                </button>
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+                  {presentationPhotos.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={e => { e.stopPropagation(); setPhotoIdx(i); }}
+                      className="rounded-full transition-all"
+                      style={{ width: i === photoIdx ? 22 : 8, height: 8, background: i === photoIdx ? '#00c8ef' : 'rgba(255,255,255,0.35)' }}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
