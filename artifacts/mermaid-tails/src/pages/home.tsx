@@ -339,11 +339,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Galerie / Vidéo Section ── (même fond que section 3, pas de séparateur) */}
-      <section ref={videoSectionRef} className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.6)' }} />
-        <FloatingBubbles count={12} />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <SectionDivider flip />
+
+      {/* ── Galerie / Vidéo Section ── */}
+      <section ref={videoSectionRef} className="py-24 relative z-10 section-clair">
+        <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -351,10 +351,10 @@ export default function Home() {
             transition={{ duration: 0.9 }}
             className="text-center mb-14"
           >
-            <h2 className="font-serif text-4xl md:text-5xl" style={{ color: '#e0f5ff', textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>
+            <h2 className="font-serif text-4xl md:text-5xl" style={{ color: '#0a2a4a' }}>
               {t.home.galleryTitle}
             </h2>
-            <p className="mt-4 text-lg font-light" style={{ color: 'rgba(200,235,255,0.7)' }}>{t.home.galleryCaption}</p>
+            <p className="mt-4 text-lg font-light" style={{ color: '#1a3d5c' }}>{t.home.galleryCaption}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -401,14 +401,14 @@ export default function Home() {
                       <button
                         onClick={() => setPhotoIdx(i => (i - 1 + presentationPhotos.length) % presentationPhotos.length)}
                         className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                        style={{ background: 'rgba(0,20,50,0.7)', border: '1px solid rgba(0,200,239,0.4)', color: '#e0f5ff' }}
+                        style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(0,100,160,0.25)', color: '#0a2a4a', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
                       >
                         <ChevronLeft size={18} />
                       </button>
                       <button
                         onClick={() => setPhotoIdx(i => (i + 1) % presentationPhotos.length)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
-                        style={{ background: 'rgba(0,20,50,0.7)', border: '1px solid rgba(0,200,239,0.4)', color: '#e0f5ff' }}
+                        style={{ background: 'rgba(255,255,255,0.85)', border: '1px solid rgba(0,100,160,0.25)', color: '#0a2a4a', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
                       >
                         <ChevronRight size={18} />
                       </button>
@@ -426,8 +426,8 @@ export default function Home() {
                   )}
                 </div>
               ) : (
-                <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ border: '1.5px dashed rgba(0,200,239,0.3)', background: 'rgba(0,20,50,0.4)' }}>
-                  <p className="text-sm" style={{ color: 'rgba(200,235,255,0.4)' }}>Photos à ajouter depuis l'administration</p>
+                <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ border: '1.5px dashed rgba(0,100,160,0.3)', background: 'rgba(224,242,254,0.6)' }}>
+                  <p className="text-sm" style={{ color: 'rgba(10,42,74,0.45)' }}>Photos à ajouter depuis l'administration</p>
                 </div>
               )}
             </motion.div>
