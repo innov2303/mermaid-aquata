@@ -161,7 +161,7 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata | Queue de Sirène Silicone sur Mesure — Fabrication Artisanale Toulouse',
+        title: 'Mermaid Aquata | Queue de Sirène Silicone sur Mesure — Fabrication Artisanale France',
         description: 'Commandez votre queue de sirène en silicone sur mesure. Fabrication artisanale française depuis 2015 : nageoires réalistes, monopalmes personnalisées pour particuliers, cinéma et spectacles aquatiques. Devis gratuit, livraison internationale.',
       },
       catalogue: {
@@ -337,7 +337,7 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata | Custom Silicone Mermaid Tails — Handcrafted in Toulouse, France',
+        title: 'Mermaid Aquata | Custom Silicone Mermaid Tails — Handcrafted in France, Worldwide Shipping',
         description: 'Order your custom silicone mermaid tail. Handcrafted in France since 2015: realistic monofins for private customers, cinema and aquatic shows. Free quote, worldwide shipping.',
       },
       catalogue: {
@@ -513,7 +513,7 @@ const translations = {
     },
     seo: {
       home: {
-        title: 'Mermaid Aquata | Cola de Sirena de Silicona a Medida — Fabricación Artesanal Toulouse',
+        title: 'Mermaid Aquata | Cola de Sirena de Silicona a Medida — Fabricación Artesanal Francia',
         description: 'Pide tu cola de sirena de silicona personalizada. Fabricación artesanal francesa desde 2015: monofins realistas para particulares, cine y espectáculos acuáticos. Presupuesto gratuito, envíos internacionales.',
       },
       catalogue: {

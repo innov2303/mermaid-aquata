@@ -13,7 +13,7 @@ const LANG_CODES: Record<Lang, string> = {
 
 const PAGE_KEYWORDS: Record<Lang, Record<SeoPage, string>> = {
   fr: {
-    home:          "queue de sirène, queue de sirène silicone, queue de sirène sur mesure, fabrication queue de sirène, nageoire sirène, monopalme sirène, costume sirène, sirène professionnelle, queue de sirène artisanale, queue de sirène France, queue de sirène Toulouse, mermaid tail France",
+    home:          "queue de sirène, queue de sirène silicone, queue de sirène sur mesure, fabrication queue de sirène, nageoire sirène, monopalme sirène, costume sirène, sirène professionnelle, queue de sirène artisanale, queue de sirène France, mermaid tail France, mermaid tail international, livraison internationale sirène",
     catalogue:     "catalogue queue de sirène, modèles queue de sirène, nageoire sirène silicone, SIREN LAGOON SPLASH H2O GOLDFISH ARIEL, queue classique silicone, pieds invisibles sirène, longfish sirène, monopalme personnalisée",
     commander:     "commander queue de sirène, devis queue de sirène, queue de sirène prix, fabrication sur mesure sirène, commande nageoire sirène, mesures queue de sirène, queue de sirène artisanale prix",
     faq:           "prix queue de sirène, délai fabrication queue de sirène, queue de sirène entretien, silicone pour sirène, queue de sirène livraison, FAQ sirène, queue de sirène combien ça coûte",
