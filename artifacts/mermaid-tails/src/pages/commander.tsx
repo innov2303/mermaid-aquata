@@ -223,9 +223,6 @@ export default function Commander() {
               className="flex flex-col items-center gap-4 max-w-[90vw] max-h-[90vh]"
               onClick={e => e.stopPropagation()}
             >
-              <h3 className="font-serif text-2xl" style={{ color: '#e0f5ff', textShadow: '0 0 20px rgba(0,200,239,0.5)' }}>
-                {schemaPopup.label}
-              </h3>
               {schemaImgError ? (
                 <div className="flex flex-col items-center gap-3 rounded-2xl p-10" style={{ background: 'rgba(0,20,50,0.6)', border: '1.5px dashed rgba(0,200,239,0.35)' }}>
                   <ImageIcon size={48} style={{ color: 'rgba(0,200,239,0.4)' }} />
