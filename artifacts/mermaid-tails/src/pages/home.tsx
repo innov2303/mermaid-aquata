@@ -370,7 +370,7 @@ export default function Home() {
             >
               <iframe
                 key={isVideoInView ? "play" : "pause"}
-                src={`https://www.youtube.com/embed/E6yHyxvdpIU?rel=0&modestbranding=1${isVideoInView ? '&autoplay=1&mute=1' : ''}`}
+                src={`https://www.youtube.com/embed/J8T6tc_l7xg?rel=0&modestbranding=1${isVideoInView ? '&autoplay=1&mute=1' : ''}`}
                 title="Mermaid Aquata — présentation"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
