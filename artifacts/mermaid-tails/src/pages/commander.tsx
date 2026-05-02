@@ -18,11 +18,11 @@ const FIN_SCHEMA_IMAGES: Record<string, string> = {
 
 // Remplir les IDs YouTube pour chaque type de queue (ex: 'dQw4w9WgXcQ')
 const TYPE_VIDEO_IDS: Record<string, string> = {
-  'Classique silicone':     '',
-  'Pieds invisible':        '',
-  'Longfish':               '',
-  'Monopalme':              '',
-  'Monopalme à extension':  '',
+  'Classique silicone':     'fe_MKakX5_g',
+  'Pieds invisible':        '2zWVVgAsVlk',
+  'Longfish':               'ZQHPnpF5tZI',
+  'Monopalme':              'je4oc3EBwPY',
+  'Monopalme à extension':  'gJCSegOKEUg',
 };
 
 const STEP_ICONS = [
