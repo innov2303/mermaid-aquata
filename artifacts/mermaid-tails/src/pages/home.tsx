@@ -366,7 +366,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.9 }}
-              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl"
+              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl"
               style={{ border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)' }}
             >
               <iframe
