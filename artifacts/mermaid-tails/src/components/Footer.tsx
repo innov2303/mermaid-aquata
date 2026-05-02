@@ -60,15 +60,15 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
             <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff" }}><X size={18} /></button>
             <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>{title}</h2>
             <div className="text-sm leading-relaxed space-y-4" style={{ color: "rgba(200,235,255,0.75)" }}>
-              <p dangerouslySetInnerHTML={{ __html: body.intro.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>') }} />
-              <p dangerouslySetInnerHTML={{ __html: body.contact.replace('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
+              <p style={{ whiteSpace: 'pre-line' }}>{body.intro}</p>
+              <p style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: body.contact.replaceAll('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
               <div>
                 <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.damagesTitle}</p>
                 <p>{body.damages}</p>
               </div>
               <div>
                 <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.nonReturnTitle}</p>
-                <p>{body.nonReturn}</p>
+                <p style={{ whiteSpace: 'pre-line' }}>{body.nonReturn}</p>
               </div>
               {body.exchangesTitle && (
                 <div>
@@ -83,7 +83,7 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
               <div>
                 <p className="font-medium mb-1" style={{ color: "#e0f5ff" }}>{body.refundTitle2}</p>
                 <p dangerouslySetInnerHTML={{ __html: body.refund1.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>') }} />
-                <p className="mt-2" dangerouslySetInnerHTML={{ __html: body.refund2.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>').replace('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
+                <p className="mt-2" style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: body.refund2.replace(/<b>/g, '<strong style="color:#e0f5ff">').replace(/<\/b>/g, '</strong>').replaceAll('sirenebleu31@gmail.com', '<a href="mailto:sirenebleu31@gmail.com" style="text-decoration:underline">sirenebleu31@gmail.com</a>') }} />
               </div>
             </div>
           </motion.div>
