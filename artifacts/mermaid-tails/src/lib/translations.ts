@@ -37,6 +37,8 @@ const translations = {
       contactTitle: 'Prête à devenir sirène ?',
       contactSubtitle: "Contactez-nous pour discuter de votre projet sur mesure et donner vie à vos rêves d'océan.",
       contactBtn: 'Nous contacter',
+      galleryTitle: 'En images',
+      galleryCaption: 'Quelques instants capturés au fil de notre aventure…',
     },
     catalogue: {
       title: 'Notre Catalogue',
@@ -211,6 +213,8 @@ const translations = {
       contactTitle: 'Ready to become a mermaid?',
       contactSubtitle: "Contact us to discuss your custom project and bring your ocean dreams to life.",
       contactBtn: 'Contact us',
+      galleryTitle: 'In pictures',
+      galleryCaption: 'A few moments captured along our journey…',
     },
     catalogue: {
       title: 'Our Catalogue',
@@ -385,6 +389,8 @@ const translations = {
       contactTitle: '¿Lista para convertirte en sirena?',
       contactSubtitle: "Contáctanos para hablar de tu proyecto a medida y dar vida a tus sueños oceánicos.",
       contactBtn: 'Contáctanos',
+      galleryTitle: 'En imágenes',
+      galleryCaption: 'Algunos momentos capturados a lo largo de nuestra aventura…',
     },
     catalogue: {
       title: 'Nuestro Catálogo',

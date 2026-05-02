@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { Hammer, Globe, Leaf, Film, Heart, Tv } from "lucide-react";
+import { Hammer, Globe, Leaf, Film, Heart, Tv, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
+import { fetchPresentation } from "@/lib/api";
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
@@ -28,10 +29,16 @@ const BUBBLE_ICONS = [
   <Tv size={24} />,
 ];
 
+type PresentationPhoto = { id: number; url: string; alt: string };
+
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
   const [contactOpen, setContactOpen] = useState(false);
+  const [presentationPhotos, setPresentationPhotos] = useState<PresentationPhoto[]>([]);
+  const [photoIdx, setPhotoIdx] = useState(0);
+  const [isVideoInView, setIsVideoInView] = useState(false);
   const bubbleZoneRef = useRef<HTMLDivElement>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   useSEO("home");
@@ -45,6 +52,21 @@ export default function Home() {
       delay: Math.random() * 12,
     }));
     setBubbles(generated);
+  }, []);
+
+  useEffect(() => {
+    fetchPresentation().then(setPresentationPhotos).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const el = videoSectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsVideoInView(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   const scrollToNext = () => {
@@ -314,6 +336,106 @@ export default function Home() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      <SectionDivider flip />
+
+      {/* ── Galerie / Vidéo Section ── */}
+      <section ref={videoSectionRef} className="py-24 relative overflow-hidden" style={{ background: '#010a18', backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'rgba(1,10,24,0.6)' }} />
+        <FloatingBubbles count={12} />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="text-center mb-14"
+          >
+            <h2 className="font-serif text-4xl md:text-5xl" style={{ color: '#e0f5ff', textShadow: '0 0 30px rgba(0,200,239,0.4)' }}>
+              {t.home.galleryTitle}
+            </h2>
+            <p className="mt-4 text-lg font-light" style={{ color: 'rgba(200,235,255,0.7)' }}>{t.home.galleryCaption}</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+            {/* Gauche : vidéo YouTube, lecture auto à l'entrée dans le viewport */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
+              className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl"
+              style={{ border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)' }}
+            >
+              <iframe
+                key={isVideoInView ? "play" : "pause"}
+                src={`https://www.youtube.com/embed/E6yHyxvdpIU?rel=0&modestbranding=1${isVideoInView ? '&autoplay=1&mute=1' : ''}`}
+                title="Mermaid Aquata — présentation"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </motion.div>
+
+            {/* Droite : carousel de photos */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, delay: 0.15 }}
+              className="relative"
+            >
+              {presentationPhotos.length > 0 ? (
+                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl" style={{ border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 40px rgba(0,200,239,0.18)' }}>
+                  <img
+                    src={presentationPhotos[photoIdx]?.url}
+                    alt={presentationPhotos[photoIdx]?.alt || ''}
+                    className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(1,10,24,0.5) 0%, transparent 50%)' }} />
+
+                  {presentationPhotos.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setPhotoIdx(i => (i - 1 + presentationPhotos.length) % presentationPhotos.length)}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                        style={{ background: 'rgba(0,20,50,0.7)', border: '1px solid rgba(0,200,239,0.4)', color: '#e0f5ff' }}
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button
+                        onClick={() => setPhotoIdx(i => (i + 1) % presentationPhotos.length)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                        style={{ background: 'rgba(0,20,50,0.7)', border: '1px solid rgba(0,200,239,0.4)', color: '#e0f5ff' }}
+                      >
+                        <ChevronRight size={18} />
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                        {presentationPhotos.map((_, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setPhotoIdx(i)}
+                            className="rounded-full transition-all"
+                            style={{ width: i === photoIdx ? 20 : 8, height: 8, background: i === photoIdx ? '#00c8ef' : 'rgba(255,255,255,0.4)' }}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="w-full aspect-[4/3] rounded-2xl flex items-center justify-center" style={{ border: '1.5px dashed rgba(0,200,239,0.3)', background: 'rgba(0,20,50,0.4)' }}>
+                  <p className="text-sm" style={{ color: 'rgba(200,235,255,0.4)' }}>Photos à ajouter depuis l'administration</p>
+                </div>
+              )}
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

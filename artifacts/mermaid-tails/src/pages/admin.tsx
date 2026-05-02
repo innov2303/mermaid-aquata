@@ -5,6 +5,7 @@ import {
   checkAdminToken,
   fetchCatalogue, createCatalogueItem, updateCatalogueItem, deleteCatalogueItem,
   fetchRemerciements, createRemerciement, updateRemerciement, deleteRemerciement,
+  fetchPresentation, createPresentationPhoto, updatePresentationPhoto, deletePresentationPhoto,
   uploadImage, listUploads, deleteUpload,
 } from "@/lib/api";
 
@@ -17,6 +18,7 @@ const SECTIONS = [
 
 type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; images: string[] };
 type Remerciement = { id: number; name: string; img: string | null };
+type PresentationPhoto = { id: number; url: string; alt: string };
 type UploadedFile = { filename: string; url: string };
 
 const cardStyle = {
@@ -489,10 +491,112 @@ function RemerciementsAdmin({ token }: { token: string }) {
   );
 }
 
+// ── Présentation Photos Editor ─────────────────────────────────────────────
+function PresentationAdmin({ token }: { token: string }) {
+  const [items, setItems] = useState<PresentationPhoto[]>([]);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [form, setForm] = useState<Partial<PresentationPhoto>>({});
+  const [adding, setAdding] = useState(false);
+  const [addForm, setAddForm] = useState<Partial<PresentationPhoto>>({});
+  const [msg, setMsg] = useState("");
+
+  useEffect(() => { fetchPresentation().then(setItems).catch(() => {}); }, []);
+
+  function notify(m: string) { setMsg(m); setTimeout(() => setMsg(""), 2500); }
+  function startEdit(item: PresentationPhoto) { setEditId(item.id); setForm({ ...item }); }
+
+  async function saveEdit() {
+    await updatePresentationPhoto(editId!, form, token);
+    setItems(items.map(i => i.id === editId ? { ...i, ...form } as PresentationPhoto : i));
+    setEditId(null); notify("✓ Photo mise à jour");
+  }
+  async function removeItem(id: number) {
+    if (!confirm("Supprimer cette photo ?")) return;
+    await deletePresentationPhoto(id, token); setItems(items.filter(i => i.id !== id)); notify("✓ Photo supprimée");
+  }
+  async function addItem() {
+    if (!addForm.url) return;
+    const newItem = await createPresentationPhoto(addForm, token);
+    setItems([...items, newItem]); setAdding(false); setAddForm({}); notify("✓ Photo ajoutée");
+  }
+
+  const labelStyle = { color: "rgba(200,235,255,0.75)" };
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Galerie Présentation</h2>
+          <p className="text-sm mt-1" style={{ color: "rgba(200,235,255,0.5)" }}>Photos affichées dans la section vidéo de la page d'accueil</p>
+        </div>
+        <button onClick={() => setAdding(true)} className={btnPrimary} style={{ background: "#00c8ef" }}><Plus size={16} /> Ajouter</button>
+      </div>
+      {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
+
+      {adding && (
+        <div className="mb-6 rounded-2xl p-6" style={cardStyle}>
+          <h3 className="font-serif mb-4" style={{ color: "#e0f5ff" }}>Nouvelle photo</h3>
+          <div className="flex flex-col gap-3 mb-4">
+            <ImagePicker token={token} value={addForm.url || ""} onChange={url => setAddForm({ ...addForm, url })} label="Image" />
+            <div>
+              <label className="text-xs font-medium mb-1 block" style={labelStyle}>Légende (optionnel)</label>
+              <input className={inputClass} style={inputStyle} value={addForm.alt || ""} onChange={e => setAddForm({ ...addForm, alt: e.target.value })} placeholder="Description de la photo" />
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <button onClick={addItem} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
+            <button onClick={() => setAdding(false)} className={btnPrimary} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={15} /> Annuler</button>
+          </div>
+        </div>
+      )}
+
+      {items.length === 0 && !adding && (
+        <p className="text-center py-12" style={{ color: "rgba(200,235,255,0.4)" }}>Aucune photo pour l'instant. Ajoutez-en une !</p>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {items.map(item => (
+          <motion.div key={item.id} layout className="rounded-2xl overflow-hidden" style={cardStyle}>
+            {item.url && (
+              <div className="aspect-[4/3] w-full overflow-hidden">
+                <img src={item.url} alt={item.alt} className="w-full h-full object-cover" />
+              </div>
+            )}
+            <div className="p-4">
+              {editId === item.id ? (
+                <div className="flex flex-col gap-3">
+                  <ImagePicker token={token} value={form.url || ""} onChange={url => setForm({ ...form, url })} label="Image" />
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={labelStyle}>Légende</label>
+                    <input className={inputClass} style={inputStyle} value={form.alt || ""} onChange={e => setForm({ ...form, alt: e.target.value })} />
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={saveEdit} className={btnPrimary + " text-xs px-3 py-1.5"} style={{ background: "#00c8ef" }}><Save size={13} /> Enregistrer</button>
+                    <button onClick={() => setEditId(null)} className={btnPrimary + " text-xs px-3 py-1.5"} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={13} /> Annuler</button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-light truncate" style={{ color: "rgba(200,235,255,0.7)" }}>{item.alt || <span style={{ color: "rgba(200,235,255,0.35)" }}>Sans légende</span>}</p>
+                  <div className="flex gap-2 flex-shrink-0">
+                    <button onClick={() => startEdit(item)} className="p-2 rounded-xl hover:scale-110 transition-all" style={{ background: "rgba(0,200,239,0.1)", color: "#00c8ef" }}><Pencil size={15} /></button>
+                    <button onClick={() => removeItem(item.id)} className="p-2 rounded-xl hover:scale-110 transition-all" style={{ background: "rgba(239,68,68,0.1)", color: "#f87171" }}><Trash2 size={15} /></button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Main Admin Page ────────────────────────────────────────────────────────
 const TABS = [
   { id: "catalogue", label: "Catalogue" },
   { id: "remerciements", label: "Remerciements" },
+  { id: "presentation", label: "Galerie accueil" },
   { id: "media", label: "Médiathèque" },
 ] as const;
 
@@ -538,6 +642,7 @@ export default function Admin() {
           <motion.div key={tab} initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }} transition={{ duration: 0.2 }}>
             {tab === "catalogue" && <CatalogueAdmin token={token} />}
             {tab === "remerciements" && <RemerciementsAdmin token={token} />}
+            {tab === "presentation" && <PresentationAdmin token={token} />}
             {tab === "media" && <MediaAdmin token={token} />}
           </motion.div>
         </AnimatePresence>

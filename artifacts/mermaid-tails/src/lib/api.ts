@@ -59,6 +59,31 @@ export async function deleteCatalogueItem(id: number, token: string) {
   return r.json();
 }
 
+// Présentation photos (galerie accueil)
+export async function fetchPresentation() {
+  const r = await fetch(`${BASE}/presentation`);
+  if (!r.ok) throw new Error("Erreur chargement présentation");
+  return r.json();
+}
+
+export async function createPresentationPhoto(item: object, token: string) {
+  const r = await fetch(`${BASE}/presentation`, { method: "POST", headers: headers(token), body: JSON.stringify(item) });
+  if (!r.ok) throw new Error("Erreur création photo");
+  return r.json();
+}
+
+export async function updatePresentationPhoto(id: number, item: object, token: string) {
+  const r = await fetch(`${BASE}/presentation/${id}`, { method: "PUT", headers: headers(token), body: JSON.stringify(item) });
+  if (!r.ok) throw new Error("Erreur mise à jour photo");
+  return r.json();
+}
+
+export async function deletePresentationPhoto(id: number, token: string) {
+  const r = await fetch(`${BASE}/presentation/${id}`, { method: "DELETE", headers: headers(token) });
+  if (!r.ok) throw new Error("Erreur suppression photo");
+  return r.json();
+}
+
 // Remerciements
 export async function fetchRemerciements() {
   const r = await fetch(`${BASE}/remerciements`);
