@@ -42,7 +42,7 @@ const translations = {
     },
     catalogue: {
       title: 'Mes Queues de Sirène',
-      subtitle: 'Découvrez mes créations artisanales. Chaque modèle peut être personnalisé selon vos envies.',
+      subtitle: 'Découvrez mes nageoires. Chaque modèle peut être personnalisé selon vos envies.',
       details: 'Détails',
       order: 'Commander',
       sections: {
