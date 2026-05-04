@@ -446,7 +446,7 @@ export default function Home() {
       <SectionDivider />
 
       {/* Contact Section */}
-      <section className="py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/images/ocean-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
+      <section className="py-32 relative overflow-hidden" style={{ backgroundImage: 'url(/images/cta-bg.PNG)', backgroundSize: 'cover', backgroundPosition: 'center center' }}>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.82) 0%, rgba(0,60,100,0.75) 100%)' }} />
         <FloatingBubbles count={14} />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
