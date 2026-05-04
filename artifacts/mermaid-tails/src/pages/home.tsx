@@ -446,8 +446,8 @@ export default function Home() {
       <SectionDivider />
 
       {/* Contact Section */}
-      <section className="relative overflow-hidden" style={{ backgroundImage: 'url(/images/cta-bg.PNG)', backgroundSize: isMobile ? '100% auto' : 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: isMobile ? 'top center' : 'center center', backgroundColor: '#030d1e', minHeight: isMobile ? 'auto' : '420px', display: 'flex', alignItems: isMobile ? 'flex-start' : 'center', paddingTop: isMobile ? '150px' : '60px', paddingBottom: '60px' }}>
-        <div className="absolute inset-0" style={{ background: isMobile ? 'linear-gradient(180deg, rgba(4,15,40,0.45) 0%, rgba(4,15,40,0.92) 40%, rgba(4,15,40,0.97) 100%)' : 'linear-gradient(135deg, rgba(4,15,40,0.85) 0%, rgba(0,60,100,0.78) 100%)' }} />
+      <section className="relative overflow-hidden" style={{ backgroundImage: 'url(/images/cta-bg.PNG)', backgroundSize: isMobile ? '100% auto' : 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundColor: '#030d1e', minHeight: isMobile ? '134px' : '420px', display: 'flex', alignItems: 'center', paddingTop: isMobile ? '24px' : '60px', paddingBottom: isMobile ? '24px' : '60px' }}>
+        <div className="absolute inset-0" style={{ background: isMobile ? 'rgba(4,15,40,0.55)' : 'linear-gradient(135deg, rgba(4,15,40,0.85) 0%, rgba(0,60,100,0.78) 100%)' }} />
         <FloatingBubbles count={14} />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
