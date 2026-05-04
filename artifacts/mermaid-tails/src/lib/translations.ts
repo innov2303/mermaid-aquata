@@ -100,7 +100,7 @@ const translations = {
       title: 'Foire Aux Questions',
       subtitle: 'Toutes les réponses à vos questions concernant mes queues de sirène artisanales.',
       items: [
-        { q: 'Combien coûtent vos queues ?', a: 'Mes queues commencent à 1 999 euros. Livraison non incluse.' },
+        { q: 'Combien coûtent vos queues ?', a: 'Mes queues commencent à 1 990 euros. Livraison non incluse.' },
         { q: "Qu'acceptez-vous comme moyen de paiement ?", a: "J'accepte les paiements par PayPal ou virement bancaire (via formulaire de contact)." },
         { q: 'Comment commander une queue ?', a: "Vous pouvez soumettre une demande de création de nageoire sur mesure directement sur le site web via le formulaire de contact ou par messages Instagram." },
         { q: 'Acceptez-vous les plans de paiement ?', a: "Je n'offre pas de plans de paiement pour les nouveaux clients. Je propose désormais des paiements moitié-moitié pour les clients fidèles." },
@@ -290,7 +290,7 @@ const translations = {
       title: 'Frequently Asked Questions',
       subtitle: 'All the answers to your questions about my handcrafted mermaid tails.',
       items: [
-        { q: 'How much do your tails cost?', a: 'My tails start from 1,999 euros. Shipping not included.' },
+        { q: 'How much do your tails cost?', a: 'My tails start from 1,990 euros. Shipping not included.' },
         { q: 'What payment methods do you accept?', a: 'I accept payments by PayPal or bank transfer (via contact form).' },
         { q: 'How do I order a tail?', a: 'You can submit a custom fin creation request directly on the website via the contact form or through Instagram messages.' },
         { q: 'Do you offer payment plans?', a: 'I do not offer payment plans for new customers. I now offer half-and-half payments for returning clients.' },
@@ -480,7 +480,7 @@ const translations = {
       title: 'Preguntas Frecuentes',
       subtitle: 'Todas las respuestas a tus preguntas sobre mis colas de sirena artesanales.',
       items: [
-        { q: '¿Cuánto cuestan sus colas?', a: 'Mis colas comienzan desde 1.999 euros. Envío no incluido.' },
+        { q: '¿Cuánto cuestan sus colas?', a: 'Mis colas comienzan desde 1.990 euros. Envío no incluido.' },
         { q: '¿Qué métodos de pago aceptan?', a: 'Acepto pagos por PayPal o transferencia bancaria (a través del formulario de contacto).' },
         { q: '¿Cómo pido una cola?', a: 'Puedes enviar una solicitud de creación de aleta a medida directamente en el sitio web a través del formulario de contacto o por mensajes de Instagram.' },
         { q: '¿Ofrecen planes de pago?', a: 'No ofrezco planes de pago para nuevos clientes. Ofrezco pagos a mitades para clientes habituales.' },
