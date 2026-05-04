@@ -446,32 +446,32 @@ export default function Home() {
       <SectionDivider />
 
       {/* Contact Section */}
-      <section className="relative overflow-hidden" style={{ backgroundImage: 'url(/images/cta-bg.PNG)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundColor: '#030d1e', minHeight: '520px', display: 'flex', alignItems: 'center', paddingTop: '80px', paddingBottom: '80px' }}>
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.82) 0%, rgba(0,60,100,0.75) 100%)' }} />
+      <section className="relative overflow-hidden" style={{ backgroundImage: 'url(/images/cta-bg.PNG)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundColor: '#030d1e', minHeight: '420px', display: 'flex', alignItems: 'center', paddingTop: '60px', paddingBottom: '60px' }}>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(4,15,40,0.85) 0%, rgba(0,60,100,0.78) 100%)' }} />
         <FloatingBubbles count={14} />
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-              <h2 className="text-4xl md:text-5xl font-serif text-white mb-6" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>
+              <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 md:mb-6 leading-tight" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>
                 {t.home.contactTitle}
               </h2>
-              <p className="text-xl mb-12 font-light" style={{ color: 'rgba(255,255,255,0.85)' }}>
+              <p className="text-base md:text-xl mb-8 md:mb-12 font-light px-2" style={{ color: 'rgba(255,255,255,0.85)', lineHeight: '1.7' }}>
                 {t.home.contactSubtitle}
               </p>
-              <div className="flex justify-center mt-10">
+              <div className="flex justify-center mt-6 md:mt-10">
                 <motion.button
                   onClick={() => setContactOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
                     position: 'relative',
-                    padding: '16px 48px',
+                    padding: '14px 36px',
                     borderRadius: '999px',
                     border: '1px solid rgba(0,200,239,0.55)',
                     background: 'linear-gradient(135deg, rgba(0,200,239,0.18) 0%, rgba(0,100,180,0.12) 100%)',
                     backdropFilter: 'blur(10px)',
                     color: '#ffffff',
-                    fontSize: '1.125rem',
+                    fontSize: '1rem',
                     fontFamily: 'serif',
                     letterSpacing: '0.06em',
                     cursor: 'pointer',
