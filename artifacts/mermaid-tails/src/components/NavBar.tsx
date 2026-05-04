@@ -48,7 +48,7 @@ export function NavBar() {
     { href: "/catalogue", label: t.nav.catalogue },
     { href: "/commander", label: t.nav.commander },
     { href: "/faq", label: t.nav.faq },
-    { href: "/remerciements", label: t.nav.remerciements },
+    { href: "/avis", label: t.nav.remerciements },
   ];
 
   const currentLang = LANGUAGES.find(l => l.code === lang)!;

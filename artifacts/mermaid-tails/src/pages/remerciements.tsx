@@ -12,7 +12,7 @@ export default function Remerciements() {
   const [sirenes, setSirenes] = useState<Sirene[]>([]);
   const [selected, setSelected] = useState<Sirene | null>(null);
   const { t } = useLanguage();
-  useSEO("remerciements");
+  useSEO("avis");
 
   useEffect(() => {
     fetchRemerciements().then(setSirenes).catch(() => {});

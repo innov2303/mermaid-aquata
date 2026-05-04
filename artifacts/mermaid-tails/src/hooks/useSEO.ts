@@ -3,7 +3,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import translations from "@/lib/translations";
 import type { Lang } from "@/lib/translations";
 
-type SeoPage = "home" | "catalogue" | "commander" | "faq" | "remerciements";
+type SeoPage = "home" | "catalogue" | "commander" | "faq" | "avis";
 
 const LANG_CODES: Record<Lang, string> = {
   fr: "fr-FR",
@@ -17,21 +17,21 @@ const PAGE_KEYWORDS: Record<Lang, Record<SeoPage, string>> = {
     catalogue:     "catalogue queue de sirène, modèles queue de sirène, nageoire sirène silicone, SIREN LAGOON SPLASH H2O GOLDFISH ARIEL, queue classique silicone, pieds invisibles sirène, longfish sirène, monopalme personnalisée",
     commander:     "commander queue de sirène, devis queue de sirène, queue de sirène prix, fabrication sur mesure sirène, commande nageoire sirène, mesures queue de sirène, queue de sirène artisanale prix",
     faq:           "prix queue de sirène, délai fabrication queue de sirène, queue de sirène entretien, silicone pour sirène, queue de sirène livraison, FAQ sirène, queue de sirène combien ça coûte",
-    remerciements: "galerie queue de sirène, témoignages sirène, photos queue de sirène, avis clients sirène, sirènes professionnelles, queue de sirène portée",
+    avis: "avis clients sirène, témoignages sirène, galerie queue de sirène, photos queue de sirène, sirènes professionnelles, queue de sirène portée",
   },
   en: {
     home:          "mermaid tail, silicone mermaid tail, custom mermaid tail, mermaid tail maker, realistic mermaid tail, professional mermaid, mermaid tail France, handmade mermaid tail, mermaid monofin",
     catalogue:     "mermaid tail catalogue, mermaid tail models, silicone mermaid fin, SIREN LAGOON SPLASH H2O GOLDFISH ARIEL, classic silicone tail, invisible feet mermaid, longfish tail, custom monofin",
     commander:     "order mermaid tail, mermaid tail price, custom mermaid tail order, bespoke mermaid tail, mermaid tail measurements, mermaid tail quote",
     faq:           "mermaid tail price, mermaid tail lead time, mermaid tail maintenance, silicone mermaid, mermaid tail shipping, FAQ mermaid tail, how much does a mermaid tail cost",
-    remerciements: "mermaid tail gallery, mermaid tail reviews, mermaid tail photos, customer testimonials, professional mermaids, mermaid tail worn",
+    avis: "mermaid tail reviews, customer testimonials, mermaid tail gallery, mermaid tail photos, professional mermaids, mermaid tail worn",
   },
   es: {
     home:          "cola de sirena, cola de sirena silicona, cola de sirena a medida, fabricación cola de sirena, aleta sirena, monofin sirena, disfraz sirena, sirena profesional, cola de sirena artesanal, cola de sirena Francia",
     catalogue:     "catálogo cola de sirena, modelos cola sirena, aleta sirena silicona, SIREN LAGOON SPLASH H2O GOLDFISH ARIEL, cola silicona clásica, pies invisibles sirena, longfish sirena, monofin personalizado",
     commander:     "pedir cola de sirena, presupuesto cola sirena, precio cola sirena, fabricación a medida sirena, medidas cola de sirena, cola de sirena artesanal precio",
     faq:           "precio cola de sirena, plazo fabricación cola sirena, mantenimiento cola sirena, silicona sirena, envío cola sirena, FAQ sirena, cuánto cuesta una cola de sirena",
-    remerciements: "galería cola de sirena, testimonios sirena, fotos cola de sirena, opiniones clientes sirena, sirenas profesionales",
+    avis: "reseñas clientes cola de sirena, testimonios sirena, galería cola de sirena, fotos cola de sirena, sirenas profesionales",
   },
 };
 

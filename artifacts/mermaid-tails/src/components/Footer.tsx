@@ -151,7 +151,7 @@ export function Footer() {
                 <li><Link href="/catalogue" className="text-foreground/70 hover:text-primary transition-colors">{tn.catalogue}</Link></li>
                 <li><Link href="/commander" className="text-foreground/70 hover:text-primary transition-colors">{tn.commander}</Link></li>
                 <li><Link href="/faq" className="text-foreground/70 hover:text-primary transition-colors">{tn.faq}</Link></li>
-                <li><Link href="/remerciements" className="text-foreground/70 hover:text-primary transition-colors">{tn.remerciements}</Link></li>
+                <li><Link href="/avis" className="text-foreground/70 hover:text-primary transition-colors">{tn.remerciements}</Link></li>
               </ul>
             </div>
 

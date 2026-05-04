@@ -33,7 +33,7 @@ function AnimatedRoutes() {
         <Route path="/catalogue" component={Catalogue} />
         <Route path="/commander" component={Commander} />
         <Route path="/faq" component={Faq} />
-        <Route path="/remerciements" component={Remerciements} />
+        <Route path="/avis" component={Remerciements} />
         <Route path="/admin" component={Admin} />
         <Route component={NotFound} />
       </Switch>

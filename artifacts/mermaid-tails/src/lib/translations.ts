@@ -13,7 +13,7 @@ const translations = {
       catalogue: 'Catalogue',
       commander: 'Commander',
       faq: 'FAQ',
-      remerciements: 'Remerciements',
+      remerciements: 'Avis',
     },
     home: {
       heroTitle: 'Bienvenue chez Mermaid Aquata',
@@ -113,7 +113,7 @@ const translations = {
       ],
     },
     remerciements: {
-      title: 'Mes Sirènes',
+      title: 'Avis',
       subtitle: 'Merci de me faire confiance pour réaliser vos rêves.',
     },
     footer: {
@@ -179,9 +179,9 @@ const translations = {
         title: 'FAQ Queues de Sirène | Prix, Délais de Fabrication, Matériaux, Commande — Mermaid Aquata',
         description: 'Tout savoir sur les queues de sirène en silicone : prix à partir de 1 999 €, délai de fabrication 4 mois, matériaux silicone, entretien, livraison France et international. Réponses officielles Mermaid Aquata.',
       },
-      remerciements: {
-        title: 'Galerie Sirènes & Témoignages Clients | Nos Créations en Action — Mermaid Aquata',
-        description: 'Découvrez les queues de sirène Mermaid Aquata portées par des sirènes professionnelles et passionnées. Photos, avis clients authentiques et témoignages sur nos créations artisanales en silicone.',
+      avis: {
+        title: 'Avis Clients & Galerie Photos | Queues de Sirène Portées — Mermaid Aquata',
+        description: 'Découvrez les avis clients et photos de queues de sirène Mermaid Aquata portées par des passionnées et professionnelles. Témoignages authentiques sur nos créations artisanales en silicone.',
       },
     },
   },
@@ -192,7 +192,7 @@ const translations = {
       catalogue: 'Catalogue',
       commander: 'Order',
       faq: 'FAQ',
-      remerciements: 'My Mermaids',
+      remerciements: 'Reviews',
     },
     home: {
       heroTitle: 'Welcome to Mermaid Aquata',
@@ -292,7 +292,7 @@ const translations = {
       ],
     },
     remerciements: {
-      title: 'My Mermaids',
+      title: 'Reviews',
       subtitle: 'Thank you for trusting me to make your dreams come true.',
     },
     footer: {
@@ -358,9 +358,9 @@ const translations = {
         title: 'Mermaid Tail FAQ | Pricing, Lead Times, Materials, Ordering — Mermaid Aquata',
         description: 'Everything about silicone mermaid tails: prices from €1,999, 4-month production time, silicone materials, care, shipping to France and worldwide. Official answers from Mermaid Aquata.',
       },
-      remerciements: {
-        title: 'Mermaid Gallery & Customer Reviews | Our Creations in Action — Mermaid Aquata',
-        description: 'Discover Mermaid Aquata creations worn by professional and passionate mermaids. Photos, authentic customer reviews and testimonials about our handcrafted silicone tails.',
+      avis: {
+        title: 'Customer Reviews & Photo Gallery | Mermaid Tails in Action — Mermaid Aquata',
+        description: 'Discover customer reviews and photos of Mermaid Aquata tails worn by passionate and professional mermaids. Authentic testimonials about our handcrafted silicone creations.',
       },
     },
   },
@@ -371,7 +371,7 @@ const translations = {
       catalogue: 'Catálogo',
       commander: 'Pedir',
       faq: 'FAQ',
-      remerciements: 'Nuestras Sirenas',
+      remerciements: 'Reseñas',
     },
     home: {
       heroTitle: 'Bienvenida a Mermaid Aquata',
@@ -471,7 +471,7 @@ const translations = {
       ],
     },
     remerciements: {
-      title: 'Nuestras Sirenas',
+      title: 'Reseñas',
       subtitle: 'Gracias por confiar en mí para hacer realidad tus sueños.',
     },
     footer: {
@@ -537,9 +537,9 @@ const translations = {
         title: 'FAQ Colas de Sirena | Precios, Plazos, Materiales, Pedidos — Mermaid Aquata',
         description: 'Todo sobre las colas de sirena de silicona: precios desde 1.999 €, plazo de fabricación 4 meses, materiales de silicona, cuidado, envíos a Francia y todo el mundo. Respuestas oficiales de Mermaid Aquata.',
       },
-      remerciements: {
-        title: 'Galería Sirenas & Testimonios de Clientes | Nuestras Creaciones — Mermaid Aquata',
-        description: 'Descubre las creaciones de Mermaid Aquata lucidas por sirenas profesionales y apasionadas. Fotos, opiniones auténticas de clientes y testimonios sobre nuestras colas artesanales de silicona.',
+      avis: {
+        title: 'Reseñas de Clientes & Galería de Fotos | Colas de Sirena en Acción — Mermaid Aquata',
+        description: 'Descubre reseñas de clientes y fotos de colas de sirena Mermaid Aquata lucidas por apasionadas y profesionales. Opiniones auténticas sobre nuestras creaciones artesanales de silicona.',
       },
     },
   },
