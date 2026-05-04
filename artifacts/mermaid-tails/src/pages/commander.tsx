@@ -30,6 +30,21 @@ const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, n
 
 const INSTAGRAM_URL = 'https://www.instagram.com/mermaid.real.aquata/';
 
+const CHOICE_CATALOGUE_MAP: Record<string, string> = {
+  'classique silicone':       'Queue de sirène silicone',
+  'classic silicone':         'Queue de sirène silicone',
+  'silicona clásica':         'Queue de sirène silicone',
+  'pieds invisible':          'Queue de sirène silicone "Pieds invisibles"',
+  'invisible feet':           'Queue de sirène silicone "Pieds invisibles"',
+  'pies invisibles':          'Queue de sirène silicone "Pieds invisibles"',
+  'longfish':                 'Queue de sirène silicone "Longfish/Extended tail"',
+  'monopalme':                'Monopalme sirène',
+  'monofin':                  'Monopalme sirène',
+  'monopalme à extension':    'Monopalme à Extension sirène',
+  'extension monofin':        'Monopalme à Extension sirène',
+  'monofin con extensión':    'Monopalme à Extension sirène',
+};
+
 type SchemaPopup = { label: string; src: string } | null;
 
 export default function Commander() {
@@ -121,7 +136,10 @@ export default function Commander() {
                           return (
                             <li key={idx}>
                               <button
-                                onClick={() => window.open(`/queue-de-sirene?open=${encodeURIComponent(choice)}`, '_blank')}
+                                onClick={() => {
+                                  const catalogueName = CHOICE_CATALOGUE_MAP[choice.trim().toLowerCase()] ?? choice;
+                                  window.open(`/queue-de-sirene?open=${encodeURIComponent(catalogueName)}`, '_blank');
+                                }}
                                 className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
                                 style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff', cursor: 'pointer' }}
                               >
