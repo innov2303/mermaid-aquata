@@ -1,22 +1,23 @@
 [
   {
-    "id": 1,
     "section": "monopalmes",
     "name": "Monopalme à Extension sirène",
     "desc": "Nos monopalmes ont été étudiées durant 10 ans avec l'aide d'un ingénieur aéronautique afin d'obtenir une fonctionnalité parfaite! A l'inverse des monopalmes du marché qui ne sont pas du tout prévues pour la nage en sirène ni pour être intégrées dans du silicone, nos monopalmes sont totalement prévues à cet effet.\n\nRéalisées en polycarbonate, un matériau souvent utilisé dans l'aéronautique, il offre légèreté, solidité et durabilité. Sa forme à été conçue pour offrir une grande maniabilité durant les figures aquatiques tout en offrant une grande rapidité comme avec une vraie monopalme de plongée professionnelle.\n\nElles sont également grandes, 75 à 80 cm de largeur sur 75 cm de longueur pour toutes nos différentes formes (Siren, Ariel, Lagoon, etc.).\n\nLe rallongement entre la pointe des chaussons et le silicone est d'environ 15cm, cette particularité unique au monde offre un réalisme saisissant! \n\nIl n'y a aucune infiltration d'eau à l'intérieur! La monopalme en polycarbonate est complètement intégrée dans un silicone spécial qui colle parfaitement à la monopalme, c'est cette technique de fabrication qui vous offre une nage parfaitement fonctionnelle!\n\nNos chaussons sont très confortables et ne provoquent aucune blessure grâce à leurs semelles! Vous pourrez ainsi la porter plusieurs heures sans risque.\n\nPeuvent être équipées d'une fermeture éclair, vous permettant de fixer facilement vos écailles en tissu ou silicone. Ce système permet également de changer de couleur d'écailles rapidement et facilement.\n\nPoids de la monopalme environ 2 kilos.\n\nDélai de création environ 3m mois.\n\nSeule, elle sera équipée d'écailles en silicone jusqu'à la pointe des chaussons. \n\nA partir de 1350 euros\n\n \n\nPrix des détails supplémentaires :\n\n- Fermeture éclair (pour attacher vos écailles) : 80 euros.\n\n-Couleur supplémentaire : 20 euros par couleur.\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 75 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 100 euros.",
     "price": "990,00€",
+    "video": "https://youtu.be/gJCSegOKEUg",
     "images": [
       "/api/uploads/1776810840609-l8gl1wbjcc.webp",
       "/api/uploads/1776810848725-v7rl325xgjg.webp",
       "/api/uploads/1776810854461-soxs6icwhkf.webp"
-    ]
+    ],
+    "id": 1
   },
   {
-    "id": 2,
     "section": "monopalmes",
     "name": "Monopalme sirène",
     "desc": "Nos monopalmes sirène, ont été étudiées durant 10 ans avec l'aide d'un ingénieur aéronautique afin d'obtenir une fonctionnalité parfaite! A l'inverse des monopalmes du marché qui ne sont pas du tout prévues pour la nage en sirène ni pour être intégrées dans du silicone, nos monopalmes sont totalement prévues à cet effet.\n\nRéalisées en polycarbonate, un matériau souvent utilisé dans l'aéronautique, il offre légèreté, solidité et durabilité. Sa forme à été conçue pour offrir une grande maniabilité durant les figures aquatiques tout en offrant une grande rapidité comme avec une vraie monopalme de plongée professionnelle.\n\nElles sont également grandes, 75 à 80 cm de largeur sur 75 cm de longueur pour toutes nos différentes formes (Siren, Ariel, Lagoon, etc.).\n\nIl n'y a aucune infiltration d'eau à l'intérieur! La monopalme en polycarbonate est complètement intégrée dans un silicone spécial qui colle parfaitement à la monopalme, c'est cette technique de fabrication qui vous offre une nage parfaitement fonctionnelle!\n\nNos chaussons sont très confortables et ne provoquent aucune blessure grâce à leurs semelles! Vous pourrez ainsi la porter plusieurs heures sans risque.\n\nEn option vous pouvez ajouter une fermeture éclair, vous permettant de fixer facilement vos écailles en tissu ou silicone. Ce système permet également de changer de couleur d'écailles rapidement et facilement.\n\nEn option également vous pouvez ajouter des écailles en silicone qui recouvre les chaussons.\n\nLe délai de création est d'environ 2 mois.\n\nNos monopalmes sirène sont à partir de 890 euros.\n\nCe prix correspond à une monopame d'une seule couleur (hors caméléon et holographique)\n\nPrix des détails supplémentaires :\n\n \n\n-Écailles silicone sur et autour des chaussons : 90 euros \n\n- Fermeture éclair (pour attacher vos écailles) : 50 euros.\n\n-Couleur supplémentaire : 20 euros par couleur.\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 75 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 100 euros.",
     "price": "890,00€",
+    "video": "https://youtu.be/je4oc3EBwPY",
     "images": [
       "/api/uploads/1776811675857-kfq5qe0oouq.webp",
       "/api/uploads/1776811682042-y10fyxcvfxd.webp",
@@ -28,34 +29,37 @@
       "/api/uploads/1776811743321-esrieay9j0a.webp",
       "/api/uploads/1776811751909-lo07ttvnhk.webp",
       "/api/uploads/1776811759793-wcvbxv0tdt.webp"
-    ]
+    ],
+    "id": 2
   },
   {
-    "id": 4,
     "section": "invisibles",
     "name": "Queue de sirène silicone",
     "desc": "Les queues de sirène \"classique silicone\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums.  Le silicone est une matière souple et élastique et offre un effet seconde peau. Le silicone offre également une protection contre le froid comme une combinaison de plongée. La monopalme a été étudiée pour une nage rapide et maniable, retrouvez toutes les caractéristiques de la monopalme dans la rubrique \"monopalme\". Son poids est d'environ 7 kilos. Les couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique. Nous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position ainsi que holographique qui donne un effet arc en ciel. Le délai de création de ce modèle et d'environs 4 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\nLa technique d'application du silicone sur la monopalme est conçue pour avoir une forte adhérence afin d'éviter tout décollement contrairement à une monopalme industriel ou le silicone n'adhère pas.\n\n\nNos nageoires \"classique silicone\" sont à partir de 1999 euros. Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.\n\nPrix des détails supplémentaires:\n\n-Une paire de petites nageoires latérales, avant ou arrière: 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles: 150 euros\n\n-Grande dorsale des hanches aux chevilles: 200 euros\n\n-Couleur supplémentaire: 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position): 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel): 200 euros",
     "price": "1990€",
+    "video": "https://youtu.be/fe_MKakX5_g",
     "images": [
       "/api/uploads/1776812087566-u6q2mn6vkj7.webp",
       "/api/uploads/1776812093226-dk6n98en7g.webp",
       "/api/uploads/1776812100205-p7y4s088lpo.webp",
       "/api/uploads/1776812106372-znwgr2ulqnl.webp",
       "/api/uploads/1776812114035-uznw40xi7m.webp"
-    ]
+    ],
+    "id": 4
   },
   {
-    "id": 5,
     "section": "invisibles",
     "name": "Queue de sirène silicone \"Pieds invisibles\"",
     "desc": "Les queues de sirène \"Pieds invisibles\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums. Le silicone est une matière souple et élastique et offre un effet seconde peau. Le silicone offre également une protection contre le froid comme une combinaison de plongée.\nLa monopalme est la même que pour un modèle \"classique silicone\", qui a été étudiée pour une nage rapide et maniable, retrouvez toutes caractéristique de la monopalme dans la rubrique \"monopalme\"\n\nSon poids est d'environ 8 kilos.\n\nLes couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique.\n\nNous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position, ainsi que l'effet holographique qui donne un effet arc-en-ciel.\n\nCe modèle possède une particularité, un rembourrage intérieur qui camoufle totalement la forme du pied pour un effet encore plus réaliste!\n\nLe délai de création de ce modèle est d'environ 5 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\n\nNos nageoires \"pieds invisibles en silicone\" sont à partir de 2500 euros. Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.  \n\nPrix des détails supplémentaires:\n\n-Une paire de petites nageoires latérales, avant ou arrière : 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles : 150 euros\n\n-Grande dorsale des hanches aux chevilles : 200 euros\n\n-Couleur supplémentaire : 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 200 euros",
     "price": "2500€",
+    "video": "https://youtu.be/2zWVVgAsVlk",
     "images": [
       "/api/uploads/1776812339371-72q3r5l05b8.webp",
       "/api/uploads/1776812346293-az6y6u8jwlu.webp",
       "/api/uploads/1776812351906-hp70luvltgh.webp",
       "/api/uploads/1776812362443-yopw8qjndw.webp"
-    ]
+    ],
+    "id": 5
   },
   {
     "id": 6,
@@ -69,6 +73,10 @@
   },
   {
     "section": "invisibles",
+    "name": "Queue de sirène silicone \"Longfish/Extended tail\"",
+    "desc": "La particularité de cette queue de sirène est qu'elle possède une monopalme avec une extension de longueur après les pieds d'environ 15 cm, avec en plus un camouflage des pieds ce qui offre un effet ultra réaliste et unique au monde!\n\nLes queues de sirène \"longfish\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums. Le silicone est une matière souple et élastique ce qui permet un enfilage facile et offre un effet seconde peau. Le silicone offre également une protection contre le froid, comme une combinaison de plongée.\n\nSon poids est d'environ 10 kilos.\n\n \n\nAttention: ce type de nageoire demande un minimum d'expérience comparé à une monopalme classique car avec la longueur, elle est un peu plus difficile à manier.\n\nLes couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique.\n\nNous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position, ainsi qu'un effet holographique qui donne un effet arc-en-ciel.\n\nLe délai de création de ce modèle est d'environs 6 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\n\nNos nageoires en silicone \"Longfish/Extended tail\" sont  à partir de 3500 euros . Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.\n\nPrix des détails supplémentaires :\n\n-Une paire de petites nageoires latérales, avant ou arrière : 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles : 150 euros\n\n-Grande dorsale des hanches aux chevilles : 200 euros\n\n-Couleur supplémentaire : 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 200 euros",
+    "price": "3500€",
+    "video": "https://youtu.be/ZQHPnpF5tZI",
     "images": [
       "/api/uploads/1776812891419-0j2imfiys65q.webp",
       "/api/uploads/1776812897406-z1a8zmotg2f.webp",
@@ -76,9 +84,6 @@
       "/api/uploads/1776812908253-xj4h1fhyy8.webp",
       "/api/uploads/1776812912360-vfityhx7e4.webp"
     ],
-    "name": "Queue de sirène silicone \"Longfish/Extended tail\"",
-    "price": "3500€",
-    "desc": "La particularité de cette queue de sirène est qu'elle possède une monopalme avec une extension de longueur après les pieds d'environ 15 cm, avec en plus un camouflage des pieds ce qui offre un effet ultra réaliste et unique au monde!\n\nLes queues de sirène \"longfish\" sont entièrement en silicone professionnel, non toxique pour la peau ou les aquariums. Le silicone est une matière souple et élastique ce qui permet un enfilage facile et offre un effet seconde peau. Le silicone offre également une protection contre le froid, comme une combinaison de plongée.\n\nSon poids est d'environ 10 kilos.\n\n \n\nAttention: ce type de nageoire demande un minimum d'expérience comparé à une monopalme classique car avec la longueur, elle est un peu plus difficile à manier.\n\nLes couleurs sont appliquées sous une couche de silicone transparent et non à l'aérographe ce qui permet de ne pas avoir la couleur qui s'écaille avec le temps, la tenue est parfaite avec les utilisations répétées et donne un effet irisé unique.\n\nNous vous proposons également des couleurs magiques comme l'effet caméléon qui change de teinte selon la position, ainsi qu'un effet holographique qui donne un effet arc-en-ciel.\n\nLe délai de création de ce modèle est d'environs 6 mois à partir de la réception du paiement, toutefois cela dépend du nombre de commande en cours et de la disponibilité du matériel. Un délai précis vous sera fourni avec le devis gratuit.\n\nNos nageoires en silicone \"Longfish/Extended tail\" sont  à partir de 3500 euros . Ce prix correspond à une nageoire d'une seule couleur (hors caméléon et holographique), sans petites nageoires ni dorsales.\n\nPrix des détails supplémentaires :\n\n-Une paire de petites nageoires latérales, avant ou arrière : 100 euros par paire.\n\n-Dorsale moyenne des genoux aux chevilles : 150 euros\n\n-Grande dorsale des hanches aux chevilles : 200 euros\n\n-Couleur supplémentaire : 50 euros par couleur\n\n-Couleur caméléon (couleur qui change de teinte selon la position) : 100 euros\n\n-Couleur Holographique (reflets arc-en-ciel) : 200 euros",
     "id": 1776812696865
   },
   {
