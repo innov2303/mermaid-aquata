@@ -90,6 +90,7 @@ const translations = {
         {
           title: 'Me contacter',
           contactFinal: true,
+          extraDesc: "Pour terminer je vous réalise un croquis numérique avec toutes vos informations, ce qui vous donnera un visuel final et définira le prix de votre demande. Un délai de création vous sera également donné lors du devis.\n\nRéponse rapide en 48h et 24h sur mon réseau Instagram.\n\nLe devis est gratuit !\n\nVous serez tenue au courant tout au long de la création avec photos et vidéos à l'appui.\n\nExemple de message à me transmettre via le formulaire de contact ou en message privé sur mes réseaux :\n\n« Bonjour, je souhaiterais commander un modèle 'pieds invisible' avec la forme 'H2O', couleurs or et bronze, avec une paire de petites nageoires supplémentaires au niveau des hanches devant et une dorsale derrière les mollets. »",
           recap: "Avant de m'écrire, assurez-vous d'avoir noté :\n\n✦ Le modèle de queue souhaité\n   (Classique silicone, Pieds invisible, Longfish, Monopalme…)\n✦ La forme de nageoire choisie\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Vos couleurs et détails\n   (nageoires supplémentaires, dorsale, paillettes…)\n✦ Vos mesures en centimètres\n\nJe vous répondrai sous 48h avec un devis gratuit et personnalisé !",
           instagramLabel: 'Message Instagram',
           formLabel: 'Formulaire de contact',
@@ -280,6 +281,7 @@ const translations = {
         {
           title: 'Contact me',
           contactFinal: true,
+          extraDesc: "Finally, I will create a digital sketch using all your information, giving you a final visual and confirming the price of your request. A production timeline will also be provided with the free quote.\n\nFast response within 48h and 24h on my Instagram.\n\nThe quote is free!\n\nYou will be kept informed throughout the creation process with photos and videos.\n\nExample message to send via the contact form or Instagram DM:\n\n'Hello, I would like to order an 'invisible feet' model with the 'H2O' shape, in gold and bronze colours, with an extra pair of small side fins at the hips and a dorsal fin behind the calves.'",
           recap: "Before writing to me, make sure you have noted:\n\n✦ Your chosen tail model\n   (Classic silicone, Invisible feet, Longfish, Monofin…)\n✦ Your chosen fin shape\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Your colours and details\n   (extra fins, dorsal fin, glitter…)\n✦ Your measurements in centimetres\n\nI will reply within 48 hours with a free, personalised quote!",
           instagramLabel: 'Instagram message',
           formLabel: 'Contact form',
@@ -470,6 +472,7 @@ const translations = {
         {
           title: 'Contáctame',
           contactFinal: true,
+          extraDesc: "Para finalizar, realizaré un boceto digital con toda tu información, lo que te dará una imagen final y definirá el precio de tu solicitud. También se te indicará un plazo de creación con el presupuesto gratuito.\n\nRespuesta rápida en 48h y 24h en mi Instagram.\n\n¡El presupuesto es gratuito!\n\nEstarás informada durante todo el proceso de creación con fotos y vídeos.\n\nEjemplo de mensaje a enviarme por el formulario de contacto o por mensaje directo en mis redes:\n\n'Hola, me gustaría pedir un modelo de 'pies invisibles' con la forma 'H2O', en colores dorado y bronce, con un par de pequeñas aletas laterales en las caderas y una aleta dorsal detrás de los gemelos.'",
           recap: "Antes de escribirme, asegúrate de haber anotado:\n\n✦ El modelo de cola elegido\n   (Silicona clásica, Pies invisibles, Longfish, Monofin…)\n✦ La forma de aleta elegida\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Tus colores y detalles\n   (aletas adicionales, aleta dorsal, purpurina…)\n✦ Tus medidas en centímetros\n\n¡Te responderé en 48 horas con un presupuesto gratuito y personalizado!",
           instagramLabel: 'Mensaje de Instagram',
           formLabel: 'Formulario de contacto',

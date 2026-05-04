@@ -154,6 +154,14 @@ export default function Commander() {
                     </div>
                   ) : 'contactFinal' in steps[currentStep] ? (
                     <div className="w-full max-w-lg flex flex-col items-center gap-6 text-center">
+                      {'extraDesc' in steps[currentStep] && (steps[currentStep] as { extraDesc?: string }).extraDesc && (
+                        <>
+                          <p className="text-sm leading-relaxed font-light whitespace-pre-line text-left" style={{ color: 'rgba(200,235,255,0.88)' }}>
+                            {(steps[currentStep] as { extraDesc: string }).extraDesc}
+                          </p>
+                          <div className="w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.4), transparent)' }} />
+                        </>
+                      )}
                       <p className="text-sm leading-relaxed font-light whitespace-pre-line text-left" style={{ color: 'rgba(200,235,255,0.88)' }}>
                         {(steps[currentStep] as { recap: string }).recap}
                       </p>
