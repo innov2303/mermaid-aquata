@@ -1,19 +1,16 @@
 [
   {
-    "id": 1,
-    "name": "Ingrid Miss Mermaid France",
-    "img": "/api/uploads/1776813484471-0b8g3pyzzrnf.webp"
-  },
-  {
-    "id": 3,
-    "name": "Princess Kawaii la Sirène",
-    "img": "/api/uploads/1776813586776-uw8bexz55d.webp"
-  },
-  {
     "name": "Mermaid Erel",
     "img": "/api/uploads/1777898442718-fib9x5q33xo.jpg",
     "instagram": "https://www.instagram.com/erelemermaid?igsh=cno0YW9hdmw4bzUw",
     "review": "Pendant des années j'ai rêvé de posséder une nageoire en silicone. En découvrant le travail d'Aquata, je me suis dit que ça devrait être elle ma \"tailmaker\" 🧜‍♀️\n\nJe suis passée du rêve à la réalité. Je ne regrette pas d'être passée par cette créatrice car la nageoire est - en plus d'avoir d'incroyables reflets - très confortable à porter ! Je glisse parfaitement sous l'eau avec. La monopalme propulse bien. Et puis, son poids est raisonnable, par rapport à d'autres marques.\n\nMerci Aquata 🥰",
     "id": 1777898457274
+  },
+  {
+    "name": "Mermaid Miyuko",
+    "img": "/api/uploads/1777899476949-umrqewuj2ih.jpg",
+    "instagram": "https://www.instagram.com/miyuko_alzarek?igsh=NjkzazRwaWYzb3Jh",
+    "review": "Je ne regrette absolument pas d'avoir choisi Mermaid Aquata pour ma première nageoire silicone, merci à elle d'avoir été autant à l'écoute su la création!\nTrès gros point positif concernant les chaussons de la monopalme, aucune douleur aux pieds même après n long moment 'utilisation, je suis complètement à l'aise ce niveau là!",
+    "id": 1777899655925
   }
 ]

@@ -45,7 +45,7 @@ export function NavBar() {
 
   const navLinks = [
     { href: "/", label: t.nav.home },
-    { href: "/catalogue", label: t.nav.catalogue },
+    { href: "/queue-de-sirene", label: t.nav.catalogue },
     { href: "/commander", label: t.nav.commander },
     { href: "/faq", label: t.nav.faq },
     { href: "/avis", label: t.nav.remerciements },

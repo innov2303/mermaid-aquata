@@ -148,7 +148,7 @@ export function Footer() {
               <h4 className="font-serif text-xl mb-4 text-white">{tf.navTitle}</h4>
               <ul className="space-y-3">
                 <li><Link href="/" className="text-foreground/70 hover:text-primary transition-colors">{tn.home}</Link></li>
-                <li><Link href="/catalogue" className="text-foreground/70 hover:text-primary transition-colors">{tn.catalogue}</Link></li>
+                <li><Link href="/queue-de-sirene" className="text-foreground/70 hover:text-primary transition-colors">{tn.catalogue}</Link></li>
                 <li><Link href="/commander" className="text-foreground/70 hover:text-primary transition-colors">{tn.commander}</Link></li>
                 <li><Link href="/faq" className="text-foreground/70 hover:text-primary transition-colors">{tn.faq}</Link></li>
                 <li><Link href="/avis" className="text-foreground/70 hover:text-primary transition-colors">{tn.remerciements}</Link></li>

@@ -10,7 +10,7 @@ const translations = {
   fr: {
     nav: {
       home: 'Accueil',
-      catalogue: 'Catalogue',
+      catalogue: 'Queue de sirène',
       commander: 'Commander',
       faq: 'FAQ',
       remerciements: 'Avis',
@@ -41,7 +41,7 @@ const translations = {
       galleryCaption: 'Quelques instants capturés au fil de mon aventure…',
     },
     catalogue: {
-      title: 'Mon Catalogue',
+      title: 'Mes Queues de Sirène',
       subtitle: 'Découvrez mes créations artisanales. Chaque modèle peut être personnalisé selon vos envies.',
       details: 'Détails',
       order: 'Commander',
@@ -189,7 +189,7 @@ const translations = {
   en: {
     nav: {
       home: 'Home',
-      catalogue: 'Catalogue',
+      catalogue: 'Mermaid Tails',
       commander: 'Order',
       faq: 'FAQ',
       remerciements: 'Reviews',
@@ -220,7 +220,7 @@ const translations = {
       galleryCaption: 'A few moments captured along my journey…',
     },
     catalogue: {
-      title: 'My Catalogue',
+      title: 'My Mermaid Tails',
       subtitle: 'Discover my handcrafted creations. Every model can be customised to your wishes.',
       details: 'Details',
       order: 'Order',
@@ -368,7 +368,7 @@ const translations = {
   es: {
     nav: {
       home: 'Inicio',
-      catalogue: 'Catálogo',
+      catalogue: 'Colas de Sirena',
       commander: 'Pedir',
       faq: 'FAQ',
       remerciements: 'Reseñas',
@@ -399,7 +399,7 @@ const translations = {
       galleryCaption: 'Algunos momentos capturados a lo largo de mi aventura…',
     },
     catalogue: {
-      title: 'Mi Catálogo',
+      title: 'Mis Colas de Sirena',
       subtitle: 'Descubre mis creaciones artesanales. Cada modelo puede personalizarse según tus deseos.',
       details: 'Detalles',
       order: 'Pedir',

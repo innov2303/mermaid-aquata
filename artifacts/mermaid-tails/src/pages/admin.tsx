@@ -403,7 +403,7 @@ function CatalogueAdmin({ token }: { token: string }) {
     <div>
       <ConfirmDialog {...confirmProps} />
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Catalogue</h2>
+        <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Queue de sirène</h2>
         <button onClick={() => setAdding(true)} className={btnPrimary} style={{ background: "#00c8ef" }}><Plus size={16} /> Ajouter</button>
       </div>
       {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
@@ -683,7 +683,7 @@ function PresentationAdmin({ token }: { token: string }) {
 
 // ── Main Admin Page ────────────────────────────────────────────────────────
 const TABS = [
-  { id: "catalogue", label: "Catalogue" },
+  { id: "catalogue", label: "Queue de sirène" },
   { id: "remerciements", label: "Avis" },
   { id: "presentation", label: "Galerie accueil" },
   { id: "media", label: "Médiathèque" },

@@ -30,7 +30,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Switch key={location} location={location}>
         <Route path="/" component={Home} />
-        <Route path="/catalogue" component={Catalogue} />
+        <Route path="/queue-de-sirene" component={Catalogue} />
         <Route path="/commander" component={Commander} />
         <Route path="/faq" component={Faq} />
         <Route path="/avis" component={Remerciements} />
