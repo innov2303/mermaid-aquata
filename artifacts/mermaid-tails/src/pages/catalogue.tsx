@@ -13,9 +13,28 @@ type Item = {
   name: string;
   desc: string;
   price: string;
+  video: string;
   images: string[];
   section: string;
 };
+
+function toEmbedUrl(raw: string): string | null {
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    let id: string | null = null;
+    if (url.hostname === "youtu.be") {
+      id = url.pathname.slice(1).split("?")[0];
+    } else if (url.hostname.includes("youtube.com")) {
+      if (url.pathname.startsWith("/embed/")) return raw;
+      id = url.searchParams.get("v");
+    }
+    if (!id) return null;
+    return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+  } catch {
+    return null;
+  }
+}
 
 function Carousel({ images }: { images: string[] }) {
   const [idx, setIdx] = useState(0);
@@ -219,9 +238,22 @@ export default function Catalogue() {
                     <X size={20} />
                   </button>
                 </div>
-                <div className="px-4 pb-4" style={{ height: 280, flexShrink: 0 }}>
+                <div className="px-4 pb-4" style={{ height: 220, flexShrink: 0 }}>
                   <Carousel images={selected.images} />
                 </div>
+                {toEmbedUrl(selected.video) && (
+                  <div className="px-4 pb-4" style={{ flexShrink: 0 }}>
+                    <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', border: '1.5px solid rgba(0,200,239,0.3)' }}>
+                      <iframe
+                        src={toEmbedUrl(selected.video)!}
+                        title={`Vidéo ${selected.name}`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
+                    </div>
+                  </div>
+                )}
                 <div className="flex flex-col px-6 pb-10 gap-5">
                   <h2 className="text-center leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.9rem' }}>{selected.name}</h2>
                   <div className="h-px w-24 mx-auto" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.6), transparent)' }} />
@@ -233,14 +265,12 @@ export default function Catalogue() {
                 </div>
               </div>
 
-              {/* ── DESKTOP : texte gauche défilant + photo droite fixe ── */}
+              {/* ── DESKTOP : texte | vidéo (si dispo) | carousel ── */}
               <div className="hidden md:flex flex-row" style={{ height: '85vh' }}>
 
                 {/* Gauche : titre + description défilants, prix + bouton fixés en bas */}
                 <div className="flex flex-col" style={{ flex: '1 1 0', minWidth: 0 }}>
-                  {/* Zone défilante */}
                   <div className="flex-1 overflow-y-auto px-10 pt-8 pb-4 flex flex-col gap-6">
-                    {/* Close */}
                     <div className="flex justify-end">
                       <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
                         <X size={20} />
@@ -254,8 +284,6 @@ export default function Catalogue() {
                       {selected.desc}
                     </p>
                   </div>
-
-                  {/* Footer fixe : prix + bouton */}
                   <div className="flex-shrink-0 px-10 py-5 flex items-center justify-between gap-6" style={{ borderTop: '1px solid rgba(0,200,239,0.18)', background: 'rgba(0,10,35,0.7)', backdropFilter: 'blur(8px)' }}>
                     <p className="font-serif text-4xl text-primary font-semibold">{selected.price}</p>
                     <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
@@ -264,11 +292,30 @@ export default function Catalogue() {
                   </div>
                 </div>
 
+                {/* Colonne vidéo — visible seulement si une URL est définie */}
+                {toEmbedUrl(selected.video) && (
+                  <>
+                    <div className="w-px self-stretch my-8 flex-shrink-0" style={{ background: 'rgba(0,200,239,0.2)' }} />
+                    <div className="flex-shrink-0 flex flex-col justify-center p-6 gap-4" style={{ width: '36%' }}>
+                      <p className="text-xs font-light text-center mb-1" style={{ color: 'rgba(200,235,255,0.45)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Vidéo de présentation</p>
+                      <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 24px rgba(0,200,239,0.15)' }}>
+                        <iframe
+                          src={toEmbedUrl(selected.video)!}
+                          title={`Vidéo ${selected.name}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 {/* Séparateur */}
                 <div className="w-px self-stretch my-8 flex-shrink-0" style={{ background: 'rgba(0,200,239,0.2)' }} />
 
-                {/* Droite : photo fixe */}
-                <div className="flex-shrink-0 p-6" style={{ width: '52%' }}>
+                {/* Droite : carousel */}
+                <div className="flex-shrink-0 p-6" style={{ width: toEmbedUrl(selected.video) ? '32%' : '52%' }}>
                   <Carousel images={selected.images} />
                 </div>
               </div>

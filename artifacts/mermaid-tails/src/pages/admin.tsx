@@ -16,7 +16,7 @@ const SECTIONS = [
   { key: "accessoires", label: "Accessoires" },
 ];
 
-type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; images: string[] };
+type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; video: string; images: string[] };
 type Remerciement = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
 type PresentationPhoto = { id: number; url: string; alt: string };
 type UploadedFile = { filename: string; url: string };
@@ -359,6 +359,10 @@ function ItemForm({ token, f, setF, onSave, onCancel }: { token: string; f: Part
           <textarea className={inputClass} style={{ ...inputStyle, resize: "vertical" } as React.CSSProperties} rows={3} value={f.desc || ""} onChange={e => setF({ ...f, desc: e.target.value })} placeholder="Description de l'article…" />
         </div>
         <div className="md:col-span-2">
+          <label className="text-xs font-medium mb-1 block" style={itemLabelStyle}>Vidéo de présentation (URL YouTube)</label>
+          <input className={inputClass} style={inputStyle} value={f.video || ""} onChange={e => setF({ ...f, video: e.target.value })} placeholder="https://www.youtube.com/watch?v=... ou https://youtu.be/..." />
+        </div>
+        <div className="md:col-span-2">
           <MultiImagePicker token={token} values={f.images || []} onChange={imgs => setF({ ...f, images: imgs })} />
         </div>
       </div>
@@ -376,7 +380,7 @@ function CatalogueAdmin({ token }: { token: string }) {
   const [editId, setEditId] = useState<number | null>(null);
   const [form, setForm] = useState<Partial<CatalogueItem>>({});
   const [adding, setAdding] = useState(false);
-  const [addForm, setAddForm] = useState<Partial<CatalogueItem>>({ section: "monopalmes", images: [] });
+  const [addForm, setAddForm] = useState<Partial<CatalogueItem>>({ section: "monopalmes", video: "", images: [] });
   const [msg, setMsg] = useState("");
   const { askConfirm, confirmProps } = useConfirm();
 
@@ -396,7 +400,7 @@ function CatalogueAdmin({ token }: { token: string }) {
   }
   async function addItem() {
     const newItem = await createCatalogueItem(addForm, token);
-    setItems([...items, newItem]); setAdding(false); setAddForm({ section: "monopalmes", images: [] }); notify("✓ Article ajouté");
+    setItems([...items, newItem]); setAdding(false); setAddForm({ section: "monopalmes", video: "", images: [] }); notify("✓ Article ajouté");
   }
 
   return (

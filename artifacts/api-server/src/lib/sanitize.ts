@@ -9,6 +9,7 @@ export function sanitizeCatalogueItem(body: Record<string, unknown>) {
     name: sanitizeString(body["name"], 200),
     desc: sanitizeString(body["desc"], 5000),
     price: sanitizeString(body["price"], 100),
+    video: typeof body["video"] === "string" ? sanitizeString(body["video"], 500) : "",
     images: Array.isArray(body["images"])
       ? (body["images"] as unknown[])
           .filter((u): u is string => typeof u === "string")
