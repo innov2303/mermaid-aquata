@@ -86,10 +86,16 @@ export default function Catalogue() {
       const open = params.get('open');
       if (open) {
         const needle = open.trim().toLowerCase();
-        const match = items.find(item =>
-          item.name.trim().toLowerCase().includes(needle) ||
-          needle.includes(item.name.trim().toLowerCase())
-        );
+        const exact = items.find(item => item.name.trim().toLowerCase() === needle);
+        const partial = exact ? null : items.reduce<Item | null>((best, item) => {
+          const itemName = item.name.trim().toLowerCase();
+          if (itemName === needle || needle === itemName) return item;
+          if (needle.includes(itemName)) {
+            if (!best || itemName.length > best.name.trim().toLowerCase().length) return item;
+          }
+          return best;
+        }, null);
+        const match = exact ?? partial;
         if (match) setSelected(match);
       }
     }).catch(() => {});
