@@ -216,13 +216,13 @@ export default function Catalogue() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 40 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="relative w-full md:max-w-5xl rounded-t-3xl md:rounded-3xl overflow-hidden"
+              className="relative w-full md:max-w-[96vw] rounded-t-3xl md:rounded-3xl overflow-hidden"
               style={{
                 background: 'rgba(0,20,50,0.97)',
                 backdropFilter: 'blur(20px)',
                 border: '1.5px solid rgba(0,200,239,0.3)',
                 boxShadow: '0 0 80px rgba(0,200,239,0.25)',
-                maxHeight: '92vh',
+                maxHeight: '94vh',
                 display: 'flex',
                 flexDirection: 'column',
               } as React.CSSProperties}
@@ -231,7 +231,7 @@ export default function Catalogue() {
               {/* Mobile: scrollable stack / Desktop: fixed-height side-by-side */}
 
               {/* ── MOBILE : défilement global ── */}
-              <div className="flex flex-col md:hidden overflow-y-auto" style={{ maxHeight: '92vh' }}>
+              <div className="flex flex-col md:hidden overflow-y-auto" style={{ maxHeight: '94vh' }}>
                 {/* Close */}
                 <div className="sticky top-0 z-10 flex justify-end px-4 py-3" style={{ background: 'rgba(0,20,50,0.9)', backdropFilter: 'blur(8px)' }}>
                   <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
@@ -266,7 +266,7 @@ export default function Catalogue() {
               </div>
 
               {/* ── DESKTOP : texte | vidéo (si dispo) | carousel ── */}
-              <div className="hidden md:flex flex-row" style={{ height: '85vh' }}>
+              <div className="hidden md:flex flex-row" style={{ height: '90vh' }}>
 
                 {/* Gauche : titre + description défilants, prix + bouton fixés en bas */}
                 <div className="flex flex-col" style={{ flex: '1 1 0', minWidth: 0 }}>
