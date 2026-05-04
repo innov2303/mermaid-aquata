@@ -87,6 +87,13 @@ const translations = {
           title: 'Paiement',
           desc: "Pour les nageoires j'accepte les paiements par PayPal ou virement bancaire. Les coordonnées vous seront communiquées après l'acceptation du devis avec dessin graphique.\n\nPour les accessoires, les achats se font via la plateforme Etsy.",
         },
+        {
+          title: 'Me contacter',
+          contactFinal: true,
+          recap: "Avant de m'écrire, assurez-vous d'avoir noté :\n\n✦ Le modèle de queue souhaité\n   (Classique silicone, Pieds invisible, Longfish, Monopalme…)\n✦ La forme de nageoire choisie\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Vos couleurs et détails\n   (nageoires supplémentaires, dorsale, paillettes…)\n✦ Vos mesures en centimètres\n\nJe vous répondrai sous 48h avec un devis gratuit et personnalisé !",
+          instagramLabel: 'Message Instagram',
+          formLabel: 'Formulaire de contact',
+        },
       ],
     },
     faq: {
@@ -270,6 +277,13 @@ const translations = {
           title: 'Payment',
           desc: "For fins I accept payment by PayPal or bank transfer. Details will be shared after the quote with graphic design is accepted.\n\nFor accessories, purchases are made through the Etsy platform.",
         },
+        {
+          title: 'Contact me',
+          contactFinal: true,
+          recap: "Before writing to me, make sure you have noted:\n\n✦ Your chosen tail model\n   (Classic silicone, Invisible feet, Longfish, Monofin…)\n✦ Your chosen fin shape\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Your colours and details\n   (extra fins, dorsal fin, glitter…)\n✦ Your measurements in centimetres\n\nI will reply within 48 hours with a free, personalised quote!",
+          instagramLabel: 'Instagram message',
+          formLabel: 'Contact form',
+        },
       ],
     },
     faq: {
@@ -452,6 +466,13 @@ const translations = {
         {
           title: 'Pago',
           desc: "Para las aletas acepto pago por PayPal o transferencia bancaria. Los datos se facilitarán tras aceptar el presupuesto con diseño gráfico.\n\nPara los accesorios, las compras se realizan a través de la plataforma Etsy.",
+        },
+        {
+          title: 'Contáctame',
+          contactFinal: true,
+          recap: "Antes de escribirme, asegúrate de haber anotado:\n\n✦ El modelo de cola elegido\n   (Silicona clásica, Pies invisibles, Longfish, Monofin…)\n✦ La forma de aleta elegida\n   (SIREN, LAGOON, SPLASH, H2O, GOLDFISH, ARIEL)\n✦ Tus colores y detalles\n   (aletas adicionales, aleta dorsal, purpurina…)\n✦ Tus medidas en centímetros\n\n¡Te responderé en 48 horas con un presupuesto gratuito y personalizado!",
+          instagramLabel: 'Mensaje de Instagram',
+          formLabel: 'Formulario de contacto',
         },
       ],
     },

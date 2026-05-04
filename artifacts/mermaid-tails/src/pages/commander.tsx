@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink, Sparkles } from "lucide-react";
+import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink, Sparkles, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
@@ -24,8 +24,11 @@ const STEP_ICONS = [
   <Ruler size={28} />,
   <MessageCircle size={28} />,
   <CreditCard size={28} />,
+  <Send size={28} />,
 ];
-const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, null];
+const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, null, null];
+
+const INSTAGRAM_URL = 'https://www.instagram.com/mermaid.real.aquata/';
 
 type SchemaPopup = { label: string; src: string } | null;
 
@@ -131,6 +134,34 @@ export default function Commander() {
                         })}
                       </ul>
                     </div>
+                  ) : 'contactFinal' in steps[currentStep] ? (
+                    <div className="w-full max-w-lg flex flex-col items-center gap-6 text-center">
+                      <p className="text-sm leading-relaxed font-light whitespace-pre-line text-left" style={{ color: 'rgba(200,235,255,0.88)' }}>
+                        {(steps[currentStep] as { recap: string }).recap}
+                      </p>
+                      <div className="w-full h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.4), transparent)' }} />
+                      <p className="text-xs font-light" style={{ color: 'rgba(200,235,255,0.55)' }}>Choisissez votre moyen de contact préféré :</p>
+                      <div className="flex flex-col sm:flex-row gap-4 w-full">
+                        <a
+                          href={INSTAGRAM_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-[1.03]"
+                          style={{ background: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)', color: 'white', boxShadow: '0 0 20px rgba(225,48,108,0.35)' }}
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                          {(steps[currentStep] as { instagramLabel: string }).instagramLabel}
+                        </a>
+                        <button
+                          onClick={() => setContactOpen(true)}
+                          className="flex-1 flex items-center justify-center gap-3 py-4 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-[1.03]"
+                          style={{ background: 'rgba(0,200,239,0.15)', border: '1.5px solid rgba(0,200,239,0.6)', color: '#e0f5ff', boxShadow: '0 0 20px rgba(0,200,239,0.2)' }}
+                        >
+                          <Send size={18} />
+                          {(steps[currentStep] as { formLabel: string }).formLabel}
+                        </button>
+                      </div>
+                    </div>
                   ) : (
                     <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
                       {'desc' in steps[currentStep] ? (steps[currentStep] as { desc?: string }).desc : ''}
@@ -164,13 +195,9 @@ export default function Commander() {
             <Button variant="outline" size="lg" onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))} disabled={currentStep === 0} className="rounded-full px-8" style={{ borderColor: 'rgba(0,200,239,0.5)', color: '#e0f5ff', background: 'rgba(0,20,50,0.4)' }}>
               <ChevronLeft className="mr-2" size={20} /> {t.commander.prev}
             </Button>
-            {currentStep < steps.length - 1 ? (
+            {currentStep < steps.length - 1 && (
               <Button size="lg" onClick={() => setCurrentStep(prev => Math.min(steps.length - 1, prev + 1))} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8">
                 {t.commander.next} <ChevronRight className="ml-2" size={20} />
-              </Button>
-            ) : (
-              <Button size="lg" onClick={() => setContactOpen(true)} className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_15px_rgba(0,200,239,0.5)]">
-                {t.commander.contact}
               </Button>
             )}
           </div>
