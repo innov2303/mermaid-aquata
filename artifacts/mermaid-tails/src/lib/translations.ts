@@ -46,7 +46,7 @@ const translations = {
       details: 'Détails',
       order: 'Commander',
       sections: {
-        invisibles: { label: 'Queue de sirène silicone', sub: 'Silhouette naturelle & fluide' },
+        invisibles: { label: 'Queue de sirène silicone', sub: 'Effet réaliste & nage fluide' },
         monopalmes: { label: 'Monopalmes', sub: 'Nage sportive & dynamique' },
         accessoires: { label: 'Accessoires', sub: 'Complétez votre tenue de sirène' },
       },
