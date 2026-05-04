@@ -452,26 +452,28 @@ export default function Home() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-              <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 md:mb-6 leading-tight" style={{ textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>
+              <h2 className="font-serif text-white leading-tight mb-2 md:mb-6" style={{ fontSize: isMobile ? '1.05rem' : 'clamp(2rem, 4vw, 3rem)', textShadow: '0 0 30px rgba(0,200,239,0.5)' }}>
                 {t.home.contactTitle}
               </h2>
-              <p className="text-base md:text-xl mb-8 md:mb-12 font-light px-2" style={{ color: 'rgba(255,255,255,0.85)', lineHeight: '1.7' }}>
-                {t.home.contactSubtitle}
-              </p>
-              <div className="flex justify-center mt-6 md:mt-10">
+              {!isMobile && (
+                <p className="text-xl mb-12 font-light px-2" style={{ color: 'rgba(255,255,255,0.85)', lineHeight: '1.7' }}>
+                  {t.home.contactSubtitle}
+                </p>
+              )}
+              <div className="flex justify-center mt-3 md:mt-10">
                 <motion.button
                   onClick={() => setContactOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
                     position: 'relative',
-                    padding: '14px 36px',
+                    padding: isMobile ? '7px 22px' : '14px 36px',
                     borderRadius: '999px',
                     border: '1px solid rgba(0,200,239,0.55)',
                     background: 'linear-gradient(135deg, rgba(0,200,239,0.18) 0%, rgba(0,100,180,0.12) 100%)',
                     backdropFilter: 'blur(10px)',
                     color: '#ffffff',
-                    fontSize: '1rem',
+                    fontSize: isMobile ? '0.78rem' : '1rem',
                     fontFamily: 'serif',
                     letterSpacing: '0.06em',
                     cursor: 'pointer',
