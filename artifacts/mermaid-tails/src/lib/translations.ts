@@ -59,6 +59,10 @@ const translations = {
       contact: 'Me Contacter',
       steps: [
         {
+          title: 'Avant de commencer',
+          desc: "Ce formulaire est là pour m'aider à rassembler toutes les informations nécessaires avant de vous recontacter.\n\nAucun engagement de votre part n'est requis à ce stade — parcourez chaque étape à votre rythme.\n\nUne fois vos choix définis, il vous suffira de me contacter via le formulaire en dernière étape. Je reviendrai vers vous sous 48h avec un devis gratuit et entièrement personnalisé.\n\nBonne visite ! 🧜‍♀️",
+        },
+        {
           title: 'Choisir sa queue de sirène',
           choices: ['Classique silicone', 'Pieds invisible', 'Longfish', 'Monopalme', 'Monopalme à extension'],
         },
@@ -238,6 +242,10 @@ const translations = {
       contact: 'Contact Me',
       steps: [
         {
+          title: 'Before you begin',
+          desc: "This form is here to help me gather all the information I need before getting back to you.\n\nNo commitment is required at this stage — browse each step at your own pace.\n\nOnce you've made your choices, simply contact me using the form in the last step. I'll get back to you within 48 hours with a free, fully personalised quote.\n\nEnjoy! 🧜‍♀️",
+        },
+        {
           title: 'Choose your mermaid tail',
           choices: ['Classic silicone', 'Invisible feet', 'Longfish', 'Monofin', 'Extension monofin'],
         },
@@ -416,6 +424,10 @@ const translations = {
       next: 'Siguiente',
       contact: 'Contáctame',
       steps: [
+        {
+          title: 'Antes de empezar',
+          desc: "Este formulario está aquí para ayudarme a reunir toda la información que necesito antes de ponerme en contacto contigo.\n\nNo se requiere ningún compromiso en esta etapa — recorre cada paso a tu propio ritmo.\n\nUna vez definidas tus elecciones, solo tienes que contactarme usando el formulario del último paso. Te responderé en 48 horas con un presupuesto gratuito y completamente personalizado.\n\n¡Disfruta! 🧜‍♀️",
+        },
         {
           title: 'Elige tu cola de sirena',
           choices: ['Silicona clásica', 'Pies invisibles', 'Longfish', 'Monofin', 'Monofin con extensión'],

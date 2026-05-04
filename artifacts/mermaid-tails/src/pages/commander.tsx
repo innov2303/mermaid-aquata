@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink } from "lucide-react";
+import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
@@ -17,6 +17,7 @@ const FIN_SCHEMA_IMAGES: Record<string, string> = {
 };
 
 const STEP_ICONS = [
+  <Sparkles size={28} />,
   <span style={{ fontSize: 36, lineHeight: 1 }}>🧜‍♀️</span>,
   <Scissors size={28} />,
   <Palette size={28} />,
@@ -24,7 +25,7 @@ const STEP_ICONS = [
   <MessageCircle size={28} />,
   <CreditCard size={28} />,
 ];
-const STEP_IMAGES = [null, null, null, "/images/mes-mesures.webp", null, null];
+const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, null];
 
 type SchemaPopup = { label: string; src: string } | null;
 
