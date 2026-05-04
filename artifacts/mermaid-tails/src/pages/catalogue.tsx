@@ -228,16 +228,18 @@ export default function Catalogue() {
               } as React.CSSProperties}
               onClick={e => e.stopPropagation()}
             >
-              {/* Mobile: scrollable stack / Desktop: fixed-height side-by-side */}
+              {/* Bouton fermer — haut droite global */}
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all"
+                style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)', backdropFilter: 'blur(8px)' }}
+              >
+                <X size={20} />
+              </button>
 
               {/* ── MOBILE : défilement global ── */}
               <div className="flex flex-col md:hidden overflow-y-auto" style={{ maxHeight: '94vh' }}>
-                {/* Close */}
-                <div className="sticky top-0 z-10 flex justify-end px-4 py-3" style={{ background: 'rgba(0,20,50,0.9)', backdropFilter: 'blur(8px)' }}>
-                  <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
-                    <X size={20} />
-                  </button>
-                </div>
+                <div style={{ height: 56, flexShrink: 0 }} />
                 <div className="px-4 pb-4" style={{ height: 220, flexShrink: 0 }}>
                   <Carousel images={selected.images} />
                 </div>
@@ -271,12 +273,7 @@ export default function Catalogue() {
                 {/* Gauche : titre + description défilants, prix + bouton fixés en bas */}
                 <div className="flex flex-col" style={{ flex: '1 1 0', minWidth: 0 }}>
                   <div className="flex-1 overflow-y-auto px-10 pt-8 pb-4 flex flex-col gap-6">
-                    <div className="flex justify-end">
-                      <button onClick={() => setSelected(null)} className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all" style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)' }}>
-                        <X size={20} />
-                      </button>
-                    </div>
-                    <h2 className="leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
+                    <h2 className="leading-tight pr-10" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
                       {selected.name}
                     </h2>
                     <div className="h-px w-32" style={{ background: 'linear-gradient(90deg, rgba(0,200,239,0.7), transparent)' }} />
