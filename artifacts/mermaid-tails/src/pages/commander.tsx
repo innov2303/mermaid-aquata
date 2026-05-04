@@ -6,7 +6,6 @@ import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
-import { useLocation } from "wouter";
 
 const FIN_SCHEMA_IMAGES: Record<string, string> = {
   SIREN:    '/images/schema-siren.jpg',
@@ -36,7 +35,6 @@ export default function Commander() {
   const [schemaPopup, setSchemaPopup] = useState<SchemaPopup>(null);
   const [schemaImgError, setSchemaImgError] = useState(false);
   const { t } = useLanguage();
-  const [, navigate] = useLocation();
   useSEO("commander");
 
   const steps = t.commander.steps;
@@ -119,7 +117,7 @@ export default function Commander() {
                           return (
                             <li key={idx}>
                               <button
-                                onClick={() => navigate(`/queue-de-sirene?open=${encodeURIComponent(choice)}`)}
+                                onClick={() => window.open(`/queue-de-sirene?open=${encodeURIComponent(choice)}`, '_blank')}
                                 className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
                                 style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff', cursor: 'pointer' }}
                               >
