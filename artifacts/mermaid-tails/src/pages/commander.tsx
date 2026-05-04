@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, Play } from "lucide-react";
+import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
+import { fetchCatalogue } from "@/lib/api";
+
+type CatalogueItem = {
+  id: number;
+  name: string;
+  desc: string;
+  price: string;
+  images: string[];
+  section: string;
+};
 
 const FIN_SCHEMA_IMAGES: Record<string, string> = {
   SIREN:    '/images/schema-siren.jpg',
@@ -14,15 +24,6 @@ const FIN_SCHEMA_IMAGES: Record<string, string> = {
   H2O:      '/images/schema-h2o.jpg',
   GOLDFISH: '/images/schema-goldfish.jpg',
   ARIEL:    '/images/schema-ariel.jpg',
-};
-
-// Remplir les IDs YouTube pour chaque type de queue (ex: 'dQw4w9WgXcQ')
-const TYPE_VIDEO_IDS: Record<string, string> = {
-  'Classique silicone':     'fe_MKakX5_g',
-  'Pieds invisible':        '2zWVVgAsVlk',
-  'Longfish':               'ZQHPnpF5tZI',
-  'Monopalme':              'je4oc3EBwPY',
-  'Monopalme à extension':  'gJCSegOKEUg',
 };
 
 const STEP_ICONS = [
@@ -43,11 +44,23 @@ export default function Commander() {
   const [contactOpen, setContactOpen] = useState(false);
   const [schemaPopup, setSchemaPopup] = useState<SchemaPopup>(null);
   const [schemaImgError, setSchemaImgError] = useState(false);
-  const [videoPopup, setVideoPopup] = useState<{ label: string; videoId: string } | null>(null);
+  const [expandedChoice, setExpandedChoice] = useState<string | null>(null);
+  const [catalogueItems, setCatalogueItems] = useState<CatalogueItem[]>([]);
   const { t } = useLanguage();
   useSEO("commander");
 
+  useEffect(() => {
+    fetchCatalogue().then(setCatalogueItems).catch(() => {});
+  }, []);
+
   const steps = t.commander.steps;
+
+  function getItemDesc(choiceName: string): string | null {
+    const match = catalogueItems.find(
+      item => item.name.trim().toLowerCase() === choiceName.trim().toLowerCase()
+    );
+    return match?.desc ?? null;
+  }
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
@@ -106,8 +119,6 @@ export default function Commander() {
                       <ul className="flex flex-col gap-2">
                         {(steps[currentStep] as { choices: string[] }).choices.map((choice, idx) => {
                           const hasSchema = choice.toUpperCase() in FIN_SCHEMA_IMAGES;
-                          const videoId = TYPE_VIDEO_IDS[choice] ?? null;
-                          const hasVideo = videoId !== null;
 
                           if (hasSchema) {
                             return (
@@ -125,26 +136,45 @@ export default function Commander() {
                             );
                           }
 
-                          if (hasVideo) {
-                            return (
-                              <li key={idx}>
-                                <button
-                                  onClick={() => setVideoPopup({ label: choice, videoId: videoId! })}
-                                  className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
-                                  style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff', cursor: 'pointer' }}
-                                >
-                                  <span className="text-primary font-semibold text-xs">✦</span>
-                                  <span className="flex-1 text-left">{choice}</span>
-                                  <Play size={14} className="opacity-40 group-hover:opacity-100 transition-opacity text-primary" />
-                                </button>
-                              </li>
-                            );
-                          }
+                          // Choice with catalogue description
+                          const desc = getItemDesc(choice);
+                          const isExpanded = expandedChoice === choice;
 
                           return (
-                            <li key={idx} className="flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm" style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff' }}>
-                              <span className="text-primary font-semibold text-xs">✦</span>
-                              {choice}
+                            <li key={idx}>
+                              <button
+                                onClick={() => setExpandedChoice(isExpanded ? null : choice)}
+                                className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
+                                style={{ background: isExpanded ? 'rgba(0,200,239,0.18)' : 'rgba(0,200,239,0.1)', border: `1px solid ${isExpanded ? 'rgba(0,200,239,0.6)' : 'rgba(0,200,239,0.35)'}`, color: '#e0f5ff', cursor: 'pointer' }}
+                              >
+                                <span className="text-primary font-semibold text-xs">✦</span>
+                                <span className="flex-1 text-left">{choice}</span>
+                                {desc && (
+                                  <ChevronDown
+                                    size={14}
+                                    className="opacity-40 group-hover:opacity-100 transition-all text-primary"
+                                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s' }}
+                                  />
+                                )}
+                              </button>
+                              <AnimatePresence>
+                                {isExpanded && desc && (
+                                  <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    transition={{ duration: 0.25 }}
+                                    className="overflow-hidden"
+                                  >
+                                    <div
+                                      className="px-4 py-3 text-xs font-light leading-relaxed whitespace-pre-line rounded-b-lg"
+                                      style={{ color: 'rgba(200,235,255,0.85)', background: 'rgba(0,200,239,0.06)', borderLeft: '1px solid rgba(0,200,239,0.35)', borderRight: '1px solid rgba(0,200,239,0.35)', borderBottom: '1px solid rgba(0,200,239,0.35)' }}
+                                    >
+                                      {desc}
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
                             </li>
                           );
                         })}
@@ -224,57 +254,6 @@ export default function Commander() {
               style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)' }}
               onClick={e => e.stopPropagation()}
             />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Video Popup */}
-      <AnimatePresence>
-        {videoPopup && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ background: 'rgba(4,15,40,0.92)' }}
-            onClick={() => setVideoPopup(null)}
-          >
-            <button
-              className="absolute top-5 right-5 text-white rounded-full p-2 hover:bg-white/10 transition-colors"
-              onClick={() => setVideoPopup(null)}
-            >
-              <X size={32} />
-            </button>
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col items-center gap-4 w-full max-w-3xl"
-              onClick={e => e.stopPropagation()}
-            >
-              <h3 className="font-serif text-2xl" style={{ color: '#e0f5ff', textShadow: '0 0 20px rgba(0,200,239,0.5)' }}>
-                {videoPopup.label}
-              </h3>
-              {videoPopup.videoId ? (
-                <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', boxShadow: '0 0 60px rgba(0,200,239,0.25)', border: '1.5px solid rgba(0,200,239,0.3)' }}>
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoPopup.videoId}?autoplay=1&rel=0`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                    title={videoPopup.label}
-                  />
-                </div>
-              ) : (
-                <div className="flex flex-col items-center gap-3 rounded-2xl p-12" style={{ background: 'rgba(0,20,50,0.6)', border: '1.5px dashed rgba(0,200,239,0.35)', width: '100%' }}>
-                  <Play size={48} style={{ color: 'rgba(0,200,239,0.4)' }} />
-                  <p className="text-sm text-center" style={{ color: 'rgba(200,235,255,0.6)' }}>
-                    Vidéo à venir — disponible prochainement
-                  </p>
-                </div>
-              )}
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
