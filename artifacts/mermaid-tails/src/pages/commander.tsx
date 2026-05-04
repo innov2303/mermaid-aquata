@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink, Sparkles, Send } from "lucide-react";
+import { Scissors, Palette, Ruler, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink, Sparkles, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
@@ -22,11 +22,10 @@ const STEP_ICONS = [
   <Scissors size={28} />,
   <Palette size={28} />,
   <Ruler size={28} />,
-  <MessageCircle size={28} />,
   <CreditCard size={28} />,
   <Send size={28} />,
 ];
-const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, null, null];
+const STEP_IMAGES = [null, null, null, null, "/images/mes-mesures.webp", null, null];
 
 const INSTAGRAM_URL = 'https://www.instagram.com/mermaid.real.aquata/';
 

@@ -80,10 +80,6 @@ const translations = {
           desc: "La prise de vos mesures est indispensable pour un ajustement parfait !\n\nElles sont à prendre debout, les jambes serrées ensemble comme si vous étiez dans la nageoire.\n\nGrâce à ce tableau, prenez en centimètres les tours à droite et les longueurs à gauche.\n\nLa mesure de la taille doit être au niveau du nombril, la mesure cheville au niveau de l'os de votre cheville.\n\nLa longueur doit partir du nombril à la hanche, du nombril aux fesses, du nombril au milieu des cuisses, etc. Jusqu'à la cheville et non le sol !",
         },
         {
-          title: 'Me contacter',
-          desc: "Pour terminer je vous réalise un croquis numérique avec toutes vos informations, ce qui vous donnera un visuel final et définira le prix de votre demande. Un délai de création vous sera également donné lors du devis.\n\nRéponse rapide en 48h et 24h sur mon réseau Instagram.\n\nLe devis est gratuit !\n\nVous serez tenue au courant tout au long de la création avec photos et vidéos à l'appui.\n\nExemple de message à me transmettre via le formulaire de contact ou en message privé sur mes réseaux :\n\n« Bonjour, je souhaiterais commander un modèle 'pieds invisible' avec la forme 'H2O', couleurs or et bronze, avec une paire de petites nageoires supplémentaires au niveau des hanches devant et une dorsale derrière les mollets. »",
-        },
-        {
           title: 'Paiement',
           desc: "Pour les nageoires j'accepte les paiements par PayPal ou virement bancaire. Les coordonnées vous seront communiquées après l'acceptation du devis avec dessin graphique.\n\nPour les accessoires, les achats se font via la plateforme Etsy.",
         },
@@ -271,10 +267,6 @@ const translations = {
           desc: "Taking your measurements is essential for a perfect fit!\n\nThey should be taken standing up, legs pressed together as if you were inside the fin.\n\nUsing the chart, take circumferences in centimetres on the right and lengths on the left.\n\nThe waist measurement should be at belly button level, the ankle measurement at the ankle bone.\n\nLengths run from the navel to the hip, navel to the buttocks, navel to mid-thigh, etc. Down to the ankle, not the floor!",
         },
         {
-          title: 'Contact me',
-          desc: "Finally, I will create a digital sketch using all your information, giving you a final visual and confirming the price of your request. A production timeline will also be provided with the free quote.\n\nFast response within 48h and 24h on my Instagram.\n\nThe quote is free!\n\nYou will be kept informed throughout the creation process with photos and videos.\n\nExample message to send via the contact form or Instagram DM:\n\n'Hello, I would like to order an 'invisible feet' model with the 'H2O' shape, in gold and bronze colours, with an extra pair of small side fins at the hips and a dorsal fin behind the calves.'",
-        },
-        {
           title: 'Payment',
           desc: "For fins I accept payment by PayPal or bank transfer. Details will be shared after the quote with graphic design is accepted.\n\nFor accessories, purchases are made through the Etsy platform.",
         },
@@ -460,10 +452,6 @@ const translations = {
         {
           title: 'Tus medidas',
           desc: "¡Tomar tus medidas es esencial para un ajuste perfecto!\n\nDeben tomarse de pie, con las piernas juntas como si estuvieras dentro de la aleta.\n\nCon la tabla, toma las circunferencias en centímetros a la derecha y las longitudes a la izquierda.\n\nLa medida de la cintura debe tomarse a la altura del ombligo; la del tobillo, a la altura del hueso del tobillo.\n\nLas longitudes van del ombligo a la cadera, del ombligo a los glúteos, del ombligo a la mitad del muslo, etc. ¡Hasta el tobillo, no el suelo!",
-        },
-        {
-          title: 'Contáctame',
-          desc: "Para finalizar, realizaré un boceto digital con toda tu información, lo que te dará una imagen final y definirá el precio de tu solicitud. También se te indicará un plazo de creación con el presupuesto gratuito.\n\nRespuesta rápida en 48h y 24h en mi Instagram.\n\n¡El presupuesto es gratuito!\n\nEstarás informada durante todo el proceso de creación con fotos y vídeos.\n\nEjemplo de mensaje a enviarme por el formulario de contacto o por mensaje directo en mis redes:\n\n'Hola, me gustaría pedir un modelo de 'pies invisibles' con la forma 'H2O', en colores dorado y bronce, con un par de pequeñas aletas laterales en las caderas y una aleta dorsal detrás de los gemelos.'",
         },
         {
           title: 'Pago',
