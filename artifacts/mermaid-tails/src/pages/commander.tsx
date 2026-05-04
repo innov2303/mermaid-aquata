@@ -1,21 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ChevronDown } from "lucide-react";
+import { Scissors, Palette, Ruler, MessageCircle, CreditCard, ChevronRight, ChevronLeft, X, ZoomIn, Image as ImageIcon, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
-import { fetchCatalogue } from "@/lib/api";
-
-type CatalogueItem = {
-  id: number;
-  name: string;
-  desc: string;
-  price: string;
-  images: string[];
-  section: string;
-};
+import { useLocation } from "wouter";
 
 const FIN_SCHEMA_IMAGES: Record<string, string> = {
   SIREN:    '/images/schema-siren.jpg',
@@ -44,23 +35,11 @@ export default function Commander() {
   const [contactOpen, setContactOpen] = useState(false);
   const [schemaPopup, setSchemaPopup] = useState<SchemaPopup>(null);
   const [schemaImgError, setSchemaImgError] = useState(false);
-  const [expandedChoice, setExpandedChoice] = useState<string | null>(null);
-  const [catalogueItems, setCatalogueItems] = useState<CatalogueItem[]>([]);
   const { t } = useLanguage();
+  const [, navigate] = useLocation();
   useSEO("commander");
 
-  useEffect(() => {
-    fetchCatalogue().then(setCatalogueItems).catch(() => {});
-  }, []);
-
   const steps = t.commander.steps;
-
-  function getItemDesc(choiceName: string): string | null {
-    const match = catalogueItems.find(
-      item => item.name.trim().toLowerCase() === choiceName.trim().toLowerCase()
-    );
-    return match?.desc ?? null;
-  }
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{ backgroundImage: 'url(/images/ocean-bubbles-bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
@@ -136,45 +115,18 @@ export default function Commander() {
                             );
                           }
 
-                          // Choice with catalogue description
-                          const desc = getItemDesc(choice);
-                          const isExpanded = expandedChoice === choice;
-
+                          // Choice → navigate to catalogue with item pre-opened
                           return (
                             <li key={idx}>
                               <button
-                                onClick={() => setExpandedChoice(isExpanded ? null : choice)}
+                                onClick={() => navigate(`/queue-de-sirene?open=${encodeURIComponent(choice)}`)}
                                 className="group w-full flex items-center gap-2 rounded-lg px-4 py-2 font-light text-sm transition-all duration-200 hover:scale-[1.02]"
-                                style={{ background: isExpanded ? 'rgba(0,200,239,0.18)' : 'rgba(0,200,239,0.1)', border: `1px solid ${isExpanded ? 'rgba(0,200,239,0.6)' : 'rgba(0,200,239,0.35)'}`, color: '#e0f5ff', cursor: 'pointer' }}
+                                style={{ background: 'rgba(0,200,239,0.1)', border: '1px solid rgba(0,200,239,0.35)', color: '#e0f5ff', cursor: 'pointer' }}
                               >
                                 <span className="text-primary font-semibold text-xs">✦</span>
                                 <span className="flex-1 text-left">{choice}</span>
-                                {desc && (
-                                  <ChevronDown
-                                    size={14}
-                                    className="opacity-40 group-hover:opacity-100 transition-all text-primary"
-                                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s' }}
-                                  />
-                                )}
+                                <ExternalLink size={13} className="opacity-40 group-hover:opacity-100 transition-opacity text-primary" />
                               </button>
-                              <AnimatePresence>
-                                {isExpanded && desc && (
-                                  <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: 'auto' }}
-                                    exit={{ opacity: 0, height: 0 }}
-                                    transition={{ duration: 0.25 }}
-                                    className="overflow-hidden"
-                                  >
-                                    <div
-                                      className="px-4 py-3 text-xs font-light leading-relaxed whitespace-pre-line rounded-b-lg"
-                                      style={{ color: 'rgba(200,235,255,0.85)', background: 'rgba(0,200,239,0.06)', borderLeft: '1px solid rgba(0,200,239,0.35)', borderRight: '1px solid rgba(0,200,239,0.35)', borderBottom: '1px solid rgba(0,200,239,0.35)' }}
-                                    >
-                                      {desc}
-                                    </div>
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
                             </li>
                           );
                         })}

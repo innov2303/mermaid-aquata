@@ -80,7 +80,19 @@ export default function Catalogue() {
   useSEO("catalogue");
 
   useEffect(() => {
-    fetchCatalogue().then(setAllItems).catch(() => {});
+    fetchCatalogue().then(items => {
+      setAllItems(items);
+      const params = new URLSearchParams(window.location.search);
+      const open = params.get('open');
+      if (open) {
+        const needle = open.trim().toLowerCase();
+        const match = items.find(item =>
+          item.name.trim().toLowerCase().includes(needle) ||
+          needle.includes(item.name.trim().toLowerCase())
+        );
+        if (match) setSelected(match);
+      }
+    }).catch(() => {});
   }, []);
 
   const sectionOrder = ['invisibles', 'monopalmes', 'accessoires'] as const;
