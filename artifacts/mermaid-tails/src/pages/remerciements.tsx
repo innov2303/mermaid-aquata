@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
 
-type Sirene = { id: number; name: string; img: string | null; instagram: string | null };
+type Sirene = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
 
 export default function Remerciements() {
   const [sirenes, setSirenes] = useState<Sirene[]>([]);
@@ -77,8 +77,8 @@ export default function Remerciements() {
                 )}
               </div>
 
-              {/* Nom + Instagram */}
-              <div className="flex-1 flex flex-col items-center justify-center gap-3 min-w-0">
+              {/* Nom + Avis + Instagram */}
+              <div className="flex-1 flex flex-col items-center justify-center gap-3 min-w-0 py-2">
                 <h3 style={{
                   fontFamily: "'Dancing Script', cursive",
                   fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
@@ -91,6 +91,18 @@ export default function Remerciements() {
                 }}>
                   {sirene.name}
                 </h3>
+                {sirene.review && (
+                  <p style={{
+                    color: 'rgba(200,235,255,0.85)',
+                    fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+                    fontStyle: 'italic',
+                    lineHeight: 1.6,
+                    textAlign: 'center',
+                    whiteSpace: 'pre-line',
+                  }}>
+                    « {sirene.review} »
+                  </p>
+                )}
                 {sirene.instagram && (
                   <a
                     href={sirene.instagram}

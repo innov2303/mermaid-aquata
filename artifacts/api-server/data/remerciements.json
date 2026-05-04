@@ -23,5 +23,11 @@
     "id": 6,
     "name": "Mermaid Moana",
     "img": "/api/uploads/1776813627180-gr5xdaapk7.webp"
+  },
+  {
+    "name": "Mermaid Erel",
+    "img": "/api/uploads/1777898442718-fib9x5q33xo.jpg",
+    "instagram": "https://www.instagram.com/erelemermaid?igsh=cno0YW9hdmw4bzUw",
+    "id": 1777898457274
   }
 ]

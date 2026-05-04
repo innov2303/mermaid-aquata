@@ -23,5 +23,6 @@ export function sanitizeRemerciement(body: Record<string, unknown>) {
     name: sanitizeString(body["name"], 200),
     img: typeof body["img"] === "string" ? sanitizeString(body["img"], 500) : null,
     instagram: typeof body["instagram"] === "string" ? sanitizeString(body["instagram"], 300) : null,
+    review: typeof body["review"] === "string" ? sanitizeString(body["review"], 2000) : null,
   };
 }

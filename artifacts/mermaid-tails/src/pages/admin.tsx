@@ -17,7 +17,7 @@ const SECTIONS = [
 ];
 
 type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; images: string[] };
-type Remerciement = { id: number; name: string; img: string | null; instagram: string | null };
+type Remerciement = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
 type PresentationPhoto = { id: number; url: string; alt: string };
 type UploadedFile = { filename: string; url: string };
 
@@ -450,6 +450,16 @@ function RemerciementsAdmin({ token }: { token: string }) {
               <label className="text-xs font-medium mb-1 block" style={labelStyle}>Lien Instagram (optionnel)</label>
               <input className={inputClass} style={inputStyle} value={addForm.instagram || ""} onChange={e => setAddForm({ ...addForm, instagram: e.target.value || null })} placeholder="https://instagram.com/nom_du_compte" />
             </div>
+            <div className="md:col-span-2">
+              <label className="text-xs font-medium mb-1 block" style={labelStyle}>Avis du client (optionnel)</label>
+              <textarea
+                className={inputClass}
+                style={{ ...inputStyle, minHeight: "90px", resize: "vertical" }}
+                value={addForm.review || ""}
+                onChange={e => setAddForm({ ...addForm, review: e.target.value || null })}
+                placeholder="Ce que le client a écrit sur sa queue de sirène…"
+              />
+            </div>
           </div>
           <div className="flex gap-3">
             <button onClick={addItem} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
@@ -474,6 +484,16 @@ function RemerciementsAdmin({ token }: { token: string }) {
                 <div>
                   <label className="text-xs font-medium mb-1 block" style={labelStyle}>Lien Instagram</label>
                   <input className={inputClass} style={inputStyle} value={form.instagram || ""} onChange={e => setForm({ ...form, instagram: e.target.value || null })} placeholder="https://instagram.com/nom_du_compte" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium mb-1 block" style={labelStyle}>Avis du client</label>
+                  <textarea
+                    className={inputClass}
+                    style={{ ...inputStyle, minHeight: "80px", resize: "vertical" }}
+                    value={form.review || ""}
+                    onChange={e => setForm({ ...form, review: e.target.value || null })}
+                    placeholder="Ce que le client a écrit sur sa queue de sirène…"
+                  />
                 </div>
                 <div className="flex gap-2 mt-1">
                   <button onClick={saveEdit} className={btnPrimary + " text-xs px-3 py-1.5"} style={{ background: "#00c8ef" }}><Save size={13} /> Enregistrer</button>
