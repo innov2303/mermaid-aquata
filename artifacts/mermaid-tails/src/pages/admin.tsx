@@ -32,6 +32,53 @@ const inputClass = "w-full rounded-xl border px-3 py-2 text-sm outline-none focu
 const inputStyle = { borderColor: "rgba(0,200,239,0.3)", color: "#e0f5ff", background: "rgba(0,20,50,0.6)", backdropFilter: "blur(4px)" } as React.CSSProperties;
 const btnPrimary = "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-white transition-all hover:scale-105";
 
+function useConfirm() {
+  const [state, setState] = useState({ open: false, msg: "", resolve: null as ((v: boolean) => void) | null });
+  function askConfirm(msg: string) {
+    return new Promise<boolean>(resolve => setState({ open: true, msg, resolve }));
+  }
+  function handleOk() { state.resolve?.(true); setState({ open: false, msg: "", resolve: null }); }
+  function handleCancel() { state.resolve?.(false); setState({ open: false, msg: "", resolve: null }); }
+  return { askConfirm, confirmProps: { open: state.open, msg: state.msg, onOk: handleOk, onCancel: handleCancel } };
+}
+
+function ConfirmDialog({ open, msg, onOk, onCancel }: { open: boolean; msg: string; onOk: () => void; onCancel: () => void }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          key="confirm-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(4,15,40,0.85)", backdropFilter: "blur(6px)" }}
+        >
+          <motion.div
+            initial={{ scale: 0.92, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.92, opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="rounded-2xl p-8 max-w-sm w-full text-center"
+            style={cardStyle}
+          >
+            <Trash2 size={32} className="mx-auto mb-4" style={{ color: "#f87171" }} />
+            <p className="text-base mb-8 font-medium" style={{ color: "#e0f5ff" }}>{msg}</p>
+            <div className="flex gap-3 justify-center">
+              <button onClick={onCancel} className={btnPrimary} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}>
+                <X size={15} /> Annuler
+              </button>
+              <button onClick={onOk} className={btnPrimary} style={{ background: "rgba(239,68,68,0.75)" }}>
+                <Trash2 size={15} /> Supprimer
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 const bgPage: React.CSSProperties = {
   backgroundImage: "url(/images/ocean-bubbles-bg.png)",
   backgroundSize: "cover",
@@ -205,6 +252,7 @@ function MediaAdmin({ token }: { token: string }) {
   const [copied, setCopied] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
+  const { askConfirm, confirmProps } = useConfirm();
 
   async function load() { listUploads(token).then(setUploads).catch(() => {}); }
   useEffect(() => { load(); }, []);
@@ -219,7 +267,7 @@ function MediaAdmin({ token }: { token: string }) {
   }
 
   async function handleDelete(f: UploadedFile) {
-    if (!confirm("Supprimer cette image ?")) return;
+    if (!await askConfirm("Supprimer cette image définitivement ?")) return;
     await deleteUpload(f.filename, token); await load(); notify("✓ Image supprimée");
   }
 
@@ -228,6 +276,7 @@ function MediaAdmin({ token }: { token: string }) {
 
   return (
     <div>
+      <ConfirmDialog {...confirmProps} />
       <h2 className="text-2xl font-serif mb-6" style={{ color: "#e0f5ff" }}>Médiathèque</h2>
       {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
       <div
@@ -329,6 +378,7 @@ function CatalogueAdmin({ token }: { token: string }) {
   const [adding, setAdding] = useState(false);
   const [addForm, setAddForm] = useState<Partial<CatalogueItem>>({ section: "monopalmes", images: [] });
   const [msg, setMsg] = useState("");
+  const { askConfirm, confirmProps } = useConfirm();
 
   useEffect(() => { fetchCatalogue().then(setItems); }, []);
 
@@ -341,7 +391,7 @@ function CatalogueAdmin({ token }: { token: string }) {
     setEditId(null); notify("✓ Article mis à jour");
   }
   async function removeItem(id: number) {
-    if (!confirm("Supprimer cet article ?")) return;
+    if (!await askConfirm("Supprimer cet article du catalogue ?")) return;
     await deleteCatalogueItem(id, token); setItems(items.filter(i => i.id !== id)); notify("✓ Article supprimé");
   }
   async function addItem() {
@@ -351,6 +401,7 @@ function CatalogueAdmin({ token }: { token: string }) {
 
   return (
     <div>
+      <ConfirmDialog {...confirmProps} />
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Catalogue</h2>
         <button onClick={() => setAdding(true)} className={btnPrimary} style={{ background: "#00c8ef" }}><Plus size={16} /> Ajouter</button>
@@ -405,6 +456,7 @@ function RemerciementsAdmin({ token }: { token: string }) {
   const [adding, setAdding] = useState(false);
   const [addForm, setAddForm] = useState<Partial<Remerciement>>({});
   const [msg, setMsg] = useState("");
+  const { askConfirm, confirmProps } = useConfirm();
 
   useEffect(() => { fetchRemerciements().then(setItems); }, []);
 
@@ -417,7 +469,7 @@ function RemerciementsAdmin({ token }: { token: string }) {
     setEditId(null); notify("✓ Sirène mise à jour");
   }
   async function removeItem(id: number) {
-    if (!confirm("Supprimer cette sirène ?")) return;
+    if (!await askConfirm("Supprimer cet avis ?")) return;
     await deleteRemerciement(id, token); setItems(items.filter(i => i.id !== id)); notify("✓ Sirène supprimée");
   }
   async function addItem() {
@@ -429,6 +481,7 @@ function RemerciementsAdmin({ token }: { token: string }) {
 
   return (
     <div>
+      <ConfirmDialog {...confirmProps} />
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Avis</h2>
         <button onClick={() => setAdding(true)} className={btnPrimary} style={{ background: "#00c8ef" }}><Plus size={16} /> Ajouter</button>
@@ -533,6 +586,7 @@ function PresentationAdmin({ token }: { token: string }) {
   const [adding, setAdding] = useState(false);
   const [addForm, setAddForm] = useState<Partial<PresentationPhoto>>({});
   const [msg, setMsg] = useState("");
+  const { askConfirm, confirmProps } = useConfirm();
 
   useEffect(() => { fetchPresentation().then(setItems).catch(() => {}); }, []);
 
@@ -545,7 +599,7 @@ function PresentationAdmin({ token }: { token: string }) {
     setEditId(null); notify("✓ Photo mise à jour");
   }
   async function removeItem(id: number) {
-    if (!confirm("Supprimer cette photo ?")) return;
+    if (!await askConfirm("Supprimer cette photo de la galerie ?")) return;
     await deletePresentationPhoto(id, token); setItems(items.filter(i => i.id !== id)); notify("✓ Photo supprimée");
   }
   async function addItem() {
@@ -558,6 +612,7 @@ function PresentationAdmin({ token }: { token: string }) {
 
   return (
     <div>
+      <ConfirmDialog {...confirmProps} />
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Galerie Présentation</h2>
