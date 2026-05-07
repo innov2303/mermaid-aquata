@@ -455,13 +455,9 @@ fi
 
 print_header "Installation de pnpm"
 
-if ! command -v pnpm &> /dev/null; then
-    echo ">>> Installation de pnpm..."
-    run_cmd npm install -g pnpm
-    print_status "pnpm $(pnpm -v) installé"
-else
-    print_status "pnpm $(pnpm -v) déjà installé"
-fi
+echo ">>> Installation/mise à jour de pnpm (dernière version stable)..."
+run_cmd npm install -g pnpm@latest
+print_status "pnpm $(pnpm -v) installé"
 
 # ==========================================
 # NGINX
@@ -614,7 +610,7 @@ pnpm --filter @workspace/api-server run build
 print_status "API compilée → artifacts/api-server/dist/"
 
 echo ">>> Build du frontend (React/Vite)..."
-pnpm --filter @workspace/mermaid-tails run build
+PORT=3000 BASE_PATH=/ pnpm --filter @workspace/mermaid-tails run build
 print_status "Frontend compilé → artifacts/mermaid-tails/dist/"
 
 # ==========================================
