@@ -7,11 +7,11 @@
     "id": 1
   },
   {
-    "id": 2,
     "label": "Campagne caritative",
     "name": "Handicap International",
     "desc": "Fourniture et port du costume de sirène.",
-    "youtube": ""
+    "youtube": "https://youtu.be/0jWWVzaRBvI",
+    "id": 2
   },
   {
     "id": 3,
