@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, Youtube } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
@@ -77,29 +77,67 @@ export default function ProductionsTv() {
           >
             {t.tv.refsTitle}
           </motion.h2>
-          <div className="max-w-3xl mx-auto space-y-4">
-            {t.tv.refs.map((ref, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -16 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
-                className="flex items-start gap-5 rounded-2xl px-6 py-5"
-                style={GLASS}
-              >
-                <div
-                  className="shrink-0 rounded-full px-3 py-1 text-xs font-medium tracking-wide mt-0.5"
-                  style={{ background: 'rgba(0,200,239,0.15)', color: '#00c8ef', border: '1px solid rgba(0,200,239,0.35)' }}
+          <div className="max-w-4xl mx-auto flex flex-col gap-6">
+            {t.tv.refs.map((ref, i) => {
+              const ytId = ref.youtube ? ref.youtube.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/)?.[1] : null;
+              const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.45 }}
+                  className="flex flex-row items-center gap-6 rounded-2xl p-4"
+                  style={GLASS}
                 >
-                  {ref.label}
-                </div>
-                <div>
-                  <p className="font-serif text-base mb-1" style={{ color: '#e0f5ff' }}>{ref.name}</p>
-                  <p className="text-sm font-light" style={{ color: 'rgba(200,235,255,0.75)' }}>{ref.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+                  {/* Thumbnail / placeholder */}
+                  <div
+                    className="flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center"
+                    style={{ width: 160, minHeight: 100, border: '1.5px solid rgba(0,200,239,0.4)', background: 'rgba(0,10,30,0.6)' }}
+                  >
+                    {thumb ? (
+                      <img src={thumb} alt={ref.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 flex flex-col items-start gap-2 py-1">
+                    <span
+                      className="rounded-full px-3 py-0.5 text-xs font-medium tracking-wide"
+                      style={{ background: 'rgba(0,200,239,0.15)', color: '#00c8ef', border: '1px solid rgba(0,200,239,0.35)' }}
+                    >
+                      {ref.label}
+                    </span>
+                    <h3 style={{
+                      fontFamily: "'Dancing Script', cursive",
+                      fontSize: 'clamp(1.2rem, 3vw, 1.7rem)',
+                      fontWeight: 700,
+                      color: '#e0f5ff',
+                      textShadow: '0 2px 16px rgba(0,200,239,0.4)',
+                      lineHeight: 1.2,
+                    }}>
+                      {ref.name}
+                    </h3>
+                    <p className="text-sm font-light" style={{ color: 'rgba(200,235,255,0.8)', fontStyle: 'italic' }}>{ref.desc}</p>
+                    {ref.youtube && (
+                      <a
+                        href={ref.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all hover:scale-105 mt-1"
+                        style={{ background: 'rgba(255,0,0,0.15)', border: '1px solid rgba(255,80,80,0.4)', color: '#ff8080', textDecoration: 'none' }}
+                      >
+                        <Youtube size={14} />
+                        Voir sur YouTube
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
