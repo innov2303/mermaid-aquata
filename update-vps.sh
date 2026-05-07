@@ -57,11 +57,10 @@ fi
 print_header "Récupération du code mis à jour"
 cd "$APP_DIR"
 
-# Mettre de côté toutes les modifications locales pour éviter les conflits
-# (les données ont déjà été sauvegardées ci-dessus — le stash sera ignoré)
-git stash --include-untracked 2>/dev/null || true
-
-git pull
+# Force la mise à jour sans se bloquer sur les modifications locales
+# (les données ont déjà été sauvegardées ci-dessus)
+git fetch origin
+git reset --hard origin/main
 print_status "Code mis à jour"
 
 # ── Restauration des données locales ────────
