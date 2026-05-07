@@ -57,10 +57,9 @@ fi
 print_header "Récupération du code mis à jour"
 cd "$APP_DIR"
 
-# Réinitialiser les fichiers de données pour éviter les conflits de merge
-# (ils ont déjà été sauvegardés ci-dessus)
-git checkout -- artifacts/api-server/data/ 2>/dev/null || true
-git checkout -- artifacts/api-server/uploads/ 2>/dev/null || true
+# Mettre de côté toutes les modifications locales pour éviter les conflits
+# (les données ont déjà été sauvegardées ci-dessus — le stash sera ignoré)
+git stash --include-untracked 2>/dev/null || true
 
 git pull
 print_status "Code mis à jour"
