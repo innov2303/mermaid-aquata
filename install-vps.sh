@@ -659,7 +659,7 @@ print_status "API démarrée avec PM2 (port $API_PORT)"
 
 print_header "Configuration Nginx"
 
-FRONTEND_DIST="$APP_DIR/artifacts/mermaid-tails/dist"
+FRONTEND_DIST="$APP_DIR/artifacts/mermaid-tails/dist/public"
 
 if [[ "$INCLUDE_WWW" =~ ^[oOyY]$ ]]; then
     SERVER_NAMES="$DOMAIN www.$DOMAIN"
