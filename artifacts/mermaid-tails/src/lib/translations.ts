@@ -14,6 +14,7 @@ const translations = {
       commander: 'Commander',
       faq: 'FAQ',
       remerciements: 'Avis',
+      tv: 'Productions TV',
     },
     home: {
       heroTitle: 'Bienvenue chez Mermaid Aquata',
@@ -191,6 +192,50 @@ const translations = {
         title: 'Avis Clients & Galerie Photos | Queues de Sirène Portées — Mermaid Aquata',
         description: 'Découvrez les avis clients et photos de queues de sirène Mermaid Aquata portées par des passionnées et professionnelles. Témoignages authentiques sur nos créations artisanales en silicone.',
       },
+      tv: {
+        title: 'Productions TV & Audiovisuelles | Prestations Sirène — Mermaid Aquata',
+        description: 'Mermaid Aquata propose ses créations et son expertise pour vos productions audiovisuelles : clips musicaux, séries TV, reportages, films. Costumes professionnels de sirène, réalisme saisissant.',
+      },
+    },
+    tv: {
+      title: 'Productions TV & Audiovisuelles',
+      subtitle: 'Donnez vie à vos projets audiovisuels avec une vraie sirène et ses créations uniques au monde.',
+      intro: "Depuis 2015, Mermaid Aquata met son savoir-faire et ses créations artisanales au service du monde audiovisuel. Que ce soit pour un clip musical, une série télévisée, un documentaire ou un reportage, je peux intervenir en tant que sirène professionnelle ou fournir mes équipements pour habiller vos comédiens.",
+      offersTitle: 'Ce que je propose',
+      offers: [
+        {
+          icon: '🎬',
+          title: 'Participation en tant que sirène',
+          desc: "J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute fidélité. Ma technique de nage et mon aisance en milieu aquatique garantissent des prises de vue spectaculaires.",
+        },
+        {
+          icon: '🐠',
+          title: 'Location & fourniture de costumes',
+          desc: "Je mets à disposition mes queues de sirène artisanales pour habiller vos comédiens ou figurants. Chaque pièce est conçue pour un rendu photographique et vidéo exceptionnel.",
+        },
+        {
+          icon: '🎨',
+          title: 'Création sur mesure',
+          desc: "Besoin d'une queue aux couleurs ou dimensions spécifiques pour votre production ? Je réalise des créations entièrement personnalisées adaptées à votre direction artistique.",
+        },
+        {
+          icon: '📺',
+          title: 'Conseils & expertise',
+          desc: "Fort de mon expérience sur plusieurs tournages professionnels, je vous accompagne dans la faisabilité technique de vos scènes aquatiques et dans le choix du matériel.",
+        },
+      ],
+      refsTitle: 'Références',
+      refs: [
+        { label: 'Clip musical', name: 'Josman — XS', desc: 'Participation en tant que sirène professionnelle.' },
+        { label: 'Campagne caritative', name: 'Handicap International', desc: 'Fourniture et port du costume de sirène.' },
+        { label: 'Série TV', name: '« Panda »', desc: 'Création et mise à disposition du costume.' },
+        { label: 'Reportage TV', name: 'France 3', desc: 'Portrait de créatrice, diffusé en prime time régional.' },
+        { label: 'Reportage TV', name: 'TF1', desc: "Reportage sur l'univers des sirènes professionnelles." },
+        { label: 'Presse régionale', name: 'La Dépêche du Midi', desc: 'Article & reportage photo sur mon activité.' },
+      ],
+      ctaTitle: 'Vous avez un projet ?',
+      ctaDesc: "Contactez-moi pour discuter de votre production et obtenir un devis personnalisé.",
+      ctaBtn: 'Me contacter',
     },
   },
 
@@ -201,6 +246,7 @@ const translations = {
       commander: 'Order',
       faq: 'FAQ',
       remerciements: 'Reviews',
+      tv: 'TV Productions',
     },
     home: {
       heroTitle: 'Welcome to Mermaid Aquata',
@@ -378,6 +424,50 @@ const translations = {
         title: 'Customer Reviews & Photo Gallery | Mermaid Tails in Action — Mermaid Aquata',
         description: 'Discover customer reviews and photos of Mermaid Aquata tails worn by passionate and professional mermaids. Authentic testimonials about our handcrafted silicone creations.',
       },
+      tv: {
+        title: 'TV & Audiovisual Productions | Mermaid Performer — Mermaid Aquata',
+        description: 'Mermaid Aquata offers her creations and expertise for your audiovisual productions: music videos, TV series, documentaries, films. Professional mermaid costumes with striking realism.',
+      },
+    },
+    tv: {
+      title: 'TV & Audiovisual Productions',
+      subtitle: 'Bring your audiovisual projects to life with a real mermaid and her unique creations.',
+      intro: "Since 2015, Mermaid Aquata has been lending her artisan expertise and handcrafted creations to the world of audiovisual production. Whether for a music video, a TV series, a documentary or a news feature, I can participate as a professional mermaid performer or supply my equipment to costume your actors.",
+      offersTitle: 'What I offer',
+      offers: [
+        {
+          icon: '🎬',
+          title: 'On-set mermaid performer',
+          desc: "I appear in person on your shoots, wearing my high-fidelity professional costumes. My swimming technique and ease in aquatic environments guarantee spectacular footage.",
+        },
+        {
+          icon: '🐠',
+          title: 'Costume rental & supply',
+          desc: "I make my handcrafted mermaid tails available to costume your actors or extras. Each piece is designed to deliver exceptional photographic and video results.",
+        },
+        {
+          icon: '🎨',
+          title: 'Custom creation',
+          desc: "Need a tail in specific colours or dimensions for your production? I create fully customised pieces tailored to your artistic direction.",
+        },
+        {
+          icon: '📺',
+          title: 'Advice & expertise',
+          desc: "Drawing on my experience across several professional shoots, I advise you on the technical feasibility of your aquatic scenes and on the right equipment to use.",
+        },
+      ],
+      refsTitle: 'References',
+      refs: [
+        { label: 'Music video', name: 'Josman — XS', desc: 'Participation as a professional mermaid performer.' },
+        { label: 'Charity campaign', name: 'Handicap International', desc: 'Supply and wearing of the mermaid costume.' },
+        { label: 'TV series', name: '"Panda"', desc: 'Creation and supply of the costume.' },
+        { label: 'TV feature', name: 'France 3', desc: 'Creator portrait, broadcast during regional prime time.' },
+        { label: 'TV feature', name: 'TF1', desc: 'Feature report on the world of professional mermaids.' },
+        { label: 'Regional press', name: 'La Dépêche du Midi', desc: 'Article & photo report on my activity.' },
+      ],
+      ctaTitle: 'Got a project?',
+      ctaDesc: "Contact me to discuss your production and receive a personalised quote.",
+      ctaBtn: 'Contact me',
     },
   },
 
@@ -388,6 +478,7 @@ const translations = {
       commander: 'Pedir',
       faq: 'FAQ',
       remerciements: 'Reseñas',
+      tv: 'Producciones TV',
     },
     home: {
       heroTitle: 'Bienvenida a Mermaid Aquata',
@@ -565,6 +656,50 @@ const translations = {
         title: 'Reseñas de Clientes & Galería de Fotos | Colas de Sirena en Acción — Mermaid Aquata',
         description: 'Descubre reseñas de clientes y fotos de colas de sirena Mermaid Aquata lucidas por apasionadas y profesionales. Opiniones auténticas sobre nuestras creaciones artesanales de silicona.',
       },
+      tv: {
+        title: 'Producciones de TV y Audiovisuales | Actuaciones de Sirena — Mermaid Aquata',
+        description: 'Mermaid Aquata ofrece sus creaciones y experiencia para sus producciones audiovisuales: videoclips, series de TV, documentales, películas. Trajes profesionales de sirena con un realismo impresionante.',
+      },
+    },
+    tv: {
+      title: 'Producciones de TV y Audiovisuales',
+      subtitle: 'Da vida a tus proyectos audiovisuales con una sirena de verdad y sus creaciones únicas en el mundo.',
+      intro: "Desde 2015, Mermaid Aquata pone su experiencia artesanal y sus creaciones al servicio del mundo audiovisual. Ya sea para un videoclip, una serie de televisión, un documental o un reportaje, puedo participar como sirena profesional o proporcionar mis equipos para vestir a tus actores.",
+      offersTitle: 'Lo que ofrezco',
+      offers: [
+        {
+          icon: '🎬',
+          title: 'Actuación en rodaje como sirena',
+          desc: "Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad. Mi técnica de natación y mi soltura en entornos acuáticos garantizan imágenes espectaculares.",
+        },
+        {
+          icon: '🐠',
+          title: 'Alquiler y suministro de trajes',
+          desc: "Pongo a disposición mis colas de sirena artesanales para vestir a tus actores o extras. Cada pieza está diseñada para ofrecer resultados fotográficos y de vídeo excepcionales.",
+        },
+        {
+          icon: '🎨',
+          title: 'Creación a medida',
+          desc: "¿Necesitas una cola con colores o dimensiones específicas para tu producción? Realizo piezas completamente personalizadas adaptadas a tu dirección artística.",
+        },
+        {
+          icon: '📺',
+          title: 'Asesoramiento y experiencia',
+          desc: "Con mi experiencia en varios rodajes profesionales, te asesoro sobre la viabilidad técnica de tus escenas acuáticas y la elección del material adecuado.",
+        },
+      ],
+      refsTitle: 'Referencias',
+      refs: [
+        { label: 'Videoclip', name: 'Josman — XS', desc: 'Participación como sirena profesional.' },
+        { label: 'Campaña benéfica', name: 'Handicap International', desc: 'Suministro y uso del traje de sirena.' },
+        { label: 'Serie de TV', name: '"Panda"', desc: 'Creación y suministro del traje.' },
+        { label: 'Reportaje de TV', name: 'France 3', desc: 'Retrato de la creadora, emitido en prime time regional.' },
+        { label: 'Reportaje de TV', name: 'TF1', desc: 'Reportaje sobre el mundo de las sirenas profesionales.' },
+        { label: 'Prensa regional', name: 'La Dépêche du Midi', desc: 'Artículo y reportaje fotográfico sobre mi actividad.' },
+      ],
+      ctaTitle: '¿Tienes un proyecto?',
+      ctaDesc: "Contáctame para hablar de tu producción y recibir un presupuesto personalizado.",
+      ctaBtn: 'Contáctame',
     },
   },
 } as const;
