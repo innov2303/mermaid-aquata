@@ -21,7 +21,7 @@ const translations = {
       heroTitleTop: 'Bienvenue chez',
       heroCta: 'Me découvrir',
       presentationTitle: "Plongez dans l'univers enchanté des sirènes avec",
-      bio1: "Créatrice passionnée de sirène en silicone depuis 2015, Mermaid Aquata réalise des créations uniques en France, d'un réalisme saisissant. Ses monopalmes sur mesure sont conçues pour être à la fois maniables et esthétiques, répondant aux besoins du cinéma, des sirènes professionnelles travaillant en aquarium, et des particuliers en quête de magie aquatique.",
+      bio1: "Créatrice passionnée de sirènes depuis 2015, Mermaid Aquata réalise des créations uniques en France, d'un réalisme saisissant. Ses monopalmes sur mesure sont conçues pour être à la fois maniables et esthétiques, répondant aux besoins du cinéma, des sirènes professionnelles travaillant en aquarium, et des particuliers en quête de magie aquatique.",
       bio2: "Avec son savoir-faire reconnu, Mermaid Aquata propose également des prestations pour les tournages, incarnant une véritable sirène grâce à ses costumes professionnels.",
       bio3: "Costume professionnel réservé uniquement aux adultes majeurs.",
       reportageTitle: 'Reportage France 3',
