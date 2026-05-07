@@ -49,6 +49,7 @@ type SchemaPopup = { label: string; src: string } | null;
 export default function Commander() {
   const [currentStep, setCurrentStep] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [sketchPopup, setSketchPopup] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [schemaPopup, setSchemaPopup] = useState<SchemaPopup>(null);
   const [schemaImgError, setSchemaImgError] = useState(false);
@@ -192,9 +193,21 @@ export default function Commander() {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
-                      {'desc' in steps[currentStep] ? (steps[currentStep] as { desc?: string }).desc : ''}
-                    </p>
+                    <>
+                      <p className="text-sm leading-relaxed font-light whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.85)' }}>
+                        {'desc' in steps[currentStep] ? (steps[currentStep] as { desc?: string }).desc : ''}
+                      </p>
+                      {currentStep === 3 && (
+                        <button
+                          onClick={() => setSketchPopup(true)}
+                          className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
+                          style={{ background: 'rgba(0,200,239,0.12)', border: '1px solid rgba(0,200,239,0.45)', color: '#00c8ef', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
+                        >
+                          <ZoomIn size={16} />
+                          Exemple de croquis numérique
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
                 {/* Right: image if present */}
@@ -261,6 +274,43 @@ export default function Commander() {
               style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)' }}
               onClick={e => e.stopPropagation()}
             />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Sketch Example Popup */}
+      <AnimatePresence>
+        {sketchPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: 'rgba(4,15,40,0.92)' }}
+            onClick={() => setSketchPopup(false)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white rounded-full p-2 hover:bg-white/10 transition-colors"
+              onClick={() => setSketchPopup(false)}
+            >
+              <X size={32} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col items-center gap-4"
+              onClick={e => e.stopPropagation()}
+            >
+              <p className="text-sm font-light" style={{ color: 'rgba(200,235,255,0.7)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Exemple de croquis numérique</p>
+              <img
+                src="/images/exemple-croquis.jpg"
+                alt="Exemple de croquis numérique"
+                className="max-h-[80vh] max-w-[90vw] rounded-2xl object-contain"
+                style={{ boxShadow: '0 0 60px rgba(0,200,239,0.3)', border: '1.5px solid rgba(0,200,239,0.3)' }}
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
