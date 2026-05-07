@@ -470,7 +470,7 @@ fi
 print_header "Installation de pnpm"
 
 echo ">>> Installation/mise à jour de pnpm (dernière version stable)..."
-run_cmd npm install -g pnpm@latest
+(cd /tmp && run_cmd npm install -g pnpm@latest)
 print_status "pnpm $(pnpm -v) installé"
 
 # ==========================================
@@ -500,7 +500,7 @@ print_header "Installation de PM2"
 
 if ! command -v pm2 &> /dev/null; then
     echo ">>> Installation de PM2..."
-    run_cmd npm install -g pm2
+    (cd /tmp && run_cmd npm install -g pm2)
     print_status "PM2 installé"
 else
     print_status "PM2 déjà installé"
