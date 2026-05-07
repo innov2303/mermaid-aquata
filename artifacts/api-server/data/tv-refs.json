@@ -28,17 +28,17 @@
     "youtube": ""
   },
   {
-    "id": 5,
     "label": "Reportage TV",
     "name": "TF1",
     "desc": "Reportage sur l'univers des sirènes professionnelles.",
-    "youtube": ""
+    "youtube": "https://youtu.be/RUr3CNsqsVM",
+    "id": 5
   },
   {
-    "id": 6,
     "label": "Presse régionale",
     "name": "La Dépêche du Midi",
     "desc": "Article & reportage photo sur mon activité.",
-    "youtube": ""
+    "youtube": "https://www.ladepeche.fr/article/2017/06/15/2593887-aurore-cree-des-costumes-de-sirene.html",
+    "id": 6
   }
 ]
