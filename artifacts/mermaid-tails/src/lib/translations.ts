@@ -73,7 +73,7 @@ const translations = {
         },
         {
           title: 'Choisir les couleurs et détails',
-          desc: "Choisissez vos couleurs et l'ajout de petites nageoires et/ou dorsales, spécifiez-le moi lors de votre message, je vous enverrai plusieurs teintes possibles.\n\nN'hésitez pas à m'envoyer également le plus de photos de référence possible afin de visualiser au mieux votre demande.\n\nAvec l'ensemble de ces informations, je pourrai établir un croquis numérique pour vous permettre de visualiser le rendu de votre commande.",
+          desc: "Choisissez vos couleurs et l'ajout de petites nageoires et/ou dorsales, spécifiez-le moi lors de votre message, je vous enverrai plusieurs teintes possibles.\n\nN'hésitez pas à m'envoyer également le plus de photos de référence possible afin de visualiser au mieux votre demande.\n\nAvec l'ensemble de ces informations, je pourrai établir un croquis numérique gratuit pour vous permettre de visualiser le rendu de votre commande.",
         },
         {
           title: 'Vos mesures',
@@ -260,7 +260,7 @@ const translations = {
         },
         {
           title: 'Choose colours & details',
-          desc: "Choose your colours and whether to add small side fins and/or a dorsal fin. Specify this in your message and I will send you several shade options.\n\nFeel free to send me as many reference photos as possible so I can best visualise your request.\n\nWith all this information, I will be able to create a digital sketch so you can visualise what your order will look like.",
+          desc: "Choose your colours and whether to add small side fins and/or a dorsal fin. Specify this in your message and I will send you several shade options.\n\nFeel free to send me as many reference photos as possible so I can best visualise your request.\n\nWith all this information, I will be able to create a free digital sketch so you can visualise what your order will look like.",
         },
         {
           title: 'Your measurements',
@@ -447,7 +447,7 @@ const translations = {
         },
         {
           title: 'Elige colores y detalles',
-          desc: "Elige tus colores y si deseas añadir aletas laterales pequeñas y/o una aleta dorsal. Especifícalo en tu mensaje y te enviaré varias opciones de tonos.\n\nNo dudes en enviarme el mayor número posible de fotos de referencia para visualizar mejor tu solicitud.\n\nCon toda esta información, podré realizar un boceto digital para que puedas visualizar el resultado de tu pedido.",
+          desc: "Elige tus colores y si deseas añadir aletas laterales pequeñas y/o una aleta dorsal. Especifícalo en tu mensaje y te enviaré varias opciones de tonos.\n\nNo dudes en enviarme el mayor número posible de fotos de referencia para visualizar mejor tu solicitud.\n\nCon toda esta información, podré realizar un boceto digital gratuito para que puedas visualizar el resultado de tu pedido.",
         },
         {
           title: 'Tus medidas',
