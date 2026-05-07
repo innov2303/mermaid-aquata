@@ -14,6 +14,7 @@ type Item = {
   desc: string;
   price: string;
   video: string;
+  etsyUrl: string;
   images: string[];
   section: string;
 };
@@ -261,9 +262,15 @@ export default function Catalogue() {
                   <div className="h-px w-24 mx-auto" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.6), transparent)' }} />
                   <p className="font-light leading-relaxed whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '0.95rem', lineHeight: '1.8' }}>{selected.desc}</p>
                   <p className="font-serif text-3xl text-primary font-semibold text-center">{selected.price}</p>
-                  <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
-                    <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
-                  </Button>
+                  {selected.etsyUrl ? (
+                    <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
+                      <a href={selected.etsyUrl} target="_blank" rel="noopener noreferrer">🛒 {t.catalogue.order} sur Etsy</a>
+                    </Button>
+                  ) : (
+                    <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
+                      <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                    </Button>
+                  )}
                 </div>
               </div>
 
@@ -283,9 +290,15 @@ export default function Catalogue() {
                   </div>
                   <div className="flex-shrink-0 px-10 py-5 flex items-center justify-between gap-6" style={{ borderTop: '1px solid rgba(0,200,239,0.18)', background: 'rgba(0,10,35,0.7)', backdropFilter: 'blur(8px)' }}>
                     <p className="font-serif text-4xl text-primary font-semibold">{selected.price}</p>
-                    <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
-                      <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
-                    </Button>
+                    {selected.etsyUrl ? (
+                      <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
+                        <a href={selected.etsyUrl} target="_blank" rel="noopener noreferrer">🛒 {t.catalogue.order} sur Etsy</a>
+                      </Button>
+                    ) : (
+                      <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
+                        <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
 
