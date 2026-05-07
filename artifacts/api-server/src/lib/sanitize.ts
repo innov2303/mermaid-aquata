@@ -29,6 +29,15 @@ export function sanitizeRemerciement(body: Record<string, unknown>) {
   };
 }
 
+export function sanitizeContact(body: Record<string, unknown>) {
+  return {
+    email: sanitizeString(body["email"], 200),
+    address: sanitizeString(body["address"], 300),
+    city: sanitizeString(body["city"], 200),
+    phone: sanitizeString(body["phone"], 50),
+  };
+}
+
 export function sanitizeTvRef(body: Record<string, unknown>) {
   return {
     label: sanitizeString(body["label"], 100),

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { fetchContactInfo } from "@/lib/api";
 
 type Props = { open: boolean; onClose: () => void };
 
@@ -11,8 +12,11 @@ const inputStyle = { borderColor: "rgba(0,200,239,0.3)", color: "#e0f5ff", backg
 export function ContactModal({ open, onClose }: Props) {
   const [form, setForm] = useState({ nom: "", prenom: "", email: "", telephone: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [contactEmail, setContactEmail] = useState("sireneaurore31@hotmail.com");
   const { t } = useLanguage();
   const tc = t.contact;
+
+  useEffect(() => { fetchContactInfo().then(c => { if (c.email) setContactEmail(c.email); }).catch(() => {}); }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,7 +26,7 @@ export function ContactModal({ open, onClose }: Props) {
     e.preventDefault();
     const subject = encodeURIComponent(tc.emailSubject(form.prenom, form.nom));
     const body = encodeURIComponent(tc.emailBody(form));
-    window.location.href = `mailto:sireneaurore31@hotmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
     setSent(true);
     setTimeout(() => { setSent(false); onClose(); setForm({ nom: "", prenom: "", email: "", telephone: "", message: "" }); }, 2500);
   }

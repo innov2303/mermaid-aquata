@@ -6,6 +6,7 @@ import presentationRouter from "./presentation";
 import authRouter from "./auth";
 import uploadRouter from "./upload";
 import tvRefsRouter from "./tv-refs";
+import contactRouter from "./contact";
 
 const router: IRouter = Router();
 
@@ -16,5 +17,6 @@ router.use(catalogueRouter);
 router.use(remerciementsRouter);
 router.use(presentationRouter);
 router.use(tvRefsRouter);
+router.use(contactRouter);
 
 export default router;

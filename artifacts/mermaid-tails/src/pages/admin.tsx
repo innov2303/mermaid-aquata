@@ -7,6 +7,7 @@ import {
   fetchRemerciements, createRemerciement, updateRemerciement, deleteRemerciement,
   fetchPresentation, createPresentationPhoto, updatePresentationPhoto, deletePresentationPhoto,
   fetchTvRefs, createTvRef, updateTvRef, deleteTvRef,
+  fetchContactInfo, updateContactInfo,
   uploadImage, listUploads, deleteUpload,
 } from "@/lib/api";
 
@@ -818,6 +819,68 @@ function TvRefsAdmin({ token }: { token: string }) {
   );
 }
 
+// ── Contact Admin ───────────────────────────────────────────────────────────
+type ContactInfo = { email: string; address: string; city: string; phone: string };
+
+function ContactAdmin({ token }: { token: string }) {
+  const [info, setInfo] = useState<ContactInfo>({ email: "", address: "", city: "", phone: "" });
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchContactInfo().then(d => { setInfo(d); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  async function handleSave(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try {
+      await updateContactInfo(info, token);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (loading) return <p className="text-center" style={{ color: "rgba(200,235,255,0.6)" }}>Chargement…</p>;
+
+  return (
+    <div className="rounded-2xl p-6" style={cardStyle}>
+      <h2 className="text-xl font-serif mb-6" style={{ color: "#e0f5ff" }}>Informations de contact</h2>
+      <form onSubmit={handleSave} className="space-y-5">
+        <div>
+          <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(200,235,255,0.7)" }}>E-mail</label>
+          <input type="email" value={info.email} onChange={e => setInfo({ ...info, email: e.target.value })}
+            className={inputClass} style={inputStyle} placeholder="adresse@email.com" />
+        </div>
+        <div>
+          <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(200,235,255,0.7)" }}>Téléphone <span style={{ color: "rgba(200,235,255,0.4)" }}>(facultatif)</span></label>
+          <input type="tel" value={info.phone} onChange={e => setInfo({ ...info, phone: e.target.value })}
+            className={inputClass} style={inputStyle} placeholder="+33 6 xx xx xx xx" />
+        </div>
+        <div>
+          <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(200,235,255,0.7)" }}>Adresse</label>
+          <input type="text" value={info.address} onChange={e => setInfo({ ...info, address: e.target.value })}
+            className={inputClass} style={inputStyle} placeholder="1 rue de la Mer" />
+        </div>
+        <div>
+          <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(200,235,255,0.7)" }}>Ville</label>
+          <input type="text" value={info.city} onChange={e => setInfo({ ...info, city: e.target.value })}
+            className={inputClass} style={inputStyle} placeholder="31200 Toulouse, France" />
+        </div>
+        <div className="flex items-center gap-3 pt-2">
+          <button type="submit" disabled={saving} className={btnPrimary} style={{ background: "rgba(0,200,239,0.2)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.4)" }}>
+            <Save size={15} /> {saving ? "Sauvegarde…" : "Enregistrer"}
+          </button>
+          {saved && <span className="flex items-center gap-1.5 text-sm" style={{ color: "#4ade80" }}><Check size={14} /> Sauvegardé !</span>}
+        </div>
+      </form>
+    </div>
+  );
+}
+
 // ── Main Admin Page ────────────────────────────────────────────────────────
 const TABS = [
   { id: "catalogue", label: "Queue de sirène" },
@@ -825,6 +888,7 @@ const TABS = [
   { id: "presentation", label: "Galerie accueil" },
   { id: "tv", label: "Productions TV" },
   { id: "media", label: "Médiathèque" },
+  { id: "contact", label: "Contact" },
 ] as const;
 
 type Tab = typeof TABS[number]["id"];
@@ -872,6 +936,7 @@ export default function Admin() {
             {tab === "presentation" && <PresentationAdmin token={token} />}
             {tab === "tv" && <TvRefsAdmin token={token} />}
             {tab === "media" && <MediaAdmin token={token} />}
+            {tab === "contact" && <ContactAdmin token={token} />}
           </motion.div>
         </AnimatePresence>
       </div>

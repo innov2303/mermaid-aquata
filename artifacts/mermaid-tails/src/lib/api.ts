@@ -133,3 +133,16 @@ export async function deleteTvRef(id: number, token: string) {
   if (!r.ok) throw new Error("Erreur suppression référence");
   return r.json();
 }
+
+// Contact info
+export async function fetchContactInfo(): Promise<{ email: string; address: string; city: string; phone: string }> {
+  const r = await fetch(`${BASE}/contact-info`);
+  if (!r.ok) throw new Error("Erreur chargement contact");
+  return r.json();
+}
+
+export async function updateContactInfo(item: object, token: string) {
+  const r = await fetch(`${BASE}/contact-info`, { method: "PUT", headers: headers(token), body: JSON.stringify(item) });
+  if (!r.ok) throw new Error("Erreur mise à jour contact");
+  return r.json();
+}

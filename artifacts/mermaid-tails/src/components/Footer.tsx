@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, X } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
 import { ContactModal } from "./ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
+import { fetchContactInfo } from "@/lib/api";
+
+type ContactInfo = { email: string; address: string; city: string; phone: string };
+const DEFAULT_CONTACT: ContactInfo = { email: "sireneaurore31@hotmail.com", address: "1 Rue du Docteur Albert Schweitzer", city: "31200 Toulouse, France", phone: "" };
 
 const popupStyle = {
   background: "rgba(0,20,50,0.92)",
@@ -13,7 +17,7 @@ const popupStyle = {
   boxShadow: "0 0 60px rgba(0,200,239,0.15)",
 } as React.CSSProperties;
 
-function LegalPopup({ open, onClose, title }: { open: boolean; onClose: () => void; title: string }) {
+function LegalPopup({ open, onClose, title, contactInfo }: { open: boolean; onClose: () => void; title: string; contactInfo: ContactInfo }) {
   return (
     <AnimatePresence>
       {open && (
@@ -31,8 +35,8 @@ function LegalPopup({ open, onClose, title }: { open: boolean; onClose: () => vo
             <div className="text-sm leading-relaxed space-y-1" style={{ color: "rgba(200,235,255,0.75)" }}>
               <p className="font-medium" style={{ color: "#e0f5ff" }}>Mermaid Aquata</p>
               <p>Bardet Aurore</p>
-              <p>1 rue du Docteur Albert Schweitzer</p>
-              <p>31200 Toulouse</p>
+              <p>{contactInfo.address}</p>
+              <p>{contactInfo.city.replace(", France", "")}</p>
               <p>Entrepreneur individuel</p>
               <p>TVA non applicable</p>
               <p>N° SIRET : 802 791 222 8</p>
@@ -87,9 +91,12 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
 export function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
+  const [contactInfo, setContactInfo] = useState<ContactInfo>(DEFAULT_CONTACT);
   const { t } = useLanguage();
   const tf = t.footer;
   const tn = t.nav;
+
+  useEffect(() => { fetchContactInfo().then(setContactInfo).catch(() => {}); }, []);
 
   return (
     <>
@@ -148,9 +155,10 @@ export function Footer() {
             <div>
               <h4 className="font-serif text-xl mb-4 text-white">{tf.contactTitle}</h4>
               <ul className="space-y-3 text-foreground/70 mb-5">
-                <li>sireneaurore31@hotmail.com</li>
-                <li>1 Rue du Docteur Albert Schweitzer</li>
-                <li>31200 Toulouse, France</li>
+                <li>{contactInfo.email}</li>
+                {contactInfo.phone && <li>{contactInfo.phone}</li>}
+                <li>{contactInfo.address}</li>
+                <li>{contactInfo.city}</li>
               </ul>
               <button
                 onClick={() => setContactOpen(true)}
@@ -185,7 +193,7 @@ export function Footer() {
       </footer>
 
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
-      <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} title={tf.legalTitle} />
+      <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} title={tf.legalTitle} contactInfo={contactInfo} />
     </>
   );
 }
