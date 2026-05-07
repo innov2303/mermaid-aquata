@@ -200,8 +200,10 @@ export default function Commander() {
                       {currentStep === 3 && (
                         <button
                           onClick={() => setSketchPopup(true)}
-                          className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
+                          className="mt-4 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all"
                           style={{ background: 'rgba(0,200,239,0.12)', border: '1px solid rgba(0,200,239,0.45)', color: '#00c8ef', boxShadow: '0 0 16px rgba(0,200,239,0.15)' }}
+                          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(0,200,239,0.22)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(0,200,239,0.35)'; }}
+                          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(0,200,239,0.12)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 16px rgba(0,200,239,0.15)'; }}
                         >
                           <ZoomIn size={16} />
                           Exemple de croquis numérique
