@@ -1,8 +1,44 @@
 [
-  { "id": 1, "label": "Clip musical", "name": "Josman — XS", "desc": "Participation en tant que sirène professionnelle.", "youtube": "" },
-  { "id": 2, "label": "Campagne caritative", "name": "Handicap International", "desc": "Fourniture et port du costume de sirène.", "youtube": "" },
-  { "id": 3, "label": "Série TV", "name": "« Panda »", "desc": "Création et mise à disposition du costume.", "youtube": "" },
-  { "id": 4, "label": "Reportage TV", "name": "France 3", "desc": "Portrait de créatrice, diffusé en prime time régional.", "youtube": "" },
-  { "id": 5, "label": "Reportage TV", "name": "TF1", "desc": "Reportage sur l'univers des sirènes professionnelles.", "youtube": "" },
-  { "id": 6, "label": "Presse régionale", "name": "La Dépêche du Midi", "desc": "Article & reportage photo sur mon activité.", "youtube": "" }
+  {
+    "label": "Clip musical",
+    "name": "Josman — XS",
+    "desc": "Participation en tant que sirène professionnelle.",
+    "youtube": "https://youtu.be/el7esXABQ1Y?is=YoA-G1t8TVsH1ozD",
+    "id": 1
+  },
+  {
+    "id": 2,
+    "label": "Campagne caritative",
+    "name": "Handicap International",
+    "desc": "Fourniture et port du costume de sirène.",
+    "youtube": ""
+  },
+  {
+    "id": 3,
+    "label": "Série TV",
+    "name": "« Panda »",
+    "desc": "Création et mise à disposition du costume.",
+    "youtube": ""
+  },
+  {
+    "id": 4,
+    "label": "Reportage TV",
+    "name": "France 3",
+    "desc": "Portrait de créatrice, diffusé en prime time régional.",
+    "youtube": ""
+  },
+  {
+    "id": 5,
+    "label": "Reportage TV",
+    "name": "TF1",
+    "desc": "Reportage sur l'univers des sirènes professionnelles.",
+    "youtube": ""
+  },
+  {
+    "id": 6,
+    "label": "Presse régionale",
+    "name": "La Dépêche du Midi",
+    "desc": "Article & reportage photo sur mon activité.",
+    "youtube": ""
+  }
 ]
