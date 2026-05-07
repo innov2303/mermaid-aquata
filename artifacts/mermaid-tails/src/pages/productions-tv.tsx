@@ -65,36 +65,6 @@ export default function ProductionsTv() {
           </p>
         </motion.div>
 
-        {/* Offers */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-serif text-center mb-10"
-            style={{ color: '#e0f5ff' }}
-          >
-            {t.tv.offersTitle}
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {t.tv.offers.map((offer, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.45 }}
-                className="rounded-2xl p-6"
-                style={GLASS}
-              >
-                <div className="text-3xl mb-3">{offer.icon}</div>
-                <h3 className="text-lg font-serif mb-2" style={{ color: '#00c8ef' }}>{offer.title}</h3>
-                <p className="text-sm leading-relaxed font-light" style={{ color: 'rgba(200,235,255,0.85)' }}>{offer.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
         {/* References */}
         <div className="mb-20">
           <motion.h2

@@ -200,25 +200,7 @@ const translations = {
     tv: {
       title: 'Productions TV & Audiovisuelles',
       subtitle: 'Donnez vie à vos projets audiovisuels avec une vraie sirène et ses créations uniques au monde.',
-      intro: "Depuis 2015, Mermaid Aquata met son savoir-faire et ses créations artisanales au service du monde audiovisuel. Que ce soit pour un clip musical, une série télévisée, un documentaire ou un reportage, je peux intervenir en tant que sirène professionnelle ou fournir mes équipements pour habiller vos comédiens.",
-      offersTitle: 'Ce que je propose',
-      offers: [
-        {
-          icon: '🎬',
-          title: 'Participation en tant que sirène',
-          desc: "J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute fidélité. Ma technique de nage et mon aisance en milieu aquatique garantissent des prises de vue spectaculaires.",
-        },
-        {
-          icon: '🎨',
-          title: 'Création sur mesure',
-          desc: "Besoin d'une queue aux couleurs ou dimensions spécifiques pour votre production ? Je réalise des créations entièrement personnalisées adaptées à votre direction artistique.",
-        },
-        {
-          icon: '📺',
-          title: 'Conseils & expertise',
-          desc: "Fort de mon expérience sur plusieurs tournages professionnels, je vous accompagne dans la faisabilité technique de vos scènes aquatiques et dans le choix du matériel.",
-        },
-      ],
+      intro: "Depuis 2015, Mermaid Aquata met son savoir-faire et ses créations artisanales au service du monde audiovisuel. Que ce soit pour un clip musical, une série télévisée, un documentaire ou un reportage, je peux intervenir en tant que sirène professionnelle ou fournir mes équipements pour habiller vos comédiens. J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute fidélité.",
       refsTitle: 'Références',
       refs: [
         { label: 'Clip musical', name: 'Josman — XS', desc: 'Participation en tant que sirène professionnelle.' },
@@ -427,25 +409,7 @@ const translations = {
     tv: {
       title: 'TV & Audiovisual Productions',
       subtitle: 'Bring your audiovisual projects to life with a real mermaid and her unique creations.',
-      intro: "Since 2015, Mermaid Aquata has been lending her artisan expertise and handcrafted creations to the world of audiovisual production. Whether for a music video, a TV series, a documentary or a news feature, I can participate as a professional mermaid performer or supply my equipment to costume your actors.",
-      offersTitle: 'What I offer',
-      offers: [
-        {
-          icon: '🎬',
-          title: 'On-set mermaid performer',
-          desc: "I appear in person on your shoots, wearing my high-fidelity professional costumes. My swimming technique and ease in aquatic environments guarantee spectacular footage.",
-        },
-        {
-          icon: '🎨',
-          title: 'Custom creation',
-          desc: "Need a tail in specific colours or dimensions for your production? I create fully customised pieces tailored to your artistic direction.",
-        },
-        {
-          icon: '📺',
-          title: 'Advice & expertise',
-          desc: "Drawing on my experience across several professional shoots, I advise you on the technical feasibility of your aquatic scenes and on the right equipment to use.",
-        },
-      ],
+      intro: "Since 2015, Mermaid Aquata has been lending her artisan expertise and handcrafted creations to the world of audiovisual production. Whether for a music video, a TV series, a documentary or a news feature, I can participate as a professional mermaid performer or supply my equipment to costume your actors. I appear in person on your shoots, wearing my high-fidelity professional costumes.",
       refsTitle: 'References',
       refs: [
         { label: 'Music video', name: 'Josman — XS', desc: 'Participation as a professional mermaid performer.' },
@@ -654,25 +618,7 @@ const translations = {
     tv: {
       title: 'Producciones de TV y Audiovisuales',
       subtitle: 'Da vida a tus proyectos audiovisuales con una sirena de verdad y sus creaciones únicas en el mundo.',
-      intro: "Desde 2015, Mermaid Aquata pone su experiencia artesanal y sus creaciones al servicio del mundo audiovisual. Ya sea para un videoclip, una serie de televisión, un documental o un reportaje, puedo participar como sirena profesional o proporcionar mis equipos para vestir a tus actores.",
-      offersTitle: 'Lo que ofrezco',
-      offers: [
-        {
-          icon: '🎬',
-          title: 'Actuación en rodaje como sirena',
-          desc: "Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad. Mi técnica de natación y mi soltura en entornos acuáticos garantizan imágenes espectaculares.",
-        },
-        {
-          icon: '🎨',
-          title: 'Creación a medida',
-          desc: "¿Necesitas una cola con colores o dimensiones específicas para tu producción? Realizo piezas completamente personalizadas adaptadas a tu dirección artística.",
-        },
-        {
-          icon: '📺',
-          title: 'Asesoramiento y experiencia',
-          desc: "Con mi experiencia en varios rodajes profesionales, te asesoro sobre la viabilidad técnica de tus escenas acuáticas y la elección del material adecuado.",
-        },
-      ],
+      intro: "Desde 2015, Mermaid Aquata pone su experiencia artesanal y sus creaciones al servicio del mundo audiovisual. Ya sea para un videoclip, una serie de televisión, un documental o un reportaje, puedo participar como sirena profesional o proporcionar mis equipos para vestir a tus actores. Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad.",
       refsTitle: 'Referencias',
       refs: [
         { label: 'Videoclip', name: 'Josman — XS', desc: 'Participación como sirena profesional.' },
