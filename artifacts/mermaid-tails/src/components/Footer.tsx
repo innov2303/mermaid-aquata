@@ -3,7 +3,7 @@ import { Mail, X } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
-import { ContactModal } from "./ContactModal";
+
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchContactInfo } from "@/lib/api";
 
@@ -89,7 +89,6 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
 }
 
 export function Footer() {
-  const [contactOpen, setContactOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
   const [contactInfo, setContactInfo] = useState<ContactInfo>(DEFAULT_CONTACT);
   const { t } = useLanguage();
@@ -160,13 +159,13 @@ export function Footer() {
                 <li>{contactInfo.address}</li>
                 <li>{contactInfo.city}</li>
               </ul>
-              <button
-                onClick={() => setContactOpen(true)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
-                style={{ background: "rgba(0,200,239,0.15)", border: "1.5px solid rgba(0,200,239,0.5)", color: "#00c8ef" }}
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
+                style={{ background: "rgba(0,200,239,0.15)", border: "1.5px solid rgba(0,200,239,0.5)", color: "#00c8ef", textDecoration: "none" }}
               >
                 <Mail size={15} /> {tf.contactUs}
-              </button>
+              </a>
             </div>
 
             <div>
@@ -192,7 +191,6 @@ export function Footer() {
         </div>
       </footer>
 
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} title={tf.legalTitle} contactInfo={contactInfo} />
     </>
   );

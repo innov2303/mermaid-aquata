@@ -2,11 +2,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Hammer, Globe, Leaf, Film, Heart, Tv, ChevronLeft, ChevronRight, ZoomIn, X } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import logoSrc from "@assets/mermaid_aquata_logo_transparent.png";
-import { ContactModal } from "@/components/ContactModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
-import { fetchPresentation } from "@/lib/api";
+import { fetchPresentation, fetchContactInfo } from "@/lib/api";
 
 function useIsMobile(breakpoint = 640) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < breakpoint);
@@ -33,7 +32,7 @@ type PresentationPhoto = { id: number; url: string; alt: string };
 
 export default function Home() {
   const [bubbles, setBubbles] = useState<{ id: number; left: string; size: number; duration: number; delay: number }[]>([]);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [contactEmail, setContactEmail] = useState("sireneaurore31@hotmail.com");
   const [presentationPhotos, setPresentationPhotos] = useState<PresentationPhoto[]>([]);
   const [photoIdx, setPhotoIdx] = useState(0);
   const [photoLightbox, setPhotoLightbox] = useState(false);
@@ -58,6 +57,8 @@ export default function Home() {
   useEffect(() => {
     fetchPresentation().then(setPresentationPhotos).catch(() => {});
   }, []);
+
+  useEffect(() => { fetchContactInfo().then(c => { if (c.email) setContactEmail(c.email); }).catch(() => {}); }, []);
 
   useEffect(() => {
     const el = videoSectionRef.current;
@@ -461,11 +462,12 @@ export default function Home() {
                 </p>
               )}
               <div className="flex justify-center mt-3 md:mt-10">
-                <motion.button
-                  onClick={() => setContactOpen(true)}
+                <motion.a
+                  href={`mailto:${contactEmail}`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   style={{
+                    display: 'inline-block',
                     position: 'relative',
                     padding: isMobile ? '7px 22px' : '14px 36px',
                     borderRadius: '999px',
@@ -476,15 +478,15 @@ export default function Home() {
                     fontSize: isMobile ? '0.78rem' : '1rem',
                     fontFamily: 'serif',
                     letterSpacing: '0.06em',
-                    cursor: 'pointer',
+                    textDecoration: 'none',
                     boxShadow: '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
                     transition: 'box-shadow 0.3s ease',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 40px rgba(0,200,239,0.5), inset 0 1px 0 rgba(255,255,255,0.15)')}
-                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)')}
+                  onMouseEnter={e => ((e.currentTarget as HTMLElement).style.boxShadow = '0 0 40px rgba(0,200,239,0.5), inset 0 1px 0 rgba(255,255,255,0.15)')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)')}
                 >
                   {t.home.contactBtn}
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>
@@ -551,7 +553,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }

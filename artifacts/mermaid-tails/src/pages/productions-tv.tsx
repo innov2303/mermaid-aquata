@@ -4,8 +4,7 @@ import { Mail, Youtube } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
-import { ContactModal } from "@/components/ContactModal";
-import { fetchTvRefs } from "@/lib/api";
+import { fetchTvRefs, fetchContactInfo } from "@/lib/api";
 
 type TvRef = { id: number; label: string; name: string; desc: string; youtube: string };
 
@@ -18,11 +17,12 @@ const GLASS = {
 
 export default function ProductionsTv() {
   const { t } = useLanguage();
-  const [contactOpen, setContactOpen] = useState(false);
+  const [contactEmail, setContactEmail] = useState("sireneaurore31@hotmail.com");
   const [refs, setRefs] = useState<TvRef[]>([]);
   useSEO("tv");
 
   useEffect(() => { fetchTvRefs().then(setRefs).catch(() => {}); }, []);
+  useEffect(() => { fetchContactInfo().then(c => { if (c.email) setContactEmail(c.email); }).catch(() => {}); }, []);
 
   return (
     <div
@@ -157,17 +157,16 @@ export default function ProductionsTv() {
         >
           <h2 className="text-2xl md:text-3xl font-serif mb-4" style={{ color: '#e0f5ff' }}>{t.tv.ctaTitle}</h2>
           <p className="text-base font-light mb-8" style={{ color: 'rgba(200,235,255,0.85)' }}>{t.tv.ctaDesc}</p>
-          <button
-            onClick={() => setContactOpen(true)}
+          <a
+            href={`mailto:${contactEmail}`}
             className="inline-flex items-center gap-2 px-8 py-3 rounded-full text-sm font-medium tracking-wide transition-all"
-            style={{ background: 'linear-gradient(135deg, #00c8ef 0%, #0080b0 100%)', color: '#fff', boxShadow: '0 4px 20px rgba(0,200,239,0.35)' }}
+            style={{ background: 'linear-gradient(135deg, #00c8ef 0%, #0080b0 100%)', color: '#fff', boxShadow: '0 4px 20px rgba(0,200,239,0.35)', textDecoration: 'none' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px rgba(0,200,239,0.55)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px rgba(0,200,239,0.35)'; }}
           >
             <Mail size={16} />
             {t.tv.ctaBtn}
-          </button>
-          <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+          </a>
         </motion.div>
 
       </div>
