@@ -28,3 +28,12 @@ export function sanitizeRemerciement(body: Record<string, unknown>) {
     review: typeof body["review"] === "string" ? sanitizeString(body["review"], 2000) : null,
   };
 }
+
+export function sanitizeTvRef(body: Record<string, unknown>) {
+  return {
+    label: sanitizeString(body["label"], 100),
+    name: sanitizeString(body["name"], 200),
+    desc: sanitizeString(body["desc"], 1000),
+    youtube: typeof body["youtube"] === "string" ? sanitizeString(body["youtube"], 500) : "",
+  };
+}

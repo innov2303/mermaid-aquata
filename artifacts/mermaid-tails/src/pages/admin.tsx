@@ -6,6 +6,7 @@ import {
   fetchCatalogue, createCatalogueItem, updateCatalogueItem, deleteCatalogueItem,
   fetchRemerciements, createRemerciement, updateRemerciement, deleteRemerciement,
   fetchPresentation, createPresentationPhoto, updatePresentationPhoto, deletePresentationPhoto,
+  fetchTvRefs, createTvRef, updateTvRef, deleteTvRef,
   uploadImage, listUploads, deleteUpload,
 } from "@/lib/api";
 
@@ -19,6 +20,7 @@ const SECTIONS = [
 type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; video: string; etsyUrl: string; images: string[] };
 type Remerciement = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
 type PresentationPhoto = { id: number; url: string; alt: string };
+type TvRef = { id: number; label: string; name: string; desc: string; youtube: string };
 type UploadedFile = { filename: string; url: string };
 
 const cardStyle = {
@@ -691,11 +693,142 @@ function PresentationAdmin({ token }: { token: string }) {
   );
 }
 
+// ── TV Refs Editor ─────────────────────────────────────────────────────────
+function TvRefsAdmin({ token }: { token: string }) {
+  const [items, setItems] = useState<TvRef[]>([]);
+  const [editId, setEditId] = useState<number | null>(null);
+  const [form, setForm] = useState<Partial<TvRef>>({});
+  const [adding, setAdding] = useState(false);
+  const [addForm, setAddForm] = useState<Partial<TvRef>>({ label: "", name: "", desc: "", youtube: "" });
+  const [msg, setMsg] = useState("");
+  const { askConfirm, confirmProps } = useConfirm();
+
+  useEffect(() => { fetchTvRefs().then(setItems).catch(() => {}); }, []);
+
+  function notify(m: string) { setMsg(m); setTimeout(() => setMsg(""), 2500); }
+  function startEdit(item: TvRef) { setEditId(item.id); setForm({ ...item }); }
+
+  async function saveEdit() {
+    await updateTvRef(editId!, form, token);
+    setItems(items.map(i => i.id === editId ? { ...i, ...form } as TvRef : i));
+    setEditId(null); notify("✓ Référence mise à jour");
+  }
+  async function removeItem(id: number) {
+    if (!await askConfirm("Supprimer cette référence ?")) return;
+    await deleteTvRef(id, token); setItems(items.filter(i => i.id !== id)); notify("✓ Référence supprimée");
+  }
+  async function addItem() {
+    if (!addForm.name) return;
+    const newItem = await createTvRef(addForm, token);
+    setItems([...items, newItem]); setAdding(false); setAddForm({ label: "", name: "", desc: "", youtube: "" }); notify("✓ Référence ajoutée");
+  }
+
+  const labelStyle = { color: "rgba(200,235,255,0.75)" };
+
+  const ytThumb = (url: string) => {
+    const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : null;
+  };
+
+  function RefForm({ data, onChange }: { data: Partial<TvRef>; onChange: (d: Partial<TvRef>) => void }) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div>
+          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Catégorie (ex : Clip musical, Reportage TV…)</label>
+          <input className={inputClass} style={inputStyle} value={data.label || ""} onChange={e => onChange({ ...data, label: e.target.value })} placeholder="Clip musical" />
+        </div>
+        <div>
+          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Nom de la production</label>
+          <input className={inputClass} style={inputStyle} value={data.name || ""} onChange={e => onChange({ ...data, name: e.target.value })} placeholder="Josman — XS" />
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Description</label>
+          <input className={inputClass} style={inputStyle} value={data.desc || ""} onChange={e => onChange({ ...data, desc: e.target.value })} placeholder="Participation en tant que sirène professionnelle." />
+        </div>
+        <div className="md:col-span-2">
+          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Lien YouTube (optionnel)</label>
+          <input className={inputClass} style={inputStyle} value={data.youtube || ""} onChange={e => onChange({ ...data, youtube: e.target.value })} placeholder="https://www.youtube.com/watch?v=…" />
+          {data.youtube && ytThumb(data.youtube) && (
+            <img src={ytThumb(data.youtube)!} alt="" className="mt-2 h-16 rounded-lg object-cover" />
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <ConfirmDialog {...confirmProps} />
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-2xl font-serif" style={{ color: "#e0f5ff" }}>Références TV & Audiovisuel</h2>
+          <p className="text-sm mt-1" style={{ color: "rgba(200,235,255,0.5)" }}>Affichées sur la page Productions TV</p>
+        </div>
+        <button onClick={() => setAdding(true)} className={btnPrimary} style={{ background: "#00c8ef" }}><Plus size={16} /> Ajouter</button>
+      </div>
+      {msg && <div className="mb-4 px-4 py-2 rounded-xl text-sm text-white" style={{ background: "#00c8ef" }}>{msg}</div>}
+
+      {adding && (
+        <div className="mb-6 rounded-2xl p-6" style={cardStyle}>
+          <h3 className="font-serif mb-4" style={{ color: "#e0f5ff" }}>Nouvelle référence</h3>
+          <RefForm data={addForm} onChange={setAddForm} />
+          <div className="flex gap-3 mt-4">
+            <button onClick={addItem} className={btnPrimary} style={{ background: "#00c8ef" }}><Save size={15} /> Enregistrer</button>
+            <button onClick={() => { setAdding(false); setAddForm({ label: "", name: "", desc: "", youtube: "" }); }} className={btnPrimary} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={15} /> Annuler</button>
+          </div>
+        </div>
+      )}
+
+      {items.length === 0 && !adding && (
+        <p className="text-center py-12" style={{ color: "rgba(200,235,255,0.4)" }}>Aucune référence pour l'instant. Ajoutez-en une !</p>
+      )}
+
+      <div className="flex flex-col gap-4">
+        {items.map(item => {
+          const thumb = item.youtube ? ytThumb(item.youtube) : null;
+          return (
+            <motion.div key={item.id} layout className="rounded-2xl p-5" style={cardStyle}>
+              {editId === item.id ? (
+                <div>
+                  <RefForm data={form} onChange={setForm} />
+                  <div className="flex gap-2 mt-4">
+                    <button onClick={saveEdit} className={btnPrimary + " text-xs px-3 py-1.5"} style={{ background: "#00c8ef" }}><Save size={13} /> Enregistrer</button>
+                    <button onClick={() => setEditId(null)} className={btnPrimary + " text-xs px-3 py-1.5"} style={{ background: "rgba(0,200,239,0.1)", color: "#e0f5ff", border: "1px solid rgba(0,200,239,0.3)" }}><X size={13} /> Annuler</button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-4">
+                  <div className="flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center" style={{ width: 100, height: 64, background: "rgba(0,10,30,0.6)", border: "1.5px solid rgba(0,200,239,0.3)" }}>
+                    {thumb
+                      ? <img src={thumb} alt={item.name} className="w-full h-full object-cover" />
+                      : <span className="text-3xl" style={{ color: "rgba(0,200,239,0.3)" }}>✦</span>}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs px-2 py-0.5 rounded-full mr-2" style={{ background: "rgba(0,200,239,0.12)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.3)" }}>{item.label}</span>
+                    <p className="font-serif mt-1 truncate" style={{ color: "#e0f5ff", fontFamily: "'Dancing Script', cursive", fontSize: "1.15rem" }}>{item.name}</p>
+                    <p className="text-xs truncate mt-0.5 font-light italic" style={{ color: "rgba(200,235,255,0.55)" }}>{item.desc}</p>
+                    {item.youtube && <p className="text-xs truncate mt-0.5" style={{ color: "rgba(255,120,120,0.8)" }}>▶ {item.youtube}</p>}
+                  </div>
+                  <div className="flex gap-2 flex-shrink-0">
+                    <button onClick={() => startEdit(item)} className="p-2 rounded-xl hover:scale-110 transition-all" style={{ background: "rgba(0,200,239,0.1)", color: "#00c8ef" }}><Pencil size={15} /></button>
+                    <button onClick={() => removeItem(item.id)} className="p-2 rounded-xl hover:scale-110 transition-all" style={{ background: "rgba(239,68,68,0.1)", color: "#f87171" }}><Trash2 size={15} /></button>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ── Main Admin Page ────────────────────────────────────────────────────────
 const TABS = [
   { id: "catalogue", label: "Queue de sirène" },
   { id: "remerciements", label: "Avis" },
   { id: "presentation", label: "Galerie accueil" },
+  { id: "tv", label: "Productions TV" },
   { id: "media", label: "Médiathèque" },
 ] as const;
 
@@ -742,6 +875,7 @@ export default function Admin() {
             {tab === "catalogue" && <CatalogueAdmin token={token} />}
             {tab === "remerciements" && <RemerciementsAdmin token={token} />}
             {tab === "presentation" && <PresentationAdmin token={token} />}
+            {tab === "tv" && <TvRefsAdmin token={token} />}
             {tab === "media" && <MediaAdmin token={token} />}
           </motion.div>
         </AnimatePresence>

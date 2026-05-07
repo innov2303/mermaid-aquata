@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Youtube } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
 import { ContactModal } from "@/components/ContactModal";
+import { fetchTvRefs } from "@/lib/api";
+
+type TvRef = { id: number; label: string; name: string; desc: string; youtube: string };
 
 const GLASS = {
   background: 'rgba(0,20,50,0.45)',
@@ -16,7 +19,10 @@ const GLASS = {
 export default function ProductionsTv() {
   const { t } = useLanguage();
   const [contactOpen, setContactOpen] = useState(false);
+  const [refs, setRefs] = useState<TvRef[]>([]);
   useSEO("tv");
+
+  useEffect(() => { fetchTvRefs().then(setRefs).catch(() => {}); }, []);
 
   return (
     <div
@@ -78,12 +84,12 @@ export default function ProductionsTv() {
             {t.tv.refsTitle}
           </motion.h2>
           <div className="max-w-4xl mx-auto flex flex-col gap-6">
-            {t.tv.refs.map((ref, i) => {
+            {refs.map((ref, i) => {
               const ytId = ref.youtube ? ref.youtube.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/)?.[1] : null;
               const thumb = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : null;
               return (
                 <motion.div
-                  key={i}
+                  key={ref.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

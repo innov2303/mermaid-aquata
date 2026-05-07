@@ -108,3 +108,28 @@ export async function deleteRemerciement(id: number, token: string) {
   if (!r.ok) throw new Error("Erreur suppression sirène");
   return r.json();
 }
+
+// TV Refs
+export async function fetchTvRefs() {
+  const r = await fetch(`${BASE}/tv-refs`);
+  if (!r.ok) throw new Error("Erreur chargement références TV");
+  return r.json();
+}
+
+export async function createTvRef(item: object, token: string) {
+  const r = await fetch(`${BASE}/tv-refs`, { method: "POST", headers: headers(token), body: JSON.stringify(item) });
+  if (!r.ok) throw new Error("Erreur création référence");
+  return r.json();
+}
+
+export async function updateTvRef(id: number, item: object, token: string) {
+  const r = await fetch(`${BASE}/tv-refs/${id}`, { method: "PUT", headers: headers(token), body: JSON.stringify(item) });
+  if (!r.ok) throw new Error("Erreur mise à jour référence");
+  return r.json();
+}
+
+export async function deleteTvRef(id: number, token: string) {
+  const r = await fetch(`${BASE}/tv-refs/${id}`, { method: "DELETE", headers: headers(token) });
+  if (!r.ok) throw new Error("Erreur suppression référence");
+  return r.json();
+}
