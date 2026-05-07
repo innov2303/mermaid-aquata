@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Film, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
@@ -40,9 +40,6 @@ export default function ProductionsTv() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <Film size={32} style={{ color: '#00c8ef' }} />
-          </div>
           <h1 className="text-4xl md:text-6xl font-serif mb-6" style={{ color: '#e0f5ff' }}>
             {t.tv.title}
           </h1>
