@@ -56,6 +56,12 @@ fi
 # ── Git pull (code uniquement) ──────────────
 print_header "Récupération du code mis à jour"
 cd "$APP_DIR"
+
+# Réinitialiser les fichiers de données pour éviter les conflits de merge
+# (ils ont déjà été sauvegardés ci-dessus)
+git checkout -- artifacts/api-server/data/ 2>/dev/null || true
+git checkout -- artifacts/api-server/uploads/ 2>/dev/null || true
+
 git pull
 print_status "Code mis à jour"
 
