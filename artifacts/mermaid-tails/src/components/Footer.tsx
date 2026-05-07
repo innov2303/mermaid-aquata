@@ -87,7 +87,6 @@ function RefundPopup({ open, onClose, title, body }: { open: boolean; onClose: (
 export function Footer() {
   const [contactOpen, setContactOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
-  const [refundOpen, setRefundOpen] = useState(false);
   const { t } = useLanguage();
   const tf = t.footer;
   const tn = t.nav;
@@ -171,9 +170,9 @@ export function Footer() {
                   </button>
                 </li>
                 <li>
-                  <button onClick={() => setRefundOpen(true)} className="text-foreground/70 hover:text-primary transition-colors text-left">
+                  <a href="/politique-de-retour" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors text-left">
                     {tf.refund}
-                  </button>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -187,7 +186,6 @@ export function Footer() {
 
       <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
       <LegalPopup open={legalOpen} onClose={() => setLegalOpen(false)} title={tf.legalTitle} />
-      <RefundPopup open={refundOpen} onClose={() => setRefundOpen(false)} title={tf.refundTitle} body={tf.refundBody as Record<string, string>} />
     </>
   );
 }
