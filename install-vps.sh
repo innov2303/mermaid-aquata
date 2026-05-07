@@ -434,19 +434,33 @@ fi
 
 print_header "Installation de Node.js"
 
+NODE_MAJOR_REQUIRED=22
+
 if ! command -v node &> /dev/null; then
-    echo ">>> Installation de Node.js 20..."
+    echo ">>> Installation de Node.js $NODE_MAJOR_REQUIRED..."
     if [ "$PKG_MANAGER" = "apt" ]; then
-        curl -fsSL https://deb.nodesource.com/setup_20.x | run_cmd bash -
+        curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR_REQUIRED}.x | run_cmd bash -
         pkg_install nodejs
     else
-        curl -fsSL https://rpm.nodesource.com/setup_20.x | run_cmd bash -
+        curl -fsSL https://rpm.nodesource.com/setup_${NODE_MAJOR_REQUIRED}.x | run_cmd bash -
         pkg_install nodejs
     fi
     print_status "Node.js $(node -v) installé"
 else
-    NODE_VERSION=$(node -v)
-    print_status "Node.js $NODE_VERSION déjà installé"
+    NODE_CURRENT=$(node -v | sed 's/v//' | cut -d. -f1)
+    if [ "$NODE_CURRENT" -lt "$NODE_MAJOR_REQUIRED" ]; then
+        print_warning "Node.js $(node -v) détecté — mise à jour vers Node.js $NODE_MAJOR_REQUIRED requise..."
+        if [ "$PKG_MANAGER" = "apt" ]; then
+            curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR_REQUIRED}.x | run_cmd bash -
+            pkg_install nodejs
+        else
+            curl -fsSL https://rpm.nodesource.com/setup_${NODE_MAJOR_REQUIRED}.x | run_cmd bash -
+            pkg_install nodejs
+        fi
+        print_status "Node.js $(node -v) mis à jour"
+    else
+        print_status "Node.js $(node -v) déjà installé"
+    fi
 fi
 
 # ==========================================
