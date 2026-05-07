@@ -60,8 +60,10 @@ export default function ProductionsTv() {
           className="max-w-3xl mx-auto mb-20 rounded-3xl p-8 text-center"
           style={GLASS}
         >
-          <div className="text-4xl mb-4">🎬</div>
-          <h2 className="text-xl md:text-2xl font-serif mb-5" style={{ color: '#00c8ef' }}>{t.tv.introTitle}</h2>
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <span className="text-3xl">🎬</span>
+            <h2 className="text-xl md:text-2xl font-serif" style={{ color: '#00c8ef' }}>{t.tv.introTitle}</h2>
+          </div>
           <p className="text-base leading-relaxed font-light" style={{ color: 'rgba(210,240,255,0.9)' }}>
             {t.tv.intro}
           </p>
