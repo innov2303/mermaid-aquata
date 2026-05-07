@@ -61,6 +61,7 @@ export default function ProductionsTv() {
           style={GLASS}
         >
           <div className="text-4xl mb-4">🎬</div>
+          <h2 className="text-xl md:text-2xl font-serif mb-5" style={{ color: '#00c8ef' }}>{t.tv.introTitle}</h2>
           <p className="text-base leading-relaxed font-light" style={{ color: 'rgba(210,240,255,0.9)' }}>
             {t.tv.intro}
           </p>
