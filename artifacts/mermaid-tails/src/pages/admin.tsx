@@ -742,10 +742,6 @@ function TvRefsAdmin({ token }: { token: string }) {
           <input className={inputClass} style={inputStyle} value={data.name || ""} onChange={e => onChange({ ...data, name: e.target.value })} placeholder="Josman — XS" />
         </div>
         <div className="md:col-span-2">
-          <label className="text-xs font-medium mb-1 block" style={labelStyle}>Description</label>
-          <input className={inputClass} style={inputStyle} value={data.desc || ""} onChange={e => onChange({ ...data, desc: e.target.value })} placeholder="Participation en tant que sirène professionnelle." />
-        </div>
-        <div className="md:col-span-2">
           <label className="text-xs font-medium mb-1 block" style={labelStyle}>Lien YouTube (optionnel)</label>
           <input className={inputClass} style={inputStyle} value={data.youtube || ""} onChange={e => onChange({ ...data, youtube: e.target.value })} placeholder="https://www.youtube.com/watch?v=…" />
           {data.youtube && ytThumb(data.youtube) && (
@@ -806,7 +802,6 @@ function TvRefsAdmin({ token }: { token: string }) {
                   <div className="flex-1 min-w-0">
                     <span className="text-xs px-2 py-0.5 rounded-full mr-2" style={{ background: "rgba(0,200,239,0.12)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.3)" }}>{item.label}</span>
                     <p className="font-serif mt-1 truncate" style={{ color: "#e0f5ff", fontFamily: "'Dancing Script', cursive", fontSize: "1.15rem" }}>{item.name}</p>
-                    <p className="text-xs truncate mt-0.5 font-light italic" style={{ color: "rgba(200,235,255,0.55)" }}>{item.desc}</p>
                     {item.youtube && <p className="text-xs truncate mt-0.5" style={{ color: "rgba(255,120,120,0.8)" }}>▶ {item.youtube}</p>}
                   </div>
                   <div className="flex gap-2 flex-shrink-0">

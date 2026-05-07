@@ -127,7 +127,6 @@ export default function ProductionsTv() {
                     }}>
                       {ref.name}
                     </h3>
-                    <p className="text-sm font-light" style={{ color: 'rgba(200,235,255,0.8)', fontStyle: 'italic' }}>{ref.desc}</p>
                     {ref.youtube && (
                       <a
                         href={ref.youtube}
