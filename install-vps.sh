@@ -600,7 +600,7 @@ print_header "Installation des dépendances"
 
 echo ">>> Installation des dépendances pnpm..."
 cd "$APP_DIR"
-pnpm install --frozen-lockfile
+pnpm install
 print_status "Dépendances installées"
 
 # ==========================================
@@ -892,7 +892,7 @@ echo ""
 echo "Mise à jour du site (après git pull) :"
 echo "  cd $APP_DIR"
 echo "  git pull"
-echo "  pnpm install --frozen-lockfile"
+echo "  pnpm install"
 echo "  pnpm --filter @workspace/api-server run build"
 echo "  pnpm --filter @workspace/mermaid-tails run build"
 echo "  pm2 restart $APP_NAME"
