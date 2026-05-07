@@ -209,11 +209,6 @@ const translations = {
           desc: "J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute fidélité. Ma technique de nage et mon aisance en milieu aquatique garantissent des prises de vue spectaculaires.",
         },
         {
-          icon: '🐠',
-          title: 'Location & fourniture de costumes',
-          desc: "Je mets à disposition mes queues de sirène artisanales pour habiller vos comédiens ou figurants. Chaque pièce est conçue pour un rendu photographique et vidéo exceptionnel.",
-        },
-        {
           icon: '🎨',
           title: 'Création sur mesure',
           desc: "Besoin d'une queue aux couleurs ou dimensions spécifiques pour votre production ? Je réalise des créations entièrement personnalisées adaptées à votre direction artistique.",
@@ -441,11 +436,6 @@ const translations = {
           desc: "I appear in person on your shoots, wearing my high-fidelity professional costumes. My swimming technique and ease in aquatic environments guarantee spectacular footage.",
         },
         {
-          icon: '🐠',
-          title: 'Costume rental & supply',
-          desc: "I make my handcrafted mermaid tails available to costume your actors or extras. Each piece is designed to deliver exceptional photographic and video results.",
-        },
-        {
           icon: '🎨',
           title: 'Custom creation',
           desc: "Need a tail in specific colours or dimensions for your production? I create fully customised pieces tailored to your artistic direction.",
@@ -671,11 +661,6 @@ const translations = {
           icon: '🎬',
           title: 'Actuación en rodaje como sirena',
           desc: "Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad. Mi técnica de natación y mi soltura en entornos acuáticos garantizan imágenes espectaculares.",
-        },
-        {
-          icon: '🐠',
-          title: 'Alquiler y suministro de trajes',
-          desc: "Pongo a disposición mis colas de sirena artesanales para vestir a tus actores o extras. Cada pieza está diseñada para ofrecer resultados fotográficos y de vídeo excepcionales.",
         },
         {
           icon: '🎨',
