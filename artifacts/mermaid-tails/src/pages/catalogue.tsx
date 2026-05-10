@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -114,27 +114,44 @@ export default function Catalogue() {
     return item.desc;
   }
 
+  const retryRef = useRef(0);
+
   useEffect(() => {
-    fetchCatalogue().then(items => {
-      setAllItems(items);
-      const params = new URLSearchParams(window.location.search);
-      const open = params.get('open');
-      if (open) {
-        const needle = open.trim().toLowerCase();
-        const exact = items.find(item => item.name.trim().toLowerCase() === needle);
-        const partial = exact ? null : items.reduce<Item | null>((best, item) => {
-          const itemName = item.name.trim().toLowerCase();
-          if (itemName === needle || needle === itemName) return item;
-          if (needle.includes(itemName)) {
-            if (!best || itemName.length > best.name.trim().toLowerCase().length) return item;
+    retryRef.current = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    function load(isRetry = false) {
+      fetchCatalogue().then(items => {
+        setAllItems(items);
+        if (!isRetry) {
+          const params = new URLSearchParams(window.location.search);
+          const open = params.get('open');
+          if (open) {
+            const needle = open.trim().toLowerCase();
+            const exact = items.find(item => item.name.trim().toLowerCase() === needle);
+            const partial = exact ? null : items.reduce<Item | null>((best, item) => {
+              const n = item.name.trim().toLowerCase();
+              if (n === needle) return item;
+              if (needle.includes(n) && (!best || n.length > best.name.trim().toLowerCase().length)) return item;
+              return best;
+            }, null);
+            const match = exact ?? partial;
+            if (match) setSelected(match);
           }
-          return best;
-        }, null);
-        const match = exact ?? partial;
-        if (match) setSelected(match);
-      }
-    }).catch(() => {});
-  }, []);
+        }
+        if (lang !== 'fr') {
+          const missingT = items.some(i => !(lang === 'en' ? i.name_en : i.name_es));
+          if (missingT && retryRef.current < 6) {
+            retryRef.current++;
+            timer = setTimeout(() => load(true), 5000);
+          }
+        }
+      }).catch(() => {});
+    }
+
+    load();
+    return () => clearTimeout(timer);
+  }, [lang]);
 
   const sectionOrder = ['invisibles', 'monopalmes', 'accessoires'] as const;
   const sections = sectionOrder.map(key => ({

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn } from "lucide-react";
 import { fetchRemerciements } from "@/lib/api";
@@ -20,9 +20,28 @@ export default function Remerciements() {
     return s.review;
   }
 
+  const retryRef = useRef(0);
+
   useEffect(() => {
-    fetchRemerciements().then(setSirenes).catch(() => {});
-  }, []);
+    retryRef.current = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    function load() {
+      fetchRemerciements().then(items => {
+        setSirenes(items);
+        if (lang !== 'fr') {
+          const missingT = items.some((s: Sirene) => !(lang === 'en' ? s.review_en : s.review_es) && s.review);
+          if (missingT && retryRef.current < 6) {
+            retryRef.current++;
+            timer = setTimeout(load, 5000);
+          }
+        }
+      }).catch(() => {});
+    }
+
+    load();
+    return () => clearTimeout(timer);
+  }, [lang]);
 
   return (
     <div className="min-h-screen pt-32 pb-20 relative" style={{

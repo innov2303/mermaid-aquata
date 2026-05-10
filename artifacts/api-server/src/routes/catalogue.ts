@@ -28,21 +28,19 @@ function isBadTranslation(v: unknown, source?: string): boolean {
   return false;
 }
 
-router.get("/catalogue", async (_req, res) => {
-  const items = readData();
+let catalogueBackfillRunning = false;
 
-  for (const item of items) {
-    if (isBadTranslation(item.name_en, item.name)) item.name_en = "";
-    if (isBadTranslation(item.name_es, item.name)) item.name_es = "";
-    if (isBadTranslation(item.desc_en, item.desc)) item.desc_en = "";
-    if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
-  }
-
-  const needsBackfill = items.some((item: any) => !item.name_en || !item.name_es || !item.desc_en || !item.desc_es);
-
-  if (needsBackfill) {
+async function backfillCatalogue() {
+  if (catalogueBackfillRunning) return;
+  catalogueBackfillRunning = true;
+  try {
+    const items = readData();
     let changed = false;
     for (const item of items) {
+      if (isBadTranslation(item.name_en, item.name)) item.name_en = "";
+      if (isBadTranslation(item.name_es, item.name)) item.name_es = "";
+      if (isBadTranslation(item.desc_en, item.desc)) item.desc_en = "";
+      if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
       if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
         try {
           const [nameT, descT] = await Promise.all([
@@ -59,9 +57,22 @@ router.get("/catalogue", async (_req, res) => {
       }
     }
     if (changed) writeData(items);
+  } catch {
+  } finally {
+    catalogueBackfillRunning = false;
   }
+}
 
+router.get("/catalogue", (_req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  const items = readData();
   res.json(items);
+  const needsBackfill = items.some((item: any) =>
+    isBadTranslation(item.name_en, item.name) || isBadTranslation(item.name_es, item.name) ||
+    isBadTranslation(item.desc_en, item.desc) || isBadTranslation(item.desc_es, item.desc) ||
+    !item.name_en || !item.name_es || !item.desc_en || !item.desc_es
+  );
+  if (needsBackfill) backfillCatalogue().catch(() => {});
 });
 
 router.post("/catalogue", adminAuth, async (req, res) => {

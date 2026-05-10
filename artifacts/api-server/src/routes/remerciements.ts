@@ -28,19 +28,17 @@ function isBadTranslation(v: unknown, source?: string): boolean {
   return false;
 }
 
-router.get("/remerciements", async (_req, res) => {
-  const items = readData();
+let remerciementsBackfillRunning = false;
 
-  for (const item of items) {
-    if (isBadTranslation(item.review_en, item.review)) item.review_en = null;
-    if (isBadTranslation(item.review_es, item.review)) item.review_es = null;
-  }
-
-  const needsBackfill = items.some((item: any) => item.review && (!item.review_en || !item.review_es));
-
-  if (needsBackfill) {
+async function backfillRemerciements() {
+  if (remerciementsBackfillRunning) return;
+  remerciementsBackfillRunning = true;
+  try {
+    const items = readData();
     let changed = false;
     for (const item of items) {
+      if (isBadTranslation(item.review_en, item.review)) item.review_en = null;
+      if (isBadTranslation(item.review_es, item.review)) item.review_es = null;
       if (item.review && (!item.review_en || !item.review_es)) {
         try {
           const t = await translateToAll(item.review);
@@ -52,9 +50,20 @@ router.get("/remerciements", async (_req, res) => {
       }
     }
     if (changed) writeData(items);
+  } catch {
+  } finally {
+    remerciementsBackfillRunning = false;
   }
+}
 
+router.get("/remerciements", (_req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  const items = readData();
   res.json(items);
+  const needsBackfill = items.some((item: any) =>
+    item.review && (isBadTranslation(item.review_en, item.review) || isBadTranslation(item.review_es, item.review) || !item.review_en || !item.review_es)
+  );
+  if (needsBackfill) backfillRemerciements().catch(() => {});
 });
 
 router.post("/remerciements", adminAuth, async (req, res) => {
