@@ -56,40 +56,15 @@ export default function MonHistoire() {
           )}
         </motion.div>
 
-        {/* Texte + Image côte à côte */}
-        <div className="flex flex-col md:flex-row gap-8 items-start">
+        {/* Ligne 1 : Photo à gauche + Bloc 1 à droite */}
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
 
-          {/* Texte */}
+          {/* Image */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
-            className="flex-1 rounded-2xl px-7 py-8"
-            style={GLASS}
-          >
-            {paragraphs.map((para, i) => (
-              <p
-                key={i}
-                className="leading-relaxed font-light"
-                style={{
-                  color: 'rgba(210,240,255,0.92)',
-                  fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
-                  lineHeight: '1.9',
-                  marginBottom: i < paragraphs.length - 1 ? '1.5rem' : 0,
-                }}
-              >
-                {para}
-              </p>
-            ))}
-          </motion.div>
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
             className="md:w-80 lg:w-96 flex-shrink-0"
           >
             <div
@@ -107,7 +82,57 @@ export default function MonHistoire() {
             </div>
           </motion.div>
 
+          {/* Bloc 1 — 3 premiers paragraphes */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex-1 rounded-2xl px-7 py-8 self-stretch"
+            style={GLASS}
+          >
+            {paragraphs.slice(0, 3).map((para, i) => (
+              <p
+                key={i}
+                className="leading-relaxed font-light"
+                style={{
+                  color: 'rgba(210,240,255,0.92)',
+                  fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                  lineHeight: '1.9',
+                  marginBottom: i < 2 ? '1.5rem' : 0,
+                }}
+              >
+                {para}
+              </p>
+            ))}
+          </motion.div>
+
         </div>
+
+        {/* Ligne 2 : Bloc 2 pleine largeur */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl px-7 py-8"
+          style={GLASS}
+        >
+          {paragraphs.slice(3).map((para, i) => (
+            <p
+              key={i}
+              className="leading-relaxed font-light"
+              style={{
+                color: 'rgba(210,240,255,0.92)',
+                fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                lineHeight: '1.9',
+                marginBottom: i < paragraphs.slice(3).length - 1 ? '1.5rem' : 0,
+              }}
+            >
+              {para}
+            </p>
+          ))}
+        </motion.div>
 
       </div>
     </div>
