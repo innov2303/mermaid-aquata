@@ -21,19 +21,21 @@ function adminAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-function isBadTranslation(v: unknown): boolean {
+function isBadTranslation(v: unknown, source?: string): boolean {
   if (!v || typeof v !== "string") return true;
-  return v.startsWith("QUERY LENGTH LIMIT") || v.startsWith("MYMEMORY WARNING");
+  if (v.startsWith("QUERY LENGTH LIMIT") || v.startsWith("MYMEMORY WARNING")) return true;
+  if (source && v.trim() === source.trim()) return true;
+  return false;
 }
 
 router.get("/catalogue", async (_req, res) => {
   const items = readData();
 
   for (const item of items) {
-    if (isBadTranslation(item.name_en)) item.name_en = "";
-    if (isBadTranslation(item.name_es)) item.name_es = "";
-    if (isBadTranslation(item.desc_en)) item.desc_en = "";
-    if (isBadTranslation(item.desc_es)) item.desc_es = "";
+    if (isBadTranslation(item.name_en, item.name)) item.name_en = "";
+    if (isBadTranslation(item.name_es, item.name)) item.name_es = "";
+    if (isBadTranslation(item.desc_en, item.desc)) item.desc_en = "";
+    if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
   }
 
   const needsBackfill = items.some((item: any) => !item.name_en || !item.name_es || !item.desc_en || !item.desc_es);

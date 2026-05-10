@@ -3,22 +3,20 @@ const MAX_CHARS = 450;
 
 async function translateChunk(text: string, from: string, to: string): Promise<string> {
   if (!text.trim()) return text;
-  try {
-    const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(10_000) });
-    if (!res.ok) return text;
-    const data = await res.json() as { responseData?: { translatedText?: string } };
-    const translated = data?.responseData?.translatedText;
-    if (
-      !translated ||
-      translated === "INVALID LANGUAGE PAIR" ||
-      translated.startsWith("QUERY LENGTH LIMIT EXCEEDED") ||
-      translated.startsWith("MYMEMORY WARNING")
-    ) return text;
-    return translated;
-  } catch {
-    return text;
-  }
+  const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+  if (!res.ok) throw new Error(`MyMemory HTTP ${res.status}`);
+  const data = await res.json() as { responseStatus?: number; responseData?: { translatedText?: string } };
+  if (data.responseStatus === 429) throw new Error("MyMemory rate limit");
+  const translated = data?.responseData?.translatedText;
+  if (
+    !translated ||
+    translated === "INVALID LANGUAGE PAIR" ||
+    translated.startsWith("QUERY LENGTH LIMIT") ||
+    translated.startsWith("MYMEMORY WARNING") ||
+    translated.startsWith("DAILY USED LIMIT")
+  ) throw new Error("MyMemory bad response");
+  return translated;
 }
 
 function splitByWords(text: string, maxLen: number): string[] {
