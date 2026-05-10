@@ -11,7 +11,11 @@ import { FloatingBubbles } from "@/components/FloatingBubbles";
 type Item = {
   id: number;
   name: string;
+  name_en?: string;
+  name_es?: string;
   desc: string;
+  desc_en?: string;
+  desc_es?: string;
   price: string;
   video: string;
   etsyUrl: string;
@@ -96,8 +100,19 @@ function Carousel({ images }: { images: string[] }) {
 export default function Catalogue() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [selected, setSelected] = useState<Item | null>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   useSEO("catalogue");
+
+  function itemName(item: Item) {
+    if (lang === "en") return item.name_en || item.name;
+    if (lang === "es") return item.name_es || item.name;
+    return item.name;
+  }
+  function itemDesc(item: Item) {
+    if (lang === "en") return item.desc_en || item.desc;
+    if (lang === "es") return item.desc_es || item.desc;
+    return item.desc;
+  }
 
   useEffect(() => {
     fetchCatalogue().then(items => {
@@ -172,7 +187,7 @@ export default function Catalogue() {
                   >
                     <div className="w-full overflow-hidden cursor-pointer rounded-2xl mx-auto mt-3 px-3" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
                       {item.images[0] ? (
-                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
+                        <img src={item.images[0]} alt={itemName(item)} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, rgba(0,200,239,0.08), rgba(4,15,40,0.06))' }}>
                           <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.35)' }}>✦</span>
@@ -180,7 +195,7 @@ export default function Catalogue() {
                       )}
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl mb-4 group-hover:text-primary transition-colors" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.4rem' }}>{item.name}</h3>
+                      <h3 className="text-xl mb-4 group-hover:text-primary transition-colors" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.4rem' }}>{itemName(item)}</h3>
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button
@@ -249,7 +264,7 @@ export default function Catalogue() {
                     <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', border: '1.5px solid rgba(0,200,239,0.3)' }}>
                       <iframe
                         src={toEmbedUrl(selected.video)!}
-                        title={`Vidéo ${selected.name}`}
+                        title={`Vidéo ${itemName(selected)}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         className="w-full h-full"
@@ -258,9 +273,9 @@ export default function Catalogue() {
                   </div>
                 )}
                 <div className="flex flex-col px-6 pb-10 gap-5">
-                  <h2 className="text-center leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.9rem' }}>{selected.name}</h2>
+                  <h2 className="text-center leading-tight" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: '1.9rem' }}>{itemName(selected)}</h2>
                   <div className="h-px w-24 mx-auto" style={{ background: 'linear-gradient(90deg, transparent, rgba(0,200,239,0.6), transparent)' }} />
-                  <p className="font-light leading-relaxed whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '0.95rem', lineHeight: '1.8' }}>{selected.desc}</p>
+                  <p className="font-light leading-relaxed whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '0.95rem', lineHeight: '1.8' }}>{itemDesc(selected)}</p>
                   <p className="font-serif text-3xl text-primary font-semibold text-center">{selected.price}</p>
                   {selected.etsyUrl ? (
                     <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
@@ -281,11 +296,11 @@ export default function Catalogue() {
                 <div className="flex flex-col" style={{ flex: '1 1 0', minWidth: 0 }}>
                   <div className="flex-1 overflow-y-auto px-10 pt-8 pb-4 flex flex-col gap-6">
                     <h2 className="leading-tight pr-10" style={{ color: '#e0f5ff', fontFamily: "'Dancing Script', cursive", fontSize: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
-                      {selected.name}
+                      {itemName(selected)}
                     </h2>
                     <div className="h-px w-32" style={{ background: 'linear-gradient(90deg, rgba(0,200,239,0.7), transparent)' }} />
                     <p className="font-light leading-relaxed whitespace-pre-line" style={{ color: 'rgba(200,235,255,0.88)', fontSize: '1rem', lineHeight: '1.85' }}>
-                      {selected.desc}
+                      {itemDesc(selected)}
                     </p>
                   </div>
                   <div className="flex-shrink-0 px-10 py-5 flex items-center justify-between gap-6" style={{ borderTop: '1px solid rgba(0,200,239,0.18)', background: 'rgba(0,10,35,0.7)', backdropFilter: 'blur(8px)' }}>
@@ -311,7 +326,7 @@ export default function Catalogue() {
                       <div className="w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 0 24px rgba(0,200,239,0.15)' }}>
                         <iframe
                           src={toEmbedUrl(selected.video)!}
-                          title={`Vidéo ${selected.name}`}
+                          title={`Vidéo ${itemName(selected)}`}
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                           className="w-full h-full"

@@ -2,6 +2,7 @@ import { Router, type Request, type Response, type NextFunction } from "express"
 import fs from "fs";
 import path from "path";
 import { sanitizeCatalogueItem } from "../lib/sanitize.js";
+import { translateToAll } from "../lib/translate.js";
 
 const router = Router();
 const DATA_FILE = path.join(process.cwd(), "data", "catalogue.json");
@@ -24,22 +25,52 @@ router.get("/catalogue", (_req, res) => {
   res.json(readData());
 });
 
-router.post("/catalogue", adminAuth, (req, res) => {
+router.post("/catalogue", adminAuth, async (req, res) => {
   const items = readData();
   const sanitized = sanitizeCatalogueItem(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
-  const newItem = { ...sanitized, id: Date.now() };
+
+  const [nameT, descT] = await Promise.all([
+    translateToAll(sanitized.name),
+    sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
+  ]);
+
+  const newItem = {
+    ...sanitized,
+    name_en: nameT.en,
+    name_es: nameT.es,
+    desc_en: descT.en,
+    desc_es: descT.es,
+    id: Date.now(),
+  };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
 });
 
-router.put("/catalogue/:id", adminAuth, (req, res) => {
+router.put("/catalogue/:id", adminAuth, async (req, res) => {
   const items = readData();
   const idx = items.findIndex((i: any) => i.id === Number(req.params["id"]));
   if (idx === -1) return res.status(404).json({ error: "Non trouvé" });
+
   const sanitized = sanitizeCatalogueItem({ ...items[idx], ...req.body });
-  items[idx] = { ...sanitized, id: items[idx].id };
+
+  const nameChanged = sanitized.name !== items[idx].name;
+  const descChanged = sanitized.desc !== items[idx].desc;
+
+  const [nameT, descT] = await Promise.all([
+    nameChanged ? translateToAll(sanitized.name) : Promise.resolve({ en: items[idx].name_en || "", es: items[idx].name_es || "" }),
+    descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: items[idx].desc_en || "", es: items[idx].desc_es || "" }),
+  ]);
+
+  items[idx] = {
+    ...sanitized,
+    name_en: nameT.en,
+    name_es: nameT.es,
+    desc_en: descT.en,
+    desc_es: descT.es,
+    id: items[idx].id,
+  };
   writeData(items);
   res.json(items[idx]);
 });

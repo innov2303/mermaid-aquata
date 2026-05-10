@@ -2,6 +2,7 @@ import { Router, type Request, type Response, type NextFunction } from "express"
 import fs from "fs";
 import path from "path";
 import { sanitizeRemerciement } from "../lib/sanitize.js";
+import { translateToAll } from "../lib/translate.js";
 
 const router = Router();
 const DATA_FILE = path.join(process.cwd(), "data", "remerciements.json");
@@ -24,22 +25,44 @@ router.get("/remerciements", (_req, res) => {
   res.json(readData());
 });
 
-router.post("/remerciements", adminAuth, (req, res) => {
+router.post("/remerciements", adminAuth, async (req, res) => {
   const items = readData();
   const sanitized = sanitizeRemerciement(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
-  const newItem = { ...sanitized, id: Date.now() };
+
+  const reviewT = sanitized.review
+    ? await translateToAll(sanitized.review)
+    : { en: null, es: null };
+
+  const newItem = {
+    ...sanitized,
+    review_en: reviewT.en,
+    review_es: reviewT.es,
+    id: Date.now(),
+  };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
 });
 
-router.put("/remerciements/:id", adminAuth, (req, res) => {
+router.put("/remerciements/:id", adminAuth, async (req, res) => {
   const items = readData();
   const idx = items.findIndex((i: any) => i.id === Number(req.params["id"]));
   if (idx === -1) return res.status(404).json({ error: "Non trouvé" });
+
   const sanitized = sanitizeRemerciement({ ...items[idx], ...req.body });
-  items[idx] = { ...sanitized, id: items[idx].id };
+
+  const reviewChanged = sanitized.review !== items[idx].review;
+  const reviewT = reviewChanged && sanitized.review
+    ? await translateToAll(sanitized.review)
+    : { en: items[idx].review_en ?? null, es: items[idx].review_es ?? null };
+
+  items[idx] = {
+    ...sanitized,
+    review_en: reviewT.en,
+    review_es: reviewT.es,
+    id: items[idx].id,
+  };
   writeData(items);
   res.json(items[idx]);
 });

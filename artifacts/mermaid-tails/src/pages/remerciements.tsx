@@ -6,13 +6,19 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
 
-type Sirene = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
+type Sirene = { id: number; name: string; img: string | null; instagram: string | null; review: string | null; review_en?: string | null; review_es?: string | null };
 
 export default function Remerciements() {
   const [sirenes, setSirenes] = useState<Sirene[]>([]);
   const [selected, setSelected] = useState<Sirene | null>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   useSEO("avis");
+
+  function sireneReview(s: Sirene) {
+    if (lang === "en") return s.review_en || s.review;
+    if (lang === "es") return s.review_es || s.review;
+    return s.review;
+  }
 
   useEffect(() => {
     fetchRemerciements().then(setSirenes).catch(() => {});
@@ -91,7 +97,7 @@ export default function Remerciements() {
                 }}>
                   {sirene.name}
                 </h3>
-                {sirene.review && (
+                {sireneReview(sirene) && (
                   <p style={{
                     color: 'rgba(200,235,255,0.85)',
                     fontSize: 'clamp(0.85rem, 2vw, 1rem)',
@@ -100,7 +106,7 @@ export default function Remerciements() {
                     textAlign: 'center',
                     whiteSpace: 'pre-line',
                   }}>
-                    « {sirene.review} »
+                    « {sireneReview(sirene)} »
                   </p>
                 )}
                 {sirene.instagram && (

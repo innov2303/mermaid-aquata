@@ -7,6 +7,7 @@ import authRouter from "./auth";
 import uploadRouter from "./upload";
 import tvRefsRouter from "./tv-refs";
 import contactRouter from "./contact";
+import translateAllRouter from "./translate-all";
 
 const router: IRouter = Router();
 
@@ -18,5 +19,6 @@ router.use(remerciementsRouter);
 router.use(presentationRouter);
 router.use(tvRefsRouter);
 router.use(contactRouter);
+router.use(translateAllRouter);
 
 export default router;
