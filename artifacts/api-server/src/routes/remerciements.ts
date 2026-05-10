@@ -21,8 +21,39 @@ function adminAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+let backfillRunning = false;
+
+async function backfillTranslations() {
+  if (backfillRunning) return;
+  backfillRunning = true;
+  try {
+    const items = readData();
+    let changed = false;
+    for (const item of items) {
+      if (item.review && (!item.review_en || !item.review_es)) {
+        try {
+          const t = await translateToAll(item.review);
+          item.review_en = t.en;
+          item.review_es = t.es;
+          changed = true;
+        } catch {
+        }
+      }
+    }
+    if (changed) writeData(items);
+  } catch {
+  } finally {
+    backfillRunning = false;
+  }
+}
+
 router.get("/remerciements", (_req, res) => {
-  res.json(readData());
+  const items = readData();
+  res.json(items);
+  const needsBackfill = items.some((item: any) => item.review && (!item.review_en || !item.review_es));
+  if (needsBackfill) {
+    backfillTranslations().catch(() => {});
+  }
 });
 
 router.post("/remerciements", adminAuth, async (req, res) => {

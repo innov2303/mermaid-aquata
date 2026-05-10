@@ -21,8 +21,44 @@ function adminAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+let backfillRunning = false;
+
+async function backfillTranslations() {
+  if (backfillRunning) return;
+  backfillRunning = true;
+  try {
+    const items = readData();
+    let changed = false;
+    for (const item of items) {
+      if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
+        try {
+          const [nameT, descT] = await Promise.all([
+            (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
+            item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
+          ]);
+          item.name_en = nameT.en;
+          item.name_es = nameT.es;
+          item.desc_en = descT.en;
+          item.desc_es = descT.es;
+          changed = true;
+        } catch {
+        }
+      }
+    }
+    if (changed) writeData(items);
+  } catch {
+  } finally {
+    backfillRunning = false;
+  }
+}
+
 router.get("/catalogue", (_req, res) => {
-  res.json(readData());
+  const items = readData();
+  res.json(items);
+  const needsBackfill = items.some((item: any) => !item.name_en || !item.name_es || !item.desc_en || !item.desc_es);
+  if (needsBackfill) {
+    backfillTranslations().catch(() => {});
+  }
 });
 
 router.post("/catalogue", adminAuth, async (req, res) => {
