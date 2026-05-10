@@ -36,8 +36,9 @@ function headers(token?: string) {
 
 // Catalogue
 export async function fetchCatalogue(lang?: string) {
-  const url = lang && lang !== 'fr' ? `${BASE}/catalogue?lang=${lang}` : `${BASE}/catalogue`;
-  const r = await fetch(url, { cache: 'no-store' });
+  const params = new URLSearchParams({ _t: Date.now().toString() });
+  if (lang && lang !== 'fr') params.set('lang', lang);
+  const r = await fetch(`${BASE}/catalogue?${params}`, { cache: 'no-store' });
   if (!r.ok) throw new Error("Erreur chargement catalogue");
   return r.json();
 }
@@ -87,8 +88,9 @@ export async function deletePresentationPhoto(id: number, token: string) {
 
 // Remerciements
 export async function fetchRemerciements(lang?: string) {
-  const url = lang && lang !== 'fr' ? `${BASE}/remerciements?lang=${lang}` : `${BASE}/remerciements`;
-  const r = await fetch(url, { cache: 'no-store' });
+  const params = new URLSearchParams({ _t: Date.now().toString() });
+  if (lang && lang !== 'fr') params.set('lang', lang);
+  const r = await fetch(`${BASE}/remerciements?${params}`, { cache: 'no-store' });
   if (!r.ok) throw new Error("Erreur chargement remerciements");
   return r.json();
 }

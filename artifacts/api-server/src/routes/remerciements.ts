@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { sanitizeRemerciement } from "../lib/sanitize.js";
 import { translateToAll } from "../lib/translate.js";
+import { logger } from "../lib/logger.js";
 
 const router = Router();
 const DATA_FILE = path.join(process.cwd(), "data", "remerciements.json");
@@ -30,9 +31,10 @@ function isBadTranslation(v: unknown, source?: string): boolean {
 
 let remerciementsBackfillRunning = false;
 
-async function backfillRemerciements() {
+export async function backfillRemerciements() {
   if (remerciementsBackfillRunning) return;
   remerciementsBackfillRunning = true;
+  logger.info("Remerciements backfill: démarrage");
   try {
     const items = readData();
     let changed = false;
@@ -41,16 +43,20 @@ async function backfillRemerciements() {
       if (isBadTranslation(item.review_es, item.review)) item.review_es = null;
       if (item.review && (!item.review_en || !item.review_es)) {
         try {
+          logger.info({ nom: item.nom }, "Remerciements backfill: traduction avis");
           const t = await translateToAll(item.review);
           item.review_en = t.en;
           item.review_es = t.es;
           changed = true;
-        } catch {
+        } catch (err) {
+          logger.error({ err, nom: item.nom }, "Remerciements backfill: erreur traduction");
         }
       }
     }
     if (changed) writeData(items);
-  } catch {
+    logger.info({ changed }, "Remerciements backfill: terminé");
+  } catch (err) {
+    logger.error({ err }, "Remerciements backfill: erreur critique");
   } finally {
     remerciementsBackfillRunning = false;
   }

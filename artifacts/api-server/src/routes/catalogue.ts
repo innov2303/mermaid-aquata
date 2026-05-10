@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { sanitizeCatalogueItem } from "../lib/sanitize.js";
 import { translateToAll } from "../lib/translate.js";
+import { logger } from "../lib/logger.js";
 
 const router = Router();
 const DATA_FILE = path.join(process.cwd(), "data", "catalogue.json");
@@ -30,9 +31,10 @@ function isBadTranslation(v: unknown, source?: string): boolean {
 
 let catalogueBackfillRunning = false;
 
-async function backfillCatalogue() {
+export async function backfillCatalogue() {
   if (catalogueBackfillRunning) return;
   catalogueBackfillRunning = true;
+  logger.info("Catalogue backfill: démarrage");
   try {
     const items = readData();
     let changed = false;
@@ -43,6 +45,7 @@ async function backfillCatalogue() {
       if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
       if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
         try {
+          logger.info({ name: item.name }, "Catalogue backfill: traduction item");
           const [nameT, descT] = await Promise.all([
             (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
             item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
@@ -52,12 +55,15 @@ async function backfillCatalogue() {
           item.desc_en = descT.en;
           item.desc_es = descT.es;
           changed = true;
-        } catch {
+        } catch (err) {
+          logger.error({ err, name: item.name }, "Catalogue backfill: erreur traduction");
         }
       }
     }
     if (changed) writeData(items);
-  } catch {
+    logger.info({ changed }, "Catalogue backfill: terminé");
+  } catch (err) {
+    logger.error({ err }, "Catalogue backfill: erreur critique");
   } finally {
     catalogueBackfillRunning = false;
   }

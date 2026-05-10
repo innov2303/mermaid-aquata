@@ -120,9 +120,11 @@ export default function Catalogue() {
   useEffect(() => {
     retryRef.current = 0;
     let timer: ReturnType<typeof setTimeout>;
+    console.log('[Catalogue] lang changé →', lang);
 
     function load(isRetry = false) {
       fetchCatalogue(lang).then(items => {
+        console.log('[Catalogue] items reçus:', items.length, '| premier name_en:', items[0]?.name_en || '⚠️ VIDE', '| premier desc_en:', items[0]?.desc_en ? '✓' : '⚠️ VIDE');
         setAllItems(items);
         if (!isRetry) {
           const params = new URLSearchParams(window.location.search);
@@ -217,7 +219,10 @@ export default function Catalogue() {
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button
-                          onClick={() => setSelectedId(item.id)}
+                          onClick={() => {
+                            console.log('[Catalogue] ouverture popup id:', item.id, '| name_en:', item.name_en || '⚠️ VIDE', '| lang actuel:', lang);
+                            setSelectedId(item.id);
+                          }}
                           className="text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
                           style={{ background: 'rgba(0,200,239,0.12)', border: '1.5px solid rgba(0,200,239,0.5)', color: '#007fa3' }}
                         >
