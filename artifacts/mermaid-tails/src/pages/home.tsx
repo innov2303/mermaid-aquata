@@ -251,6 +251,15 @@ export default function Home() {
                 <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio1}</p>
                 <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio2}</p>
                 <p className="text-sm font-medium italic" style={{ color: '#0a6a8a' }}>{t.home.bio3}</p>
+                <div className="mt-6">
+                  <a
+                    href="/queue-de-sirene"
+                    className="inline-block px-8 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    style={{ background: 'linear-gradient(135deg, #0a6a8a, #1a9cbd)' }}
+                  >
+                    {t.home.ctaQueue}
+                  </a>
+                </div>
               </div>
             </motion.div>
 
