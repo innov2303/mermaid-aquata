@@ -99,8 +99,9 @@ function Carousel({ images }: { images: string[] }) {
 
 export default function Catalogue() {
   const [allItems, setAllItems] = useState<Item[]>([]);
-  const [selected, setSelected] = useState<Item | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const { t, lang } = useLanguage();
+  const selected = selectedId !== null ? (allItems.find(i => i.id === selectedId) ?? null) : null;
   useSEO("catalogue");
 
   function itemName(item: Item) {
@@ -136,7 +137,7 @@ export default function Catalogue() {
               return best;
             }, null);
             const match = exact ?? partial;
-            if (match) setSelected(match);
+            if (match) setSelectedId(match.id);
           }
         }
         if (lang !== 'fr') {
@@ -202,7 +203,7 @@ export default function Catalogue() {
                     className="group relative rounded-3xl hover:scale-[1.02] transition-all duration-300"
                     style={{ background: 'rgba(0,20,50,0.45)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(0,200,239,0.3)', boxShadow: '0 4px 24px rgba(0,200,239,0.1)' }}
                   >
-                    <div className="w-full overflow-hidden cursor-pointer rounded-2xl mx-auto mt-3 px-3" style={{ aspectRatio: '4/3' }} onClick={() => setSelected(item)}>
+                    <div className="w-full overflow-hidden cursor-pointer rounded-2xl mx-auto mt-3 px-3" style={{ aspectRatio: '4/3' }} onClick={() => setSelectedId(item.id)}>
                       {item.images[0] ? (
                         <img src={item.images[0]} alt={itemName(item)} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
                       ) : (
@@ -216,7 +217,7 @@ export default function Catalogue() {
                       <div className="flex items-center justify-between">
                         <p className="font-serif text-base text-primary font-medium">{item.price}</p>
                         <button
-                          onClick={() => setSelected(item)}
+                          onClick={() => setSelectedId(item.id)}
                           className="text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 hover:scale-105"
                           style={{ background: 'rgba(0,200,239,0.12)', border: '1.5px solid rgba(0,200,239,0.5)', color: '#007fa3' }}
                         >
@@ -242,7 +243,7 @@ export default function Catalogue() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-end md:items-center justify-center md:p-4"
             style={{ background: 'rgba(4,15,40,0.88)', backdropFilter: 'blur(8px)' }}
-            onClick={() => setSelected(null)}
+            onClick={() => setSelectedId(null)}
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 40 }}
@@ -263,7 +264,7 @@ export default function Catalogue() {
             >
               {/* Bouton fermer — haut droite global */}
               <button
-                onClick={() => setSelected(null)}
+                onClick={() => setSelectedId(null)}
                 className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-all"
                 style={{ background: 'rgba(0,200,239,0.15)', color: '#e0f5ff', border: '1px solid rgba(0,200,239,0.3)', backdropFilter: 'blur(8px)' }}
               >
@@ -300,7 +301,7 @@ export default function Catalogue() {
                     </Button>
                   ) : (
                     <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-8 shadow-[0_0_16px_rgba(0,200,239,0.4)] mx-auto">
-                      <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                      <Link href="/commander" onClick={() => setSelectedId(null)}>{t.catalogue.order}</Link>
                     </Button>
                   )}
                 </div>
@@ -328,7 +329,7 @@ export default function Catalogue() {
                       </Button>
                     ) : (
                       <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 rounded-full px-10 shadow-[0_0_20px_rgba(0,200,239,0.5)]">
-                        <Link href="/commander" onClick={() => setSelected(null)}>{t.catalogue.order}</Link>
+                        <Link href="/commander" onClick={() => setSelectedId(null)}>{t.catalogue.order}</Link>
                       </Button>
                     )}
                   </div>
