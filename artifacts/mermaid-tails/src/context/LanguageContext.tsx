@@ -16,6 +16,8 @@ const LanguageContext = createContext<LanguageContextValue>({
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (urlLang === 'en' || urlLang === 'es' || urlLang === 'fr') return urlLang;
     const saved = localStorage.getItem('ma_lang');
     return (saved === 'fr' || saved === 'en' || saved === 'es') ? saved : 'fr';
   });

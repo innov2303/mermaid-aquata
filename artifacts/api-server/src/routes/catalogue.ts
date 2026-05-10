@@ -44,33 +44,32 @@ export async function backfillCatalogue() {
       if (isBadTranslation(item.name_es, item.name)) item.name_es = "";
       if (isBadTranslation(item.desc_en, item.desc)) item.desc_en = "";
       if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
+      // 1. Traductions embarquées — toujours appliquées en priorité (traductions vérifiées manuellement)
+      const bundled = CATALOGUE_TRANSLATIONS[item.name as string];
+      if (bundled && bundled.name_en && bundled.name_es) {
+        const before = `${item.name_en}|${item.name_es}|${item.desc_en}|${item.desc_es}`;
+        item.name_en = bundled.name_en;
+        item.name_es = bundled.name_es;
+        if (bundled.desc_en) item.desc_en = bundled.desc_en;
+        if (bundled.desc_es) item.desc_es = bundled.desc_es;
+        const after = `${item.name_en}|${item.name_es}|${item.desc_en}|${item.desc_es}`;
+        if (before !== after) { changed = true; logger.info({ name: item.name }, "Catalogue backfill: traductions embarquées appliquées"); }
+      }
+      // 2. Fallback vers services externes pour les champs toujours manquants
       if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
-        // 1. Traductions pré-générées (embarquées dans le code, toujours disponibles)
-        const bundled = CATALOGUE_TRANSLATIONS[item.name as string];
-        if (bundled && bundled.name_en && bundled.name_es) {
-          if (!item.name_en) item.name_en = bundled.name_en;
-          if (!item.name_es) item.name_es = bundled.name_es;
-          if (!item.desc_en && bundled.desc_en) item.desc_en = bundled.desc_en;
-          if (!item.desc_es && bundled.desc_es) item.desc_es = bundled.desc_es;
+        try {
+          logger.info({ name: item.name }, "Catalogue backfill: traduction via API externe");
+          const [nameT, descT] = await Promise.all([
+            (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
+            item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
+          ]);
+          item.name_en = nameT.en;
+          item.name_es = nameT.es;
+          item.desc_en = descT.en;
+          item.desc_es = descT.es;
           changed = true;
-          logger.info({ name: item.name }, "Catalogue backfill: traductions embarquées appliquées");
-        }
-        // 2. Fallback vers services externes si des champs manquent encore
-        if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
-          try {
-            logger.info({ name: item.name }, "Catalogue backfill: traduction via API externe");
-            const [nameT, descT] = await Promise.all([
-              (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
-              item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
-            ]);
-            item.name_en = nameT.en;
-            item.name_es = nameT.es;
-            item.desc_en = descT.en;
-            item.desc_es = descT.es;
-            changed = true;
-          } catch (err) {
-            logger.error({ err, name: item.name }, "Catalogue backfill: erreur traduction API externe");
-          }
+        } catch (err) {
+          logger.error({ err, name: item.name }, "Catalogue backfill: erreur traduction API externe");
         }
       }
     }
