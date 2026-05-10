@@ -21,13 +21,11 @@ function adminAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-let backfillRunning = false;
+router.get("/catalogue", async (_req, res) => {
+  const items = readData();
+  const needsBackfill = items.some((item: any) => !item.name_en || !item.name_es || !item.desc_en || !item.desc_es);
 
-async function backfillTranslations() {
-  if (backfillRunning) return;
-  backfillRunning = true;
-  try {
-    const items = readData();
+  if (needsBackfill) {
     let changed = false;
     for (const item of items) {
       if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
@@ -46,19 +44,9 @@ async function backfillTranslations() {
       }
     }
     if (changed) writeData(items);
-  } catch {
-  } finally {
-    backfillRunning = false;
   }
-}
 
-router.get("/catalogue", (_req, res) => {
-  const items = readData();
   res.json(items);
-  const needsBackfill = items.some((item: any) => !item.name_en || !item.name_es || !item.desc_en || !item.desc_es);
-  if (needsBackfill) {
-    backfillTranslations().catch(() => {});
-  }
 });
 
 router.post("/catalogue", adminAuth, async (req, res) => {
