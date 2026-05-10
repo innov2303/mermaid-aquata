@@ -1,4 +1,5 @@
 const MYMEMORY = "https://api.mymemory.translated.net/get";
+const MAX_CHARS = 450;
 
 async function translateChunk(text: string, from: string, to: string): Promise<string> {
   if (!text.trim()) return text;
@@ -8,18 +9,45 @@ async function translateChunk(text: string, from: string, to: string): Promise<s
     if (!res.ok) return text;
     const data = await res.json() as { responseData?: { translatedText?: string } };
     const translated = data?.responseData?.translatedText;
-    if (!translated || translated === "INVALID LANGUAGE PAIR") return text;
+    if (
+      !translated ||
+      translated === "INVALID LANGUAGE PAIR" ||
+      translated.startsWith("QUERY LENGTH LIMIT EXCEEDED") ||
+      translated.startsWith("MYMEMORY WARNING")
+    ) return text;
     return translated;
   } catch {
     return text;
   }
 }
 
-function splitIntoChunks(text: string, maxLen = 470): string[] {
+function splitByWords(text: string, maxLen: number): string[] {
+  const words = text.split(" ");
+  const chunks: string[] = [];
+  let current = "";
+  for (const word of words) {
+    const candidate = current ? current + " " + word : word;
+    if (candidate.length > maxLen && current) {
+      chunks.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+  }
+  if (current) chunks.push(current);
+  return chunks;
+}
+
+function splitIntoChunks(text: string, maxLen = MAX_CHARS): string[] {
   if (text.length <= maxLen) return [text];
   const chunks: string[] = [];
   let current = "";
   for (const line of text.split("\n")) {
+    if (line.length > maxLen) {
+      if (current) { chunks.push(current); current = ""; }
+      chunks.push(...splitByWords(line, maxLen));
+      continue;
+    }
     const candidate = current ? current + "\n" + line : line;
     if (candidate.length > maxLen && current) {
       chunks.push(current);
@@ -50,7 +78,7 @@ export async function translateText(text: string, from: string, to: string): Pro
       translatedChunks.push(await translateChunk(chunks[ci], from, to));
       if (ci < chunks.length - 1) await delay(150);
     }
-    translatedParagraphs.push(translatedChunks.join("\n"));
+    translatedParagraphs.push(translatedChunks.join(" "));
     if (pi < paragraphs.length - 1) await delay(100);
   }
 

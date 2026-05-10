@@ -21,8 +21,19 @@ function adminAuth(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+function isBadTranslation(v: unknown): boolean {
+  if (!v || typeof v !== "string") return true;
+  return v.startsWith("QUERY LENGTH LIMIT") || v.startsWith("MYMEMORY WARNING");
+}
+
 router.get("/remerciements", async (_req, res) => {
   const items = readData();
+
+  for (const item of items) {
+    if (isBadTranslation(item.review_en)) item.review_en = null;
+    if (isBadTranslation(item.review_es)) item.review_es = null;
+  }
+
   const needsBackfill = items.some((item: any) => item.review && (!item.review_en || !item.review_es));
 
   if (needsBackfill) {
