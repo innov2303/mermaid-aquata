@@ -15,6 +15,7 @@ const translations = {
       faq: 'FAQ',
       remerciements: 'Avis',
       tv: 'Productions TV',
+      histoire: 'Mon histoire',
     },
     home: {
       heroTitle: 'Bienvenue chez Mermaid Aquata',
@@ -198,6 +199,10 @@ const translations = {
         title: 'Productions TV & Audiovisuelles | Prestations Sirène — Mermaid Aquata',
         description: 'Mermaid Aquata propose ses créations et son expertise pour vos productions audiovisuelles : clips musicaux, séries TV, reportages, films. Costumes professionnels de sirène, réalisme saisissant.',
       },
+      histoire: {
+        title: 'Mon Histoire | Créatrice de Queues de Sirène — Mermaid Aquata',
+        description: "Découvrez l'histoire de Mermaid Aquata : 10 ans de passion, de travail et d'innovation pour créer des queues de sirène en silicone uniques au monde, avec une extension au-delà des pieds.",
+      },
     },
     tv: {
       title: 'Productions TV & Audiovisuelles',
@@ -217,6 +222,18 @@ const translations = {
       ctaDesc: "Contactez-moi pour discuter de votre production et obtenir un devis personnalisé.",
       ctaBtn: 'Me contacter',
     },
+    histoire: {
+      title: 'Mon histoire',
+      subtitle: '',
+      paragraphs: [
+        "Passionnée par l'univers des sirènes depuis ma plus tendre enfance, je me suis lancé un défi à l'âge de 20 ans : créer une nageoire en silicone afin de devenir la sirène de mes rêves.",
+        "Après dix années de travail, de conception et de nombreux essais, j'ai réalisé ma première nageoire en silicone dotée d'une extension de longueur au-delà des pieds, avec un camouflage complet des jambes. Cette innovation offre, à mes yeux, un réalisme à couper le souffle, unique au monde. À ce jour, aucun autre créateur ne propose ce concept.",
+        "J'ai également développé mes propres monopalmes, car je souhaitais concevoir une nageoire aussi agréable que fonctionnelle, pour offrir la sensation de se sentir véritablement comme un poisson dans l'eau. Elles sont équipées de chaussons confortables qui ne provoquent pas de blessures aux pieds, assurent une excellente propulsion sans effort, et allient légèreté, solidité et durabilité, même en cas d'utilisation intensive. La monopalme est d'ailleurs l'élément qui m'a demandé le plus de réflexion et de travail.",
+        "Je n'utilise que des pigments haut de gamme afin d'obtenir des couleurs aux reflets intenses et profonds. Les teintes sont intégrées sous une couche de silicone transparente, ce qui empêche la couleur de s'effriter ou de se dégrader avec le temps.",
+        "Après avoir testé différents types de silicone, j'ai sélectionné celui qui offre le meilleur équilibre entre souplesse et élasticité, facilitant ainsi l'enfilage tout en garantissant un confort optimal.",
+        "Aujourd'hui, je suis très fière de partager ma passion ainsi que le savoir-faire acquis au fil des années avec d'autres passionnés de cet univers aquatique, en leur permettant, à leur tour, de devenir la créature de l'océan de leurs rêves. 🧜‍♀️✨",
+      ],
+    },
   },
 
   en: {
@@ -227,6 +244,7 @@ const translations = {
       faq: 'FAQ',
       remerciements: 'Reviews',
       tv: 'TV Productions',
+      histoire: 'My Story',
     },
     home: {
       heroTitle: 'Welcome to Mermaid Aquata',
@@ -410,6 +428,10 @@ const translations = {
         title: 'TV & Audiovisual Productions | Mermaid Performer — Mermaid Aquata',
         description: 'Mermaid Aquata offers her creations and expertise for your audiovisual productions: music videos, TV series, documentaries, films. Professional mermaid costumes with striking realism.',
       },
+      histoire: {
+        title: 'My Story | Mermaid Tail Creator — Mermaid Aquata',
+        description: 'Discover the story of Mermaid Aquata: 10 years of passion, work and innovation to create silicone mermaid tails unique in the world, with a length extension beyond the feet.',
+      },
     },
     tv: {
       title: 'TV & Audiovisual Productions',
@@ -429,6 +451,18 @@ const translations = {
       ctaDesc: "Contact me to discuss your production and receive a personalised quote.",
       ctaBtn: 'Contact me',
     },
+    histoire: {
+      title: 'My Story',
+      subtitle: '',
+      paragraphs: [
+        "Passionate about the world of mermaids since my earliest childhood, I set myself a challenge at the age of 20: to create a silicone tail and become the mermaid of my dreams.",
+        "After ten years of work, design and countless trials, I created my first silicone tail featuring a length extension beyond the feet, with complete leg camouflage. This innovation offers, in my eyes, breathtaking realism — unique in the world. To this day, no other creator offers this concept.",
+        "I also developed my own monofins, as I wanted to design a fin that was as comfortable as it was functional, to give the feeling of truly being like a fish in the water. They feature comfortable slippers that cause no foot injuries, provide excellent effortless propulsion, and combine lightness, sturdiness and durability, even with intensive use. The monofin is, in fact, the element that required the most thought and work on my part.",
+        "I only use premium pigments to achieve colours with intense and deep reflections. The shades are embedded beneath a layer of transparent silicone, preventing the colour from crumbling or deteriorating over time.",
+        "After testing different types of silicone, I selected the one that offers the best balance between flexibility and elasticity, making it easier to put on while guaranteeing optimal comfort.",
+        "Today, I am very proud to share my passion and the expertise acquired over the years with other enthusiasts of this aquatic universe, allowing them, in turn, to become the ocean creature of their dreams. 🧜‍♀️✨",
+      ],
+    },
   },
 
   es: {
@@ -439,6 +473,7 @@ const translations = {
       faq: 'FAQ',
       remerciements: 'Reseñas',
       tv: 'Producciones TV',
+      histoire: 'Mi Historia',
     },
     home: {
       heroTitle: 'Bienvenida a Mermaid Aquata',
@@ -622,6 +657,10 @@ const translations = {
         title: 'Producciones de TV y Audiovisuales | Actuaciones de Sirena — Mermaid Aquata',
         description: 'Mermaid Aquata ofrece sus creaciones y experiencia para sus producciones audiovisuales: videoclips, series de TV, documentales, películas. Trajes profesionales de sirena con un realismo impresionante.',
       },
+      histoire: {
+        title: 'Mi Historia | Creadora de Colas de Sirena — Mermaid Aquata',
+        description: 'Descubre la historia de Mermaid Aquata: 10 años de pasión, trabajo e innovación para crear colas de sirena de silicona únicas en el mundo, con una extensión más allá de los pies.',
+      },
     },
     tv: {
       title: 'Producciones de TV y Audiovisuales',
@@ -640,6 +679,18 @@ const translations = {
       ctaTitle: '¿Tienes un proyecto?',
       ctaDesc: "Contáctame para hablar de tu producción y recibir un presupuesto personalizado.",
       ctaBtn: 'Contáctame',
+    },
+    histoire: {
+      title: 'Mi Historia',
+      subtitle: '',
+      paragraphs: [
+        "Apasionada por el mundo de las sirenas desde mi más tierna infancia, me propuse un reto a los 20 años: crear una aleta de silicona para convertirme en la sirena de mis sueños.",
+        "Tras diez años de trabajo, diseño y numerosas pruebas, realicé mi primera aleta de silicona con una extensión de longitud más allá de los pies, con un camuflaje completo de las piernas. Esta innovación ofrece, a mis ojos, un realismo impresionante, único en el mundo. Hasta la fecha, ningún otro creador ofrece este concepto.",
+        "También desarrollé mis propias monoaletas, ya que quería diseñar una aleta tan agradable como funcional, para ofrecer la sensación de sentirse verdaderamente como un pez en el agua. Están equipadas con zapatillas cómodas que no causan lesiones en los pies, proporcionan una excelente propulsión sin esfuerzo y combinan ligereza, solidez y durabilidad, incluso con un uso intensivo. La monoaleta es, de hecho, el elemento que más reflexión y trabajo me ha exigido.",
+        "Solo utilizo pigmentos de alta gama para obtener colores con reflejos intensos y profundos. Los tonos están integrados bajo una capa de silicona transparente, lo que evita que el color se deteriore o se degrade con el tiempo.",
+        "Tras probar diferentes tipos de silicona, seleccioné la que ofrece el mejor equilibrio entre flexibilidad y elasticidad, facilitando así la colocación y garantizando un confort óptimo.",
+        "Hoy me siento muy orgullosa de compartir mi pasión y los conocimientos adquiridos a lo largo de los años con otros apasionados de este universo acuático, permitiéndoles, a su vez, convertirse en la criatura del océano de sus sueños. 🧜‍♀️✨",
+      ],
     },
   },
 } as const;

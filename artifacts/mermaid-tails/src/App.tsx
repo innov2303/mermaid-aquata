@@ -12,6 +12,7 @@ import Faq from "@/pages/faq";
 import Remerciements from "@/pages/remerciements";
 import Admin from "@/pages/admin";
 import ProductionsTv from "@/pages/productions-tv";
+import MonHistoire from "@/pages/mon-histoire";
 import PolitiqueDeRetour from "@/pages/politique-de-retour";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
         <Route path="/faq" component={Faq} />
         <Route path="/avis" component={Remerciements} />
         <Route path="/productions-tv" component={ProductionsTv} />
+        <Route path="/mon-histoire" component={MonHistoire} />
         <Route path="/admin" component={Admin} />
         <Route path="/politique-de-retour" component={PolitiqueDeRetour} />
         <Route component={NotFound} />

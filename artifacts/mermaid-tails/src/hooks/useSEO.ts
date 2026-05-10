@@ -3,7 +3,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import translations from "@/lib/translations";
 import type { Lang } from "@/lib/translations";
 
-type SeoPage = "home" | "catalogue" | "commander" | "faq" | "avis";
+type SeoPage = "home" | "catalogue" | "commander" | "faq" | "avis" | "tv" | "histoire";
 
 const LANG_CODES: Record<Lang, string> = {
   fr: "fr-FR",
@@ -18,6 +18,7 @@ const PAGE_KEYWORDS: Record<Lang, Record<SeoPage, string>> = {
     commander:     "commander queue de sirène, devis queue de sirène, queue de sirène prix, fabrication sur mesure sirène, commande nageoire sirène, mesures queue de sirène, queue de sirène artisanale prix",
     faq:           "prix queue de sirène, délai fabrication queue de sirène, queue de sirène entretien, silicone pour sirène, queue de sirène livraison, FAQ sirène, queue de sirène combien ça coûte",
     avis: "avis clients sirène, témoignages sirène, galerie queue de sirène, photos queue de sirène, sirènes professionnelles, queue de sirène portée",
+    histoire: "histoire créatrice queue de sirène, Mermaid Aquata histoire, nageoire silicone unique, extension au-delà des pieds, monopalme artisanale, silicone sirène, pigments sirène, création queue de sirène France",
   },
   en: {
     home:          "mermaid tail, silicone mermaid tail, custom mermaid tail, mermaid tail maker, realistic mermaid tail, professional mermaid, mermaid tail France, handmade mermaid tail, mermaid monofin",
@@ -25,6 +26,7 @@ const PAGE_KEYWORDS: Record<Lang, Record<SeoPage, string>> = {
     commander:     "order mermaid tail, mermaid tail price, custom mermaid tail order, bespoke mermaid tail, mermaid tail measurements, mermaid tail quote",
     faq:           "mermaid tail price, mermaid tail lead time, mermaid tail maintenance, silicone mermaid, mermaid tail shipping, FAQ mermaid tail, how much does a mermaid tail cost",
     avis: "mermaid tail reviews, customer testimonials, mermaid tail gallery, mermaid tail photos, professional mermaids, mermaid tail worn",
+    histoire: "mermaid tail creator story, Mermaid Aquata story, unique silicone tail, extension beyond feet, handmade monofin, silicone mermaid, mermaid pigments, mermaid tail creation France",
   },
   es: {
     home:          "cola de sirena, cola de sirena silicona, cola de sirena a medida, fabricación cola de sirena, aleta sirena, monofin sirena, disfraz sirena, sirena profesional, cola de sirena artesanal, cola de sirena Francia",
@@ -32,6 +34,7 @@ const PAGE_KEYWORDS: Record<Lang, Record<SeoPage, string>> = {
     commander:     "pedir cola de sirena, presupuesto cola sirena, precio cola sirena, fabricación a medida sirena, medidas cola de sirena, cola de sirena artesanal precio",
     faq:           "precio cola de sirena, plazo fabricación cola sirena, mantenimiento cola sirena, silicona sirena, envío cola sirena, FAQ sirena, cuánto cuesta una cola de sirena",
     avis: "reseñas clientes cola de sirena, testimonios sirena, galería cola de sirena, fotos cola de sirena, sirenas profesionales",
+    histoire: "historia creadora cola de sirena, historia Mermaid Aquata, aleta silicona única, extensión más allá de los pies, monoaleta artesanal, silicona sirena, pigmentos sirena, creación cola de sirena Francia",
   },
 };
 

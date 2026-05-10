@@ -48,6 +48,7 @@ export function NavBar() {
     { href: "/queue-de-sirene", label: t.nav.catalogue },
     { href: "/commander", label: t.nav.commander },
     { href: "/productions-tv", label: t.nav.tv },
+    { href: "/mon-histoire", label: t.nav.histoire },
     { href: "/faq", label: t.nav.faq },
     { href: "/avis", label: t.nav.remerciements },
   ];
