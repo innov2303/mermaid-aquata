@@ -57,30 +57,29 @@ export default function MonHistoire() {
         </motion.div>
 
         {/* Paragraphes */}
-        <div className="flex flex-col gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl px-7 py-8"
+          style={GLASS}
+        >
           {paragraphs.map((para, i) => (
-            <motion.div
+            <p
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.08, duration: 0.55 }}
-              className="rounded-2xl px-7 py-6"
-              style={GLASS}
+              className="leading-relaxed font-light"
+              style={{
+                color: 'rgba(210,240,255,0.92)',
+                fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                lineHeight: '1.9',
+                marginBottom: i < paragraphs.length - 1 ? '1.5rem' : 0,
+              }}
             >
-              <p
-                className="leading-relaxed font-light"
-                style={{
-                  color: 'rgba(210,240,255,0.92)',
-                  fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
-                  lineHeight: '1.9',
-                }}
-              >
-                {para}
-              </p>
-            </motion.div>
+              {para}
+            </p>
           ))}
-        </div>
+        </motion.div>
 
         {/* Photo bas de page */}
         <motion.div
