@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Pencil, Trash2, Plus, Save, X, LogOut, ShieldCheck, Upload, Image, Copy, Check } from "lucide-react";
+import { Pencil, Trash2, Plus, Save, X, LogOut, ShieldCheck, Upload, Image, Copy, Check, Languages } from "lucide-react";
 import {
   checkAdminToken,
   fetchCatalogue, createCatalogueItem, updateCatalogueItem, deleteCatalogueItem,
@@ -9,6 +9,7 @@ import {
   fetchTvRefs, createTvRef, updateTvRef, deleteTvRef,
   fetchContactInfo, updateContactInfo,
   uploadImage, listUploads, deleteUpload,
+  translateAll,
 } from "@/lib/api";
 
 const ADMIN_TOKEN_KEY = "mermaid_admin_token";
@@ -896,9 +897,27 @@ type Tab = typeof TABS[number]["id"];
 export default function Admin() {
   const [token, setToken] = useState(() => sessionStorage.getItem(ADMIN_TOKEN_KEY) || "");
   const [tab, setTab] = useState<Tab>("catalogue");
+  const [translating, setTranslating] = useState(false);
+  const [translateResult, setTranslateResult] = useState<string | null>(null);
 
   function handleLogin(t: string) { sessionStorage.setItem(ADMIN_TOKEN_KEY, t); setToken(t); }
   function handleLogout() { sessionStorage.removeItem(ADMIN_TOKEN_KEY); setToken(""); }
+
+  async function handleTranslateAll() {
+    setTranslating(true);
+    setTranslateResult(null);
+    try {
+      const res = await translateAll(token);
+      setTranslateResult(res.errors.length > 0
+        ? `✓ ${res.message} — ${res.errors.length} erreur(s): ${res.errors.join(", ")}`
+        : `✓ ${res.message}`
+      );
+    } catch {
+      setTranslateResult("✗ Erreur lors de la traduction");
+    } finally {
+      setTranslating(false);
+    }
+  }
 
   if (!token) return <LoginScreen onLogin={handleLogin} />;
 
@@ -912,9 +931,27 @@ export default function Admin() {
             <h1 className="text-3xl font-serif" style={{ color: "#e0f5ff" }}>Administration</h1>
             <p className="text-sm mt-1" style={{ color: "rgba(200,235,255,0.65)" }}>Gérez le contenu du site</p>
           </div>
-          <button onClick={handleLogout} className={btnPrimary} style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>
-            <LogOut size={15} /> Déconnexion
-          </button>
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col items-end gap-1">
+              <button
+                onClick={handleTranslateAll}
+                disabled={translating}
+                className={btnPrimary}
+                style={{ background: "rgba(0,200,239,0.15)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.35)", opacity: translating ? 0.7 : 1 }}
+              >
+                <Languages size={15} />
+                {translating ? "Traduction en cours…" : "Traduire tout (EN/ES)"}
+              </button>
+              {translateResult && (
+                <p className="text-xs" style={{ color: translateResult.startsWith("✓") ? "rgba(100,220,180,0.9)" : "rgba(239,100,100,0.9)" }}>
+                  {translateResult}
+                </p>
+              )}
+            </div>
+            <button onClick={handleLogout} className={btnPrimary} style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}>
+              <LogOut size={15} /> Déconnexion
+            </button>
+          </div>
         </div>
 
         {/* Tabs */}

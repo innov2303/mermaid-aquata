@@ -146,3 +146,9 @@ export async function updateContactInfo(item: object, token: string) {
   if (!r.ok) throw new Error("Erreur mise à jour contact");
   return r.json();
 }
+
+export async function translateAll(token: string): Promise<{ message: string; catalogue: number; remerciements: number; errors: string[] }> {
+  const r = await fetch(`${BASE}/admin/translate-all`, { method: "POST", headers: headers(token) });
+  if (!r.ok) throw new Error("Erreur traduction");
+  return r.json();
+}
