@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ZoomIn } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
@@ -13,6 +15,7 @@ const GLASS = {
 export default function MonHistoire() {
   const { t } = useLanguage();
   useSEO("histoire");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const { title, subtitle, paragraphs } = t.histoire;
 
@@ -84,7 +87,7 @@ export default function MonHistoire() {
             ))}
           </motion.div>
 
-          {/* Image */}
+          {/* Image cliquable */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -93,17 +96,24 @@ export default function MonHistoire() {
             className="md:w-96 lg:w-[480px] flex-shrink-0"
           >
             <div
-              className="overflow-hidden rounded-3xl"
+              className="overflow-hidden rounded-3xl relative group cursor-zoom-in"
               style={{
                 border: '1.5px solid rgba(0,200,239,0.35)',
                 boxShadow: '0 8px 40px rgba(0,200,239,0.18)',
               }}
+              onClick={() => setLightboxOpen(true)}
             >
               <img
                 src="/images/mon-histoire.jpg"
                 alt="Mermaid Aquata"
-                className="w-full object-cover"
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: 'rgba(0,10,30,0.35)' }}>
+                <div className="rounded-full p-3" style={{ background: 'rgba(0,200,239,0.25)', border: '1.5px solid rgba(0,200,239,0.6)' }}>
+                  <ZoomIn size={28} color="#00c8ef" />
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -135,6 +145,44 @@ export default function MonHistoire() {
         </motion.div>
 
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+            style={{ background: 'rgba(0,5,20,0.92)', backdropFilter: 'blur(12px)' }}
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              className="absolute top-5 right-5 rounded-full p-2 transition-all hover:scale-110"
+              style={{ background: 'rgba(0,200,239,0.15)', border: '1.5px solid rgba(0,200,239,0.5)', color: '#00c8ef' }}
+              onClick={() => setLightboxOpen(false)}
+            >
+              <X size={26} />
+            </button>
+
+            <motion.img
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              src="/images/mon-histoire.jpg"
+              alt="Mermaid Aquata"
+              className="max-w-full max-h-[90vh] rounded-2xl object-contain"
+              style={{
+                boxShadow: '0 16px 64px rgba(0,200,239,0.25)',
+                border: '1.5px solid rgba(0,200,239,0.3)',
+              }}
+              onClick={e => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
