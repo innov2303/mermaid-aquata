@@ -8,6 +8,7 @@ import uploadRouter from "./upload";
 import tvRefsRouter from "./tv-refs";
 import contactRouter from "./contact";
 import translateAllRouter from "./translate-all";
+import legalRouter from "./legal";
 
 const router: IRouter = Router();
 
@@ -20,5 +21,6 @@ router.use(presentationRouter);
 router.use(tvRefsRouter);
 router.use(contactRouter);
 router.use(translateAllRouter);
+router.use(legalRouter);
 
 export default router;

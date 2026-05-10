@@ -10,6 +10,7 @@ import {
   fetchContactInfo, updateContactInfo,
   uploadImage, listUploads, deleteUpload,
   translateAll,
+  fetchLegal, updateLegal,
 } from "@/lib/api";
 
 const ADMIN_TOKEN_KEY = "mermaid_admin_token";
@@ -820,6 +821,137 @@ function TvRefsAdmin({ token }: { token: string }) {
   );
 }
 
+// ── Legal Admin ────────────────────────────────────────────────────────────
+type LegalSection = { title: string; text: string };
+
+function LegalAdmin({ token }: { token: string }) {
+  const [subTab, setSubTab] = useState<"politique" | "mentions">("politique");
+  const [sections, setSections] = useState<LegalSection[]>([]);
+  const [mentionsContent, setMentionsContent] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    Promise.all([
+      fetchLegal("politique-de-retour"),
+      fetchLegal("mentions-legales"),
+    ]).then(([pol, men]) => {
+      setSections(pol.sections || []);
+      setMentionsContent(men.content || "");
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, []);
+
+  function notify() { setSaved(true); setTimeout(() => setSaved(false), 2500); }
+
+  async function savePolitique(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try { await updateLegal("politique-de-retour", { sections }, token); notify(); }
+    finally { setSaving(false); }
+  }
+
+  async function saveMentions(e: React.FormEvent) {
+    e.preventDefault();
+    setSaving(true);
+    try { await updateLegal("mentions-legales", { content: mentionsContent }, token); notify(); }
+    finally { setSaving(false); }
+  }
+
+  function updateSection(i: number, field: "title" | "text", val: string) {
+    const next = [...sections];
+    next[i] = { ...next[i], [field]: val };
+    setSections(next);
+  }
+  function addSection() { setSections([...sections, { title: "", text: "" }]); }
+  function removeSection(i: number) { setSections(sections.filter((_, idx) => idx !== i)); }
+
+  if (loading) return <p className="text-center" style={{ color: "rgba(200,235,255,0.6)" }}>Chargement…</p>;
+
+  return (
+    <div>
+      <div className="flex gap-2 mb-6">
+        {[
+          { id: "politique" as const, label: "Politique de retour" },
+          { id: "mentions" as const, label: "Mentions légales" },
+        ].map(t => (
+          <button key={t.id} onClick={() => setSubTab(t.id)}
+            className="px-5 py-2 rounded-xl text-sm font-medium transition-all"
+            style={subTab === t.id ? { background: "#00c8ef", color: "white" } : { color: "rgba(200,235,255,0.7)", background: "rgba(0,20,50,0.4)", border: "1px solid rgba(0,200,239,0.2)" }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {subTab === "politique" && (
+        <form onSubmit={savePolitique}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-serif" style={{ color: "#e0f5ff" }}>Politique de retour</h2>
+            <button type="button" onClick={addSection} className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm hover:scale-105 transition-all" style={{ background: "rgba(0,200,239,0.12)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.3)" }}>
+              <Plus size={14} /> Ajouter une section
+            </button>
+          </div>
+          <div className="flex flex-col gap-4">
+            {sections.map((s, i) => (
+              <div key={i} className="rounded-2xl p-5" style={cardStyle}>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-medium" style={{ color: "rgba(200,235,255,0.5)" }}>Section {i + 1}</span>
+                  <button type="button" onClick={() => removeSection(i)} className="p-1.5 rounded-lg hover:scale-110 transition-all" style={{ background: "rgba(239,68,68,0.1)", color: "#f87171" }}><X size={13} /></button>
+                </div>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={{ color: "rgba(200,235,255,0.7)" }}>Titre</label>
+                    <input className={inputClass} style={inputStyle} value={s.title} onChange={e => updateSection(i, "title", e.target.value)} placeholder="Titre de la section" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium mb-1 block" style={{ color: "rgba(200,235,255,0.7)" }}>Contenu</label>
+                    <textarea className={inputClass} style={{ ...inputStyle, resize: "vertical" } as React.CSSProperties} rows={5} value={s.text} onChange={e => updateSection(i, "text", e.target.value)} placeholder="Contenu de la section…" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-3 mt-5">
+            <button type="submit" disabled={saving} className={btnPrimary} style={{ background: "rgba(0,200,239,0.2)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.4)" }}>
+              <Save size={15} /> {saving ? "Sauvegarde…" : "Enregistrer"}
+            </button>
+            {saved && <span className="flex items-center gap-1.5 text-sm" style={{ color: "#4ade80" }}><Check size={14} /> Sauvegardé !</span>}
+          </div>
+        </form>
+      )}
+
+      {subTab === "mentions" && (
+        <form onSubmit={saveMentions}>
+          <div className="rounded-2xl p-6" style={cardStyle}>
+            <h2 className="text-xl font-serif mb-5" style={{ color: "#e0f5ff" }}>Mentions légales</h2>
+            <div>
+              <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(200,235,255,0.7)" }}>Contenu (texte libre)</label>
+              <textarea
+                className={inputClass}
+                style={{ ...inputStyle, resize: "vertical" } as React.CSSProperties}
+                rows={12}
+                value={mentionsContent}
+                onChange={e => setMentionsContent(e.target.value)}
+                placeholder="Contenu des mentions légales…"
+              />
+              <p className="text-xs mt-1.5" style={{ color: "rgba(200,235,255,0.4)" }}>Les sauts de ligne sont préservés à l'affichage.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 mt-5">
+            <button type="submit" disabled={saving} className={btnPrimary} style={{ background: "rgba(0,200,239,0.2)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.4)" }}>
+              <Save size={15} /> {saving ? "Sauvegarde…" : "Enregistrer"}
+            </button>
+            {saved && <span className="flex items-center gap-1.5 text-sm" style={{ color: "#4ade80" }}><Check size={14} /> Sauvegardé !</span>}
+          </div>
+        </form>
+      )}
+    </div>
+  );
+}
+
 // ── Contact Admin ───────────────────────────────────────────────────────────
 type ContactInfo = { email: string; address: string; city: string; phone: string };
 
@@ -890,6 +1022,7 @@ const TABS = [
   { id: "tv", label: "Productions TV" },
   { id: "media", label: "Médiathèque" },
   { id: "contact", label: "Contact" },
+  { id: "legal", label: "Pages légales" },
 ] as const;
 
 type Tab = typeof TABS[number]["id"];
@@ -974,6 +1107,7 @@ export default function Admin() {
             {tab === "tv" && <TvRefsAdmin token={token} />}
             {tab === "media" && <MediaAdmin token={token} />}
             {tab === "contact" && <ContactAdmin token={token} />}
+            {tab === "legal" && <LegalAdmin token={token} />}
           </motion.div>
         </AnimatePresence>
       </div>

@@ -14,6 +14,7 @@ import Admin from "@/pages/admin";
 import ProductionsTv from "@/pages/productions-tv";
 import MonHistoire from "@/pages/mon-histoire";
 import PolitiqueDeRetour from "@/pages/politique-de-retour";
+import MentionsLegales from "@/pages/mentions-legales";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -41,6 +42,7 @@ function AnimatedRoutes() {
         <Route path="/mon-histoire" component={MonHistoire} />
         <Route path="/admin" component={Admin} />
         <Route path="/politique-de-retour" component={PolitiqueDeRetour} />
+        <Route path="/mentions-legales" component={MentionsLegales} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>

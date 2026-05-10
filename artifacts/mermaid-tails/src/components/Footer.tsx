@@ -172,14 +172,14 @@ export function Footer() {
               <h4 className="font-serif text-xl mb-4 text-white">{tf.legalColTitle}</h4>
               <ul className="space-y-3">
                 <li>
-                  <button onClick={() => setLegalOpen(true)} className="text-foreground/70 hover:text-primary transition-colors text-left">
+                  <Link href="/mentions-legales" className="text-foreground/70 hover:text-primary transition-colors text-left">
                     {tf.legal}
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/politique-de-retour" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-primary transition-colors text-left">
+                  <Link href="/politique-de-retour" className="text-foreground/70 hover:text-primary transition-colors text-left">
                     {tf.refund}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

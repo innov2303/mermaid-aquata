@@ -12,17 +12,13 @@ const GLASS = {
   boxShadow: "0 4px 24px rgba(0,200,239,0.08)",
 };
 
-type Section = { title: string; text: string };
-
-export default function PolitiqueDeRetour() {
+export default function MentionsLegales() {
   const { t } = useLanguage();
-  const [sections, setSections] = useState<Section[]>([]);
+  const [content, setContent] = useState<string>("");
   useSEO("home");
 
   useEffect(() => {
-    fetchLegal("politique-de-retour")
-      .then((d: { sections: Section[] }) => setSections(d.sections))
-      .catch(() => {});
+    fetchLegal("mentions-legales").then((d: { content: string }) => setContent(d.content)).catch(() => {});
   }, []);
 
   return (
@@ -39,7 +35,6 @@ export default function PolitiqueDeRetour() {
       <FloatingBubbles count={10} />
 
       <div className="container mx-auto px-4 md:px-6 max-w-3xl relative z-10">
-
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,26 +42,22 @@ export default function PolitiqueDeRetour() {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-serif mb-4" style={{ color: "#e0f5ff" }}>
-            {t.footer.refundTitle}
+            {t.footer.legalTitle}
           </h1>
           <div className="h-px w-24 mx-auto" style={{ background: "rgba(0,200,239,0.5)" }} />
         </motion.div>
 
-        <div className="flex flex-col gap-6">
-          {sections.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.07, duration: 0.45 }}
-              className="rounded-2xl p-6"
-              style={GLASS}
-            >
-              <h2 className="text-lg font-semibold mb-3" style={{ color: "#00c8ef" }}>{s.title}</h2>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(200,235,255,0.8)", whiteSpace: "pre-line" }}>{s.text}</p>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="rounded-2xl p-6"
+          style={GLASS}
+        >
+          <p className="text-sm leading-relaxed" style={{ color: "rgba(200,235,255,0.85)", whiteSpace: "pre-line" }}>
+            {content}
+          </p>
+        </motion.div>
       </div>
     </div>
   );

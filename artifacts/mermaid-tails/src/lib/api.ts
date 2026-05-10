@@ -156,3 +156,16 @@ export async function translateAll(token: string): Promise<{ message: string; ca
   if (!r.ok) throw new Error("Erreur traduction");
   return r.json();
 }
+
+// Legal pages
+export async function fetchLegal(page: "politique-de-retour" | "mentions-legales") {
+  const r = await fetch(`${BASE}/legal/${page}?_t=${Date.now()}`);
+  if (!r.ok) throw new Error("Erreur chargement legal");
+  return r.json();
+}
+
+export async function updateLegal(page: "politique-de-retour" | "mentions-legales", data: object, token: string) {
+  const r = await fetch(`${BASE}/admin/legal/${page}`, { method: "PUT", headers: headers(token), body: JSON.stringify(data) });
+  if (!r.ok) throw new Error("Erreur mise à jour legal");
+  return r.json();
+}
