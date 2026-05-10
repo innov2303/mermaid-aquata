@@ -56,38 +56,15 @@ export default function MonHistoire() {
           )}
         </motion.div>
 
-        {/* Ligne 1 : Photo à gauche + Bloc 1 à droite */}
+        {/* Ligne 1 : Bloc 1 à gauche + Photo à droite */}
         <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
 
-          {/* Image */}
+          {/* Bloc 1 — 3 premiers paragraphes */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
-            className="md:w-80 lg:w-96 flex-shrink-0"
-          >
-            <div
-              className="overflow-hidden rounded-3xl"
-              style={{
-                border: '1.5px solid rgba(0,200,239,0.35)',
-                boxShadow: '0 8px 40px rgba(0,200,239,0.18)',
-              }}
-            >
-              <img
-                src="/images/mon-histoire.jpg"
-                alt="Mermaid Aquata"
-                className="w-full object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Bloc 1 — 3 premiers paragraphes */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
             className="flex-1 rounded-2xl px-7 py-8 self-stretch"
             style={GLASS}
           >
@@ -105,6 +82,29 @@ export default function MonHistoire() {
                 {para}
               </p>
             ))}
+          </motion.div>
+
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="md:w-96 lg:w-[480px] flex-shrink-0"
+          >
+            <div
+              className="overflow-hidden rounded-3xl"
+              style={{
+                border: '1.5px solid rgba(0,200,239,0.35)',
+                boxShadow: '0 8px 40px rgba(0,200,239,0.18)',
+              }}
+            >
+              <img
+                src="/images/mon-histoire.jpg"
+                alt="Mermaid Aquata"
+                className="w-full object-cover"
+              />
+            </div>
           </motion.div>
 
         </div>
