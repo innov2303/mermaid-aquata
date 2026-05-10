@@ -251,15 +251,6 @@ export default function Home() {
                 <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio1}</p>
                 <p style={{ color: '#1a3d5c' }} className="mb-4">{t.home.bio2}</p>
                 <p className="text-sm font-medium italic" style={{ color: '#0a6a8a' }}>{t.home.bio3}</p>
-                <div className="mt-6">
-                  <a
-                    href="/queue-de-sirene"
-                    className="inline-block px-8 py-3 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                    style={{ background: 'linear-gradient(135deg, #0a6a8a, #1a9cbd)' }}
-                  >
-                    {t.home.ctaQueue}
-                  </a>
-                </div>
               </div>
             </motion.div>
 
@@ -282,6 +273,34 @@ export default function Home() {
               </div>
               <p className="text-foreground/70 italic max-w-md" style={{ color: '#1a3d5c' }}>{t.home.reportageCaption}</p>
             </motion.div>
+          </div>
+
+          <div className="flex justify-center mt-12">
+            <motion.a
+              href="/queue-de-sirene"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              style={{
+                display: 'inline-block',
+                position: 'relative',
+                padding: '14px 36px',
+                borderRadius: '999px',
+                border: '1px solid rgba(0,200,239,0.55)',
+                background: 'linear-gradient(135deg, rgba(0,200,239,0.18) 0%, rgba(0,100,180,0.12) 100%)',
+                backdropFilter: 'blur(10px)',
+                color: '#0a2a4a',
+                fontSize: '1rem',
+                fontFamily: 'serif',
+                letterSpacing: '0.06em',
+                textDecoration: 'none',
+                boxShadow: '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)',
+                transition: 'box-shadow 0.3s ease',
+              }}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.boxShadow = '0 0 40px rgba(0,200,239,0.5), inset 0 1px 0 rgba(255,255,255,0.15)')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(0,200,239,0.25), inset 0 1px 0 rgba(255,255,255,0.1)')}
+            >
+              {t.home.ctaQueue}
+            </motion.a>
           </div>
         </div>
       </section>
