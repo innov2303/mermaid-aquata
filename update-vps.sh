@@ -137,6 +137,17 @@ STARTSCRIPT
     print_status "API démarrée avec PM2"
 fi
 
+# ── Traductions automatiques ────────────────
+print_header "Application des traductions"
+echo "Attente du démarrage de l'API..."
+sleep 8
+ADMIN_SECRET_VAL=$(grep ADMIN_SECRET "$API_DIR/.env" 2>/dev/null | cut -d= -f2 || echo "mermaid-admin")
+curl -s -X POST "http://localhost:8080/api/admin/translate-all" \
+  -H "x-admin-token: ${ADMIN_SECRET_VAL}" \
+  -H "Content-Type: application/json" | python3 -c "import sys,json; r=json.load(sys.stdin); print(f'  Catalogue: {r[\"catalogue\"]} articles | Avis: {r[\"remerciements\"]} | Erreurs: {len(r[\"errors\"])}')" 2>/dev/null \
+  && print_status "Traductions appliquées" \
+  || print_warning "Traduction auto échouée (relancer depuis panneau admin)"
+
 # ── Rechargement Nginx ──────────────────────
 if command -v nginx > /dev/null 2>&1; then
     nginx -t 2>/dev/null && systemctl reload nginx 2>/dev/null || \

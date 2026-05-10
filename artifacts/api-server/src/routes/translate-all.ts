@@ -2,6 +2,7 @@ import { Router, type Request, type Response, type NextFunction } from "express"
 import fs from "fs";
 import path from "path";
 import { translateToAll } from "../lib/translate.js";
+import CATALOGUE_TRANSLATIONS from "../lib/catalogue-translations.js";
 
 const router = Router();
 
@@ -24,19 +25,31 @@ router.post("/admin/translate-all", adminAuth, async (_req, res) => {
     let changed = false;
     for (const item of items) {
       if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
-        try {
-          const [nameT, descT] = await Promise.all([
-            (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
-            item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
-          ]);
-          item.name_en = nameT.en;
-          item.name_es = nameT.es;
-          item.desc_en = descT.en;
-          item.desc_es = descT.es;
+        // 1. Traductions embarquées (toujours disponibles, sans appel réseau)
+        const bundled = CATALOGUE_TRANSLATIONS[item.name as string];
+        if (bundled && bundled.name_en && bundled.name_es) {
+          if (!item.name_en) item.name_en = bundled.name_en;
+          if (!item.name_es) item.name_es = bundled.name_es;
+          if (!item.desc_en && bundled.desc_en) item.desc_en = bundled.desc_en;
+          if (!item.desc_es && bundled.desc_es) item.desc_es = bundled.desc_es;
           results.catalogue++;
           changed = true;
-        } catch (e: any) {
-          results.errors.push(`Catalogue #${item.id}: ${e.message}`);
+        }
+        // 2. Fallback API externe pour les champs encore manquants
+        if (!item.name_en || !item.name_es || !item.desc_en || !item.desc_es) {
+          try {
+            const [nameT, descT] = await Promise.all([
+              (!item.name_en || !item.name_es) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
+              item.desc && (!item.desc_en || !item.desc_es) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
+            ]);
+            item.name_en = nameT.en;
+            item.name_es = nameT.es;
+            item.desc_en = descT.en;
+            item.desc_es = descT.es;
+            if (!results.catalogue) { results.catalogue++; changed = true; }
+          } catch (e: any) {
+            results.errors.push(`Catalogue #${item.id}: ${e.message}`);
+          }
         }
       }
     }
