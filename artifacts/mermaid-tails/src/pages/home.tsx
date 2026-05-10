@@ -288,7 +288,7 @@ export default function Home() {
                 border: '1px solid rgba(0,200,239,0.55)',
                 background: 'linear-gradient(135deg, rgba(0,200,239,0.18) 0%, rgba(0,100,180,0.12) 100%)',
                 backdropFilter: 'blur(10px)',
-                color: '#ffffff',
+                color: '#0a2a4a',
                 fontSize: '1rem',
                 fontFamily: 'serif',
                 letterSpacing: '0.06em',
