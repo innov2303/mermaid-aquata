@@ -56,24 +56,6 @@ export default function MonHistoire() {
           )}
         </motion.div>
 
-        {/* Portrait */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex justify-center mb-14"
-        >
-          <div className="relative w-52 h-52 md:w-64 md:h-64">
-            <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] border-2 border-primary/60 animate-[spin_10s_linear_infinite] shadow-[0_0_25px_rgba(0,200,239,0.4)]" />
-            <div className="absolute inset-2 rounded-[50%_50%_40%_60%/50%_40%_60%_50%] border-2 border-secondary/40 animate-[spin_15s_linear_infinite_reverse]" />
-            <img
-              src="/images/portrait-aquata.jpg"
-              alt="Mermaid Aquata"
-              className="absolute inset-4 object-cover w-[calc(100%-2rem)] h-[calc(100%-2rem)] rounded-full shadow-2xl"
-            />
-          </div>
-        </motion.div>
-
         {/* Paragraphes */}
         <div className="flex flex-col gap-6">
           {paragraphs.map((para, i) => (
@@ -99,6 +81,31 @@ export default function MonHistoire() {
             </motion.div>
           ))}
         </div>
+
+        {/* Photo bas de page */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7 }}
+          className="mt-12 flex justify-center"
+        >
+          <div
+            className="overflow-hidden rounded-3xl"
+            style={{
+              border: '1.5px solid rgba(0,200,239,0.35)',
+              boxShadow: '0 8px 40px rgba(0,200,239,0.18)',
+              maxWidth: 600,
+              width: '100%',
+            }}
+          >
+            <img
+              src="/images/mon-histoire.jpg"
+              alt="Mermaid Aquata"
+              className="w-full object-cover"
+            />
+          </div>
+        </motion.div>
 
       </div>
     </div>
