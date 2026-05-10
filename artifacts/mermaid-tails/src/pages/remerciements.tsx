@@ -27,7 +27,7 @@ export default function Remerciements() {
     let timer: ReturnType<typeof setTimeout>;
 
     function load() {
-      fetchRemerciements().then(items => {
+      fetchRemerciements(lang).then(items => {
         setSirenes(items);
         if (lang !== 'fr') {
           const missingT = items.some((s: Sirene) => !(lang === 'en' ? s.review_en : s.review_es) && s.review);

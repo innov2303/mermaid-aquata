@@ -122,7 +122,7 @@ export default function Catalogue() {
     let timer: ReturnType<typeof setTimeout>;
 
     function load(isRetry = false) {
-      fetchCatalogue().then(items => {
+      fetchCatalogue(lang).then(items => {
         setAllItems(items);
         if (!isRetry) {
           const params = new URLSearchParams(window.location.search);

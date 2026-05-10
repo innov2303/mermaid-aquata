@@ -35,8 +35,9 @@ function headers(token?: string) {
 }
 
 // Catalogue
-export async function fetchCatalogue() {
-  const r = await fetch(`${BASE}/catalogue`);
+export async function fetchCatalogue(lang?: string) {
+  const url = lang && lang !== 'fr' ? `${BASE}/catalogue?lang=${lang}` : `${BASE}/catalogue`;
+  const r = await fetch(url, { cache: 'no-store' });
   if (!r.ok) throw new Error("Erreur chargement catalogue");
   return r.json();
 }
@@ -85,8 +86,9 @@ export async function deletePresentationPhoto(id: number, token: string) {
 }
 
 // Remerciements
-export async function fetchRemerciements() {
-  const r = await fetch(`${BASE}/remerciements`);
+export async function fetchRemerciements(lang?: string) {
+  const url = lang && lang !== 'fr' ? `${BASE}/remerciements?lang=${lang}` : `${BASE}/remerciements`;
+  const r = await fetch(url, { cache: 'no-store' });
   if (!r.ok) throw new Error("Erreur chargement remerciements");
   return r.json();
 }
