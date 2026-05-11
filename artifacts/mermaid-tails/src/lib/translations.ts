@@ -208,7 +208,7 @@ const translations = {
       title: 'Productions TV & Audiovisuelles',
       subtitle: 'Donnez vie à vos projets audiovisuels avec une vraie sirène et ses créations uniques au monde.',
       introTitle: 'Mes prestations de sirène',
-      intro: "Depuis 2015, Mermaid Aquata met son savoir-faire et ses créations artisanales au service du monde audiovisuel. Que ce soit pour un clip musical, une série télévisée, un documentaire ou un reportage, je peux intervenir en tant que sirène professionnelle ou fournir mes équipements pour habiller vos comédiens. J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute qualité. Ma technique de nage et mon aisance en milieu aquatique garantissent des prises de vue spectaculaires.",
+      intro: "Depuis 2015, Mermaid Aquata met son savoir-faire et ses créations artisanales au service du monde audiovisuel. Que ce soit pour un clip musical, une série télévisée, un documentaire ou un reportage, je peux intervenir en tant que sirène professionnelle. J'interviens en personne sur vos tournages, revêtue de mes costumes professionnels haute qualité. Ma technique de nage et mon aisance en milieu aquatique garantissent des prises de vue spectaculaires.",
       refsTitle: 'Références',
       refs: [
         { label: 'Clip musical', name: 'Josman — XS', desc: 'Participation en tant que sirène professionnelle.', youtube: '' },
@@ -437,7 +437,7 @@ const translations = {
       title: 'TV & Audiovisual Productions',
       subtitle: 'Bring your audiovisual projects to life with a real mermaid and her unique creations.',
       introTitle: 'My mermaid services',
-      intro: "Since 2015, Mermaid Aquata has been lending her artisan expertise and handcrafted creations to the world of audiovisual production. Whether for a music video, a TV series, a documentary or a news feature, I can participate as a professional mermaid performer or supply my equipment to costume your actors. I appear in person on your shoots, wearing my high-fidelity professional costumes. My swimming technique and ease in aquatic environments guarantee spectacular shots.",
+      intro: "Since 2015, Mermaid Aquata has been lending her artisan expertise and handcrafted creations to the world of audiovisual production. Whether for a music video, a TV series, a documentary or a news feature, I can participate as a professional mermaid performer. I appear in person on your shoots, wearing my high-fidelity professional costumes. My swimming technique and ease in aquatic environments guarantee spectacular shots.",
       refsTitle: 'References',
       refs: [
         { label: 'Music video', name: 'Josman — XS', desc: 'Participation as a professional mermaid performer.', youtube: '' },
@@ -666,7 +666,7 @@ const translations = {
       title: 'Producciones de TV y Audiovisuales',
       subtitle: 'Da vida a tus proyectos audiovisuales con una sirena de verdad y sus creaciones únicas en el mundo.',
       introTitle: 'Mis servicios de sirena',
-      intro: "Desde 2015, Mermaid Aquata pone su experiencia artesanal y sus creaciones al servicio del mundo audiovisual. Ya sea para un videoclip, una serie de televisión, un documental o un reportaje, puedo participar como sirena profesional o proporcionar mis equipos para vestir a tus actores. Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad. Mi técnica de natación y mi soltura en el medio acuático garantizan tomas de vista espectaculares.",
+      intro: "Desde 2015, Mermaid Aquata pone su experiencia artesanal y sus creaciones al servicio del mundo audiovisual. Ya sea para un videoclip, una serie de televisión, un documental o un reportaje, puedo participar como sirena profesional. Participo en persona en tus rodajes, luciendo mis trajes profesionales de alta fidelidad. Mi técnica de natación y mi soltura en el medio acuático garantizan tomas de vista espectaculares.",
       refsTitle: 'Referencias',
       refs: [
         { label: 'Videoclip', name: 'Josman — XS', desc: 'Participación como sirena profesional.', youtube: '' },
