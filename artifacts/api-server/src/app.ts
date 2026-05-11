@@ -62,14 +62,14 @@ const authLimiter = rateLimit({
   skip: () => isDev,
 });
 
-// Upload : 30 uploads / 15 min par IP
+// Upload : 30 uploads / 15 min par IP (POST uniquement — les GET d'images ne sont pas limités)
 const uploadLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 30,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Limite d'upload atteinte, veuillez réessayer plus tard." },
-  skip: () => isDev,
+  skip: (req) => isDev || req.method === "GET",
 });
 
 app.use(globalLimiter);
