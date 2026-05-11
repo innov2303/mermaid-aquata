@@ -76,19 +76,72 @@ export default function MonHistoire() {
           L'histoire hors du commun d'Aurore et de ses nageoires.
         </motion.h2>
 
-        {/* Ligne 1 : Bloc 1 à gauche + Photo à droite */}
-        <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
+        {/* ── DESKTOP : texte 1 | photo, puis texte 2 pleine largeur ── */}
+        <div className="hidden md:block">
+          <div className="flex flex-row gap-8 items-start mb-8">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6 }}
+              className="flex-1 rounded-2xl px-7 py-8 self-stretch"
+              style={GLASS}
+            >
+              {paragraphs.slice(0, 3).map((para, i) => (
+                <p
+                  key={i}
+                  className="leading-relaxed font-light"
+                  style={{
+                    color: 'rgba(210,240,255,0.92)',
+                    fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
+                    lineHeight: '1.9',
+                    marginBottom: i < 2 ? '1.5rem' : 0,
+                  }}
+                >
+                  {para}
+                </p>
+              ))}
+            </motion.div>
 
-          {/* Bloc 1 — 3 premiers paragraphes */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="md:w-96 lg:w-[480px] flex-shrink-0"
+            >
+              <div
+                className="overflow-hidden rounded-3xl relative group cursor-zoom-in"
+                style={{
+                  border: '1.5px solid rgba(0,200,239,0.35)',
+                  boxShadow: '0 8px 40px rgba(0,200,239,0.18)',
+                }}
+                onClick={() => setLightboxOpen(true)}
+              >
+                <img
+                  src="/images/mon-histoire.jpg"
+                  alt="Mermaid Aquata"
+                  className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: 'rgba(0,10,30,0.35)' }}>
+                  <div className="rounded-full p-3" style={{ background: 'rgba(0,200,239,0.25)', border: '1.5px solid rgba(0,200,239,0.6)' }}>
+                    <ZoomIn size={28} color="#00c8ef" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6 }}
-            className="flex-1 rounded-2xl px-7 py-8 self-stretch"
+            className="rounded-2xl px-7 py-8"
             style={GLASS}
           >
-            {paragraphs.slice(0, 3).map((para, i) => (
+            {paragraphs.slice(3).map((para, i) => (
               <p
                 key={i}
                 className="leading-relaxed font-light"
@@ -96,7 +149,34 @@ export default function MonHistoire() {
                   color: 'rgba(210,240,255,0.92)',
                   fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
                   lineHeight: '1.9',
-                  marginBottom: i < 2 ? '1.5rem' : 0,
+                  marginBottom: i < paragraphs.slice(3).length - 1 ? '1.5rem' : 0,
+                }}
+              >
+                {para}
+              </p>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* ── MOBILE : tout le texte, puis la photo en bas ── */}
+        <div className="flex flex-col gap-6 md:hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl px-5 py-7"
+            style={GLASS}
+          >
+            {paragraphs.map((para, i) => (
+              <p
+                key={i}
+                className="leading-relaxed font-light"
+                style={{
+                  color: 'rgba(210,240,255,0.92)',
+                  fontSize: '1rem',
+                  lineHeight: '1.9',
+                  marginBottom: i < paragraphs.length - 1 ? '1.25rem' : 0,
                 }}
               >
                 {para}
@@ -104,13 +184,11 @@ export default function MonHistoire() {
             ))}
           </motion.div>
 
-          {/* Image cliquable */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:w-96 lg:w-[480px] flex-shrink-0"
           >
             <div
               className="overflow-hidden rounded-3xl relative group cursor-zoom-in"
@@ -133,33 +211,7 @@ export default function MonHistoire() {
               </div>
             </div>
           </motion.div>
-
         </div>
-
-        {/* Ligne 2 : Bloc 2 pleine largeur */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl px-7 py-8"
-          style={GLASS}
-        >
-          {paragraphs.slice(3).map((para, i) => (
-            <p
-              key={i}
-              className="leading-relaxed font-light"
-              style={{
-                color: 'rgba(210,240,255,0.92)',
-                fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
-                lineHeight: '1.9',
-                marginBottom: i < paragraphs.slice(3).length - 1 ? '1.5rem' : 0,
-              }}
-            >
-              {para}
-            </p>
-          ))}
-        </motion.div>
 
       </div>
 
