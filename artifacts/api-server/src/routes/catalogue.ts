@@ -99,26 +99,33 @@ router.post("/catalogue", adminAuth, async (req, res) => {
   const sanitized = sanitizeCatalogueItem(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
 
-  let nameT = { en: "", es: "" };
-  let descT = { en: "", es: "" };
-  try {
-    [nameT, descT] = await Promise.all([
-      translateToAll(sanitized.name),
-      sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
-    ]);
-  } catch { /* traduction indisponible — sauvegarde quand même */ }
-
   const newItem = {
     ...sanitized,
-    name_en: nameT.en,
-    name_es: nameT.es,
-    desc_en: descT.en,
-    desc_es: descT.es,
+    name_en: "",
+    name_es: "",
+    desc_en: "",
+    desc_es: "",
     id: Date.now(),
   };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
+
+  // Traduction en arrière-plan — ne bloque pas la réponse
+  Promise.all([
+    translateToAll(sanitized.name),
+    sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
+  ]).then(([nameT, descT]) => {
+    const all = readData();
+    const i = all.findIndex((x: any) => x.id === newItem.id);
+    if (i !== -1) {
+      all[i].name_en = nameT.en;
+      all[i].name_es = nameT.es;
+      all[i].desc_en = descT.en;
+      all[i].desc_es = descT.es;
+      writeData(all);
+    }
+  }).catch(() => {});
 });
 
 router.put("/catalogue/:id", adminAuth, async (req, res) => {
@@ -130,26 +137,38 @@ router.put("/catalogue/:id", adminAuth, async (req, res) => {
 
   const nameChanged = sanitized.name !== items[idx].name;
   const descChanged = sanitized.desc !== items[idx].desc;
-
-  let nameT = { en: items[idx].name_en || "", es: items[idx].name_es || "" };
-  let descT = { en: items[idx].desc_en || "", es: items[idx].desc_es || "" };
-  try {
-    [nameT, descT] = await Promise.all([
-      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(nameT),
-      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(descT),
-    ]);
-  } catch { /* traduction indisponible — sauvegarde quand même */ }
+  const itemId = items[idx].id;
 
   items[idx] = {
     ...sanitized,
-    name_en: nameT.en,
-    name_es: nameT.es,
-    desc_en: descT.en,
-    desc_es: descT.es,
-    id: items[idx].id,
+    name_en: nameChanged ? "" : (items[idx].name_en || ""),
+    name_es: nameChanged ? "" : (items[idx].name_es || ""),
+    desc_en: descChanged ? "" : (items[idx].desc_en || ""),
+    desc_es: descChanged ? "" : (items[idx].desc_es || ""),
+    id: itemId,
   };
   writeData(items);
   res.json(items[idx]);
+
+  // Traduction en arrière-plan — ne bloque pas la réponse
+  if (nameChanged || descChanged) {
+    const prevNameT = { en: nameChanged ? "" : (items[idx].name_en || ""), es: nameChanged ? "" : (items[idx].name_es || "") };
+    const prevDescT = { en: descChanged ? "" : (items[idx].desc_en || ""), es: descChanged ? "" : (items[idx].desc_es || "") };
+    Promise.all([
+      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(prevNameT),
+      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(prevDescT),
+    ]).then(([nameT, descT]) => {
+      const all = readData();
+      const i = all.findIndex((x: any) => x.id === itemId);
+      if (i !== -1) {
+        all[i].name_en = nameT.en;
+        all[i].name_es = nameT.es;
+        all[i].desc_en = descT.en;
+        all[i].desc_es = descT.es;
+        writeData(all);
+      }
+    }).catch(() => {});
+  }
 });
 
 router.delete("/catalogue/:id", adminAuth, (req, res) => {

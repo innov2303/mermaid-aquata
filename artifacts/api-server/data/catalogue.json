@@ -2,7 +2,7 @@
   {
     "section": "monopalmes",
     "name": "Monopalme à Extension sirène",
-    "desc": "Test de sauvegarde sans traduction",
+    "desc": "Test latence",
     "price": "990,00€",
     "video": "https://youtu.be/gJCSegOKEUg",
     "etsyUrl": "",
@@ -13,8 +13,8 @@
     ],
     "name_en": "Mermaid Extension Monofin",
     "name_es": "Monoaleta de extensión sirena",
-    "desc_en": "Backup test without translation",
-    "desc_es": "Prueba de copia de seguridad sin traducción",
+    "desc_en": "Latency test",
+    "desc_es": "prueba de latencia",
     "id": 1
   },
   {

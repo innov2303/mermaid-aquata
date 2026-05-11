@@ -77,20 +77,28 @@ router.post("/remerciements", adminAuth, async (req, res) => {
   const sanitized = sanitizeRemerciement(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
 
-  let reviewT: { en: string | null; es: string | null } = { en: null, es: null };
-  try {
-    if (sanitized.review) reviewT = await translateToAll(sanitized.review);
-  } catch { /* traduction indisponible — sauvegarde quand même */ }
-
   const newItem = {
     ...sanitized,
-    review_en: reviewT.en,
-    review_es: reviewT.es,
+    review_en: null as string | null,
+    review_es: null as string | null,
     id: Date.now(),
   };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
+
+  // Traduction en arrière-plan — ne bloque pas la réponse
+  if (sanitized.review) {
+    translateToAll(sanitized.review).then((reviewT) => {
+      const all = readData();
+      const i = all.findIndex((x: any) => x.id === newItem.id);
+      if (i !== -1) {
+        all[i].review_en = reviewT.en;
+        all[i].review_es = reviewT.es;
+        writeData(all);
+      }
+    }).catch(() => {});
+  }
 });
 
 router.put("/remerciements/:id", adminAuth, async (req, res) => {
@@ -101,19 +109,29 @@ router.put("/remerciements/:id", adminAuth, async (req, res) => {
   const sanitized = sanitizeRemerciement({ ...items[idx], ...req.body });
 
   const reviewChanged = sanitized.review !== items[idx].review;
-  let reviewT: { en: string | null; es: string | null } = { en: items[idx].review_en ?? null, es: items[idx].review_es ?? null };
-  try {
-    if (reviewChanged && sanitized.review) reviewT = await translateToAll(sanitized.review);
-  } catch { /* traduction indisponible — sauvegarde quand même */ }
+  const itemId = items[idx].id;
 
   items[idx] = {
     ...sanitized,
-    review_en: reviewT.en,
-    review_es: reviewT.es,
-    id: items[idx].id,
+    review_en: reviewChanged ? null : (items[idx].review_en ?? null),
+    review_es: reviewChanged ? null : (items[idx].review_es ?? null),
+    id: itemId,
   };
   writeData(items);
   res.json(items[idx]);
+
+  // Traduction en arrière-plan — ne bloque pas la réponse
+  if (reviewChanged && sanitized.review) {
+    translateToAll(sanitized.review).then((reviewT) => {
+      const all = readData();
+      const i = all.findIndex((x: any) => x.id === itemId);
+      if (i !== -1) {
+        all[i].review_en = reviewT.en;
+        all[i].review_es = reviewT.es;
+        writeData(all);
+      }
+    }).catch(() => {});
+  }
 });
 
 router.delete("/remerciements/:id", adminAuth, (req, res) => {
