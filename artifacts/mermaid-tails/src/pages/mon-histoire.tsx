@@ -59,6 +59,23 @@ export default function MonHistoire() {
           )}
         </motion.div>
 
+        {/* Titre de section */}
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="font-serif text-center mb-10"
+          style={{
+            color: '#00c8ef',
+            fontSize: 'clamp(1.3rem, 3vw, 1.9rem)',
+            textShadow: '0 0 24px rgba(0,200,239,0.3)',
+            letterSpacing: '0.01em',
+          }}
+        >
+          L'histoire hors du commun d'Aurore et de ses nageoires.
+        </motion.h2>
+
         {/* Ligne 1 : Bloc 1 à gauche + Photo à droite */}
         <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
 
