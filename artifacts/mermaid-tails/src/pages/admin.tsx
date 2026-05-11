@@ -23,7 +23,7 @@ const SECTIONS = [
 type CatalogueItem = { id: number; section: string; name: string; desc: string; price: string; video: string; etsyUrl: string; images: string[] };
 type Remerciement = { id: number; name: string; img: string | null; instagram: string | null; review: string | null };
 type PresentationPhoto = { id: number; url: string; alt: string };
-type TvRef = { id: number; label: string; name: string; desc: string; youtube: string };
+type TvRef = { id: number; label: string; name: string; desc: string; youtube: string; image: string };
 type UploadedFile = { filename: string; url: string };
 
 const cardStyle = {
@@ -702,7 +702,7 @@ function TvRefsAdmin({ token }: { token: string }) {
   const [editId, setEditId] = useState<number | null>(null);
   const [form, setForm] = useState<Partial<TvRef>>({});
   const [adding, setAdding] = useState(false);
-  const [addForm, setAddForm] = useState<Partial<TvRef>>({ label: "", name: "", desc: "", youtube: "" });
+  const [addForm, setAddForm] = useState<Partial<TvRef>>({ label: "", name: "", desc: "", youtube: "", image: "" });
   const [msg, setMsg] = useState("");
   const { askConfirm, confirmProps } = useConfirm();
 
@@ -751,6 +751,14 @@ function TvRefsAdmin({ token }: { token: string }) {
             <img src={ytThumb(data.youtube)!} alt="" className="mt-2 h-16 rounded-lg object-cover" />
           )}
         </div>
+        <div className="md:col-span-2">
+          <ImagePicker
+            token={token}
+            value={data.image || ""}
+            onChange={url => onChange({ ...data, image: url })}
+            label="Image personnalisée (utilisée si la miniature YouTube ne charge pas — utile pour les Shorts)"
+          />
+        </div>
       </div>
     );
   }
@@ -798,9 +806,14 @@ function TvRefsAdmin({ token }: { token: string }) {
               ) : (
                 <div className="flex items-center gap-4">
                   <div className="flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center" style={{ width: 100, height: 64, background: "rgba(0,10,30,0.6)", border: "1.5px solid rgba(0,200,239,0.3)" }}>
-                    {thumb
-                      ? <img src={thumb} alt={item.name} className="w-full h-full object-cover" />
-                      : <span className="text-3xl" style={{ color: "rgba(0,200,239,0.3)" }}>✦</span>}
+                    {thumb ? (
+                      <img src={thumb} alt={item.name} className="w-full h-full object-cover"
+                        onError={e => { if (item.image) { (e.target as HTMLImageElement).src = item.image; } else { (e.target as HTMLImageElement).style.display = 'none'; } }} />
+                    ) : item.image ? (
+                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-3xl" style={{ color: "rgba(0,200,239,0.3)" }}>✦</span>
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-xs px-2 py-0.5 rounded-full mr-2" style={{ background: "rgba(0,200,239,0.12)", color: "#00c8ef", border: "1px solid rgba(0,200,239,0.3)" }}>{item.label}</span>

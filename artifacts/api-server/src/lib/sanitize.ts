@@ -44,5 +44,6 @@ export function sanitizeTvRef(body: Record<string, unknown>) {
     name: sanitizeString(body["name"], 200),
     desc: sanitizeString(body["desc"], 1000),
     youtube: typeof body["youtube"] === "string" ? sanitizeString(body["youtube"], 500) : "",
+    image: typeof body["image"] === "string" ? sanitizeString(body["image"], 500) : "",
   };
 }

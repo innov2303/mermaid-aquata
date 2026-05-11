@@ -6,7 +6,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { FloatingBubbles } from "@/components/FloatingBubbles";
 import { fetchTvRefs, fetchContactInfo } from "@/lib/api";
 
-type TvRef = { id: number; label: string; name: string; desc: string; youtube: string };
+type TvRef = { id: number; label: string; name: string; desc: string; youtube: string; image: string };
 
 const GLASS = {
   background: 'rgba(0,20,50,0.45)',
@@ -103,7 +103,10 @@ export default function ProductionsTv() {
                     style={{ width: 160, minHeight: 100, border: '1.5px solid rgba(0,200,239,0.4)', background: 'rgba(0,10,30,0.6)' }}
                   >
                     {thumb ? (
-                      <img src={thumb} alt={ref.name} className="w-full h-full object-cover" />
+                      <img src={thumb} alt={ref.name} className="w-full h-full object-cover"
+                        onError={e => { if (ref.image) { (e.target as HTMLImageElement).src = ref.image; } else { (e.target as HTMLImageElement).style.display = 'none'; } }} />
+                    ) : ref.image ? (
+                      <img src={ref.image} alt={ref.name} className="w-full h-full object-cover" />
                     ) : (
                       <span className="font-serif text-5xl" style={{ color: 'rgba(0,200,239,0.3)' }}>✦</span>
                     )}
