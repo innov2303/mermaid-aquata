@@ -77,9 +77,10 @@ router.post("/remerciements", adminAuth, async (req, res) => {
   const sanitized = sanitizeRemerciement(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
 
-  const reviewT = sanitized.review
-    ? await translateToAll(sanitized.review)
-    : { en: null, es: null };
+  let reviewT: { en: string | null; es: string | null } = { en: null, es: null };
+  try {
+    if (sanitized.review) reviewT = await translateToAll(sanitized.review);
+  } catch { /* traduction indisponible — sauvegarde quand même */ }
 
   const newItem = {
     ...sanitized,
@@ -100,9 +101,10 @@ router.put("/remerciements/:id", adminAuth, async (req, res) => {
   const sanitized = sanitizeRemerciement({ ...items[idx], ...req.body });
 
   const reviewChanged = sanitized.review !== items[idx].review;
-  const reviewT = reviewChanged && sanitized.review
-    ? await translateToAll(sanitized.review)
-    : { en: items[idx].review_en ?? null, es: items[idx].review_es ?? null };
+  let reviewT: { en: string | null; es: string | null } = { en: items[idx].review_en ?? null, es: items[idx].review_es ?? null };
+  try {
+    if (reviewChanged && sanitized.review) reviewT = await translateToAll(sanitized.review);
+  } catch { /* traduction indisponible — sauvegarde quand même */ }
 
   items[idx] = {
     ...sanitized,

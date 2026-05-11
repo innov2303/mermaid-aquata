@@ -99,10 +99,14 @@ router.post("/catalogue", adminAuth, async (req, res) => {
   const sanitized = sanitizeCatalogueItem(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
 
-  const [nameT, descT] = await Promise.all([
-    translateToAll(sanitized.name),
-    sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
-  ]);
+  let nameT = { en: "", es: "" };
+  let descT = { en: "", es: "" };
+  try {
+    [nameT, descT] = await Promise.all([
+      translateToAll(sanitized.name),
+      sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
+    ]);
+  } catch { /* traduction indisponible — sauvegarde quand même */ }
 
   const newItem = {
     ...sanitized,
@@ -127,10 +131,14 @@ router.put("/catalogue/:id", adminAuth, async (req, res) => {
   const nameChanged = sanitized.name !== items[idx].name;
   const descChanged = sanitized.desc !== items[idx].desc;
 
-  const [nameT, descT] = await Promise.all([
-    nameChanged ? translateToAll(sanitized.name) : Promise.resolve({ en: items[idx].name_en || "", es: items[idx].name_es || "" }),
-    descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: items[idx].desc_en || "", es: items[idx].desc_es || "" }),
-  ]);
+  let nameT = { en: items[idx].name_en || "", es: items[idx].name_es || "" };
+  let descT = { en: items[idx].desc_en || "", es: items[idx].desc_es || "" };
+  try {
+    [nameT, descT] = await Promise.all([
+      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(nameT),
+      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(descT),
+    ]);
+  } catch { /* traduction indisponible — sauvegarde quand même */ }
 
   items[idx] = {
     ...sanitized,
