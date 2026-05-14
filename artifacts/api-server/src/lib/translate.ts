@@ -1,5 +1,3 @@
-const MYMEMORY = "https://api.mymemory.translated.net/get";
-const MYMEMORY_EMAIL = "sireneaurore31@hotmail.com";
 const GOOGLE_TRANSLATE = "https://translate.googleapis.com/translate_a/single";
 const MAX_CHARS = 450;
 
@@ -7,24 +5,8 @@ async function delay(ms: number) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-async function translateChunkMyMemory(text: string, from: string, to: string): Promise<string> {
-  const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}&de=${encodeURIComponent(MYMEMORY_EMAIL)}`;
-  const res = await fetch(url, { signal: AbortSignal.timeout(6_000) });
-  if (!res.ok) throw new Error(`MyMemory HTTP ${res.status}`);
-  const data = await res.json() as { responseStatus?: number; responseData?: { translatedText?: string } };
-  if (data.responseStatus === 429) throw new Error("MyMemory rate limit");
-  const translated = data?.responseData?.translatedText;
-  if (
-    !translated ||
-    translated === "INVALID LANGUAGE PAIR" ||
-    translated.startsWith("QUERY LENGTH LIMIT") ||
-    translated.startsWith("MYMEMORY WARNING") ||
-    translated.startsWith("DAILY USED LIMIT")
-  ) throw new Error("MyMemory bad response");
-  return translated;
-}
-
-async function translateChunkGoogle(text: string, from: string, to: string): Promise<string> {
+async function translateChunk(text: string, from: string, to: string): Promise<string> {
+  if (!text.trim()) return text;
   const url = `${GOOGLE_TRANSLATE}?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
   const res = await fetch(url, {
     signal: AbortSignal.timeout(6_000),
@@ -32,23 +14,12 @@ async function translateChunkGoogle(text: string, from: string, to: string): Pro
   });
   if (!res.ok) throw new Error(`Google Translate HTTP ${res.status}`);
   const data = await res.json() as unknown[][];
-  // Format : [[[translated, original, ...], ...], ...]
   if (!Array.isArray(data) || !Array.isArray(data[0])) throw new Error("Google Translate bad format");
   const parts = (data[0] as unknown[][])
     .map((chunk: unknown[]) => (typeof chunk[0] === "string" ? chunk[0] : ""))
     .join("");
   if (!parts) throw new Error("Google Translate empty result");
   return parts;
-}
-
-async function translateChunk(text: string, from: string, to: string): Promise<string> {
-  if (!text.trim()) return text;
-  try {
-    return await translateChunkMyMemory(text, from, to);
-  } catch {
-    // MyMemory indisponible ou quota épuisé → fallback Google Translate
-    return await translateChunkGoogle(text, from, to);
-  }
 }
 
 function splitByWords(text: string, maxLen: number): string[] {
