@@ -139,12 +139,16 @@ router.put("/catalogue/:id", adminAuth, async (req, res) => {
   const descChanged = sanitized.desc !== items[idx].desc;
   const itemId = items[idx].id;
 
+  // On conserve les traductions existantes — elles seront remplacées si la traduction réussit
+  const existingNameT = { en: items[idx].name_en || "", es: items[idx].name_es || "" };
+  const existingDescT = { en: items[idx].desc_en || "", es: items[idx].desc_es || "" };
+
   items[idx] = {
     ...sanitized,
-    name_en: nameChanged ? "" : (items[idx].name_en || ""),
-    name_es: nameChanged ? "" : (items[idx].name_es || ""),
-    desc_en: descChanged ? "" : (items[idx].desc_en || ""),
-    desc_es: descChanged ? "" : (items[idx].desc_es || ""),
+    name_en: existingNameT.en,
+    name_es: existingNameT.es,
+    desc_en: existingDescT.en,
+    desc_es: existingDescT.es,
     id: itemId,
   };
   writeData(items);
@@ -152,11 +156,9 @@ router.put("/catalogue/:id", adminAuth, async (req, res) => {
 
   // Traduction en arrière-plan — ne bloque pas la réponse
   if (nameChanged || descChanged) {
-    const prevNameT = { en: nameChanged ? "" : (items[idx].name_en || ""), es: nameChanged ? "" : (items[idx].name_es || "") };
-    const prevDescT = { en: descChanged ? "" : (items[idx].desc_en || ""), es: descChanged ? "" : (items[idx].desc_es || "") };
     Promise.all([
-      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(prevNameT),
-      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(prevDescT),
+      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(existingNameT),
+      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(existingDescT),
     ]).then(([nameT, descT]) => {
       const all = readData();
       const i = all.findIndex((x: any) => x.id === itemId);

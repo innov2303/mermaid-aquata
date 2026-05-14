@@ -111,10 +111,14 @@ router.put("/remerciements/:id", adminAuth, async (req, res) => {
   const reviewChanged = sanitized.review !== items[idx].review;
   const itemId = items[idx].id;
 
+  // On conserve les traductions existantes — elles seront remplacées si la traduction réussit
+  const existingReviewEn = items[idx].review_en ?? null;
+  const existingReviewEs = items[idx].review_es ?? null;
+
   items[idx] = {
     ...sanitized,
-    review_en: reviewChanged ? null : (items[idx].review_en ?? null),
-    review_es: reviewChanged ? null : (items[idx].review_es ?? null),
+    review_en: existingReviewEn,
+    review_es: existingReviewEs,
     id: itemId,
   };
   writeData(items);
