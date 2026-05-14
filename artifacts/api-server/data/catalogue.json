@@ -2,7 +2,7 @@
   {
     "section": "monopalmes",
     "name": "Monopalme à Extension sirène",
-    "desc": "Création artisanale unique en silicone de qualité professionnelle.",
+    "desc": "Nageoire artisanale fabriquée à la main en France.",
     "price": "990,00€",
     "video": "https://youtu.be/gJCSegOKEUg",
     "etsyUrl": "",
@@ -12,9 +12,9 @@
       "/api/uploads/1776810854461-soxs6icwhkf.webp"
     ],
     "name_en": "Mermaid Extension Monofin",
-    "name_es": "Monoaleta de extensión de sirena",
-    "desc_en": "Unique handcrafted creation in professional quality silicone.",
-    "desc_es": "Creación única y artesanal en silicona de calidad profesional.",
+    "name_es": "Monoaleta de extensión sirena",
+    "desc_en": "Handmade fin made in France.",
+    "desc_es": "Aleta artesanal hecha a mano en Francia.",
     "translationStale": false,
     "id": 1
   },

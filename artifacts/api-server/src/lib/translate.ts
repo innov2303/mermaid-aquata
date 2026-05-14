@@ -1,27 +1,15 @@
-const LINGVA = "https://lingva.ml/api/v1";
 const MYMEMORY = "https://api.mymemory.translated.net/get";
+// Email contact → passe la limite MyMemory de 1 000 à 10 000 mots/jour
+const MYMEMORY_EMAIL = "sireneaurore31@hotmail.com";
 const MAX_CHARS = 450;
 
 async function delay(ms: number) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-const SLASH_PLACEHOLDER = "\u2215"; // Division slash (visuellement identique, pas de conflit URL)
-
-async function translateChunkLingva(text: string, from: string, to: string): Promise<string> {
-  const sanitized = text.replace(/\//g, SLASH_PLACEHOLDER);
-  const url = `${LINGVA}/${from}/${to}/${encodeURIComponent(sanitized)}`;
-  const res = await fetch(url, { signal: AbortSignal.timeout(12_000) });
-  if (!res.ok) throw new Error(`Lingva HTTP ${res.status}`);
-  const data = await res.json() as { translation?: string };
-  const translated = data?.translation;
-  if (!translated) throw new Error("Lingva empty response");
-  return translated.replace(new RegExp(SLASH_PLACEHOLDER, "g"), "/");
-}
-
 async function translateChunkMyMemory(text: string, from: string, to: string): Promise<string> {
-  const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
-  const res = await fetch(url, { signal: AbortSignal.timeout(10_000) });
+  const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}&de=${encodeURIComponent(MYMEMORY_EMAIL)}`;
+  const res = await fetch(url, { signal: AbortSignal.timeout(8_000) });
   if (!res.ok) throw new Error(`MyMemory HTTP ${res.status}`);
   const data = await res.json() as { responseStatus?: number; responseData?: { translatedText?: string } };
   if (data.responseStatus === 429) throw new Error("MyMemory rate limit");
@@ -38,11 +26,7 @@ async function translateChunkMyMemory(text: string, from: string, to: string): P
 
 async function translateChunk(text: string, from: string, to: string): Promise<string> {
   if (!text.trim()) return text;
-  try {
-    return await translateChunkLingva(text, from, to);
-  } catch {
-    return await translateChunkMyMemory(text, from, to);
-  }
+  return translateChunkMyMemory(text, from, to);
 }
 
 function splitByWords(text: string, maxLen: number): string[] {
@@ -96,10 +80,10 @@ export async function translateText(text: string, from: string, to: string): Pro
     const translatedChunks: string[] = [];
     for (let ci = 0; ci < chunks.length; ci++) {
       translatedChunks.push(await translateChunk(chunks[ci], from, to));
-      if (ci < chunks.length - 1) await delay(100);
+      if (ci < chunks.length - 1) await delay(200);
     }
     translatedParagraphs.push(translatedChunks.join(" "));
-    if (pi < paragraphs.length - 1) await delay(80);
+    if (pi < paragraphs.length - 1) await delay(200);
   }
 
   return translatedParagraphs.join("\n\n");
@@ -107,7 +91,7 @@ export async function translateText(text: string, from: string, to: string): Pro
 
 export async function translateToAll(text: string): Promise<{ en: string; es: string }> {
   const en = await translateText(text, "fr", "en");
-  await delay(150);
+  await delay(300);
   const es = await translateText(text, "fr", "es");
   return { en, es };
 }
