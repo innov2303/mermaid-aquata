@@ -1,6 +1,6 @@
 const MYMEMORY = "https://api.mymemory.translated.net/get";
-// Email contact → passe la limite MyMemory de 1 000 à 10 000 mots/jour
 const MYMEMORY_EMAIL = "sireneaurore31@hotmail.com";
+const GOOGLE_TRANSLATE = "https://translate.googleapis.com/translate_a/single";
 const MAX_CHARS = 450;
 
 async function delay(ms: number) {
@@ -9,7 +9,7 @@ async function delay(ms: number) {
 
 async function translateChunkMyMemory(text: string, from: string, to: string): Promise<string> {
   const url = `${MYMEMORY}?q=${encodeURIComponent(text)}&langpair=${from}|${to}&de=${encodeURIComponent(MYMEMORY_EMAIL)}`;
-  const res = await fetch(url, { signal: AbortSignal.timeout(8_000) });
+  const res = await fetch(url, { signal: AbortSignal.timeout(6_000) });
   if (!res.ok) throw new Error(`MyMemory HTTP ${res.status}`);
   const data = await res.json() as { responseStatus?: number; responseData?: { translatedText?: string } };
   if (data.responseStatus === 429) throw new Error("MyMemory rate limit");
@@ -24,9 +24,31 @@ async function translateChunkMyMemory(text: string, from: string, to: string): P
   return translated;
 }
 
+async function translateChunkGoogle(text: string, from: string, to: string): Promise<string> {
+  const url = `${GOOGLE_TRANSLATE}?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
+  const res = await fetch(url, {
+    signal: AbortSignal.timeout(6_000),
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
+  if (!res.ok) throw new Error(`Google Translate HTTP ${res.status}`);
+  const data = await res.json() as unknown[][];
+  // Format : [[[translated, original, ...], ...], ...]
+  if (!Array.isArray(data) || !Array.isArray(data[0])) throw new Error("Google Translate bad format");
+  const parts = (data[0] as unknown[][])
+    .map((chunk: unknown[]) => (typeof chunk[0] === "string" ? chunk[0] : ""))
+    .join("");
+  if (!parts) throw new Error("Google Translate empty result");
+  return parts;
+}
+
 async function translateChunk(text: string, from: string, to: string): Promise<string> {
   if (!text.trim()) return text;
-  return translateChunkMyMemory(text, from, to);
+  try {
+    return await translateChunkMyMemory(text, from, to);
+  } catch {
+    // MyMemory indisponible ou quota épuisé → fallback Google Translate
+    return await translateChunkGoogle(text, from, to);
+  }
 }
 
 function splitByWords(text: string, maxLen: number): string[] {
