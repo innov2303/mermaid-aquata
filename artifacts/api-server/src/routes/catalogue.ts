@@ -44,6 +44,10 @@ export async function backfillCatalogue() {
       if (isBadTranslation(item.name_es, item.name)) item.name_es = "";
       if (isBadTranslation(item.desc_en, item.desc)) item.desc_en = "";
       if (isBadTranslation(item.desc_es, item.desc)) item.desc_es = "";
+
+      // On capture le flag AVANT toute modification — clé pour la logique ci-dessous
+      const wasStale = item.translationStale === true;
+
       // 1. Traductions embarquées — toujours appliquées en priorité (traductions vérifiées manuellement)
       const bundled = CATALOGUE_TRANSLATIONS[item.name as string];
       if (bundled && bundled.name_en && bundled.name_es) {
@@ -52,23 +56,24 @@ export async function backfillCatalogue() {
         item.name_es = bundled.name_es;
         if (bundled.desc_en) item.desc_en = bundled.desc_en;
         if (bundled.desc_es) item.desc_es = bundled.desc_es;
-        item.translationStale = false;
+        // NOTE : on ne touche pas translationStale ici — la desc peut encore être périmée
         const after = `${item.name_en}|${item.name_es}|${item.desc_en}|${item.desc_es}`;
         if (before !== after) { changed = true; logger.info({ name: item.name }, "Catalogue backfill: traductions embarquées appliquées"); }
       }
-      // 2. Traduction via API externe si champs vides OU si article marqué comme périmé
-      const needsTranslation = !item.name_en || !item.name_es || !item.desc_en || !item.desc_es || item.translationStale;
+
+      // 2. Traduction via API externe si champs vides OU si desc périmée (wasStale)
+      const needsName = !item.name_en || !item.name_es;
+      const needsDesc = item.desc && (!item.desc_en || !item.desc_es);
+      const needsTranslation = needsName || needsDesc || wasStale;
       if (needsTranslation) {
         try {
-          logger.info({ name: item.name, stale: item.translationStale }, "Catalogue backfill: traduction via API externe");
+          logger.info({ name: item.name, wasStale }, "Catalogue backfill: traduction via API externe");
           const [nameT, descT] = await Promise.all([
-            (!item.name_en || !item.name_es || item.translationStale) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
-            item.desc && (!item.desc_en || !item.desc_es || item.translationStale) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
+            (needsName || wasStale) ? translateToAll(item.name) : Promise.resolve({ en: item.name_en || "", es: item.name_es || "" }),
+            item.desc && (needsDesc || wasStale) ? translateToAll(item.desc) : Promise.resolve({ en: item.desc_en || "", es: item.desc_es || "" }),
           ]);
-          item.name_en = nameT.en;
-          item.name_es = nameT.es;
-          item.desc_en = descT.en;
-          item.desc_es = descT.es;
+          if (needsName || wasStale) { item.name_en = nameT.en; item.name_es = nameT.es; }
+          if (item.desc && (needsDesc || wasStale)) { item.desc_en = descT.en; item.desc_es = descT.es; }
           item.translationStale = false;
           changed = true;
         } catch (err) {
