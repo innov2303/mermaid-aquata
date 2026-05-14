@@ -108,33 +108,34 @@ router.post("/catalogue", adminAuth, async (req, res) => {
   const sanitized = sanitizeCatalogueItem(req.body);
   if (!sanitized.name) return res.status(400).json({ error: "Nom requis" });
 
+  let nameT = { en: "", es: "" };
+  let descT = { en: "", es: "" };
+  let translationStale = false;
+  try {
+    const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("timeout")), 7000));
+    [nameT, descT] = await Promise.race([
+      Promise.all([
+        translateToAll(sanitized.name),
+        sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
+      ]),
+      timeout,
+    ]);
+  } catch {
+    translationStale = true;
+  }
+
   const newItem = {
     ...sanitized,
-    name_en: "",
-    name_es: "",
-    desc_en: "",
-    desc_es: "",
+    name_en: nameT.en,
+    name_es: nameT.es,
+    desc_en: descT.en,
+    desc_es: descT.es,
+    translationStale,
     id: Date.now(),
   };
   items.push(newItem);
   writeData(items);
   res.status(201).json(newItem);
-
-  // Traduction en arrière-plan — ne bloque pas la réponse
-  Promise.all([
-    translateToAll(sanitized.name),
-    sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve({ en: "", es: "" }),
-  ]).then(([nameT, descT]) => {
-    const all = readData();
-    const i = all.findIndex((x: any) => x.id === newItem.id);
-    if (i !== -1) {
-      all[i].name_en = nameT.en;
-      all[i].name_es = nameT.es;
-      all[i].desc_en = descT.en;
-      all[i].desc_es = descT.es;
-      writeData(all);
-    }
-  }).catch(() => {});
 });
 
 router.put("/catalogue/:id", adminAuth, async (req, res) => {
@@ -148,41 +149,41 @@ router.put("/catalogue/:id", adminAuth, async (req, res) => {
   const descChanged = sanitized.desc !== items[idx].desc;
   const itemId = items[idx].id;
 
-  // On conserve les traductions existantes — elles seront remplacées si la traduction réussit
   const existingNameT = { en: items[idx].name_en || "", es: items[idx].name_es || "" };
   const existingDescT = { en: items[idx].desc_en || "", es: items[idx].desc_es || "" };
 
+  let nameT = existingNameT;
+  let descT = existingDescT;
+  let translationStale = items[idx].translationStale ?? false;
+
+  if (nameChanged || descChanged) {
+    try {
+      const timeout = new Promise<never>((_, reject) => setTimeout(() => reject(new Error("timeout")), 7000));
+      [nameT, descT] = await Promise.race([
+        Promise.all([
+          nameChanged ? translateToAll(sanitized.name) : Promise.resolve(existingNameT),
+          descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(existingDescT),
+        ]),
+        timeout,
+      ]);
+      translationStale = false;
+    } catch {
+      // Timeout ou erreur — on garde les anciennes traductions, le backfill retentera
+      translationStale = true;
+    }
+  }
+
   items[idx] = {
     ...sanitized,
-    name_en: existingNameT.en,
-    name_es: existingNameT.es,
-    desc_en: existingDescT.en,
-    desc_es: existingDescT.es,
-    // Si le texte a changé, on marque comme périmé pour que le backfill retente
-    translationStale: nameChanged || descChanged ? true : (items[idx].translationStale ?? false),
+    name_en: nameT.en,
+    name_es: nameT.es,
+    desc_en: descT.en,
+    desc_es: descT.es,
+    translationStale,
     id: itemId,
   };
   writeData(items);
   res.json(items[idx]);
-
-  // Traduction en arrière-plan — ne bloque pas la réponse
-  if (nameChanged || descChanged) {
-    Promise.all([
-      nameChanged ? translateToAll(sanitized.name) : Promise.resolve(existingNameT),
-      descChanged && sanitized.desc ? translateToAll(sanitized.desc) : Promise.resolve(existingDescT),
-    ]).then(([nameT, descT]) => {
-      const all = readData();
-      const i = all.findIndex((x: any) => x.id === itemId);
-      if (i !== -1) {
-        all[i].name_en = nameT.en;
-        all[i].name_es = nameT.es;
-        all[i].desc_en = descT.en;
-        all[i].desc_es = descT.es;
-        all[i].translationStale = false;
-        writeData(all);
-      }
-    }).catch(() => {});
-  }
 });
 
 router.delete("/catalogue/:id", adminAuth, (req, res) => {

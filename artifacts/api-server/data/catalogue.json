@@ -2,7 +2,7 @@
   {
     "section": "monopalmes",
     "name": "Monopalme à Extension sirène",
-    "desc": "Nageoire artisanale fabriquée à la main en France.",
+    "desc": "Nageoire de sirène cousue main avec tissu lycra premium.",
     "price": "990,00€",
     "video": "https://youtu.be/gJCSegOKEUg",
     "etsyUrl": "",
@@ -13,8 +13,8 @@
     ],
     "name_en": "Mermaid Extension Monofin",
     "name_es": "Monoaleta de extensión sirena",
-    "desc_en": "Handmade fin made in France.",
-    "desc_es": "Aleta artesanal hecha a mano en Francia.",
+    "desc_en": "Hand-sewn mermaid fin with premium lycra fabric.",
+    "desc_es": "Aleta de sirena cosida a mano con tejido de lycra premium.",
     "translationStale": false,
     "id": 1
   },
