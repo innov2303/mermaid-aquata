@@ -30,7 +30,7 @@ const translations = {
       reportageCaption: "Pour en savoir plus sur mon parcours, regardez le reportage qui m'a été consacré.",
       activityTitle: 'Mon Activité',
       bubbles: [
-        { title: 'Fabrication artisanale', desc: 'Fabrication Française et Artisanale, étudiée avec un ingénieur aéronautique.' },
+        { title: 'Fabrication artisanale', desc: 'Fabrication Française et Artisanale, étudiée durant plusieurs années.' },
         { title: "Reconnue à l'international", desc: 'Créations « longfish » uniques au monde !' },
         { title: 'Matériaux Éthiques', desc: 'Matériaux de très haute qualité pour une tenue de plusieurs années.' },
         { title: 'Tournages', desc: "Clip Josman XS, Handicap International, série TV « Panda »." },
